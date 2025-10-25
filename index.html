@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayne Clamp - Photography</title>
+    <meta name="description" content="Photographer based in Athens, Georgia USA focusing on events & music around town as well as landscapes, travel & wildlife.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="index.html">Jayne Clamp</a></h1>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li class="collections-dropdown">
+                        <a href="#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                        <ul class="collections-menu">
+                            <li><a href="collections/music.html">Music</a></li>
+                            <li><a href="collections/events.html">Events</a></li>
+                            <li><a href="collections/travel.html">Travel</a></li>
+                            <li><a href="collections/birds.html">Birds</a></li>
+                            <li><a href="collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="collections/pets.html">Pets</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="share-dropdown">
+                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                        <ul class="share-menu">
+                            <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
+                            <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                            <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero-title">Photography Collections</h2>
+            <p class="hero-subtitle">Capturing moments from music, events, travel, and nature. Based in Athens, GA.</p>
+        </div>
+    </section>
+
+    <!-- Collections Grid -->
+    <section id="collections" class="collections-section">
+        <div class="container">
+            <div class="collections-grid">
+                <!-- Music Collection -->
+                <a href="collections/music.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/music-cover.jpg" alt="Music Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Music</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Events Collection -->
+                <a href="collections/events.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/events-cover.jpg" alt="Events Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Events</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Travel Collection -->
+                <a href="collections/travel.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/travel-cover.jpg" alt="Travel Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Travel</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Birds Collection -->
+                <a href="collections/birds.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/birds-cover.jpg" alt="Birds Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Birds</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Landscapes Collection -->
+                <a href="collections/landscapes.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/landscapes-cover.jpg" alt="Landscapes Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Landscapes</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Pets Collection -->
+                <a href="collections/pets.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/pets-cover.jpg" alt="Pets Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Pets</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
+                    <i class="fab fa-flickr"></i>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
