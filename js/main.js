@@ -169,6 +169,42 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
             coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
+        }, 
+        { 
+            title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
+        }, 
+        { 
+            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
+        }, 
+        { 
+            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
+        }, 
+        { 
+            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
+        }, 
+        { 
+            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
+        }, 
+        { 
+            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
         } 
     ],
     events: [
@@ -200,14 +236,19 @@ const ALBUM_DATA = {
 };
 
 // Display albums from manual configuration
-function displayAlbums(collectionType) {
+function displayAlbums(collectionType, filterYear = 'all') {
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
     
     if (!albumsGrid) return;
 
     // Get albums for this collection
-    const albums = ALBUM_DATA[collectionType] || [];
+    let albums = ALBUM_DATA[collectionType] || [];
+
+    // Filter by year if specified
+    if (filterYear !== 'all') {
+        albums = albums.filter(album => album.title.startsWith(filterYear));
+    }
 
     // Hide loading
     if (loading) loading.style.display = 'none';
@@ -216,8 +257,8 @@ function displayAlbums(collectionType) {
     if (albums.length === 0) {
         albumsGrid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">No albums configured yet</p>
-                <p style="font-size: 0.95rem;">Add your Flickr album links in js/main.js</p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">No albums found</p>
+                <p style="font-size: 0.95rem;">${filterYear === 'all' ? 'Add your Flickr album links in js/main.js' : 'No albums for ' + filterYear}</p>
             </div>
         `;
         return;
@@ -245,6 +286,20 @@ if (document.body.classList.contains('collection-page')) {
     const collectionType = document.body.dataset.collection;
     if (collectionType) {
         displayAlbums(collectionType);
+        
+        // Add year tab filtering
+        const yearTabs = document.querySelectorAll('.year-tab');
+        yearTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                yearTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                // Filter albums by year
+                const year = this.dataset.year;
+                displayAlbums(collectionType, year);
+            });
+        });
     }
 }
 

@@ -352,7 +352,42 @@ img {
 
 .page-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Year Tabs */
+.year-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 2rem auto 3rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 600px;
+}
+
+.year-tab {
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: -1px;
+}
+
+.year-tab:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.year-tab.active {
+    color: var(--white);
+    border-bottom-color: var(--white);
+    font-weight: 500;
 }
 
 .page-title {
