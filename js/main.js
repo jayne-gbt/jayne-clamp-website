@@ -123,12 +123,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg'
         },
         { 
-            title: '2025-02-15 Drive By Truckers @ 40 Watt (Homecoming) | Athens, GA', 
-            photoCount: 18, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg'
-        },
-        { 
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
@@ -147,32 +141,43 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg'
         }, 
         { 
+            title: '2025-02-15 Drive By Truckers @ 40 Watt (Homecoming) | Athens, GA', 
+            photoCount: 18, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
+            coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg'
+        },
+        { 
             title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321559088/',
             coverUrl: 'https://live.staticflickr.com/65535/54099739681_bcfc1ba19a_b.jpg'
         }, 
         { 
-            title: 'Concert Name', 
+            title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
-            coverUrl: 'jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
+            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg'
         }, 
         { 
-            title: 'Concert Name', 
+            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
-            coverUrl: 'jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
         }, 
         { 
-            title: 'Concert Name', 
+            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
-            coverUrl: 'jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
         } 
     ],
     events: [
-        // Add your event albums here
+         { 
+            title: '2024-10-26 Wild Rumpus @ Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321549494/',
+            coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg'
+        } 
     ],
     travel: [
         // Add your travel albums here
