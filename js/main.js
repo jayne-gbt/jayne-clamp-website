@@ -48,9 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
 // SOCIAL SHARING FUNCTIONS
 // ===================================
 function shareToInstagram() {
-    // Instagram doesn't have a direct share URL, so copy link to clipboard
-    navigator.clipboard.writeText(window.location.href);
-    alert('Link copied to clipboard! Share it on Instagram.');
+    // Try to use Web Share API first (works on mobile)
+    if (navigator.share) {
+        navigator.share({
+            title: 'Jayne Clamp Photography',
+            text: 'Check out this photography collection',
+            url: window.location.href
+        }).catch((error) => {
+            // If share fails, copy to clipboard
+            copyToClipboard();
+        });
+    } else {
+        // Fallback: copy to clipboard
+        copyToClipboard();
+    }
+    
+    function copyToClipboard() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('Link copied to clipboard! Paste it in Instagram.');
+        }).catch(() => {
+            // If clipboard fails, show the URL
+            prompt('Copy this link to share on Instagram:', window.location.href);
+        });
+    }
 }
 
 function shareToThreads() {

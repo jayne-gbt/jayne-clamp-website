@@ -123,7 +123,7 @@ img {
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     list-style: none;
     padding: 0.5rem 0;
@@ -219,7 +219,7 @@ img {
    HERO SECTION
    =================================== */
 .hero {
-    padding: 6rem 0 2rem;
+    padding: 2rem 0 2rem;
     text-align: center;
 }
 
@@ -469,6 +469,22 @@ img {
     margin: 0 auto;
 }
 
+.contact-sketch {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.contact-sketch img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.contact-sketch img:hover {
+    opacity: 1;
+}
+
 .contact-form {
     margin-top: 3rem;
 }
@@ -703,7 +719,7 @@ img {
     }
 
     .hero {
-        padding: 4rem 0 3rem;
+        padding: 1.5rem 0 2rem;
     }
 
     .hero-title {
