@@ -319,17 +319,16 @@ img {
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 4px;
-    opacity: 0;
-    transition: var(--transition);
+    opacity: 1;
+    transition: all 0.3s ease;
+    transform: translateY(0);
 }
 
 .collection-card:hover .collection-btn {
-    opacity: 1;
-}
-
-.collection-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--white);
+    background: var(--white);
+    color: var(--black);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
 .collection-card:hover .collection-image img {
