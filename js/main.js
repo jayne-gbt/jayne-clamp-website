@@ -123,6 +123,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg'
         },
         { 
+            title: '2025-09-06 James McMurtry & Bonnie Whitmore @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329884840/',
+            coverUrl: 'https://live.staticflickr.com/65535/54879107350_abf530c13c_b.jpg'
+        }, 
+        { 
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
@@ -173,47 +179,23 @@ const ALBUM_DATA = {
         { 
             title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72157626752915571/',
+            coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg'
         }, 
-        { 
-            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
-        }, 
-        { 
-            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
-        }, 
-        { 
-            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
-        }, 
-        { 
-            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
-        }, 
-        { 
-            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
-        } 
     ],
     events: [
+         { 
+            title: '2025-10-25 Wild Rumpus @ Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882735314',
+            coverUrl: 'https://live.staticflickr.com/65535/54882711203_4f61f864d6_b.jpg'
+        },  
          { 
             title: '2024-10-26 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321549494/',
             coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg'
-        } 
+        }
     ],
     travel: [
         // Add your travel albums here
