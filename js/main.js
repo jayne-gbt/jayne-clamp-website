@@ -123,11 +123,47 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg'
         },
         { 
-            title: '2025-09-06 James McMurtry & Bonnie Whitmore @ 40 Watt | Athens, GA',
+            title: '2025-09-06 James McMurtry @ 40 Watt | Athens, GA',
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329884840/',
             coverUrl: 'https://live.staticflickr.com/65535/54879107350_abf530c13c_b.jpg'
         }, 
+        { 
+            title: '2025-09-06 Bonnie Whitmore @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329939306/',
+            coverUrl: 'https://live.staticflickr.com/65535/54879063564_ddbc9002e1_b.jpg'
+        },
+        { 
+            title: '2025-09-07 Kevn Kinney & Peter Buck (w Mike Mills) @ Rialto Room | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
+            coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg'
+        }, 
+        { 
+            title: '2025-08-30 Sam Holt Band (Remembering Mikey & Todd) @ Live Wire | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329945912/',
+            coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg'
+        },
+        { 
+            title: '2025-05-31 Vincas @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329969689/',
+            coverUrl: 'https://live.staticflickr.com/65535/54885354709_e2e51bf9a2_b.jpg'
+        },
+         { 
+            title: '2025-05-31 Johnny Falloon @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329948432/',
+            coverUrl: 'https://live.staticflickr.com/65535/54885173011_ee959a91b3_b.jpg'
+        },
+        { 
+            title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/in/datetaken-public/',
+            coverUrl: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg'
+        },
         { 
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22, 
@@ -177,11 +213,23 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
         }, 
         { 
+            title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329941170/with/54885463099',
+            coverUrl: 'https://live.staticflickr.com/65535/54884346352_08513c42a3_b.jpg'
+        },
+        { 
+            title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982229/with/54886596559/',
+            coverUrl: 'https://live.staticflickr.com/65535/54886596559_161315c87d_b.jpg'
+        },
+        { 
             title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72157626752915571/',
             coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg'
-        }, 
+        },
     ],
     events: [
          { 
@@ -189,12 +237,30 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882735314',
             coverUrl: 'https://live.staticflickr.com/65535/54882711203_4f61f864d6_b.jpg'
+        }, 
+        { 
+            title: '2025-10-18 No Kings @ Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329866562/',
+            coverUrl: 'https://live.staticflickr.com/65535/54875117537_93e96d972a_b.jpg'
+        },  
+        { 
+            title: '2025-06-14 No Kings @ Downtown Athens', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329940176/with/54885224370/',
+            coverUrl: 'https://live.staticflickr.com/65535/54885223885_8a11e33546_b.jpg'
         },  
          { 
             title: '2024-10-26 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321549494/',
             coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg'
+        },
+        { 
+            title: '2022-06-12 Pride Parade @ Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329972373/',
+            coverUrl: 'https://live.staticflickr.com/65535/54886560369_27df1d1567_b.jpg'
         }
     ],
     travel: [
@@ -253,6 +319,7 @@ function displayAlbums(collectionType, filterYear = 'all') {
                 <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/000000/FFFFFF?text=' + encodeURIComponent(album.title)}" 
                      alt="${album.title}" 
                      loading="lazy"
+                     style="${album.title.includes('Rauncher') ? 'object-position: top;' : ''}"
                      onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
                 <div class="album-overlay">
                     <h3>${album.title}</h3>
