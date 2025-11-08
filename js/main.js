@@ -1,4 +1,247 @@
 // ===================================
+// VIEW TRACKING SYSTEM
+// ===================================
+const ViewTracker = {
+    // Check if current user is the site owner (excluded from tracking)
+    isOwner: function() {
+        return localStorage.getItem('siteOwner') === 'true';
+    },
+    
+    // Get all view counts from localStorage
+    getViews: function() {
+        const views = localStorage.getItem('photoViews');
+        return views ? JSON.parse(views) : { albums: {}, photos: {} };
+    },
+    
+    // Save view counts to localStorage
+    saveViews: function(views) {
+        localStorage.setItem('photoViews', JSON.stringify(views));
+    },
+    
+    // Track album view
+    trackAlbumView: function(albumId) {
+        if (this.isOwner()) {
+            console.log(`Album ${albumId} - View not tracked (site owner)`);
+            return this.getAlbumViews(albumId);
+        }
+        const views = this.getViews();
+        views.albums[albumId] = (views.albums[albumId] || 0) + 1;
+        this.saveViews(views);
+        return views.albums[albumId];
+    },
+    
+    // Track photo view
+    trackPhotoView: function(photoId) {
+        if (this.isOwner()) {
+            console.log(`Photo ${photoId} - View not tracked (site owner)`);
+            return this.getPhotoViews(photoId);
+        }
+        const views = this.getViews();
+        views.photos[photoId] = (views.photos[photoId] || 0) + 1;
+        this.saveViews(views);
+        return views.photos[photoId];
+    },
+    
+    // Get album view count
+    getAlbumViews: function(albumId) {
+        const views = this.getViews();
+        return views.albums[albumId] || 0;
+    },
+    
+    // Get photo view count
+    getPhotoViews: function(photoId) {
+        const views = this.getViews();
+        return views.photos[photoId] || 0;
+    },
+    
+    // Get total views across all albums
+    getTotalAlbumViews: function() {
+        const views = this.getViews();
+        return Object.values(views.albums).reduce((sum, count) => sum + count, 0);
+    },
+    
+    // Get total views across all photos
+    getTotalPhotoViews: function() {
+        const views = this.getViews();
+        return Object.values(views.photos).reduce((sum, count) => sum + count, 0);
+    }
+};
+
+// ===================================
+// FLICKR API CONFIGURATION
+// ===================================
+const FLICKR_CONFIG = {
+    apiKey: '7d9678338d941743b7b6d33d3559cc30', // Your Flickr API key
+    userId: '198613393@N03', // Your Flickr user ID
+    // Using public feed (no API key required) or REST API (requires key)
+    usePublicFeed: false // Set to false to use REST API with API key
+};
+
+// ===================================
+// FLICKR API HELPER FUNCTIONS
+// ===================================
+
+// Extract album ID from Flickr URL
+function extractAlbumId(flickrUrl) {
+    const match = flickrUrl.match(/albums\/(\d+)/);
+    return match ? match[1] : null;
+}
+
+// Fetch photos from a Flickr album using REST API
+async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 50) {
+    if (!FLICKR_CONFIG.apiKey || FLICKR_CONFIG.apiKey === 'YOUR_FLICKR_API_KEY') {
+        console.warn('Flickr API key not configured. Using fallback method.');
+        return null;
+    }
+
+    const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l&format=json&nojsoncallback=1&per_page=${maxPhotos}`;
+    
+    console.log('Fetching from Flickr API:', url);
+    
+    try {
+        const response = await fetch(url);
+        console.log('Response status:', response.status);
+        
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        if (data.stat === 'ok') {
+            const photos = data.photoset.photo.map(photo => ({
+                id: photo.id,
+                title: photo.title,
+                thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
+                large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+            }));
+            console.log(`Mapped ${photos.length} photos`);
+            return photos;
+        } else {
+            console.error('Flickr API error:', data.message || 'Unknown error');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching Flickr photos:', error);
+        return null;
+    }
+}
+
+// Fetch user's recent photos using public feed (no API key required)
+async function fetchFlickrPublicPhotos(maxPhotos = 50) {
+    const url = `https://www.flickr.com/services/feeds/photos_public.gne?id=${FLICKR_CONFIG.userId}&format=json&nojsoncallback=1`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        return data.items.slice(0, maxPhotos).map(item => ({
+            id: item.link.match(/\/(\d+)\//)?.[1] || '',
+            title: item.title,
+            thumbnail: item.media.m.replace('_m.jpg', '_c.jpg'),
+            large: item.media.m.replace('_m.jpg', '_b.jpg'),
+            url: item.link
+        }));
+    } catch (error) {
+        console.error('Error fetching Flickr public feed:', error);
+        return null;
+    }
+}
+
+// Fetch album cover photo from Flickr API
+async function fetchFlickrAlbumCover(albumId) {
+    const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_b&format=json&nojsoncallback=1&per_page=1`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.stat === 'ok' && data.photoset.photo.length > 0) {
+            const photo = data.photoset.photo[0];
+            // Return the cover photo URL (prefer url_b for better quality)
+            return photo.url_b || photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+        }
+        return null;
+    } catch (error) {
+        console.error('Error fetching album cover:', error);
+        return null;
+    }
+}
+
+// ===================================
+// LIGHTBOX FUNCTIONALITY
+// ===================================
+let currentLightboxIndex = 0;
+let lightboxPhotos = [];
+
+function openLightbox(photos, index) {
+    lightboxPhotos = photos;
+    currentLightboxIndex = index;
+    showLightboxImage();
+    
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function showLightboxImage() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    
+    if (lightboxImg && lightboxPhotos[currentLightboxIndex]) {
+        const photo = lightboxPhotos[currentLightboxIndex];
+        
+        // Track photo view (private - logged to console only)
+        const photoViews = ViewTracker.trackPhotoView(photo.id);
+        console.log(`Photo ${photo.id} viewed ${photoViews} times (private stat)`);
+        
+        // Track photo view in Google Analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'photo_view', {
+                'photo_id': photo.id,
+                'photo_title': photo.title,
+                'photo_position': currentLightboxIndex + 1
+            });
+        }
+        
+        lightboxImg.src = photo.large;
+        if (lightboxCaption) {
+            lightboxCaption.textContent = photo.title;
+        }
+        if (lightboxCounter) lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxPhotos.length}`;
+    }
+}
+
+function nextLightboxImage() {
+    currentLightboxIndex = (currentLightboxIndex + 1) % lightboxPhotos.length;
+    showLightboxImage();
+}
+
+function prevLightboxImage() {
+    currentLightboxIndex = (currentLightboxIndex - 1 + lightboxPhotos.length) % lightboxPhotos.length;
+    showLightboxImage();
+}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox && lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextLightboxImage();
+        if (e.key === 'ArrowLeft') prevLightboxImage();
+    }
+});
+
+// ===================================
 // MOBILE MENU TOGGLE
 // ===================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -108,55 +351,64 @@ const ALBUM_DATA = {
             title: '2025-10-19 Porchfest @ Athens, GA', 
             photoCount: 12, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329859726/',
-            coverUrl: 'https://live.staticflickr.com/65535/54876264980_887cfb1a8e_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54876264980_887cfb1a8e_b.jpg',
+            albumPage: '../music/2025-10-19-porchfest-athens-ga.html'
         },
         { 
             title: '2025-09-21 Vincas @ Hendershots | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
-            coverUrl: 'https://live.staticflickr.com/65535/54876776442_e83e6eea26_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54876776442_e83e6eea26_b.jpg',
+            albumPage: '../music/2025-09-21-vincas-hendershots-athens-ga.html'
         }, 
         { 
             title: '2025-09-12 The Minus 5 & The Baseball Project @ 40 Watt | Athens, GA', 
             photoCount: 18, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329875831/',
-            coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg'
-        },
-        { 
-            title: '2025-09-06 James McMurtry @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329884840/',
-            coverUrl: 'https://live.staticflickr.com/65535/54879107350_abf530c13c_b.jpg'
-        }, 
-        { 
-            title: '2025-09-06 Bonnie Whitmore @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329939306/',
-            coverUrl: 'https://live.staticflickr.com/65535/54879063564_ddbc9002e1_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg',
+            albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
         { 
             title: '2025-09-07 Kevn Kinney & Peter Buck (w Mike Mills) @ Rialto Room | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
-            coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg',
+            albumPage: '../music/2025-09-07-kevn-kinney-peter-buck-w-mike-mills-rialto-room-athens-ga.html'
+        },
+        { 
+            title: '2025-09-06 James McMurtry @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329884840/',
+            coverUrl: 'https://live.staticflickr.com/65535/54879107350_abf530c13c_b.jpg',
+            albumPage: '../music/2025-09-06-james-mcmurtry-40-watt-athens-ga.html'
+        }, 
+        { 
+            title: '2025-09-06 Bonnie Whitmore @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329939306/',
+            coverUrl: 'https://live.staticflickr.com/65535/54879063564_ddbc9002e1_b.jpg',
+            albumPage: '../music/2025-09-06-bonnie-whitmore-40-watt-athens-ga.html'
         }, 
         { 
             title: '2025-08-30 Sam Holt Band (Remembering Mikey & Todd) @ Live Wire | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329945912/',
-            coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg',
+            albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
         },
         { 
             title: '2025-05-31 Vincas @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329969689/',
-            coverUrl: 'https://live.staticflickr.com/65535/54885354709_e2e51bf9a2_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54885354709_e2e51bf9a2_b.jpg',
+            albumPage: '../music/2025-05-31-vincas-nowhere-bar-athens-ga.html'
         },
          { 
             title: '2025-05-31 Johnny Falloon @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329948432/',
-            coverUrl: 'https://live.staticflickr.com/65535/54885173011_ee959a91b3_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54885173011_ee959a91b3_b.jpg',
+            albumPage: '../music/2025-05-31-johnny-falloon-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
@@ -168,67 +420,150 @@ const ALBUM_DATA = {
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364740380_9d40dc998f_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54364740380_9d40dc998f_b.jpg',
+            albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html'
         },
         { 
             title: '2025-02-27 Kevn Kinney, Lenny Hayes, Peter Buck, Mike Mills @ Rialto Room | Athens, GA', 
             photoCount: 3, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
-            coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg',
+            albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
         { 
             title: '2025-02-17 Classic City Wrestling w Drive By Truckers | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg',
+            albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html'
         }, 
         { 
             title: '2025-02-15 Drive By Truckers @ 40 Watt (Homecoming) | Athens, GA', 
             photoCount: 18, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg',
+            albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
         { 
-            title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
+            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321559088/',
-            coverUrl: 'https://live.staticflickr.com/65535/54099739681_bcfc1ba19a_b.jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg',
+            albumPage: '../music/2024-10-11-kimberly-morgan-york-terrapin-beer-co-athens-ga.html'
         }, 
         { 
             title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
-            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
+            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
         }, 
         { 
             title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg',
+            albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
         }, 
         { 
-            title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
+            title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
-            coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321559088/',
+            coverUrl: 'https://live.staticflickr.com/65535/54099739681_bcfc1ba19a_b.jpg',
+            albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
         }, 
+        { 
+            title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982768/with/54887654154',
+            coverUrl: 'https://live.staticflickr.com/65535/54887654154_1a2bbe03b2_b.jpg',
+            albumPage: '../music/2024-01-26-bit-brigade-georgia-theatre-athens-ga.html'
+        }, 
+        { 
+            title: '2023-11-24 Taxicab Verses @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
+            albumPage: '../music/2023-11-24-taxicab-verses-flicker-athens-ga.html'
+        },
+        { 
+            title: '2023-11-04 Jerry Joseph & the Jackmormons @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329992639/', 
+            coverUrl: 'https://live.staticflickr.com/65535/54887676938_5139120bee_b.jpg',
+            albumPage: '../music/2023-11-04-jerry-joseph-the-jackmormons-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-10-07 Baba Commandant & the Mandingo Band @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329968407/', 
+            coverUrl: 'https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg',
+            albumPage: '../music/2023-10-07-baba-commandant-the-mandingo-band-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-09-30 David Barbe (60th Bday) @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329958795/with/54887353605/',
+            coverUrl: 'https://live.staticflickr.com/65535/54887353605_67e82e3d0c_b.jpg',
+            albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-08-12 Drug Ducks @ Nowhere | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172460/',
+            albumPage: '../music/2023-08-12-drug-ducks-nowhere-athens-ga.html'
+        },
+        { 
+            title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
+            albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
+        },
+        { 
+            title: '2023-03-10 Kimberly Morgan York @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329963911/',
+            coverUrl: 'https://live.staticflickr.com/65535/54886514342_342d0e0b2b_b.jpg',
+            albumPage: '../music/2023-03-10-kimberly-morgan-york-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2022-12-13 Supernova Rainbow of Fun @ Nuci\'s Space', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172345/',
+            albumPage: '../music/2022-12-13-supernova-rainbow-of-fun-nucis-space.html'
+        },
         { 
             title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329941170/with/54885463099',
-            coverUrl: 'https://live.staticflickr.com/65535/54884346352_08513c42a3_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54884346352_08513c42a3_b.jpg',
+            albumPage: '../music/2022-07-22-kimberly-morgan-york-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2022-04-10 Patterson Hood, Claire Campbell & Jay Gonzalez @ Creature Comforts | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329983203/',
+            coverUrl: 'https://live.staticflickr.com/65535/54887666343_32bb0a8754_b.jpg',
+            albumPage: '../music/2022-04-10-patterson-hood-claire-campbell-jay-gonzalez-creature-comforts-athens-ga.html'
         },
         { 
             title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982229/with/54886596559/',
-            coverUrl: 'https://live.staticflickr.com/65535/54886596559_161315c87d_b.jpg'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329984898/',
+            coverUrl: 'https://live.staticflickr.com/65535/54887720945_5d4e1e2e1b_b.jpg',
+            albumPage: '../music/2019-10-21-steel-pulse-georgia-theatre-athens-ga.html'
+        },
+        { 
+            title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204669/',
+            albumPage: '../music/2017-12-14-5000-caledonia-athens-ga.html'
         },
         { 
             title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72157626752915571/',
-            coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg',
+            albumPage: '../music/2011-06-02-jerry-joseph-bloodkin-todd-nance-40-watt-athens-ga.html'
         },
     ],
     events: [
@@ -236,32 +571,71 @@ const ALBUM_DATA = {
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882735314',
-            coverUrl: 'https://live.staticflickr.com/65535/54882711203_4f61f864d6_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54882711203_4f61f864d6_b.jpg',
+            albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
         { 
             title: '2025-10-18 No Kings @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329866562/',
-            coverUrl: 'https://live.staticflickr.com/65535/54875117537_93e96d972a_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54875117537_93e96d972a_b.jpg',
+            albumPage: '../events/2025-10-18-no-kings-athens-ga.html'
         },  
         { 
             title: '2025-06-14 No Kings @ Downtown Athens', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329940176/with/54885224370/',
-            coverUrl: 'https://live.staticflickr.com/65535/54885223885_8a11e33546_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54885223885_8a11e33546_b.jpg',
+            albumPage: '../events/2025-06-14-no-kings-downtown-athens.html'
         },  
-         { 
+        { 
             title: '2024-10-26 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321549494/',
-            coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg',
+            albumPage: '../events/2024-10-26-wild-rumpus-athens-ga.html'
+        },
+        { 
+            title: '2022-10-14 UGA Homecoming Parade | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192248/',
+            albumPage: '../events/2022-10-14-uga-homecoming-parade-athens-ga.html'
+        },
+        { 
+            title: '2022-09-17 UCW Labor Rally w Stacey Abrams @ Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329962161/with/54887201501',
+            coverUrl: 'https://live.staticflickr.com/65535/54886322487_2b2240f709_b.jpg',
+            albumPage: '../events/2022-09-17-ucw-labor-rally-w-stacey-abrams-athens-ga.html'
         },
         { 
             title: '2022-06-12 Pride Parade @ Athens, GA',
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329972373/',
-            coverUrl: 'https://live.staticflickr.com/65535/54886560369_27df1d1567_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54886560369_27df1d1567_b.jpg',
+            albumPage: '../events/2022-06-12-pride-parade-athens-ga.html'
+        },
+        { 
+            title: '2021-10-31 Wild Rumpus Halloween | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329961440/',
+            coverUrl: 'https://live.staticflickr.com/65535/54886500317_39f45f57ac_b.jpg',
+            albumPage: '../events/2021-10-31-wild-rumpus-halloween-athens-ga.html'
+        },
+        { 
+            title: '2020-06-06 Black Lives Matter Protest | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329970212/with/54887726905',
+            coverUrl: 'https://live.staticflickr.com/65535/54887679959_4cc6bae0aa_b.jpg',
+            albumPage: '../events/2020-06-06-black-lives-matter-protest-athens-ga.html'
+        },
+        { 
+            title: '2018-03-24 March for Our Lives Rally | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192343/',
+            albumPage: '../events/2018-03-24-march-for-our-lives-rally-athens-ga.html'
         }
+
     ],
     travel: [
         // Add your travel albums here
@@ -275,13 +649,103 @@ const ALBUM_DATA = {
             title: 'Winter 2025 | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720323325987/',
-            coverUrl: 'https://live.staticflickr.com/65535/54279614662_ccb9db86a6_b.jpg'
+            coverUrl: 'https://live.staticflickr.com/65535/54279614662_ccb9db86a6_b.jpg',
+            albumPage: '../landscapes/2025-winter-athens-ga.html'
         }, 
     ],
     pets: [
         // Add your pet photography albums here
     ]
 };
+
+// ===================================
+// DISPLAY ALBUM PHOTOS IN GRID (NEW - WITH FLICKR API)
+// ===================================
+// Store current album photos globally for lightbox access
+let currentAlbumPhotos = [];
+
+async function displayAlbumPhotos(albumUrl) {
+    const photosGrid = document.getElementById('photos-grid');
+    const loading = document.getElementById('loading');
+    
+    if (!photosGrid) {
+        console.error('photos-grid element not found');
+        return;
+    }
+    
+    // Show loading
+    if (loading) loading.style.display = 'block';
+    photosGrid.innerHTML = '';
+    
+    // Extract album ID from URL
+    const albumId = extractAlbumId(albumUrl);
+    
+    if (!albumId) {
+        photosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">Invalid album URL</p>';
+        if (loading) loading.style.display = 'none';
+        console.error('Could not extract album ID from URL:', albumUrl);
+        return;
+    }
+    
+    console.log('Fetching photos for album ID:', albumId);
+    
+    // Track album view (private - logged to console only)
+    const viewCount = ViewTracker.trackAlbumView(albumId);
+    console.log(`Album ${albumId} viewed ${viewCount} times (private stat)`);
+    
+    // Track album view in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        const albumTitle = document.querySelector('.page-title')?.textContent || 'Unknown Album';
+        gtag('event', 'album_view', {
+            'album_id': albumId,
+            'album_title': albumTitle
+        });
+    }
+    
+    // Fetch photos from Flickr
+    const photos = await fetchFlickrAlbumPhotos(albumId);
+    
+    // Hide loading
+    if (loading) loading.style.display = 'none';
+    
+    // Update page subtitle with photo count (public)
+    const subtitle = document.querySelector('.page-subtitle');
+    if (subtitle && photos) {
+        subtitle.textContent = `${photos.length} photos`;
+    }
+    
+    if (!photos || photos.length === 0) {
+        photosGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Unable to load photos</p>
+                <p style="font-size: 0.95rem;">Check the browser console for errors</p>
+                <a href="${albumUrl}" target="_blank" style="color: #fff; text-decoration: underline; margin-top: 1rem; display: inline-block;">View album on Flickr</a>
+            </div>
+        `;
+        console.error('No photos returned from Flickr API');
+        return;
+    }
+    
+    console.log(`Successfully loaded ${photos.length} photos`);
+    
+    // Store photos globally for lightbox
+    currentAlbumPhotos = photos;
+    
+    // Display photos in grid
+    photosGrid.innerHTML = photos.map((photo, index) => `
+        <div class="photo-card" onclick="openAlbumLightbox(${index})">
+            <img src="${photo.thumbnail}" alt="${photo.title}" loading="lazy">
+            <div class="photo-overlay">
+                <i class="fas fa-search-plus"></i>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Helper function to open lightbox with current album photos
+function openAlbumLightbox(index) {
+    openLightbox(currentAlbumPhotos, index);
+}
 
 // Display albums from manual configuration
 function displayAlbums(collectionType, filterYear = 'all') {
@@ -313,21 +777,42 @@ function displayAlbums(collectionType, filterYear = 'all') {
     }
 
     // Display albums
-    albumsGrid.innerHTML = albums.map(album => `
-        <a href="${album.flickrUrl}" target="_blank" rel="noopener" class="album-card">
-            <div class="album-image">
-                <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/000000/FFFFFF?text=' + encodeURIComponent(album.title)}" 
-                     alt="${album.title}" 
-                     loading="lazy"
-                     style="${album.title.includes('Rauncher') ? 'object-position: top;' : ''}"
-                     onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
-                <div class="album-overlay">
-                    <h3>${album.title}</h3>
-                    <p class="album-info">${album.photoCount || '?'} photos</p>
+    albumsGrid.innerHTML = albums.map((album, index) => {
+        const albumId = `album-${collectionType}-${index}`;
+        
+        // If no coverUrl, fetch from Flickr API
+        if (!album.coverUrl && album.flickrUrl) {
+            const flickrAlbumId = extractAlbumId(album.flickrUrl);
+            if (flickrAlbumId) {
+                fetchFlickrAlbumCover(flickrAlbumId).then(coverUrl => {
+                    const imgElement = document.querySelector(`#${albumId} img`);
+                    if (imgElement && coverUrl) {
+                        imgElement.src = coverUrl;
+                    }
+                });
+            }
+        }
+        
+        return `
+            <a href="${album.albumPage || album.flickrUrl}" 
+               ${album.albumPage ? '' : 'target="_blank" rel="noopener"'} 
+               class="album-card" 
+               id="${albumId}"
+               onclick="if(typeof gtag !== 'undefined') { gtag('event', 'album_card_click', { 'album_title': '${album.title.replace(/'/g, "\\'")}', 'collection': '${collectionType}' }); }">
+                <div class="album-image">
+                    <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/333333/FFFFFF?text=Loading...'}" 
+                         alt="${album.title}" 
+                         loading="lazy"
+                         style="${album.title.includes('Rauncher') ? 'object-position: top;' : ''}"
+                         onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
+                    <div class="album-overlay">
+                        <h3>${album.title}</h3>
+                        <p class="album-info">${album.photoCount || '?'} photos</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-    `).join('');
+            </a>
+        `;
+    }).join('');
 }
 
 // Initialize albums on collection pages
@@ -420,3 +905,43 @@ if (contactForm) {
         */
     });
 }
+
+// ===================================
+// VIEW STATS - Console Helper
+// ===================================
+// Type viewStats() in browser console to see all view statistics
+window.viewStats = function() {
+    const views = ViewTracker.getViews();
+    const isOwner = ViewTracker.isOwner();
+    console.log('=== VIEW STATISTICS ===');
+    console.log(`Owner Mode: ${isOwner ? '✓ ENABLED (your views not tracked)' : '✗ DISABLED'}`);
+    console.log(`Total Album Views: ${ViewTracker.getTotalAlbumViews()}`);
+    console.log(`Total Photo Views: ${ViewTracker.getTotalPhotoViews()}`);
+    console.log('\n--- Album Views ---');
+    Object.entries(views.albums).sort((a, b) => b[1] - a[1]).forEach(([id, count]) => {
+        console.log(`Album ${id}: ${count} views`);
+    });
+    console.log('\n--- Top 10 Photos ---');
+    Object.entries(views.photos).sort((a, b) => b[1] - a[1]).slice(0, 10).forEach(([id, count]) => {
+        console.log(`Photo ${id}: ${count} views`);
+    });
+    console.log('\n--- Commands ---');
+    console.log('enableOwnerMode() - Exclude your views from tracking');
+    console.log('disableOwnerMode() - Include your views in tracking');
+    console.log('localStorage.removeItem("photoViews") - Clear all stats');
+    return views;
+};
+
+// Enable owner mode (exclude your views)
+window.enableOwnerMode = function() {
+    localStorage.setItem('siteOwner', 'true');
+    console.log('✓ Owner mode ENABLED - Your views will not be tracked');
+};
+
+// Disable owner mode (include your views)
+window.disableOwnerMode = function() {
+    localStorage.removeItem('siteOwner');
+    console.log('✓ Owner mode DISABLED - Your views will be tracked');
+};
+
+console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');

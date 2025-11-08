@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flickr API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+        }
+        button {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #222;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+    </style>
+</head>
+<body>
+    <h1>Flickr API Test</h1>
+    
+    <p>This page tests if your Flickr API is working correctly.</p>
+    
+    <button onclick="testAPI()">Test API Connection</button>
+    <button onclick="testAlbum()">Test Album Fetch</button>
+    
+    <div id="result">Click a button to test...</div>
+
+    <script src="js/main.js"></script>
+    <script>
+        async function testAPI() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Testing API connection...\n\n';
+            
+            // Show config
+            result.innerHTML += `<strong>Configuration:</strong>\n`;
+            result.innerHTML += `API Key: ${FLICKR_CONFIG.apiKey.substring(0, 10)}...\n`;
+            result.innerHTML += `User ID: ${FLICKR_CONFIG.userId}\n`;
+            result.innerHTML += `Use Public Feed: ${FLICKR_CONFIG.usePublicFeed}\n\n`;
+            
+            // Test a simple API call
+            const testUrl = `https://api.flickr.com/services/rest/?method=flickr.test.echo&api_key=${FLICKR_CONFIG.apiKey}&format=json&nojsoncallback=1`;
+            
+            result.innerHTML += `<strong>Testing echo endpoint...</strong>\n`;
+            
+            try {
+                const response = await fetch(testUrl);
+                const data = await response.json();
+                
+                if (data.stat === 'ok') {
+                    result.innerHTML += `<span class="success">✓ API Key is valid!</span>\n\n`;
+                    result.innerHTML += `Response:\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.innerHTML += `<span class="error">✗ API Error: ${data.message}</span>\n\n`;
+                    result.innerHTML += `Response:\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.innerHTML += `<span class="error">✗ Error: ${error.message}</span>`;
+            }
+        }
+        
+        async function testAlbum() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Testing album fetch...\n\n';
+            
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720329859726/';
+            const albumId = '72177720329859726';
+            
+            result.innerHTML += `<strong>Album URL:</strong> ${albumUrl}\n`;
+            result.innerHTML += `<strong>Album ID:</strong> ${albumId}\n\n`;
+            
+            result.innerHTML += 'Fetching photos...\n';
+            
+            try {
+                const photos = await fetchFlickrAlbumPhotos(albumId, 5);
+                
+                if (photos && photos.length > 0) {
+                    result.innerHTML += `<span class="success">✓ Successfully fetched ${photos.length} photos!</span>\n\n`;
+                    result.innerHTML += `<strong>First photo:</strong>\n`;
+                    result.innerHTML += `Title: ${photos[0].title}\n`;
+                    result.innerHTML += `Thumbnail: ${photos[0].thumbnail}\n`;
+                    result.innerHTML += `Large: ${photos[0].large}\n\n`;
+                    result.innerHTML += `<strong>All photos:</strong>\n${JSON.stringify(photos, null, 2)}`;
+                } else {
+                    result.innerHTML += `<span class="error">✗ No photos returned</span>\n`;
+                    result.innerHTML += `Check the browser console for more details.`;
+                }
+            } catch (error) {
+                result.innerHTML += `<span class="error">✗ Error: ${error.message}</span>\n`;
+                result.innerHTML += `Stack: ${error.stack}`;
+            }
+        }
+    </script>
+</body>
+</html>

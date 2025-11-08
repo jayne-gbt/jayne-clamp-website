@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel - Jayne Clamp Photography</title>
-    <meta name="description" content="Live music performances and concert photography by Jayne Clamp.">
+    <title>2025-02-17 Classic City Wrestling w Drive By Truckers | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="Photos from 2025-02-17 Classic City Wrestling w Drive By Truckers | Athens, GA">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="collection-page" data-collection="travel">
+<body>
     <!-- Header -->
     <header class="site-header">
         <div class="container">
@@ -21,12 +21,12 @@
                     <li class="collections-dropdown">
                         <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                         <ul class="collections-menu">
-                            <li><a href="music.html">Music</a></li>
-                            <li><a href="events.html">Events</a></li>
-                            <li><a href="travel.html">Travel</a></li>
-                            <li><a href="birds.html">Birds</a></li>
-                            <li><a href="landscapes.html">Landscapes</a></li>
-                            <li><a href="pets.html">Pets</a></li>
+                            <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
                         </ul>
                     </li>
                     <li><a href="../contact.html">Contact</a></li>
@@ -45,25 +45,42 @@
         </div>
     </header>
 
-    <!-- Albums Section -->
+    <!-- Album Photos Section -->
     <section class="albums-section">
         <div class="container">
-            <a href="../index.html#collections" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Collections
+            <a href="../collections/music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
             </a>
 
             <div class="page-header">
-                <h2 class="page-title">Travel</h2>
-                <p class="page-subtitle">Adventures around the world</p>
+                <h2 class="page-title">2025-02-17 Classic City Wrestling w Drive By Truckers | Athens, GA</h2>
+                <p class="page-subtitle">11 photos</p>
             </div>
 
-            <div id="loading" class="loading">Loading albums...</div>
+            <div id="loading" class="loading">Loading photos...</div>
 
-            <div id="albums-grid" class="albums-grid">
-                <!-- Albums will be loaded dynamically via JavaScript -->
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photos-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
             </div>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -81,5 +98,12 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // Load photos from this specific Flickr album
+        document.addEventListener('DOMContentLoaded', function() {
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/';
+            displayAlbumPhotos(albumUrl);
+        });
+    </script>
 </body>
 </html>
