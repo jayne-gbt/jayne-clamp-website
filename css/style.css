@@ -359,11 +359,11 @@ img {
 .year-tabs {
     display: flex;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 1.5rem;
     margin: 2rem auto 3rem;
     flex-wrap: wrap;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .year-tab {
@@ -424,14 +424,14 @@ img {
 
 .albums-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
 }
 
 .album-card {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     cursor: pointer;
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
@@ -447,6 +447,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     transform: scale(1);
     transition: transform 0.5s ease;
 }
@@ -634,9 +635,12 @@ img {
    RESPONSIVE DESIGN
    =================================== */
 @media (max-width: 992px) {
-    .collections-grid,
-    .albums-grid {
+    .collections-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
 
     .hero-title {
@@ -770,9 +774,13 @@ img {
         font-size: 1.8rem;
     }
 
-    .collections-grid,
-    .albums-grid {
+    .collections-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1.5rem;
     }
 
@@ -800,7 +808,7 @@ img {
    =================================== */
 .photos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -810,7 +818,7 @@ img {
     overflow: hidden;
     border-radius: 4px;
     cursor: pointer;
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     background-color: var(--gray);
 }
 
@@ -818,6 +826,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     transition: transform 0.3s ease;
 }
 
@@ -975,4 +984,23 @@ img {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 0.75rem;
     }
+    
+    .albums-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===================================
+   SMART IMAGE POSITIONING
+   =================================== */
+/* For portrait images, focus on upper portion where faces typically are */
+.album-image img[src*="portrait"],
+.photo-card img[src*="portrait"] {
+    object-position: center 25%;
+}
+
+/* For landscape images, keep centered */
+.album-image img[src*="landscape"],
+.photo-card img[src*="landscape"] {
+    object-position: center center;
 }

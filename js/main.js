@@ -468,8 +468,7 @@ const ALBUM_DATA = {
         { 
             title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321559088/',
-            coverUrl: 'https://live.staticflickr.com/65535/54099739681_bcfc1ba19a_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
             albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
         }, 
         { 
@@ -484,6 +483,12 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
             albumPage: '../music/2023-11-24-taxicab-verses-flicker-athens-ga.html'
+        },
+        { 
+            title: '2023-11-24 Jacob Morris @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193693/',
+            albumPage: '../music/2023-11-24-jacob-morris-flicker-athens-ga.html'
         },
         { 
             title: '2023-11-04 Jerry Joseph & the Jackmormons @ 40 Watt | Athens, GA', 
@@ -548,9 +553,15 @@ const ALBUM_DATA = {
         { 
             title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329984898/',
-            coverUrl: 'https://live.staticflickr.com/65535/54887720945_5d4e1e2e1b_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982229/',
+            coverUrl: 'https://live.staticflickr.com/65535/54886596559_161315c87d_b.jpg',
             albumPage: '../music/2019-10-21-steel-pulse-georgia-theatre-athens-ga.html'
+        },
+        { 
+            title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193368/',
+            albumPage: '../music/2018-12-29-lona-caledonia-athens-ga.html'
         },
         { 
             title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
