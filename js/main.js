@@ -369,7 +369,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
         { 
-            title: '2025-09-07 Kevn Kinney & Peter Buck (w Mike Mills) @ Rialto Room | Athens, GA', 
+            title: '2025-09-07 Kevn Kinney & Peter Buck w Mike Mills @ Rialto Room | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
             coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg',
@@ -390,7 +390,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-06-bonnie-whitmore-40-watt-athens-ga.html'
         }, 
         { 
-            title: '2025-08-30 Sam Holt Band (Remembering Mikey & Todd) @ Live Wire | Athens, GA', 
+            title: '2025-08-30 Sam Holt Band @ Live Wire (Remembering Mikey & Todd) | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329945912/',
             coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg',
@@ -459,17 +459,11 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
         }, 
         { 
-            title: '2024-09-30 David Barbe Bday Show @ Flicker | Athens, GA', 
+            title: '2024-09-30 David Barbe @ Flicker (Bday Show) | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
             coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg',
             albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
-        }, 
-        { 
-            title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
-            albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
         }, 
         { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
@@ -505,7 +499,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-10-07-baba-commandant-the-mandingo-band-40-watt-athens-ga.html'
         },
         { 
-            title: '2023-09-30 David Barbe (60th Bday) @ 40 Watt | Athens, GA', 
+            title: '2023-09-30 David Barbe @ 40 Watt (60th Bday)| Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329958795/with/54887353605/',
             coverUrl: 'https://live.staticflickr.com/65535/54887353605_67e82e3d0c_b.jpg',
@@ -524,6 +518,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
         },
         { 
+            title: '2023-02-10 Classic City Jukebox, SheHeHe, Mercyland, AD Blanco, Royal Velvet, Shotgun Saviors, The Arcs @ Celebration of Todd McBride | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330208208/',
+            albumPage: '../music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
+        },
+        { 
             title: '2023-03-10 Kimberly Morgan York @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329963911/',
@@ -535,6 +535,12 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172345/',
             albumPage: '../music/2022-12-13-supernova-rainbow-of-fun-nucis-space.html'
+        },
+        { 
+            title: '2022-11-27 Bloodkin @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330219624/',
+            albumPage: '../music/2022-11-27-bloodkin-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
@@ -549,6 +555,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329983203/',
             coverUrl: 'https://live.staticflickr.com/65535/54887666343_32bb0a8754_b.jpg',
             albumPage: '../music/2022-04-10-patterson-hood-claire-campbell-jay-gonzalez-creature-comforts-athens-ga.html'
+        },
+        { 
+            title: '2019-12-31 Five Eight @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
+            albumPage: '../music/2019-12-31-five-eight-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
@@ -759,7 +771,7 @@ function openAlbumLightbox(index) {
 }
 
 // Display albums from manual configuration
-function displayAlbums(collectionType, filterYear = 'all') {
+function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
     
@@ -771,6 +783,25 @@ function displayAlbums(collectionType, filterYear = 'all') {
     // Filter by year if specified
     if (filterYear !== 'all') {
         albums = albums.filter(album => album.title.startsWith(filterYear));
+    }
+
+    // Filter by band if specified
+    if (filterBand !== 'all') {
+        albums = albums.filter(album => {
+            // Extract band name from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
+            const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
+            if (!match) return false;
+            
+            let artistSection = match[1].trim();
+            
+            // Special handling: if title contains "Event with", extract artists after "with"
+            const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
+            if (withMatch && artistSection.toLowerCase().includes('event')) {
+                artistSection = withMatch[1].trim();
+            }
+            
+            return artistSection.toLowerCase().includes(filterBand.toLowerCase());
+        });
     }
 
     // Hide loading
@@ -832,6 +863,85 @@ if (document.body.classList.contains('collection-page')) {
     if (collectionType) {
         displayAlbums(collectionType);
         
+        // Populate band filter for music collection
+        if (collectionType === 'music') {
+            const bandFilter = document.getElementById('band-filter');
+            if (bandFilter) {
+                const albums = ALBUM_DATA[collectionType] || [];
+                const artists = new Set();
+                
+                albums.forEach(album => {
+                    const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
+                    if (match) {
+                        let artistSection = match[1].trim();
+                        
+                        // Special handling: if title contains "with", only extract artists after "with"
+                        const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
+                        if (withMatch && artistSection.toLowerCase().includes('event')) {
+                            artistSection = withMatch[1].trim();
+                        }
+                        
+                        // Band names that contain & but should NOT be split
+                        const doNotSplitBands = [
+                            'Baba Commandant & the Mandingo Band'
+                        ];
+                        
+                        // Check if this is a band name that should not be split
+                        const isDoNotSplit = doNotSplitBands.some(band => 
+                            artistSection.toLowerCase().includes(band.toLowerCase())
+                        );
+                        
+                        let individualArtists;
+                        if (isDoNotSplit) {
+                            // Don't split, treat as single artist
+                            individualArtists = [artistSection];
+                        } else {
+                            // Split by common separators: &, w/, w (standalone), with, ,
+                            // Allow optional space before comma, required space after
+                            individualArtists = artistSection.split(/\s*(?:&|w\/|\bw\b|with|,)\s+/);
+                        }
+                        individualArtists.forEach(artist => {
+                            let cleanArtist = artist.trim();
+                            
+                            // Ignore "friends" and "Event" - don't create filters for them
+                            if (cleanArtist.toLowerCase() === 'friends' || 
+                                cleanArtist.toLowerCase() === 'event') {
+                                return;
+                            }
+                            
+                            // Capitalize "the" at the start
+                            if (cleanArtist.toLowerCase().startsWith('the ')) {
+                                cleanArtist = 'The' + cleanArtist.substring(3);
+                            }
+                            artists.add(cleanArtist);
+                        });
+                    }
+                });
+                
+                // Sort artists alphabetically
+                const sortedArtists = Array.from(artists).sort();
+                
+                // Log the artist list to console for review
+                console.log('=== ARTIST LIST ===');
+                console.log(sortedArtists);
+                console.log('===================');
+                
+                // Add options to dropdown
+                sortedArtists.forEach(artist => {
+                    const option = document.createElement('option');
+                    option.value = artist;
+                    option.textContent = artist;
+                    bandFilter.appendChild(option);
+                });
+                
+                // Add band filter event listener
+                bandFilter.addEventListener('change', function() {
+                    const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+                    displayAlbums(collectionType, selectedYear, this.value);
+                });
+            }
+        }
+        
         // Add year tab filtering
         const yearTabs = document.querySelectorAll('.year-tab');
         yearTabs.forEach(tab => {
@@ -840,9 +950,11 @@ if (document.body.classList.contains('collection-page')) {
                 yearTabs.forEach(t => t.classList.remove('active'));
                 // Add active class to clicked tab
                 this.classList.add('active');
-                // Filter albums by year
+                // Filter albums by year and current band selection
                 const year = this.dataset.year;
-                displayAlbums(collectionType, year);
+                const bandFilter = document.getElementById('band-filter');
+                const selectedBand = bandFilter ? bandFilter.value : 'all';
+                displayAlbums(collectionType, year, selectedBand);
             });
         });
     }

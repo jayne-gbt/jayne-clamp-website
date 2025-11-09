@@ -360,10 +360,62 @@ img {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    margin: 2rem auto 3rem;
+    margin: 2rem auto 0.75rem;
     flex-wrap: wrap;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 700px;
+    row-gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Band Filter Dropdown */
+.band-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto 2.5rem;
+    max-width: 700px;
+    gap: 0.75rem;
+}
+
+.band-filter::before {
+    content: 'Filter by Artist:';
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.band-filter select {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--white);
+    padding: 0.65rem 2.5rem 0.65rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    min-width: 200px;
+    letter-spacing: 0.3px;
+}
+
+.band-filter select:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.band-filter select:focus {
+    outline: none;
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.band-filter select option {
+    background: #1a1a1a;
+    color: var(--white);
 }
 
 .year-tab {
@@ -800,6 +852,33 @@ img {
 
     .page-title {
         font-size: 1.5rem;
+    }
+
+    .year-tabs {
+        gap: 0.8rem;
+        row-gap: 0.3rem;
+        margin: 1.5rem auto 0.5rem;
+    }
+
+    .year-tab {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+    }
+
+    .band-filter {
+        margin: 0.75rem auto 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .band-filter::before {
+        font-size: 0.85rem;
+    }
+
+    .band-filter select {
+        min-width: 180px;
+        font-size: 0.85rem;
+        padding: 0.6rem 2rem 0.6rem 0.8rem;
     }
 }
 
