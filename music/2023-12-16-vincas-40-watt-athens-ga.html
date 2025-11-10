@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z1G54B1GV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023-12-16 Vincas @ 40 Watt | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="2023-12-16 Vincas @ 40 Watt | Athens, GA">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li class="collections-dropdown">
+                        <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                        <ul class="collections-menu">
+                            <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li class="share-dropdown">
+                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                        <ul class="share-menu">
+                            <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
+                            <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                            <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Album Photos Section -->
+    <section class="albums-section">
+        <div class="container">
+            <a href="../collections/music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+
+            <div class="page-header">
+                <h2 class="page-title">2023-12-16 Vincas @ 40 Watt | Athens, GA</h2>
+                <p class="page-subtitle">Loading photo count...</p>
+            </div>
+
+            <div id="loading" class="loading">Loading photos...</div>
+
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photos-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <!-- Back Button (Bottom) -->
+    <div class="container" style="text-align: center; padding: 2rem 0;">
+        <a href="../collections/music.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Music
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
+                    <i class="fab fa-flickr"></i>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Load photos from this specific Flickr album
+        document.addEventListener('DOMContentLoaded', function() {
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244243/';
+            displayAlbumPhotos(albumUrl);
+        });
+    </script>
+</body>
+</html>
