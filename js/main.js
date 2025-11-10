@@ -473,6 +473,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-01-26-bit-brigade-georgia-theatre-athens-ga.html'
         }, 
         { 
+            title: '2023-12-16 Vincas @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244243/',
+            albumPage: '../music/2023-12-16-vincas-40-watt-athens-ga.html'
+        },
+        { 
             title: '2023-11-24 Taxicab Verses @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
@@ -557,10 +563,22 @@ const ALBUM_DATA = {
             albumPage: '../music/2022-04-10-patterson-hood-claire-campbell-jay-gonzalez-creature-comforts-athens-ga.html'
         },
         { 
+            title: '2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244008/',
+            albumPage: '../music/2021-09-16-addie-tonic-southern-brewing-co-athens-ga.html'
+        },
+        { 
             title: '2019-12-31 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
             albumPage: '../music/2019-12-31-five-eight-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2019-12-31 Bloodkin @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330241808/',
+            albumPage: '../music/2019-12-31-bloodkin-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
