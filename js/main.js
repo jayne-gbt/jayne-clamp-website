@@ -348,6 +348,12 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
+            title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
+            albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
+        },
+        { 
             title: '2025-10-19 Porchfest @ Athens, GA', 
             photoCount: 12, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329859726/',
@@ -466,12 +472,36 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
         }, 
         { 
+            title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330251330/',
+            albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247733/',
+            albumPage: '../music/2024-04-04-alejandro-escovedo-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-03-01 Lona @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247523/',
+            albumPage: '../music/2024-03-01-lona-40-watt-athens-ga.html'
+        },
+        { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982768/with/54887654154',
             coverUrl: 'https://live.staticflickr.com/65535/54887654154_1a2bbe03b2_b.jpg',
             albumPage: '../music/2024-01-26-bit-brigade-georgia-theatre-athens-ga.html'
-        }, 
+        },
+        { 
+            title: '2024-01-26 Lazer/Wulf @ Georgia Theatre | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330282554/',
+            albumPage: '../music/2024-01-26-lazer-wulf-georgia-theatre-athens-ga.html'
+        },
         { 
             title: '2023-11-24 Taxicab Verses @ Flicker | Athens, GA', 
             photoCount: 11, 
@@ -512,10 +542,22 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-08-12-drug-ducks-nowhere-athens-ga.html'
         },
         { 
+            title: '2023-06-24 Lona @ AthFest | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330794/',
+            albumPage: '../music/2023-06-24-lona-athfest-athens-ga.html'
+        },
+        { 
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
+        },
+        { 
+            title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258537/',
+            albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
         { 
             title: '2023-02-10 Classic City Jukebox, SheHeHe, Mercyland, AD Blanco, Royal Velvet, Shotgun Saviors, The Arcs @ Celebration of Todd McBride | Athens, GA', 
@@ -543,11 +585,23 @@ const ALBUM_DATA = {
             albumPage: '../music/2022-11-27-bloodkin-nowhere-bar-athens-ga.html'
         },
         { 
+            title: '2022-09-15 Brown Dwarf @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330252736/',
+            albumPage: '../music/2022-09-15-brown-dwarf-40-watt-athens-ga.html'
+        },
+        { 
             title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329941170/with/54885463099',
             coverUrl: 'https://live.staticflickr.com/65535/54884346352_08513c42a3_b.jpg',
             albumPage: '../music/2022-07-22-kimberly-morgan-york-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2022-06-26 Kevn Kinney Band @ AthFest | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258602/',
+            albumPage: '../music/2022-06-26-kevn-kinney-band-athfest-athens-ga.html'
         },
         { 
             title: '2022-04-10 Patterson Hood, Claire Campbell & Jay Gonzalez @ Creature Comforts | Athens, GA',
@@ -570,10 +624,28 @@ const ALBUM_DATA = {
             albumPage: '../music/2019-10-21-steel-pulse-georgia-theatre-athens-ga.html'
         },
         { 
+            title: '2019-03-30 Hayride @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330305987/',
+            albumPage: '../music/2019-03-30-hayride-nowhere-bar-athens-ga.html'
+        },
+        { 
             title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193368/',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330229651/',
             albumPage: '../music/2018-12-29-lona-caledonia-athens-ga.html'
+        },
+        { 
+            title: '2018-10-31 Jerry Joseph & the Jackmormons | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
+            albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
+        },
+        { 
+            title: '2018-06-04 Daniel Hutchens & David Barbe @ Georgia Theatre Rooftop | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330320628/',
+            albumPage: '../music/2018-06-04-daniel-hutchens-david-barbe-georgia-theatre-rooftop-athens-ga.html'
         },
         { 
             title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
@@ -918,8 +990,16 @@ if (document.body.classList.contains('collection-page')) {
                     }
                 });
                 
-                // Sort artists alphabetically
-                const sortedArtists = Array.from(artists).sort();
+                // Sort artists alphabetically, treating "The" as a suffix for sorting
+                const sortedArtists = Array.from(artists).sort((a, b) => {
+                    const getSortName = (artist) => {
+                        if (artist.startsWith('The ')) {
+                            return artist.substring(4) + ', The';
+                        }
+                        return artist;
+                    };
+                    return getSortName(a).localeCompare(getSortName(b));
+                });
                 
                 // Log the artist list to console for review
                 console.log('=== ARTIST LIST ===');

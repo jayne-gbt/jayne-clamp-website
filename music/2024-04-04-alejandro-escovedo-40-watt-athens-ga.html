@@ -12,12 +12,12 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Collection - Jayne Clamp Photography</title>
-    <meta name="description" content="Live music performances and concert photography by Jayne Clamp.">
+    <title>2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="collection-page" data-collection="music">
+<body>
     <!-- Header -->
     <header class="site-header">
         <div class="container">
@@ -30,12 +30,12 @@
                     <li class="collections-dropdown">
                         <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                         <ul class="collections-menu">
-                            <li><a href="music.html">Music</a></li>
-                            <li><a href="events.html">Events</a></li>
-                            <li><a href="travel.html">Travel</a></li>
-                            <li><a href="birds.html">Birds</a></li>
-                            <li><a href="landscapes.html">Landscapes</a></li>
-                            <li><a href="pets.html">Pets</a></li>
+                            <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
                         </ul>
                     </li>
                     <li><a href="../contact.html">Contact</a></li>
@@ -54,48 +54,47 @@
         </div>
     </header>
 
-    <!-- Albums Section -->
+    <!-- Album Photos Section -->
     <section class="albums-section">
         <div class="container">
-            <a href="../index.html#collections" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Collections
+            <a href="../collections/music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music
             </a>
 
             <div class="page-header">
-                <h2 class="page-title">Music</h2>
-                <p class="page-subtitle">Live performances & concerts</p>
+                <h2 class="page-title">2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA</h2>
+                <p class="page-subtitle">Loading photo count...</p>
             </div>
 
-            <div class="year-tabs">
-                <button class="year-tab active" data-year="all">All</button>
-                <button class="year-tab" data-year="2025">2025</button>
-                <button class="year-tab" data-year="2024">2024</button>
-                <button class="year-tab" data-year="2023">2023</button>
-                <button class="year-tab" data-year="2022">2022</button>
-                <button class="year-tab" data-year="2019">2019</button>
-                <button class="year-tab" data-year="2018">2018</button>
-                <button class="year-tab" data-year="2017">2017</button>
-                <button class="year-tab" data-year="2011">2011</button>
-            </div>
+            <div id="loading" class="loading">Loading photos...</div>
 
-            <div class="band-filter">
-                <select id="band-filter" aria-label="Filter by artist">
-                    <option value="all">All Artists</option>
-                </select>
-            </div>
-
-            <div id="loading" class="loading">Loading albums...</div>
-
-            <div id="albums-grid" class="albums-grid">
-                <!-- Albums will be loaded dynamically via JavaScript -->
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photos-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Back to Top -->
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <!-- Back Button (Bottom) -->
     <div class="container" style="text-align: center; padding: 2rem 0;">
-        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="back-button">
-            <i class="fas fa-arrow-up"></i> Back to Top
+        <a href="../collections/music.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Music
         </a>
     </div>
 
@@ -115,5 +114,12 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // Load photos from this specific Flickr album
+        document.addEventListener('DOMContentLoaded', function() {
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247733/';
+            displayAlbumPhotos(albumUrl);
+        });
+    </script>
 </body>
 </html>
