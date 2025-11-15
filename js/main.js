@@ -186,9 +186,13 @@ function openLightbox(photos, index) {
 
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
+    const shareMenu = document.getElementById('lightbox-share-menu');
     if (lightbox) {
         lightbox.style.display = 'none';
         document.body.style.overflow = 'auto';
+    }
+    if (shareMenu) {
+        shareMenu.classList.remove('show');
     }
 }
 
@@ -229,6 +233,108 @@ function nextLightboxImage() {
 function prevLightboxImage() {
     currentLightboxIndex = (currentLightboxIndex - 1 + lightboxPhotos.length) % lightboxPhotos.length;
     showLightboxImage();
+}
+
+function toggleLightboxShare() {
+    const shareMenu = document.getElementById('lightbox-share-menu');
+    if (shareMenu) {
+        shareMenu.classList.toggle('show');
+    }
+}
+
+function shareLightboxPhoto(platform) {
+    const currentPhoto = lightboxPhotos[currentLightboxIndex];
+    if (!currentPhoto) return;
+    
+    // Share your website's album page URL instead of Flickr
+    const pageUrl = window.location.href;
+    const photoUrl = pageUrl; // Share the current album page
+    
+    const photoTitle = currentPhoto.title || 'Photo';
+    const albumTitle = document.querySelector('.page-title')?.textContent || 'Photo Album';
+    
+    // Debug log to help troubleshoot
+    console.log('Sharing photo:', {
+        platform,
+        photoUrl,
+        photoTitle,
+        currentPhoto
+    });
+    
+    let shareUrl = '';
+    
+    switch(platform) {
+        case 'instagram':
+            // Instagram doesn't support direct URL sharing, copy link instead
+            copyToClipboard(photoUrl);
+            alert('Album URL copied! You can paste it in Instagram.');
+            break;
+        case 'threads':
+            shareUrl = `https://threads.net/intent/post?text=${encodeURIComponent(albumTitle + ' - ' + photoUrl)}`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(photoUrl)}`;
+            break;
+        case 'pinterest':
+            shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&description=${encodeURIComponent(albumTitle)}`;
+            break;
+        case 'copy':
+            copyToClipboard(photoUrl);
+            alert('Album URL copied to clipboard!');
+            break;
+    }
+    
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+    
+    // Hide share menu after sharing
+    const shareMenu = document.getElementById('lightbox-share-menu');
+    if (shareMenu) {
+        shareMenu.classList.remove('show');
+    }
+}
+
+function copyToClipboard(text) {
+    // Validate that we have text to copy
+    if (!text || text === 'undefined') {
+        console.error('Cannot copy undefined or empty text to clipboard');
+        alert('Error: No URL available to copy');
+        return false;
+    }
+    
+    console.log('Copying to clipboard:', text);
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            console.log('Successfully copied to clipboard');
+        }).catch(err => {
+            console.error('Failed to copy to clipboard:', err);
+            alert('Failed to copy to clipboard');
+        });
+    } else {
+        // Fallback for older browsers
+        try {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            if (successful) {
+                console.log('Successfully copied to clipboard (fallback)');
+            } else {
+                console.error('Failed to copy to clipboard (fallback)');
+                alert('Failed to copy to clipboard');
+            }
+        } catch (err) {
+            console.error('Clipboard fallback failed:', err);
+            alert('Failed to copy to clipboard');
+        }
+    }
+    
+    return true;
 }
 
 // Keyboard navigation for lightbox
@@ -351,6 +457,7 @@ const ALBUM_DATA = {
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
+            coverUrl: 'https://live.staticflickr.com/65535/54922647191_o.jpg',
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
         { 
@@ -536,6 +643,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html'
         },
         { 
+            title: '2023-09-10 Jackmormons @ Heist Brewery | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324995/',
+            albumPage: '../music/2023-09-10-jackmormons-heist-brewery-athens-ga.html'
+        },
+        { 
             title: '2023-08-12 Drug Ducks @ Nowhere | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172460/',
@@ -624,6 +737,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2019-10-21-steel-pulse-georgia-theatre-athens-ga.html'
         },
         { 
+            title: '2019-09-12 Bloodkin @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330327/',
+            albumPage: '../music/2019-09-12-bloodkin-nowhere-bar-athens-ga.html'
+        },
+        { 
             title: '2019-03-30 Hayride @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330305987/',
@@ -636,10 +755,22 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-12-29-lona-caledonia-athens-ga.html'
         },
         { 
+            title: '2018-11-08 Robyn Hitchcock @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345098/',
+            albumPage: '../music/2018-11-08-robyn-hitchcock-40-watt-athens-ga.html'
+        },
+        { 
             title: '2018-10-31 Jerry Joseph & the Jackmormons | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
             albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
+        },
+        { 
+            title: '2018-07-14 Cinemechanica @ Caledonia | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324630/',
+            albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
         { 
             title: '2018-06-04 Daniel Hutchens & David Barbe @ Georgia Theatre Rooftop | Athens, GA', 
@@ -716,6 +847,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329961440/',
             coverUrl: 'https://live.staticflickr.com/65535/54886500317_39f45f57ac_b.jpg',
             albumPage: '../events/2021-10-31-wild-rumpus-halloween-athens-ga.html'
+        },
+        { 
+            title: '2020-11-13 Jon Ossoff Senate Runoff Rally | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345548/',
+            albumPage: '../events/2020-11-13-jon-ossoff-senate-runoff-rally-athens-ga.html'
         },
         { 
             title: '2020-06-06 Black Lives Matter Protest | Athens, GA', 
@@ -1146,5 +1283,126 @@ window.disableOwnerMode = function() {
     localStorage.removeItem('siteOwner');
     console.log('✓ Owner mode DISABLED - Your views will be tracked');
 };
+
+// ===================================
+// SOCIAL MEDIA META TAGS
+// ===================================
+
+function updateSocialMetaTags(albumTitle, albumDescription, imageUrl, pageUrl) {
+    // Update or create Open Graph meta tags
+    const metaTags = [
+        { property: 'og:title', content: albumTitle },
+        { property: 'og:description', content: albumDescription },
+        { property: 'og:image', content: imageUrl },
+        { property: 'og:url', content: pageUrl },
+        { name: 'twitter:title', content: albumTitle },
+        { name: 'twitter:description', content: albumDescription },
+        { name: 'twitter:image', content: imageUrl }
+    ];
+    
+    metaTags.forEach(tag => {
+        let existingTag;
+        if (tag.property) {
+            existingTag = document.querySelector(`meta[property="${tag.property}"]`);
+        } else if (tag.name) {
+            existingTag = document.querySelector(`meta[name="${tag.name}"]`);
+        }
+        
+        if (existingTag) {
+            existingTag.setAttribute('content', tag.content);
+        } else {
+            const newTag = document.createElement('meta');
+            if (tag.property) newTag.setAttribute('property', tag.property);
+            if (tag.name) newTag.setAttribute('name', tag.name);
+            newTag.setAttribute('content', tag.content);
+            document.head.appendChild(newTag);
+        }
+    });
+}
+
+function setAlbumSocialMeta(albumUrl) {
+    // Find the album data
+    const albumData = ALBUM_DATA.music.find(album => album.flickrUrl === albumUrl);
+    if (!albumData) return;
+    
+    const albumTitle = albumData.title;
+    const albumDescription = `Live music photography by Jayne Clamp - ${albumTitle}`;
+    const pageUrl = window.location.href;
+    
+    // Use cover image if available, otherwise use a default
+    let imageUrl = albumData.coverUrl;
+    if (!imageUrl) {
+        // Default to your music collection cover or a generic image
+        imageUrl = 'https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg'; // Baba Commandant cover
+    }
+    
+    updateSocialMetaTags(albumTitle, albumDescription, imageUrl, pageUrl);
+    
+    console.log('Updated social meta tags:', {
+        title: albumTitle,
+        description: albumDescription,
+        image: imageUrl,
+        url: pageUrl
+    });
+}
+
+// ===================================
+// IMAGE PROTECTION
+// ===================================
+
+// Disable right-click context menu
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// Disable common keyboard shortcuts for dev tools and saving
+document.addEventListener('keydown', function(e) {
+    // Disable F12 (Dev Tools)
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Disable Ctrl+Shift+I (Dev Tools)
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Disable Ctrl+S (Save Page)
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Disable Ctrl+Shift+C (Inspect Element)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable text selection on images
+document.addEventListener('selectstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable drag start on images
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+    }
+});
 
 console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');
