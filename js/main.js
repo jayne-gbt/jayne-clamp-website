@@ -506,7 +506,7 @@ const ALBUM_DATA = {
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
-            coverUrl: 'https://jayne-clamp.netlify.app/images/jayne-clamp-sketch.png',
+            coverUrl: 'https://live.staticflickr.com/65535/54922647191_b.jpg',
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
         { 
@@ -896,7 +896,7 @@ const ALBUM_DATA = {
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882735314',
-            coverUrl: 'https://live.staticflickr.com/65535/54882711203_4f61f864d6_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54922647191_b819722fc9_b.jpg',
             albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
         { 
