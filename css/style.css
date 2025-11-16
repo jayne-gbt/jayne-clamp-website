@@ -523,6 +523,15 @@ img {
     font-weight: 400;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+}
+
+.album-overlay h3 .fa-video {
+    margin-left: 0.5rem;
+    font-size: 0.8em;
+    color: #ff6b6b;
 }
 
 .album-info {

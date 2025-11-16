@@ -105,7 +105,18 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 50) {
         const data = await response.json();
         console.log('API Response:', data);
         
-        if (data.stat === 'ok') {
+        // Detailed logging for debugging
+        if (data.photoset) {
+            console.log('Photoset info:', {
+                id: data.photoset.id,
+                total: data.photoset.total,
+                pages: data.photoset.pages,
+                perpage: data.photoset.perpage,
+                photoCount: data.photoset.photo ? data.photoset.photo.length : 0
+            });
+        }
+        
+        if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
             const photos = data.photoset.photo.map(photo => ({
                 id: photo.id,
                 title: photo.title,
@@ -117,10 +128,48 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 50) {
             return photos;
         } else {
             console.error('Flickr API error:', data.message || 'Unknown error');
-            return null;
+            console.log('Trying alternative method for older album...');
+            
+            // Try alternative method for older albums
+            return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
         }
     } catch (error) {
         console.error('Error fetching Flickr photos:', error);
+        console.log('Trying alternative method for older album...');
+        
+        // Try alternative method for older albums
+        return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
+    }
+}
+
+// Alternative method for older Flickr albums
+async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 50) {
+    console.log('Using alternative method for album:', albumId);
+    
+    // Try with different extras parameters for older albums
+    const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o&format=json&nojsoncallback=1&per_page=${maxPhotos}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log('Alternative API Response:', data);
+        
+        if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
+            const photos = data.photoset.photo.map(photo => ({
+                id: photo.id,
+                title: photo.title,
+                thumbnail: photo.url_m || photo.url_s || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
+                large: photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+            }));
+            console.log(`Alternative method mapped ${photos.length} photos`);
+            return photos;
+        } else {
+            console.error('Alternative method also failed:', data.message || 'Unknown error');
+            return null;
+        }
+    } catch (error) {
+        console.error('Alternative method error:', error);
         return null;
     }
 }
@@ -460,6 +509,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
         { 
+            title: '2025-11-02 Paul McCartney @ State Farm Arena | Atlanta, GA <i class="fas fa-video"></i>', 
+            photoCount: 15, 
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/BTMsMZICnNQ/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLCd17tCVjHmnICrdwhh_aNE1TIFZw',
+            albumPage: '../music/2025-11-02-paul-mccartney-state-farm-arena-videos.html'
+        },
+        { 
             title: '2025-10-19 Porchfest @ Athens, GA', 
             photoCount: 12, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329859726/',
@@ -533,7 +589,8 @@ const ALBUM_DATA = {
             photoCount: 22, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
             coverUrl: 'https://live.staticflickr.com/65535/54364740380_9d40dc998f_b.jpg',
-            albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html'
+            albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html',
+            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM']
         },
         { 
             title: '2025-02-27 Kevn Kinney, Lenny Hayes, Peter Buck, Mike Mills @ Rialto Room | Athens, GA', 
@@ -596,6 +653,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-03-01-lona-40-watt-athens-ga.html'
         },
         { 
+            title: '2024-02-15 Drive By Truckers @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330343237/',
+            albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
+        },
+        { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982768/with/54887654154',
@@ -642,10 +705,22 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html'
         },
         { 
+            title: '2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330357813/',
+            albumPage: '../music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html'
+        },
+        { 
             title: '2023-09-10 Jackmormons @ Heist Brewery | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324995/',
             albumPage: '../music/2023-09-10-jackmormons-heist-brewery-athens-ga.html'
+        },
+        { 
+            title: '2023-08-26 Telemarket @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330342632/',
+            albumPage: '../music/2023-08-26-telemarket-40-watt-athens-ga.html'
         },
         { 
             title: '2023-08-12 Drug Ducks @ Nowhere | Athens, GA', 
@@ -697,10 +772,22 @@ const ALBUM_DATA = {
             albumPage: '../music/2022-11-27-bloodkin-nowhere-bar-athens-ga.html'
         },
         { 
+            title: '2022-10-02 Hunter Morris @ Porchfest | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330346052/',
+            albumPage: '../music/2022-10-02-hunter-morris-porchfest-athens-ga.html'
+        },
+        { 
             title: '2022-09-15 Brown Dwarf @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330252736/',
             albumPage: '../music/2022-09-15-brown-dwarf-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2022-09-02 Infinite Favors @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330369904/',
+            albumPage: '../music/2022-09-02-infinite-favors-40-watt-athens-ga.html'
         },
         { 
             title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
@@ -746,6 +833,18 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330305987/',
             albumPage: '../music/2019-03-30-hayride-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2019-03-22 The Rock*A*Teens @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330338565/',
+            albumPage: '../music/2019-03-22-rock-a-teens-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2019-02-01 David Barbe & the Quick Hooks | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
+            albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
         },
         { 
             title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
@@ -872,7 +971,12 @@ const ALBUM_DATA = {
         // Add your travel albums here
     ],
     birds: [
-        // Add your bird photography albums here
+        { 
+            title: 'Birds', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330371404/',
+            displayDirectly: true
+        }
     ],
     landscapes: [
         // Add your landscape albums here
@@ -894,6 +998,15 @@ const ALBUM_DATA = {
 // ===================================
 // Store current album photos globally for lightbox access
 let currentAlbumPhotos = [];
+
+// Helper function to find album data by URL
+function findAlbumByUrl(albumUrl) {
+    for (const collection of Object.values(ALBUM_DATA)) {
+        const album = collection.find(album => album.flickrUrl === albumUrl);
+        if (album) return album;
+    }
+    return null;
+}
 
 async function displayAlbumPhotos(albumUrl) {
     const photosGrid = document.getElementById('photos-grid');
@@ -919,6 +1032,44 @@ async function displayAlbumPhotos(albumUrl) {
     }
     
     console.log('Fetching photos for album ID:', albumId);
+    
+    // Check if this album has manual photos defined (for legacy albums with API issues)
+    const albumData = findAlbumByUrl(albumUrl);
+    if (albumData && albumData.manualPhotos) {
+        console.log('Using manual photo list for album:', albumId);
+        const photos = albumData.manualPhotos.map(photo => ({
+            id: photo.id,
+            title: photo.title,
+            thumbnail: `https://live.staticflickr.com/2567/${photo.id}_411f84cb92_c.jpg`,
+            large: `https://live.staticflickr.com/2567/${photo.id}_411f84cb92_b.jpg`,
+            url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+        }));
+        
+        // Hide loading
+        if (loading) loading.style.display = 'none';
+        
+        // Update page subtitle with photo count
+        const subtitle = document.querySelector('.page-subtitle');
+        if (subtitle) {
+            subtitle.textContent = `${photos.length} photos`;
+        }
+        
+        // Store photos globally for lightbox
+        currentAlbumPhotos = photos;
+        
+        // Display photos in grid
+        photosGrid.innerHTML = photos.map((photo, index) => `
+            <div class="photo-card" onclick="openAlbumLightbox(${index})">
+                <img src="${photo.thumbnail}" alt="${photo.title}" loading="lazy">
+                <div class="photo-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+        `).join('');
+        
+        console.log(`Successfully loaded ${photos.length} manual photos`);
+        return;
+    }
     
     // Track album view (private - logged to console only)
     const viewCount = ViewTracker.trackAlbumView(albumId);
@@ -1048,7 +1199,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
                ${album.albumPage ? '' : 'target="_blank" rel="noopener"'} 
                class="album-card" 
                id="${albumId}"
-               onclick="if(typeof gtag !== 'undefined') { gtag('event', 'album_card_click', { 'album_title': '${album.title.replace(/'/g, "\\'")}', 'collection': '${collectionType}' }); }">
+               onclick="if(typeof gtag !== 'undefined') { gtag('event', 'album_card_click', { 'album_title': '${album.title.replace(/<[^>]*>/g, '').replace(/'/g, "\\'")}', 'collection': '${collectionType}' }); }">
                 <div class="album-image">
                     <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/333333/FFFFFF?text=Loading...'}" 
                          alt="${album.title}" 
@@ -1065,115 +1216,150 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
     }).join('');
 }
 
-// Initialize albums on collection pages
-if (document.body.classList.contains('collection-page')) {
-    const collectionType = document.body.dataset.collection;
-    if (collectionType) {
-        displayAlbums(collectionType);
-        
-        // Populate band filter for music collection
-        if (collectionType === 'music') {
-            const bandFilter = document.getElementById('band-filter');
-            if (bandFilter) {
-                const albums = ALBUM_DATA[collectionType] || [];
-                const artists = new Set();
-                
-                albums.forEach(album => {
-                    const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
-                    if (match) {
-                        let artistSection = match[1].trim();
-                        
-                        // Special handling: if title contains "with", only extract artists after "with"
-                        const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
-                        if (withMatch && artistSection.toLowerCase().includes('event')) {
-                            artistSection = withMatch[1].trim();
-                        }
-                        
-                        // Band names that contain & but should NOT be split
-                        const doNotSplitBands = [
-                            'Baba Commandant & the Mandingo Band'
-                        ];
-                        
-                        // Check if this is a band name that should not be split
-                        const isDoNotSplit = doNotSplitBands.some(band => 
-                            artistSection.toLowerCase().includes(band.toLowerCase())
-                        );
-                        
-                        let individualArtists;
-                        if (isDoNotSplit) {
-                            // Don't split, treat as single artist
-                            individualArtists = [artistSection];
-                        } else {
-                            // Split by common separators: &, w/, w (standalone), with, ,
-                            // Allow optional space before comma, required space after
-                            individualArtists = artistSection.split(/\s*(?:&|w\/|\bw\b|with|,)\s+/);
-                        }
-                        individualArtists.forEach(artist => {
-                            let cleanArtist = artist.trim();
-                            
-                            // Ignore "friends" and "Event" - don't create filters for them
-                            if (cleanArtist.toLowerCase() === 'friends' || 
-                                cleanArtist.toLowerCase() === 'event') {
-                                return;
-                            }
-                            
-                            // Capitalize "the" at the start
-                            if (cleanArtist.toLowerCase().startsWith('the ')) {
-                                cleanArtist = 'The' + cleanArtist.substring(3);
-                            }
-                            artists.add(cleanArtist);
-                        });
-                    }
-                });
-                
-                // Sort artists alphabetically, treating "The" as a suffix for sorting
-                const sortedArtists = Array.from(artists).sort((a, b) => {
-                    const getSortName = (artist) => {
-                        if (artist.startsWith('The ')) {
-                            return artist.substring(4) + ', The';
-                        }
-                        return artist;
-                    };
-                    return getSortName(a).localeCompare(getSortName(b));
-                });
-                
-                // Log the artist list to console for review
-                console.log('=== ARTIST LIST ===');
-                console.log(sortedArtists);
-                console.log('===================');
-                
-                // Add options to dropdown
-                sortedArtists.forEach(artist => {
-                    const option = document.createElement('option');
-                    option.value = artist;
-                    option.textContent = artist;
-                    bandFilter.appendChild(option);
-                });
-                
-                // Add band filter event listener
-                bandFilter.addEventListener('change', function() {
-                    const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
-                    displayAlbums(collectionType, selectedYear, this.value);
-                });
-            }
+// ===================================
+// COLLECTION INITIALIZATION
+// ===================================
+
+// Initialize collections when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Main.js loaded successfully');
+    
+    // Initialize collections if on a collection page
+    if (window.location.pathname.includes('/collections/')) {
+        const collectionType = getCollectionTypeFromPath();
+        if (collectionType && ALBUM_DATA[collectionType]) {
+            displayAlbums(collectionType);
+            initializeFilters(collectionType);
         }
-        
-        // Add year tab filtering
-        const yearTabs = document.querySelectorAll('.year-tab');
-        yearTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs
-                yearTabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                this.classList.add('active');
-                // Filter albums by year and current band selection
-                const year = this.dataset.year;
-                const bandFilter = document.getElementById('band-filter');
-                const selectedBand = bandFilter ? bandFilter.value : 'all';
-                displayAlbums(collectionType, year, selectedBand);
-            });
-        });
     }
+    
+    // Initialize album photos if on an album page
+    if (window.location.pathname.includes('/music/') || 
+        window.location.pathname.includes('/events/') || 
+        window.location.pathname.includes('/landscapes/')) {
+        
+        // Get the album URL from the page's data attribute or construct it
+        const albumUrl = getAlbumUrlFromPage();
+        if (albumUrl) {
+            displayAlbumPhotos(albumUrl);
+        }
+    }
+});
+
+// Get collection type from current path
+function getCollectionTypeFromPath() {
+    const path = window.location.pathname;
+    if (path.includes('music.html')) return 'music';
+    if (path.includes('events.html')) return 'events';
+    if (path.includes('travel.html')) return 'travel';
+    if (path.includes('birds.html')) return 'birds';
+    if (path.includes('landscapes.html')) return 'landscapes';
+    if (path.includes('pets.html')) return 'pets';
+    return null;
+}
+
+// Initialize filters for collection pages
+function initializeFilters(collectionType) {
+    // Initialize band filter for music collection
+    if (collectionType === 'music') {
+        const bandFilter = document.getElementById('band-filter');
+        if (bandFilter && ALBUM_DATA.music) {
+            // Clear existing options except "All Bands"
+            bandFilter.innerHTML = '<option value="all">All Bands</option>';
+            
+            // Extract unique artists from album titles
+            const artists = new Set();
+            ALBUM_DATA.music.forEach(album => {
+                // Extract artist section (everything before @)
+                let artistSection = album.title.split('@')[0].trim();
+                
+                // Remove date prefix (YYYY-MM-DD format)
+                artistSection = artistSection.replace(/^\d{4}-\d{2}-\d{2}\s+/, '');
+                
+                // Handle "w/" format - extract the part after "w/"
+                const withMatch = artistSection.match(/w\/\s*(.+)/);
+                if (withMatch && artistSection.toLowerCase().includes('event')) {
+                    artistSection = withMatch[1].trim();
+                }
+                
+                // Band names that contain & but should NOT be split
+                const doNotSplitBands = [
+                    'Baba Commandant & the Mandingo Band'
+                ];
+                
+                // Check if this is a band name that should not be split
+                const isDoNotSplit = doNotSplitBands.some(band => 
+                    artistSection.toLowerCase().includes(band.toLowerCase())
+                );
+                
+                let individualArtists;
+                if (isDoNotSplit) {
+                    // Don't split, treat as single artist
+                    individualArtists = [artistSection];
+                } else {
+                    // Split by common separators: &, w/, w (standalone), with, ,
+                    individualArtists = artistSection.split(/\s*(?:&|w\/|\bw\b|with|,)\s+/);
+                }
+                
+                individualArtists.forEach(artist => {
+                    let cleanArtist = artist.trim();
+                    
+                    // Ignore "friends" and "Event" - don't create filters for them
+                    if (cleanArtist.toLowerCase() === 'friends' || 
+                        cleanArtist.toLowerCase() === 'event') {
+                        return;
+                    }
+                    
+                    // Capitalize "the" at the start
+                    if (cleanArtist.toLowerCase().startsWith('the ')) {
+                        cleanArtist = 'The' + cleanArtist.substring(3);
+                    }
+                    artists.add(cleanArtist);
+                });
+            });
+            
+            // Sort artists alphabetically, treating "The" as a suffix for sorting
+            const sortedArtists = Array.from(artists).sort((a, b) => {
+                const getSortName = (artist) => {
+                    if (artist.startsWith('The ')) {
+                        return artist.substring(4) + ', The';
+                    }
+                    return artist;
+                };
+                return getSortName(a).localeCompare(getSortName(b));
+            });
+            
+            // Add options to dropdown
+            sortedArtists.forEach(artist => {
+                const option = document.createElement('option');
+                option.value = artist;
+                option.textContent = artist;
+                bandFilter.appendChild(option);
+            });
+            
+            // Add band filter event listener
+            bandFilter.addEventListener('change', function() {
+                const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+                displayAlbums(collectionType, selectedYear, this.value);
+            });
+        }
+    }
+    
+    // Add year tab filtering
+    const yearTabs = document.querySelectorAll('.year-tab');
+    yearTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            yearTabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            this.classList.add('active');
+            // Filter albums by year and current band selection
+            const year = this.dataset.year;
+            const bandFilter = document.getElementById('band-filter');
+            const selectedBand = bandFilter ? bandFilter.value : 'all';
+            displayAlbums(collectionType, year, selectedBand);
+        });
+    });
 }
 
 // ===================================
@@ -1394,6 +1580,46 @@ document.addEventListener('selectstart', function(e) {
         e.preventDefault();
         return false;
     }
+});
+
+// ===================================
+// GLOBAL FOOTER SYSTEM
+// ===================================
+
+// Global footer HTML template
+function createGlobalFooter() {
+    return `
+        <footer class="site-footer">
+            <div class="container">
+                <div class="social-links">
+                    <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
+                        <i class="fab fa-flickr"></i>
+                    </a>
+                </div>
+                <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+            </div>
+        </footer>
+    `;
+}
+
+// Initialize global footer on all pages
+function initializeGlobalFooter() {
+    const existingFooter = document.querySelector('.site-footer');
+    if (existingFooter) {
+        existingFooter.outerHTML = createGlobalFooter();
+        console.log('Global footer initialized');
+    }
+}
+
+// Initialize global footer when DOM loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeGlobalFooter();
 });
 
 // Disable drag start on images

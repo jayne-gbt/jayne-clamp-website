@@ -12,12 +12,27 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birds - Jayne Clamp Photography</title>
-    <meta name="description" content="Wildlife & bird photography by Jayne Clamp.">
+    <title>2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - 2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg">
+    <meta property="og:url" content="https://jayneclamp.com/music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html">
+    <meta property="og:site_name" content="Jayne Clamp Photography">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA">
+    <meta name="twitter:description" content="Live music photography by Jayne Clamp">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="collection-page" data-collection="birds">
+<body>
     <!-- Header -->
     <header class="site-header">
         <div class="container">
@@ -30,13 +45,12 @@
                     <li class="collections-dropdown">
                         <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                         <ul class="collections-menu">
-                            <li><a href="music.html">Music</a></li>
-                            <li><a href="events.html">Events</a></li>
-                            <li><a href="travel.html">Travel</a></li>
-                            <li><a href="birds.html">Birds</a></li>
-                            <li><a href="landscapes.html">Landscapes</a></li>
-                            <li><a href="pets.html">Pets</a></li>
-                            <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                            <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
                         </ul>
                     </li>
                     <li><a href="../contact.html">Contact</a></li>
@@ -50,25 +64,27 @@
                             <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
                         </ul>
                     </li>
+                    <li><a href="#" onclick="copyPageLink(); return false;"><i class="fas fa-link"></i> Copy Link</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Albums Section -->
-    <section class="albums-section">
+    <!-- Main Content -->
+    <section class="album-page">
         <div class="container">
-            <a href="../index.html#collections" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Collections
-            </a>
+            <div class="back-button">
+                <a href="../collections/music.html"><i class="fas fa-arrow-left"></i> Back to Music</a>
+            </div>
 
             <div class="page-header">
-                <h2 class="page-title">Birds</h2>
-                <p class="page-subtitle">Wildlife & bird photography</p>
+                <h2 class="page-title">2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA</h2>
+                <p class="page-subtitle">Loading photo count...</p>
             </div>
 
             <div id="loading" class="loading">Loading photos...</div>
 
+            <!-- Photo Grid - populated by JavaScript -->
             <div id="photos-grid" class="photos-grid">
                 <!-- Photos will be loaded dynamically via JavaScript -->
             </div>
@@ -104,29 +120,19 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener" aria-label="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
     <script>
-        // Load bird photos directly
+        // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
-            const birdsAlbum = ALBUM_DATA.birds[0];
-            if (birdsAlbum && birdsAlbum.displayDirectly) {
-                displayAlbumPhotos(birdsAlbum.flickrUrl);
-            }
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330357813/';
+            displayAlbumPhotos(albumUrl);
+            
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
         });
     </script>
 </body>
