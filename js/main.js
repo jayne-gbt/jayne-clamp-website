@@ -506,7 +506,7 @@ const ALBUM_DATA = {
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
-            coverUrl: 'https://jayne-clamp.netlify.app/images/collections/music-cover.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54922647191_b.jpg',
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
         { 
