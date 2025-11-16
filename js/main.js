@@ -1257,12 +1257,17 @@ document.addEventListener('DOMContentLoaded', function() {
 // Get collection type from current path
 function getCollectionTypeFromPath() {
     const path = window.location.pathname;
-    if (path.includes('music.html')) return 'music';
-    if (path.includes('events.html')) return 'events';
-    if (path.includes('travel.html')) return 'travel';
-    if (path.includes('birds.html')) return 'birds';
-    if (path.includes('landscapes.html')) return 'landscapes';
-    if (path.includes('pets.html')) return 'pets';
+    console.log('Checking path for collection type:', path);
+    
+    // Handle both /collections/music and music.html formats
+    if (path.includes('music.html') || path.includes('/music')) return 'music';
+    if (path.includes('events.html') || path.includes('/events')) return 'events';
+    if (path.includes('travel.html') || path.includes('/travel')) return 'travel';
+    if (path.includes('birds.html') || path.includes('/birds')) return 'birds';
+    if (path.includes('landscapes.html') || path.includes('/landscapes')) return 'landscapes';
+    if (path.includes('pets.html') || path.includes('/pets')) return 'pets';
+    
+    console.log('No collection type matched for path:', path);
     return null;
 }
 
