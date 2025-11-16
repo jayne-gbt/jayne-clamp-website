@@ -1222,14 +1222,22 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
 
 // Initialize collections when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Main.js loaded successfully');
+    console.log('Main.js loaded successfully - Version 20251116-1710');
+    console.log('Current pathname:', window.location.pathname);
     
     // Initialize collections if on a collection page
     if (window.location.pathname.includes('/collections/')) {
         const collectionType = getCollectionTypeFromPath();
+        console.log('Collection type detected:', collectionType);
+        console.log('ALBUM_DATA available:', !!ALBUM_DATA);
+        console.log('Collection data available:', collectionType && ALBUM_DATA[collectionType] ? ALBUM_DATA[collectionType].length : 'No data');
+        
         if (collectionType && ALBUM_DATA[collectionType]) {
+            console.log('Calling displayAlbums for:', collectionType);
             displayAlbums(collectionType);
             initializeFilters(collectionType);
+        } else {
+            console.error('Collection type or data not found:', collectionType, ALBUM_DATA);
         }
     }
     
