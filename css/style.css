@@ -18,8 +18,8 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--black);
-    color: var(--white);
+    background-color: #000000 !important;
+    color: #ffffff !important;
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -31,9 +31,86 @@ body {
 }
 
 a {
-    color: var(--white);
+    color: #ffffff !important;
     text-decoration: none;
     transition: var(--transition);
+}
+
+/* Force white text on all common elements */
+h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
+    color: #ffffff !important;
+}
+
+.site-title a {
+    color: #ffffff !important;
+}
+
+.site-title .fa-camera {
+    margin-left: 0.5rem !important;
+    font-size: 0.8em !important;
+    opacity: 0.8 !important;
+}
+
+.main-nav a {
+    color: #ffffff !important;
+}
+
+/* Ensure all icons are visible */
+i, .fa, .fas, .far, .fab, .fal, .fad, .fat, .fass {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}
+
+/* Navigation icons specifically */
+.main-nav i, .social-links i, .share-menu i, .collections-menu i {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Mobile menu toggle icon */
+.mobile-menu-toggle i {
+    color: #ffffff !important;
+    font-size: 1.2rem !important;
+}
+
+/* Dropdown chevron icons */
+.fas.fa-chevron-down, .fa-chevron-down {
+    color: #ffffff !important;
+    margin-left: 0.5rem !important;
+}
+
+/* General button styling to ensure visibility */
+button {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
+}
+
+button:hover {
+    background-color: #666666 !important;
+    color: #ffffff !important;
+}
+
+/* Dark theme styling for form elements */
+select, input, textarea {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #666666 !important;
+    padding: 0.5rem !important;
+    border-radius: 4px !important;
+}
+
+select:focus, input:focus, textarea:focus {
+    border-color: #ffffff !important;
+    outline: none !important;
+}
+
+/* Style select dropdown options */
+select option {
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 img {
@@ -46,7 +123,7 @@ img {
    HEADER & NAVIGATION
    =================================== */
 .site-header {
-    background-color: var(--black);
+    background-color: #000000 !important;
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--gray);
     position: sticky;
@@ -246,8 +323,8 @@ img {
 
 .hero-subtitle {
     font-size: 1.2rem;
-    color: var(--light-gray);
-    font-weight: 300;
+    color: #666666 !important;
+    font-weight: 200 !important;
     letter-spacing: 1px;
 }
 
@@ -433,27 +510,29 @@ img {
 }
 
 .year-tab {
-    padding: 0.75rem 0;
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    margin-bottom: -1px;
+    padding: 0.75rem 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    transition: var(--transition) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: -1px !important;
 }
 
 .year-tab:hover {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
 }
 
 .year-tab.active {
-    color: var(--white);
-    border-bottom-color: var(--white);
-    font-weight: 500;
+    color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+    font-weight: 500 !important;
+    background: transparent !important;
 }
 
 .page-title {
@@ -473,19 +552,21 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 2rem;
     padding: 0.75rem 1.5rem;
-    border: 1px solid var(--white);
-    color: var(--white);
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 4px;
     font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 1px;
     transition: var(--transition);
 }
 
 .back-button:hover {
-    background-color: var(--white);
-    color: var(--black);
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 .albums-grid {
@@ -636,21 +717,20 @@ img {
 }
 
 .submit-button {
-    background-color: var(--white);
-    color: var(--black);
-    border: none;
-    padding: 1rem 2.5rem;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
     font-weight: 500;
 }
 
 .submit-button:hover {
-    background-color: var(--light-gray);
-    color: var(--white);
+    background-color: #666666 !important;
+    color: #ffffff !important;
 }
 
 .form-message {
@@ -676,7 +756,7 @@ img {
    FOOTER
    =================================== */
 .site-footer {
-    background-color: var(--black);
+    background-color: #000000 !important;
     padding: 3rem 0 2rem;
     border-top: 1px solid var(--gray);
     text-align: center;
@@ -702,26 +782,26 @@ img {
 
 .copyright {
     font-size: 0.9rem;
-    color: var(--light-gray);
+    color: #666666 !important;
     letter-spacing: 1px;
     margin-bottom: 1rem;
 }
 
 .legal-links {
     font-size: 0.9rem;
-    color: var(--light-gray);
+    color: #666666 !important;
     opacity: 0.8;
     margin-top: 0.5rem;
 }
 
 .legal-links a {
-    color: var(--light-gray);
+    color: #666666 !important;
     text-decoration: none;
     transition: var(--transition);
 }
 
 .legal-links a:hover {
-    color: var(--white);
+    color: #ffffff !important;
     opacity: 1;
 }
 
@@ -766,9 +846,9 @@ img {
 }
 
 .cookie-notice button {
-    background-color: var(--white);
-    color: var(--black);
-    border: none;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.8rem;
@@ -777,7 +857,8 @@ img {
 }
 
 .cookie-notice button:hover {
-    background-color: var(--light-gray);
+    background-color: #666666 !important;
+    color: #ffffff !important;
 }
 
 .cookie-notice a {
