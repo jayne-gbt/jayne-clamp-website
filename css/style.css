@@ -708,13 +708,15 @@ img {
 }
 
 .legal-links {
-    font-size: 1rem;
-    color: var(--white);
-    opacity: 1;
-    margin-top: 1rem;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--gray);
+    font-size: 1rem !important;
+    color: var(--white) !important;
+    opacity: 1 !important;
+    margin-top: 1rem !important;
+    padding: 10px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid var(--gray) !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 .legal-links a {
