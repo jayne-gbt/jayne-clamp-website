@@ -1178,7 +1178,12 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 venue = pipeMatch[1].trim();
             }
             
-            return venue.toLowerCase().includes(filterVenue.toLowerCase());
+            // Check if the selected venue matches any of the venues in this album
+            // Handle combined venues like "40 Watt & Nowhere Bar"
+            const individualVenues = venue.split(/\s*&\s+/);
+            return individualVenues.some(individualVenue => 
+                individualVenue.toLowerCase().includes(filterVenue.toLowerCase())
+            );
         });
     }
 
@@ -1399,7 +1404,11 @@ function initializeFilters(collectionType) {
                 }
                 
                 if (venue) {
-                    venues.add(venue);
+                    // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
+                    const individualVenues = venue.split(/\s*&\s+/);
+                    individualVenues.forEach(individualVenue => {
+                        venues.add(individualVenue.trim());
+                    });
                 }
             });
             
