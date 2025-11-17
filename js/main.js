@@ -842,7 +842,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2019-03-22-rock-a-teens-nowhere-bar-athens-ga.html'
         },
         { 
-            title: '2019-02-01 David Barbe & the Quick Hooks | Athens, GA', 
+            title: '2019-02-01 David Barbe & the Quick Hooks @ Caledonia | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
             albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
