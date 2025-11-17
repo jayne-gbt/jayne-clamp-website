@@ -601,7 +601,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
         { 
-            title: '2025-02-17 Classic City Wrestling w Drive-By Truckers | Athens, GA', 
+            title: '2025-02-17 Classic City Wrestling w Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/',
             coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg',
@@ -1178,6 +1178,11 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 venue = pipeMatch[1].trim();
             }
             
+            // Special handling for Porchfest events
+            if (album.title.toLowerCase().includes('porchfest') && filterVenue.toLowerCase() === 'porchfest') {
+                return true;
+            }
+            
             // Check if the selected venue matches any of the venues in this album
             // Handle combined venues like "40 Watt & Nowhere Bar"
             const individualVenues = venue.split(/\s*&\s+/);
@@ -1417,11 +1422,16 @@ function initializeFilters(collectionType) {
                 }
                 
                 if (venue) {
-                    // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
-                    const individualVenues = venue.split(/\s*&\s+/);
-                    individualVenues.forEach(individualVenue => {
-                        venues.add(individualVenue.trim());
-                    });
+                    // Special handling for Porchfest events
+                    if (album.title.toLowerCase().includes('porchfest')) {
+                        venues.add('Porchfest');
+                    } else {
+                        // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
+                        const individualVenues = venue.split(/\s*&\s+/);
+                        individualVenues.forEach(individualVenue => {
+                            venues.add(individualVenue.trim());
+                        });
+                    }
                 }
             });
             
