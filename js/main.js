@@ -1702,3 +1702,91 @@ document.addEventListener('dragstart', function(e) {
 });
 
 console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');
+
+// ===================================
+// SCROLL POSITION RESTORATION
+// ===================================
+
+// Save scroll position when navigating away from collection pages
+function saveScrollPosition() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const path = window.location.pathname;
+    
+    // Only save for collection pages
+    if (path.includes('/collections/')) {
+        sessionStorage.setItem('scrollPosition_' + path, scrollY.toString());
+        console.log('Saved scroll position:', scrollY, 'for', path);
+    }
+}
+
+// Restore scroll position when returning to collection pages
+function restoreScrollPosition() {
+    const path = window.location.pathname;
+    
+    // Only restore for collection pages
+    if (path.includes('/collections/')) {
+        const savedPosition = sessionStorage.getItem('scrollPosition_' + path);
+        if (savedPosition) {
+            const scrollY = parseInt(savedPosition, 10);
+            
+            // Wait for content to load before scrolling
+            setTimeout(() => {
+                window.scrollTo({
+                    top: scrollY,
+                    behavior: 'smooth'
+                });
+                console.log('Restored scroll position:', scrollY, 'for', path);
+            }, 100);
+        }
+    }
+}
+
+// Enhanced back button functionality with scroll restoration
+function enhanceBackButtons() {
+    // Find all back buttons and album links
+    const backButtons = document.querySelectorAll('.back-button');
+    const albumLinks = document.querySelectorAll('.album-card a, .collection-card a');
+    
+    // Add scroll saving to album/collection links
+    albumLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Don't interfere with external links
+            if (this.hostname && this.hostname !== window.location.hostname) {
+                return;
+            }
+            
+            saveScrollPosition();
+        });
+    });
+    
+    // Add scroll restoration to back buttons
+    backButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Don't interfere if it's not going to a collection page
+            const href = this.getAttribute('href');
+            if (href && href.includes('/collections/')) {
+                // Let the navigation happen, then restore position
+                setTimeout(() => {
+                    restoreScrollPosition();
+                }, 50);
+            }
+        });
+    });
+}
+
+// Initialize scroll restoration system
+document.addEventListener('DOMContentLoaded', function() {
+    // Restore position on page load
+    restoreScrollPosition();
+    
+    // Enhance navigation buttons
+    enhanceBackButtons();
+    
+    // Save position before page unload
+    window.addEventListener('beforeunload', saveScrollPosition);
+});
+
+// Also save position when using browser back/forward buttons
+window.addEventListener('popstate', function() {
+    setTimeout(restoreScrollPosition, 50);
+});
