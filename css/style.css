@@ -45,10 +45,22 @@ h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
     color: #ffffff !important;
 }
 
+.site-title a::after {
+    content: " 📷";
+    margin-left: 0.5rem;
+    font-size: 1.1em;
+    opacity: 1 !important;
+    color: #ffffff !important;
+    filter: brightness(1.2) !important;
+}
+
 .site-title .fa-camera {
     margin-left: 0.5rem !important;
-    font-size: 0.8em !important;
+    font-size: 0.85em !important;
     opacity: 0.8 !important;
+    color: #ffffff !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
 }
 
 .main-nav a {
@@ -70,6 +82,14 @@ i, .fa, .fas, .far, .fab, .fal, .fad, .fat, .fass {
 }
 
 /* Mobile menu toggle icon */
+.mobile-menu-toggle {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    padding: 0.5rem !important;
+    cursor: pointer !important;
+}
+
 .mobile-menu-toggle i {
     color: #ffffff !important;
     font-size: 1.2rem !important;
@@ -79,6 +99,68 @@ i, .fa, .fas, .far, .fab, .fal, .fad, .fat, .fass {
 .fas.fa-chevron-down, .fa-chevron-down {
     color: #ffffff !important;
     margin-left: 0.5rem !important;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #000000 !important;
+        border-top: 1px solid #333333;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        padding: 0.5rem 0;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-menu li {
+        display: block;
+        margin: 0;
+        border-bottom: 1px solid #333333;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 0.85rem;
+    }
+    
+    /* Smaller font for dropdown items in mobile */
+    .nav-menu .collections-menu a,
+    .nav-menu .share-menu a,
+    .collections-dropdown .collections-menu a,
+    .share-dropdown .share-menu a {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 2rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .nav-menu a:hover {
+        background-color: #333333;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
 }
 
 /* General button styling to ensure visibility */
@@ -315,14 +397,14 @@ img {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 200;
     letter-spacing: 3px;
     margin-bottom: 0.5rem;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #666666 !important;
     font-weight: 200 !important;
     letter-spacing: 1px;
@@ -562,6 +644,7 @@ img {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: var(--transition);
+    margin-bottom: 2rem !important;
 }
 
 .back-button:hover {
