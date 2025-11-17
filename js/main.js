@@ -608,7 +608,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html'
         }, 
         { 
-            title: '2025-02-15 Drive By Truckers @ 40 Watt (Homecoming) | Athens, GA', 
+            title: '2025-02-15 Drive By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 18, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
             coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg',
@@ -629,7 +629,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
         }, 
         { 
-            title: '2024-09-30 David Barbe @ Flicker (Bday Show) | Athens, GA', 
+            title: '2024-09-30 David Barbe @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
             coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg',
@@ -699,7 +699,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-10-07-baba-commandant-the-mandingo-band-40-watt-athens-ga.html'
         },
         { 
-            title: '2023-09-30 David Barbe @ 40 Watt (60th Bday)| Athens, GA', 
+            title: '2023-09-30 David Barbe @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329958795/with/54887353605/',
             coverUrl: 'https://live.staticflickr.com/65535/54887353605_67e82e3d0c_b.jpg',
@@ -748,7 +748,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
         { 
-            title: '2023-02-10 Classic City Jukebox, SheHeHe, Mercyland, AD Blanco, Royal Velvet, Shotgun Saviors, The Arcs @ Celebration of Todd McBride | Athens, GA', 
+            title: '2023-02-10 Shotgun Shells: A Celebration of Todd McBride @ 40 Watt & Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330208208/',
             albumPage: '../music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
