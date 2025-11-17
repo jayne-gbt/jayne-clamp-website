@@ -896,7 +896,7 @@ const ALBUM_DATA = {
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882711328',
-            coverUrl: 'https://live.staticflickr.com/65535/54882711328_8efe955dea_c.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54882711328_8efe955dea_b.jpg',
             albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
         { 
@@ -1614,6 +1614,9 @@ function createGlobalFooter() {
                     </a>
                     <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
                         <i class="fab fa-flickr"></i>
+                    </a>
+                    <a href="https://soundcloud.com/jclamp" target="_blank" rel="noopener" aria-label="SoundCloud">
+                        <i class="fab fa-soundcloud"></i>
                     </a>
                 </div>
                 <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
