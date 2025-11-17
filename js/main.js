@@ -1821,6 +1821,13 @@ function createGlobalFooter() {
                     </a>
                 </div>
                 <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+                <div class="legal-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <span class="separator">•</span>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                    <span class="separator">•</span>
+                    <a href="sitemap.xml">Sitemap</a>
+                </div>
             </div>
         </footer>
     `;
