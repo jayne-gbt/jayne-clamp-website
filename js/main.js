@@ -1982,7 +1982,49 @@ function acceptCookies() {
     }
 }
 
-// Show cookie notice on page load
+// Show cookie notice on page load - TEMPORARILY DISABLED FOR DEBUGGING
+// document.addEventListener('DOMContentLoaded', function() {
+//     showCookieNotice();
+// });
+
+// DEBUG: Monitor legal links
 document.addEventListener('DOMContentLoaded', function() {
-    showCookieNotice();
+    console.log('DOM loaded, checking legal links...');
+    const legalLinks = document.querySelector('.legal-links');
+    if (legalLinks) {
+        console.log('Legal links found:', legalLinks);
+        console.log('Legal links display:', getComputedStyle(legalLinks).display);
+        console.log('Legal links visibility:', getComputedStyle(legalLinks).visibility);
+        
+        // Monitor for changes
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.target === legalLinks || mutation.target.contains(legalLinks)) {
+                    console.log('Legal links changed!', mutation);
+                }
+            });
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style', 'class']
+        });
+        
+        // Check every second for 10 seconds
+        let checkCount = 0;
+        const interval = setInterval(() => {
+            checkCount++;
+            const currentDisplay = getComputedStyle(legalLinks).display;
+            const currentVisibility = getComputedStyle(legalLinks).visibility;
+            console.log(`Check ${checkCount}: display=${currentDisplay}, visibility=${currentVisibility}`);
+            
+            if (checkCount >= 10) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    } else {
+        console.log('Legal links NOT found!');
+    }
 });
