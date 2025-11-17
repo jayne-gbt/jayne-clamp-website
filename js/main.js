@@ -1297,6 +1297,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Get album URL from page script or data attributes
+function getAlbumUrlFromPage() {
+    // Check if there's a script tag with album URL
+    const scripts = document.querySelectorAll('script');
+    for (let script of scripts) {
+        const content = script.textContent;
+        if (content && content.includes('albumUrl')) {
+            const match = content.match(/albumUrl\s*=\s*['"`]([^'"`]+)['"`]/);
+            if (match) {
+                return match[1];
+            }
+        }
+    }
+    
+    // Check for data attribute on body or main element
+    const albumUrl = document.body.getAttribute('data-album-url') || 
+                     document.querySelector('main')?.getAttribute('data-album-url');
+    
+    return albumUrl;
+}
+
 // Get collection type from current path
 function getCollectionTypeFromPath() {
     const path = window.location.pathname;
