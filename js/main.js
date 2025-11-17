@@ -896,7 +896,7 @@ const ALBUM_DATA = {
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882735314',
-            coverUrl: 'https://live.staticflickr.com/65535/54922647191_b819722fc9_b.jpg',
+            coverUrl: '../images/collections/events.jpg',
             albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
         { 
