@@ -1178,6 +1178,80 @@ img {
 }
 
 /* ===================================
+   DARK MODE SUPPORT
+   =================================== */
+/* Default is dark mode, but respect system preferences */
+@media (prefers-color-scheme: light) {
+    :root {
+        --black: #ffffff;
+        --white: #000000;
+        --gray: #f5f5f5;
+        --light-gray: #999999;
+        --accent: #000000;
+    }
+    
+    body {
+        background-color: var(--black);
+        color: var(--white);
+    }
+    
+    .site-header {
+        background-color: var(--black);
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .collection-card {
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .collection-card:hover {
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .album-card {
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .album-card:hover {
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .photo-card {
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .photo-card:hover {
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    #lightbox {
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .lightbox-content {
+        background: var(--black);
+        border: 1px solid #e0e0e0;
+    }
+}
+
+/* Force dark mode for users who prefer it */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --black: #000000;
+        --white: #ffffff;
+        --gray: #333333;
+        --light-gray: #666666;
+        --accent: #ffffff;
+    }
+}
+
+/* ===================================
    SMART IMAGE POSITIONING
    =================================== */
 /* For portrait images, focus on upper portion where faces typically are */
