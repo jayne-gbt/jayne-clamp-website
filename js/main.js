@@ -724,7 +724,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-08-26-telemarket-40-watt-athens-ga.html'
         },
         { 
-            title: '2023-08-12 Drug Ducks @ Nowhere | Athens, GA', 
+            title: '2023-08-12 Drug Ducks @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172460/',
             albumPage: '../music/2023-08-12-drug-ducks-nowhere-athens-ga.html'
@@ -1162,6 +1162,12 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 );
             }
             
+            // Special handling for Shotgun Shells
+            if (artistSection.toLowerCase().includes('shotgun shells: a celebration of todd mcbride') && 
+                filterBand.toLowerCase() === 'shotgun shells') {
+                return true;
+            }
+            
             // Special handling: if title contains "Event with", extract artists after "with"
             const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
             if (withMatch && artistSection.toLowerCase().includes('event')) {
@@ -1339,6 +1345,12 @@ function initializeFilters(collectionType) {
                     const porchfestArtists = ['David Barbe', 'T. Hardy Morris', 'Don Chambers', 'Trycoh', 'Lazy Horse', 'Infinite Favors'];
                     porchfestArtists.forEach(artist => artists.add(artist));
                     return; // Skip normal processing for Porchfest
+                }
+                
+                // Special handling for Shotgun Shells - extract just the band name
+                if (artistSection.toLowerCase().includes('shotgun shells: a celebration of todd mcbride')) {
+                    artists.add('Shotgun Shells');
+                    return; // Skip normal processing for Shotgun Shells
                 }
                 
                 // Handle "w/" format - extract the part after "w/"
