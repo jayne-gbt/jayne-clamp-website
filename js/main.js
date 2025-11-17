@@ -559,7 +559,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-06-bonnie-whitmore-40-watt-athens-ga.html'
         }, 
         { 
-            title: '2025-08-30 Sam Holt Band @ Live Wire (Remembering Mikey & Todd) | Athens, GA', 
+            title: '2025-08-30 Sam Holt Band @ Live Wire | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329945912/',
             coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg',
@@ -601,14 +601,14 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
         { 
-            title: '2025-02-17 Classic City Wrestling w Drive By Truckers | Athens, GA', 
+            title: '2025-02-17 Classic City Wrestling w Drive-By Truckers | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/',
             coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg',
             albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html'
         }, 
         { 
-            title: '2025-02-15 Drive By Truckers @ 40 Watt | Athens, GA', 
+            title: '2025-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 18, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
             coverUrl: 'https://live.staticflickr.com/65535/54364787855_2bc9e4e3dc_b.jpg',
@@ -654,7 +654,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-03-01-lona-40-watt-athens-ga.html'
         },
         { 
-            title: '2024-02-15 Drive By Truckers @ 40 Watt | Athens, GA', 
+            title: '2024-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330343237/',
             albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
