@@ -1307,8 +1307,15 @@ function initializeFilters(collectionType) {
             // Extract unique artists from album titles
             const artists = new Set();
             ALBUM_DATA.music.forEach(album => {
-                // Extract artist section (everything before @)
-                let artistSection = album.title.split('@')[0].trim();
+                // Extract artist section (everything before @ or |)
+                let artistSection;
+                if (album.title.includes('@')) {
+                    artistSection = album.title.split('@')[0].trim();
+                } else if (album.title.includes('|')) {
+                    artistSection = album.title.split('|')[0].trim();
+                } else {
+                    artistSection = album.title.trim();
+                }
                 
                 // Remove date prefix (YYYY-MM-DD format)
                 artistSection = artistSection.replace(/^\d{4}-\d{2}-\d{2}\s+/, '');
@@ -1351,6 +1358,12 @@ function initializeFilters(collectionType) {
                     if (cleanArtist.toLowerCase().startsWith('the ')) {
                         cleanArtist = 'The' + cleanArtist.substring(3);
                     }
+                    
+                    // Normalize specific band names
+                    if (cleanArtist.toLowerCase() === 'drive by truckers') {
+                        cleanArtist = 'Drive-By Truckers';
+                    }
+                    
                     artists.add(cleanArtist);
                 });
             });
