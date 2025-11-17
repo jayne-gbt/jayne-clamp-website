@@ -860,7 +860,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-11-08-robyn-hitchcock-40-watt-athens-ga.html'
         },
         { 
-            title: '2018-10-31 Jerry Joseph & the Jackmormons | Athens, GA', 
+            title: '2018-10-31 Jerry Joseph & the Jackmormons @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
             albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
