@@ -1131,7 +1131,7 @@ function openAlbumLightbox(index) {
 }
 
 // Display albums from manual configuration
-function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
+function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all') {
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
     
@@ -1161,6 +1161,24 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all') {
             }
             
             return artistSection.toLowerCase().includes(filterBand.toLowerCase());
+        });
+    }
+
+    // Filter by venue if specified
+    if (filterVenue !== 'all') {
+        albums = albums.filter(album => {
+            // Extract venue from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
+            const atMatch = album.title.match(/\s+@\s+(.+?)(?:\s*\|\s*|$)/);
+            const pipeMatch = album.title.match(/\s+\|\s+(.+?)$/);
+            
+            let venue = '';
+            if (atMatch) {
+                venue = atMatch[1].trim();
+            } else if (pipeMatch) {
+                venue = pipeMatch[1].trim();
+            }
+            
+            return venue.toLowerCase().includes(filterVenue.toLowerCase());
         });
     }
 
@@ -1354,7 +1372,54 @@ function initializeFilters(collectionType) {
             // Add band filter event listener
             bandFilter.addEventListener('change', function() {
                 const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
-                displayAlbums(collectionType, selectedYear, this.value);
+                const venueFilter = document.getElementById('venue-filter');
+                const selectedVenue = venueFilter ? venueFilter.value : 'all';
+                displayAlbums(collectionType, selectedYear, this.value, selectedVenue);
+            });
+        }
+
+        // Initialize venue filter for music collection
+        const venueFilter = document.getElementById('venue-filter');
+        if (venueFilter && ALBUM_DATA.music) {
+            // Clear existing options except "All Venues"
+            venueFilter.innerHTML = '<option value="all">All Venues</option>';
+            
+            // Extract unique venues from album titles
+            const venues = new Set();
+            ALBUM_DATA.music.forEach(album => {
+                // Extract venue from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
+                const atMatch = album.title.match(/\s+@\s+(.+?)(?:\s*\|\s*|$)/);
+                const pipeMatch = album.title.match(/\s+\|\s+(.+?)$/);
+                
+                let venue = '';
+                if (atMatch) {
+                    venue = atMatch[1].trim();
+                } else if (pipeMatch) {
+                    venue = pipeMatch[1].trim();
+                }
+                
+                if (venue) {
+                    venues.add(venue);
+                }
+            });
+            
+            // Sort venues alphabetically
+            const sortedVenues = Array.from(venues).sort();
+            
+            // Add options to dropdown
+            sortedVenues.forEach(venue => {
+                const option = document.createElement('option');
+                option.value = venue;
+                option.textContent = venue;
+                venueFilter.appendChild(option);
+            });
+            
+            // Add venue filter event listener
+            venueFilter.addEventListener('change', function() {
+                const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+                const bandFilter = document.getElementById('band-filter');
+                const selectedBand = bandFilter ? bandFilter.value : 'all';
+                displayAlbums(collectionType, selectedYear, selectedBand, this.value);
             });
         }
     }
@@ -1367,11 +1432,13 @@ function initializeFilters(collectionType) {
             yearTabs.forEach(t => t.classList.remove('active'));
             // Add active class to clicked tab
             this.classList.add('active');
-            // Filter albums by year and current band selection
+            // Filter albums by year and current band/venue selection
             const year = this.dataset.year;
             const bandFilter = document.getElementById('band-filter');
+            const venueFilter = document.getElementById('venue-filter');
             const selectedBand = bandFilter ? bandFilter.value : 'all';
-            displayAlbums(collectionType, year, selectedBand);
+            const selectedVenue = venueFilter ? venueFilter.value : 'all';
+            displayAlbums(collectionType, year, selectedBand, selectedVenue);
         });
     });
 }

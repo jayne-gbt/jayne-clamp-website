@@ -79,10 +79,17 @@
                 <button class="year-tab" data-year="2011">2011</button>
             </div>
 
-            <div class="band-filter">
-                <select id="band-filter" aria-label="Filter by artist">
-                    <option value="all">All Artists</option>
-                </select>
+            <div class="filters-container" style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                <div class="band-filter">
+                    <select id="band-filter" aria-label="Filter by artist" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+                        <option value="all">All Artists</option>
+                    </select>
+                </div>
+                <div class="venue-filter">
+                    <select id="venue-filter" aria-label="Filter by venue" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+                        <option value="all">All Venues</option>
+                    </select>
+                </div>
             </div>
 
             <div id="loading" class="loading">Loading albums...</div>
