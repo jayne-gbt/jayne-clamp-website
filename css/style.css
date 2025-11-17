@@ -708,9 +708,10 @@ img {
 }
 
 .legal-links {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--light-gray);
-    opacity: 0.8;
+    opacity: 1;
+    margin-top: 0.5rem;
 }
 
 .legal-links a {
@@ -726,7 +727,7 @@ img {
 
 .legal-links .separator {
     margin: 0 0.75rem;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 /* ===================================
