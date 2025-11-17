@@ -617,12 +617,12 @@ const ALBUM_DATA = {
         { 
             title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329963911/',
             coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg',
             albumPage: '../music/2024-10-11-kimberly-morgan-york-terrapin-beer-co-athens-ga.html'
         }, 
         { 
-            title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA', 
+            title: '2024-10-10 Doug Emhoff Event with Michael Stipe @ 1055 Barber | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
             coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
