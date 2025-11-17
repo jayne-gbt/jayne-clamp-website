@@ -1938,3 +1938,51 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('popstate', function() {
     setTimeout(restoreScrollPosition, 50);
 });
+
+// ===================================
+// COOKIE NOTICE FUNCTIONALITY
+// ===================================
+
+function showCookieNotice() {
+    // Check if user has already acknowledged cookies
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+        return;
+    }
+    
+    // Create cookie notice HTML
+    const cookieNotice = document.createElement('div');
+    cookieNotice.className = 'cookie-notice';
+    cookieNotice.innerHTML = `
+        <p>This site uses Google Analytics cookies to understand how visitors interact with the website. <a href="privacy-policy.html">Learn more</a></p>
+        <div class="cookie-notice-buttons">
+            <button onclick="acceptCookies()">Got it</button>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(cookieNotice);
+    
+    // Show with animation
+    setTimeout(() => {
+        cookieNotice.classList.add('show');
+    }, 500);
+}
+
+function acceptCookies() {
+    // Save acceptance to localStorage
+    localStorage.setItem('cookiesAccepted', 'true');
+    
+    // Hide notice
+    const notice = document.querySelector('.cookie-notice');
+    if (notice) {
+        notice.classList.remove('show');
+        setTimeout(() => {
+            notice.remove();
+        }, 300);
+    }
+}
+
+// Show cookie notice on page load
+document.addEventListener('DOMContentLoaded', function() {
+    showCookieNotice();
+});

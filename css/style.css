@@ -731,6 +731,74 @@ img {
 }
 
 /* ===================================
+   COOKIE NOTICE
+   =================================== */
+.cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    color: var(--light-gray);
+    padding: 1rem;
+    font-size: 0.85rem;
+    text-align: center;
+    border-top: 1px solid var(--gray);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cookie-notice.show {
+    transform: translateY(0);
+}
+
+.cookie-notice p {
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+}
+
+.cookie-notice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cookie-notice button {
+    background-color: var(--white);
+    color: var(--black);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cookie-notice button:hover {
+    background-color: var(--light-gray);
+}
+
+.cookie-notice a {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .cookie-notice {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+    
+    .cookie-notice-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+/* ===================================
    LEGAL PAGES
    =================================== */
 .legal-content {
