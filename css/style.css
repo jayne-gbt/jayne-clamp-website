@@ -704,6 +704,85 @@ img {
     font-size: 0.9rem;
     color: var(--light-gray);
     letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.legal-links {
+    font-size: 0.8rem;
+    color: var(--light-gray);
+    opacity: 0.8;
+}
+
+.legal-links a {
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.legal-links a:hover {
+    color: var(--white);
+    opacity: 1;
+}
+
+.legal-links .separator {
+    margin: 0 0.75rem;
+    opacity: 0.5;
+}
+
+/* ===================================
+   LEGAL PAGES
+   =================================== */
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.legal-section {
+    margin-bottom: 2.5rem;
+}
+
+.legal-section h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray);
+}
+
+.legal-section h3 {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1.5rem 0 0.75rem 0;
+}
+
+.legal-section p {
+    color: var(--light-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.legal-section ul {
+    color: var(--light-gray);
+    line-height: 1.6;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.5rem;
+}
+
+.legal-section a {
+    color: var(--white);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.legal-section a:hover {
+    opacity: 0.7;
 }
 
 /* ===================================
