@@ -1154,6 +1154,14 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             
             let artistSection = match[1].trim();
             
+            // Special handling for Porchfest artists
+            if (artistSection.toLowerCase() === 'porchfest') {
+                const porchfestArtists = ['David Barbe', 'T. Hardy Morris', 'Don Chambers', 'Trycoh', 'Lazy Horse', 'Infinite Favors'];
+                return porchfestArtists.some(artist => 
+                    artist.toLowerCase().includes(filterBand.toLowerCase())
+                );
+            }
+            
             // Special handling: if title contains "Event with", extract artists after "with"
             const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
             if (withMatch && artistSection.toLowerCase().includes('event')) {
@@ -1324,6 +1332,14 @@ function initializeFilters(collectionType) {
                 
                 // Remove date prefix (YYYY-MM-DD format)
                 artistSection = artistSection.replace(/^\d{4}-\d{2}-\d{2}\s+/, '');
+                
+                // Special handling for Porchfest - extract individual artists from the lineup
+                if (artistSection.toLowerCase() === 'porchfest') {
+                    // Add individual Porchfest 2025 artists (excluding "Boo Le Bark" which is an event)
+                    const porchfestArtists = ['David Barbe', 'T. Hardy Morris', 'Don Chambers', 'Trycoh', 'Lazy Horse', 'Infinite Favors'];
+                    porchfestArtists.forEach(artist => artists.add(artist));
+                    return; // Skip normal processing for Porchfest
+                }
                 
                 // Handle "w/" format - extract the part after "w/"
                 const withMatch = artistSection.match(/w\/\s*(.+)/);
