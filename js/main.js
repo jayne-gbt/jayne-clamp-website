@@ -1597,6 +1597,59 @@ document.addEventListener('selectstart', function(e) {
 });
 
 // ===================================
+// GLOBAL HEADER SYSTEM
+// ===================================
+
+// Global header HTML template
+function createGlobalHeader() {
+    return `
+        <header class="site-header">
+            <div class="container">
+                <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
+                <nav class="main-nav">
+                    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-menu">
+                        <li class="collections-dropdown">
+                            <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                            <ul class="collections-menu">
+                                <li><a href="../collections/music.html">Music</a></li>
+                                <li><a href="../collections/events.html">Events</a></li>
+                                <li><a href="../collections/travel.html">Travel</a></li>
+                                <li><a href="../collections/birds.html">Birds</a></li>
+                                <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                                <li><a href="../collections/pets.html">Pets</a></li>
+                                <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li class="share-dropdown">
+                            <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                            <ul class="share-menu">
+                                <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                                <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
+                                <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                                <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    `;
+}
+
+// Initialize global header on all pages
+function initializeGlobalHeader() {
+    const existingHeader = document.querySelector('.site-header');
+    if (existingHeader) {
+        existingHeader.outerHTML = createGlobalHeader();
+        console.log('Global header initialized');
+    }
+}
+
 // GLOBAL FOOTER SYSTEM
 // ===================================
 
@@ -1634,8 +1687,9 @@ function initializeGlobalFooter() {
     }
 }
 
-// Initialize global footer when DOM loads
+// Initialize global header and footer when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
+    initializeGlobalHeader();
     initializeGlobalFooter();
 });
 
