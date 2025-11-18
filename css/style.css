@@ -1329,12 +1329,18 @@ img {
     position: absolute;
     top: -3rem;
     right: 0;
-    font-size: 2.5rem;
-    color: var(--white);
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: #ffffff !important;
     cursor: pointer;
     background: rgba(0, 0, 0, 0.7) !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 0.5rem;
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -1351,11 +1357,17 @@ img {
     top: -3rem;
     right: 4rem;
     font-size: 1.8rem;
-    color: var(--white);
+    font-weight: normal;
+    color: #ffffff !important;
     cursor: pointer;
     background: rgba(0, 0, 0, 0.7) !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 0.5rem;
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -1401,7 +1413,7 @@ img {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 3rem;
+    font-size: 2rem;
     color: var(--white);
     cursor: pointer;
     background: rgba(0, 0, 0, 0.7) !important;
@@ -1553,7 +1565,7 @@ img {
     }
     
     #lightbox {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(0, 0, 0, 0.95);
     }
     
     .lightbox-content {

@@ -284,6 +284,47 @@ function prevLightboxImage() {
     showLightboxImage();
 }
 
+// Modern click-to-advance functionality
+function initializeLightboxClickAdvance() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (lightboxImg) {
+        lightboxImg.addEventListener('click', function(e) {
+            // Get click position relative to image
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const imageWidth = rect.width;
+            
+            // Left third = previous, right two-thirds = next
+            if (clickX < imageWidth / 3) {
+                prevLightboxImage();
+            } else {
+                nextLightboxImage();
+            }
+            
+            // Add visual feedback
+            this.style.cursor = 'pointer';
+        });
+        
+        // Add hover cursor indication
+        lightboxImg.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const imageWidth = rect.width;
+            
+            // Change cursor based on position
+            if (mouseX < imageWidth / 3) {
+                this.style.cursor = 'w-resize'; // Left arrow cursor
+            } else {
+                this.style.cursor = 'e-resize'; // Right arrow cursor
+            }
+        });
+        
+        lightboxImg.addEventListener('mouseleave', function() {
+            this.style.cursor = 'default';
+        });
+    }
+}
+
 function toggleLightboxShare() {
     const shareMenu = document.getElementById('lightbox-share-menu');
     if (shareMenu) {
@@ -1209,14 +1250,32 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     // Hide loading
     if (loading) loading.style.display = 'none';
 
-    // If no albums configured yet, show helpful message
+    // If no albums configured yet, show appropriate message
     if (albums.length === 0) {
-        albumsGrid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">No albums found</p>
-                <p style="font-size: 0.95rem;">${filterYear === 'all' ? 'Add your Flickr album links in js/main.js' : 'No albums for ' + filterYear}</p>
-            </div>
-        `;
+        // Detect which collection page we're on
+        const currentPath = window.location.pathname;
+        const isTravel = currentPath.includes('travel.html');
+        const isPets = currentPath.includes('pets.html');
+        
+        let message = '';
+        if (isTravel || isPets) {
+            message = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #666;">
+                    <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;"></i>
+                    <p style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 300;">Coming Soon</p>
+                    <p style="font-size: 1rem; color: #999;">New ${isTravel ? 'travel adventures' : 'pet photos'} will be added here soon!</p>
+                </div>
+            `;
+        } else {
+            message = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">
+                    <p style="font-size: 1.2rem; margin-bottom: 1rem;">No albums found</p>
+                    <p style="font-size: 0.95rem;">${filterYear === 'all' ? 'Add your Flickr album links in js/main.js' : 'No albums for ' + filterYear}</p>
+                </div>
+            `;
+        }
+        
+        albumsGrid.innerHTML = message;
         return;
     }
 
@@ -2032,6 +2091,7 @@ function initializeMobileMenu() {
     }
 }
 
+
 // Global Footer Component
 function createGlobalFooter() {
     const footerHTML = `
@@ -2072,5 +2132,29 @@ function createGlobalFooter() {
     }
 }
 
-// Initialize footer when DOM is loaded
-document.addEventListener('DOMContentLoaded', createGlobalFooter);
+// Ensure single camera icon
+function ensureSingleCameraIcon() {
+    // Remove ALL existing camera icons
+    const allCameraIcons = document.querySelectorAll('.fa-camera');
+    allCameraIcons.forEach(icon => {
+        if (icon.closest('.site-title')) {
+            icon.remove();
+        }
+    });
+    
+    // Add ONE camera icon to site title
+    const siteTitle = document.querySelector('.site-title a');
+    if (siteTitle && !siteTitle.querySelector('.fa-camera')) {
+        const cameraIcon = document.createElement('i');
+        cameraIcon.className = 'fas fa-camera';
+        cameraIcon.style.marginRight = '0.5rem';
+        siteTitle.insertBefore(cameraIcon, siteTitle.firstChild);
+    }
+}
+
+// Initialize global components and features when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    createGlobalFooter();
+    initializeLightboxClickAdvance();
+    ensureSingleCameraIcon();
+});
