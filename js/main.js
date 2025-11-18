@@ -1905,6 +1905,8 @@ function initializeGlobalFooter() {
 document.addEventListener('DOMContentLoaded', function() {
     initializeGlobalHeader();
     initializeGlobalFooter();
+    initializeLightboxClickAdvance();
+    ensureSingleCameraIcon();
 });
 
 // Disable drag start on images
@@ -2152,9 +2154,3 @@ function ensureSingleCameraIcon() {
     }
 }
 
-// Initialize global components and features when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    createGlobalFooter();
-    initializeLightboxClickAdvance();
-    ensureSingleCameraIcon();
-});
