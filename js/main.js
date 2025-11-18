@@ -1809,44 +1809,33 @@ document.addEventListener('selectstart', function(e) {
 
 // Global header HTML template
 function createGlobalHeader() {
-    // Determine correct path based on current page
-    const isIndexPage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
-    const indexPath = isIndexPage ? 'index.html' : '../index.html';
-    const collectionsPath = isIndexPage ? '#collections' : '../index.html#collections';
-    const contactPath = isIndexPage ? 'contact.html' : '../contact.html';
-    
+    // Determine if we're on index page or collection page for correct paths
+    const isIndexPage = window.location.pathname.endsWith('/index.html') || window.location.pathname === '/';
+    const basePath = isIndexPage ? '' : '../';
+
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${indexPath}">Jayne Clamp</a></h1>
+                <h1 class="site-title"><a href="${basePath}index.html">Jayne Clamp</a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-menu">
                         <li class="collections-dropdown">
-                            <a href="${collectionsPath}" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                            <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
-                                <li><a href="${isIndexPage ? 'collections/' : ''}music.html">Music</a></li>
-                                <li><a href="${isIndexPage ? 'collections/' : ''}events.html">Events</a></li>
-                                <li><a href="${isIndexPage ? 'collections/' : ''}travel.html">Travel</a></li>
-                                <li><a href="${isIndexPage ? 'collections/' : ''}birds.html">Birds</a></li>
-                                <li><a href="${isIndexPage ? 'collections/' : ''}landscapes.html">Landscapes</a></li>
-                                <li><a href="${isIndexPage ? 'collections/' : ''}pets.html">Pets</a></li>
+                                <li><a href="${basePath}collections/music.html">Music</a></li>
+                                <li><a href="${basePath}collections/events.html">Events</a></li>
+                                <li><a href="${basePath}collections/travel.html">Travel</a></li>
+                                <li><a href="${basePath}collections/birds.html">Birds</a></li>
+                                <li><a href="${basePath}collections/landscapes.html">Landscapes</a></li>
+                                <li><a href="${basePath}collections/pets.html">Pets</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
-                        <li><a href="${contactPath}">Contact</a></li>
-                        <li class="share-dropdown">
-                            <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
-                            <ul class="share-menu">
-                                <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
-                                <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
-                                <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
-                                <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
-                                <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="${basePath}index.html#about">About</a></li>
+                        <li><a href="${basePath}index.html#contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -1928,7 +1917,7 @@ function initializeGlobalFooter() {
 
 // Initialize global header and footer when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
-    // DISABLED: initializeGlobalHeader(); // This might be causing duplicate cameras
+    initializeGlobalHeader(); // Re-enabled for consistent navigation
     initializeGlobalFooter();
     initializeLightboxClickAdvance();
     
