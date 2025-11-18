@@ -87,52 +87,68 @@ function extractAlbumId(flickrUrl) {
     return match ? match[1] : null;
 }
 
-// Fetch photos from a Flickr album using REST API
-async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 50) {
+// Fetch ALL photos from a Flickr album using pagination
+async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
     if (!FLICKR_CONFIG.apiKey || FLICKR_CONFIG.apiKey === 'YOUR_FLICKR_API_KEY') {
         console.warn('Flickr API key not configured. Using fallback method.');
         return null;
     }
 
-    const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l&format=json&nojsoncallback=1&per_page=${maxPhotos}`;
+    let allPhotos = [];
+    let page = 1;
+    let totalPages = 1;
+    const perPage = 100; // Maximum allowed by Flickr API
     
-    console.log('Fetching from Flickr API:', url);
+    console.log(`Fetching ALL photos from album ${albumId}...`);
     
     try {
-        const response = await fetch(url);
-        console.log('Response status:', response.status);
-        
-        const data = await response.json();
-        console.log('API Response:', data);
-        
-        // Detailed logging for debugging
-        if (data.photoset) {
-            console.log('Photoset info:', {
-                id: data.photoset.id,
-                total: data.photoset.total,
-                pages: data.photoset.pages,
-                perpage: data.photoset.perpage,
-                photoCount: data.photoset.photo ? data.photoset.photo.length : 0
-            });
-        }
-        
-        if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
-            const photos = data.photoset.photo.map(photo => ({
-                id: photo.id,
-                title: photo.title,
-                thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
-                large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-                url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
-            }));
-            console.log(`Mapped ${photos.length} photos`);
-            return photos;
-        } else {
-            console.error('Flickr API error:', data.message || 'Unknown error');
-            console.log('Trying alternative method for older album...');
+        do {
+            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,description&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
-            // Try alternative method for older albums
-            return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
-        }
+            console.log(`Fetching page ${page}/${totalPages}:`, url);
+            
+            const response = await fetch(url);
+            console.log(`Page ${page} response status:`, response.status);
+            
+            const data = await response.json();
+            
+            if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
+                // Update total pages from first response
+                if (page === 1) {
+                    totalPages = data.photoset.pages;
+                    console.log('Album info:', {
+                        id: data.photoset.id,
+                        total: data.photoset.total,
+                        pages: data.photoset.pages,
+                        perpage: data.photoset.perpage
+                    });
+                }
+                
+                const pagePhotos = data.photoset.photo.map(photo => ({
+                    id: photo.id,
+                    title: photo.title,
+                    description: photo.description ? photo.description._content : '',
+                    thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
+                    large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                    url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+                }));
+                
+                allPhotos = allPhotos.concat(pagePhotos);
+                console.log(`Page ${page}: Added ${pagePhotos.length} photos. Total so far: ${allPhotos.length}`);
+                
+                page++;
+            } else {
+                console.error('Flickr API error:', data.message || 'Unknown error');
+                console.log('Trying alternative method for older album...');
+                
+                // Try alternative method for older albums
+                return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
+            }
+        } while (page <= totalPages && allPhotos.length < maxPhotos);
+        
+        console.log(`✅ Fetched ALL ${allPhotos.length} photos from album ${albumId}`);
+        return allPhotos;
+        
     } catch (error) {
         console.error('Error fetching Flickr photos:', error);
         console.log('Trying alternative method for older album...');
@@ -142,32 +158,52 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 50) {
     }
 }
 
-// Alternative method for older Flickr albums
-async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 50) {
-    console.log('Using alternative method for album:', albumId);
+// Alternative method for older Flickr albums with pagination
+async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
+    console.log('Using alternative method with pagination for album:', albumId);
     
-    // Try with different extras parameters for older albums
-    const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o&format=json&nojsoncallback=1&per_page=${maxPhotos}`;
+    let allPhotos = [];
+    let page = 1;
+    let totalPages = 1;
+    const perPage = 100;
     
     try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log('Alternative API Response:', data);
+        do {
+            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o,description&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
+            
+            console.log(`Alternative method - fetching page ${page}/${totalPages}`);
+            
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
+                if (page === 1) {
+                    totalPages = data.photoset.pages;
+                    console.log(`Alternative method - Album has ${data.photoset.total} photos across ${totalPages} pages`);
+                }
+                
+                const pagePhotos = data.photoset.photo.map(photo => ({
+                    id: photo.id,
+                    title: photo.title,
+                    description: photo.description ? photo.description._content : '',
+                    thumbnail: photo.url_m || photo.url_s || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
+                    large: photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                    url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+                }));
+                
+                allPhotos = allPhotos.concat(pagePhotos);
+                console.log(`Alternative method - Page ${page}: Added ${pagePhotos.length} photos. Total: ${allPhotos.length}`);
+                
+                page++;
+            } else {
+                console.error('Alternative method failed:', data.message || 'Unknown error');
+                return null;
+            }
+        } while (page <= totalPages && allPhotos.length < maxPhotos);
         
-        if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
-            const photos = data.photoset.photo.map(photo => ({
-                id: photo.id,
-                title: photo.title,
-                thumbnail: photo.url_m || photo.url_s || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
-                large: photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-                url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
-            }));
-            console.log(`Alternative method mapped ${photos.length} photos`);
-            return photos;
-        } else {
-            console.error('Alternative method also failed:', data.message || 'Unknown error');
-            return null;
-        }
+        console.log(`✅ Alternative method fetched ALL ${allPhotos.length} photos from album ${albumId}`);
+        return allPhotos;
+        
     } catch (error) {
         console.error('Alternative method error:', error);
         return null;
@@ -268,7 +304,17 @@ function showLightboxImage() {
         
         lightboxImg.src = photo.large;
         if (lightboxCaption) {
-            lightboxCaption.textContent = photo.title;
+            // Show title and description in lightbox
+            const hasDescription = photo.description && photo.description.trim();
+            
+            if (hasDescription) {
+                lightboxCaption.innerHTML = `
+                    <div class="lightbox-title">${photo.title}</div>
+                    <div class="lightbox-description">${photo.description}</div>
+                `;
+            } else {
+                lightboxCaption.innerHTML = `<div class="lightbox-title">${photo.title}</div>`;
+            }
         }
         if (lightboxCounter) lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxPhotos.length}`;
     }
@@ -901,6 +947,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-11-08-robyn-hitchcock-40-watt-athens-ga.html'
         },
         { 
+            title: '2018-10-31 Bloodkin @ Georgia Theatre | Athens, GA', 
+            photoCount: 9, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330418079/',
+            coverUrl: 'https://live.staticflickr.com/65535/54931383658_5b8a8c8b8b_b.jpg',
+            albumPage: '../music/2018-10-31-bloodkin-georgia-theatre-athens-ga.html'
+        },
+        { 
             title: '2018-10-31 Jerry Joseph & the Jackmormons @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
@@ -1152,10 +1205,21 @@ async function displayAlbumPhotos(albumUrl) {
     
     console.log(`Successfully loaded ${photos.length} photos`);
     
+    // Debug: Check what description data we have
+    photos.forEach((photo, i) => {
+        if (i < 3) { // Log first 3 photos for debugging
+            console.log(`Photo ${i + 1}:`, {
+                title: photo.title,
+                description: photo.description,
+                hasDescription: !!(photo.description && photo.description.trim())
+            });
+        }
+    });
+    
     // Store photos globally for lightbox
     currentAlbumPhotos = photos;
     
-    // Display photos in grid
+    // Display photos in grid (descriptions will show in lightbox only)
     photosGrid.innerHTML = photos.map((photo, index) => `
         <div class="photo-card" onclick="openAlbumLightbox(${index})">
             <img src="${photo.thumbnail}" alt="${photo.title}" loading="lazy">
@@ -1804,6 +1868,79 @@ document.addEventListener('selectstart', function(e) {
 });
 
 // ===================================
+// ALBUM PAGE PHOTO DISPLAY
+// ===================================
+
+// Load and display Flickr album photos on individual album pages
+async function loadFlickrAlbum(albumId) {
+    console.log(`Loading album ${albumId} for display...`);
+    
+    const photoGrid = document.getElementById('photo-grid');
+    if (!photoGrid) {
+        console.error('Photo grid element not found');
+        return;
+    }
+    
+    // Show loading message
+    photoGrid.innerHTML = '<div class="loading">Loading photos...</div>';
+    
+    try {
+        // Fetch photos from Flickr
+        const photos = await fetchFlickrAlbumPhotos(albumId);
+        
+        if (!photos || photos.length === 0) {
+            photoGrid.innerHTML = '<div class="error">No photos found in this album.</div>';
+            return;
+        }
+        
+        console.log(`Displaying ${photos.length} photos with descriptions`);
+        
+        // Debug: Check what description data we have
+        photos.forEach((photo, i) => {
+            if (i < 3) { // Log first 3 photos for debugging
+                console.log(`Photo ${i + 1}:`, {
+                    title: photo.title,
+                    description: photo.description,
+                    hasDescription: !!(photo.description && photo.description.trim())
+                });
+            }
+        });
+        
+        // Create photo elements with descriptions
+        const photoElements = photos.map((photo, index) => {
+            const hasDescription = photo.description && photo.description.trim();
+            
+            return `
+                <div class="photo-item" data-index="${index}">
+                    <img src="${photo.thumbnail}" 
+                         alt="${photo.title}" 
+                         loading="lazy"
+                         onclick="openAlbumLightbox(${index})"
+                         style="cursor: pointer;">
+                    <div class="photo-info">
+                        ${photo.title ? `<h3 class="photo-title">${photo.title}</h3>` : ''}
+                        ${hasDescription ? `<p class="photo-description">${photo.description}</p>` : ''}
+                        ${!hasDescription ? `<p class="photo-debug" style="color: #666; font-size: 0.8rem;">No description available</p>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        photoGrid.innerHTML = photoElements;
+        
+        // Store photos globally for lightbox
+        window.currentAlbumPhotos = photos;
+        
+        // Initialize lightbox
+        initializeLightboxClickAdvance();
+        
+    } catch (error) {
+        console.error('Error loading album:', error);
+        photoGrid.innerHTML = '<div class="error">Error loading photos. Please try again later.</div>';
+    }
+}
+
+// ===================================
 // GLOBAL HEADER SYSTEM
 // ===================================
 
@@ -2146,46 +2283,6 @@ function initializeMobileMenu() {
     }
 }
 
-
-// Global Footer Component
-function createGlobalFooter() {
-    const footerHTML = `
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/jayneclamp" target="_blank" rel="noopener" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener" aria-label="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
-            <div class="legal-links">
-                <a href="/privacy-policy.html">Privacy Policy</a>
-                <span class="separator">•</span>
-                <a href="/terms-of-use.html">Terms of Use</a>
-                <span class="separator">•</span>
-                <a href="/sitemap.xml">Sitemap</a>
-            </div>
-        </div>
-    </footer>
-    `;
-    
-    // Find existing footer and replace it, or append to body if no footer exists
-    const existingFooter = document.querySelector('.site-footer');
-    if (existingFooter) {
-        existingFooter.outerHTML = footerHTML;
-    } else {
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-    }
-}
 
 // Debug function to count camera icons
 function debugCameraIcons() {
