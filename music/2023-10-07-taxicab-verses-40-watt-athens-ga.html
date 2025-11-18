@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9Z1G54B1GV');
-    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA - Jayne Clamp Photography</title>
-    <meta name="description" content="2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA">
-    <meta name="keywords" content="Addie Tonic, Southern Brewing Co, Athens Georgia, indie rock, alternative rock, Athens music scene, live music photography, concert photos, local bands, brewery shows">
+    <title>2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="Photos from 2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA">
+    <meta name="keywords" content="TaxiCab Verses, 40 Watt Club, Athens Georgia, indie rock, alternative rock, Athens music scene, live music photography, concert photos, Athens bands">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - TaxiCab Verses at 40 Watt Club">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54930448852_9453baf315_b.jpg">
+    <meta property="og:url" content="https://jayneclamp.com/music/2023-10-07-taxicab-verses-40-watt-athens-ga.html">
+    <meta property="og:site_name" content="Jayne Clamp Photography">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA">
+    <meta name="twitter:description" content="Live music photography by Jayne Clamp">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54930448852_9453baf315_b.jpg">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -24,25 +31,23 @@
         <div class="container">
             <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
             <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
                 <ul class="nav-menu">
-                    <li class="collections-dropdown">
-                        <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
-                        <ul class="collections-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="../collections.html">Collections <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
                             <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/nature.html">Nature</a></li>
+                            <li><a href="../collections/street.html">Street</a></li>
+                            <li><a href="../collections/portraits.html">Portraits</a></li>
                             <li><a href="../collections/events.html">Events</a></li>
-                            <li><a href="../collections/travel.html">Travel</a></li>
-                            <li><a href="../collections/birds.html">Birds</a></li>
-                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
-                            <li><a href="../collections/pets.html">Pets</a></li>
                         </ul>
                     </li>
+                    <li><a href="../about.html">About</a></li>
                     <li><a href="../contact.html">Contact</a></li>
-                    <li class="share-dropdown">
-                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
-                        <ul class="share-menu">
+                    <li class="dropdown">
+                        <a href="#" class="share-button"><i class="fas fa-share"></i> Share</a>
+                        <ul class="dropdown-menu share-menu">
                             <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
                             <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
@@ -55,15 +60,15 @@
         </div>
     </header>
 
-    <!-- Album Photos Section -->
-    <section class="albums-section">
+    <!-- Main Content -->
+    <section class="album-section">
         <div class="container">
             <a href="../collections/music.html" class="back-button">
                 <i class="fas fa-arrow-left"></i> Back to Music
             </a>
 
             <div class="page-header">
-                <h2 class="page-title">2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA</h2>
+                <h2 class="page-title">2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA</h2>
                 <p class="page-subtitle">Loading photo count...</p>
             </div>
 
@@ -76,28 +81,12 @@
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <img id="lightbox-img" src="" alt="Photo">
-            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-            <div class="lightbox-counter" id="lightbox-counter"></div>
-        </div>
-    </div>
-
     <!-- Artist Official Site -->
     <div class="container" style="text-align: center; padding: 1.5rem 0;">
         <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem;">
-            <a href="https://addietonic.com" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
+            <a href="https://strollingbonesrecords.com/taxi-cab-verses" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
                 <i class="fas fa-external-link-alt"></i>
-                Addie Tonic Official Site
+                TaxiCab Verses Official Site
             </a>
         </div>
     </div>
@@ -116,11 +105,23 @@
                 <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
+                <a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.flickr.com/photos/jayneclamp/" target="_blank" rel="noopener" aria-label="Flickr">
                     <i class="fab fa-flickr"></i>
                 </a>
+                <a href="https://soundcloud.com/jayneclamp" target="_blank" rel="noopener" aria-label="SoundCloud">
+                    <i class="fab fa-soundcloud"></i>
+                </a>
             </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
+            <div class="footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <span class="separator">•</span>
+                <a href="../terms-of-use.html">Terms of Use</a>
+                <span class="separator">•</span>
+                <a href="../sitemap.xml">Sitemap</a>
+            </div>
         </div>
     </footer>
 
@@ -152,8 +153,11 @@
     <script>
         // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
-            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244008/';
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330392902/';
             displayAlbumPhotos(albumUrl);
+            
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
         });
     </script>
 </body>

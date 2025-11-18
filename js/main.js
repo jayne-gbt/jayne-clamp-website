@@ -414,6 +414,9 @@ function shareLightboxPhoto(platform) {
         case 'pinterest':
             shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&description=${encodeURIComponent(albumTitle)}`;
             break;
+        case 'bluesky':
+            shareUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(albumTitle + ' - ' + photoUrl)}`;
+            break;
         case 'copy':
             copyToClipboard(photoUrl);
             alert('Album URL copied to clipboard!');
@@ -760,7 +763,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-01-26-lazer-wulf-georgia-theatre-athens-ga.html'
         },
         { 
-            title: '2023-11-24 Taxicab Verses @ Flicker | Athens, GA', 
+            title: '2023-11-24 TaxiCab Verses @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
             albumPage: '../music/2023-11-24-taxicab-verses-flicker-athens-ga.html'
@@ -777,6 +780,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329992639/', 
             coverUrl: 'https://live.staticflickr.com/65535/54887676938_5139120bee_b.jpg',
             albumPage: '../music/2023-11-04-jerry-joseph-the-jackmormons-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA', 
+            photoCount: 10, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330392902/', 
+            coverUrl: 'https://live.staticflickr.com/65535/54930448852_9453baf315_b.jpg',
+            albumPage: '../music/2023-10-07-taxicab-verses-40-watt-athens-ga.html'
         },
         { 
             title: '2023-10-07 Baba Commandant & the Mandingo Band @ 40 Watt | Athens, GA', 
@@ -898,6 +908,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2022-04-10-patterson-hood-claire-campbell-jay-gonzalez-creature-comforts-athens-ga.html'
         },
         { 
+            title: '2020-02-13 The Dexateens @ 40 Watt | Athens, GA', 
+            photoCount: 9, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330387630/', 
+            coverUrl: 'https://live.staticflickr.com/65535/54931548358_9c9c34f739_b.jpg',
+            albumPage: '../music/2020-02-13-the-dexateens-40-watt-athens-ga.html'
+        },
+        { 
             title: '2019-12-31 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
@@ -950,7 +967,7 @@ const ALBUM_DATA = {
             title: '2018-10-31 Bloodkin @ Georgia Theatre | Athens, GA', 
             photoCount: 9, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330418079/',
-            coverUrl: 'https://live.staticflickr.com/65535/54931383658_5b8a8c8b8b_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54931383658_6af651a0c5_b.jpg',
             albumPage: '../music/2018-10-31-bloodkin-georgia-theatre-athens-ga.html'
         },
         { 
@@ -1866,79 +1883,6 @@ document.addEventListener('selectstart', function(e) {
         return false;
     }
 });
-
-// ===================================
-// ALBUM PAGE PHOTO DISPLAY
-// ===================================
-
-// Load and display Flickr album photos on individual album pages
-async function loadFlickrAlbum(albumId) {
-    console.log(`Loading album ${albumId} for display...`);
-    
-    const photoGrid = document.getElementById('photo-grid');
-    if (!photoGrid) {
-        console.error('Photo grid element not found');
-        return;
-    }
-    
-    // Show loading message
-    photoGrid.innerHTML = '<div class="loading">Loading photos...</div>';
-    
-    try {
-        // Fetch photos from Flickr
-        const photos = await fetchFlickrAlbumPhotos(albumId);
-        
-        if (!photos || photos.length === 0) {
-            photoGrid.innerHTML = '<div class="error">No photos found in this album.</div>';
-            return;
-        }
-        
-        console.log(`Displaying ${photos.length} photos with descriptions`);
-        
-        // Debug: Check what description data we have
-        photos.forEach((photo, i) => {
-            if (i < 3) { // Log first 3 photos for debugging
-                console.log(`Photo ${i + 1}:`, {
-                    title: photo.title,
-                    description: photo.description,
-                    hasDescription: !!(photo.description && photo.description.trim())
-                });
-            }
-        });
-        
-        // Create photo elements with descriptions
-        const photoElements = photos.map((photo, index) => {
-            const hasDescription = photo.description && photo.description.trim();
-            
-            return `
-                <div class="photo-item" data-index="${index}">
-                    <img src="${photo.thumbnail}" 
-                         alt="${photo.title}" 
-                         loading="lazy"
-                         onclick="openAlbumLightbox(${index})"
-                         style="cursor: pointer;">
-                    <div class="photo-info">
-                        ${photo.title ? `<h3 class="photo-title">${photo.title}</h3>` : ''}
-                        ${hasDescription ? `<p class="photo-description">${photo.description}</p>` : ''}
-                        ${!hasDescription ? `<p class="photo-debug" style="color: #666; font-size: 0.8rem;">No description available</p>` : ''}
-                    </div>
-                </div>
-            `;
-        }).join('');
-        
-        photoGrid.innerHTML = photoElements;
-        
-        // Store photos globally for lightbox
-        window.currentAlbumPhotos = photos;
-        
-        // Initialize lightbox
-        initializeLightboxClickAdvance();
-        
-    } catch (error) {
-        console.error('Error loading album:', error);
-        photoGrid.innerHTML = '<div class="error">Error loading photos. Please try again later.</div>';
-    }
-}
 
 // ===================================
 // GLOBAL HEADER SYSTEM
