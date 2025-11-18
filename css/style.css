@@ -45,14 +45,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
     color: #ffffff !important;
 }
 
-.site-title a::after {
-    content: " 📷";
-    margin-left: 0.5rem;
-    font-size: 1.1em;
-    opacity: 1 !important;
-    color: #ffffff !important;
-    filter: brightness(1.2) !important;
-}
 
 .site-title .fa-camera {
     margin-left: 0.5rem !important;

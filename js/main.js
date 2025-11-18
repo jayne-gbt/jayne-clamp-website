@@ -1809,28 +1809,34 @@ document.addEventListener('selectstart', function(e) {
 
 // Global header HTML template
 function createGlobalHeader() {
+    // Determine correct path based on current page
+    const isIndexPage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+    const indexPath = isIndexPage ? 'index.html' : '../index.html';
+    const collectionsPath = isIndexPage ? '#collections' : '../index.html#collections';
+    const contactPath = isIndexPage ? 'contact.html' : '../contact.html';
+    
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
+                <h1 class="site-title"><a href="${indexPath}">Jayne Clamp</a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-menu">
                         <li class="collections-dropdown">
-                            <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                            <a href="${collectionsPath}" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
-                                <li><a href="../collections/music.html">Music</a></li>
-                                <li><a href="../collections/events.html">Events</a></li>
-                                <li><a href="../collections/travel.html">Travel</a></li>
-                                <li><a href="../collections/birds.html">Birds</a></li>
-                                <li><a href="../collections/landscapes.html">Landscapes</a></li>
-                                <li><a href="../collections/pets.html">Pets</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}music.html">Music</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}events.html">Events</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}travel.html">Travel</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}birds.html">Birds</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}landscapes.html">Landscapes</a></li>
+                                <li><a href="${isIndexPage ? 'collections/' : ''}pets.html">Pets</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
-                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="${contactPath}">Contact</a></li>
                         <li class="share-dropdown">
                             <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
                             <ul class="share-menu">
@@ -1852,8 +1858,18 @@ function createGlobalHeader() {
 function initializeGlobalHeader() {
     const existingHeader = document.querySelector('.site-header');
     if (existingHeader) {
+        console.log('Found existing header:', existingHeader);
+        console.log('Original header HTML:', existingHeader.outerHTML.substring(0, 200) + '...');
         existingHeader.outerHTML = createGlobalHeader();
-        console.log('Global header initialized');
+        console.log('Global header initialized - header replaced');
+        
+        // Check what the new header looks like
+        const newHeader = document.querySelector('.site-header');
+        if (newHeader) {
+            console.log('New header HTML:', newHeader.outerHTML.substring(0, 200) + '...');
+        }
+    } else {
+        console.log('No existing header found to replace');
     }
 }
 
@@ -1895,18 +1911,66 @@ function createGlobalFooter() {
 // Initialize global footer on all pages
 function initializeGlobalFooter() {
     const existingFooter = document.querySelector('.site-footer');
-    if (existingFooter) {
-        existingFooter.outerHTML = createGlobalFooter();
-        console.log('Global footer initialized');
+    if (existingFooter && existingFooter.parentNode) {
+        try {
+            existingFooter.outerHTML = createGlobalFooter();
+            console.log('Global footer initialized');
+        } catch (error) {
+            console.log('Footer replacement failed, appending instead:', error);
+            document.body.insertAdjacentHTML('beforeend', createGlobalFooter());
+        }
+    } else {
+        // No existing footer or no parent, just append
+        document.body.insertAdjacentHTML('beforeend', createGlobalFooter());
+        console.log('Global footer appended');
     }
 }
 
 // Initialize global header and footer when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
-    initializeGlobalHeader();
+    // DISABLED: initializeGlobalHeader(); // This might be causing duplicate cameras
     initializeGlobalFooter();
     initializeLightboxClickAdvance();
-    ensureSingleCameraIcon();
+    
+    // SIMPLE SOLUTION: Remove ALL camera icons completely
+    const removeAllCameras = () => {
+        // Remove ALL camera icons from EVERYWHERE on the page
+        document.querySelectorAll('.fa-camera').forEach(icon => icon.remove());
+        
+        // Clean up site title to just be "Jayne Clamp"
+        const siteTitleLink = document.querySelector('.site-title a');
+        if (siteTitleLink) {
+            siteTitleLink.innerHTML = 'Jayne Clamp';
+        }
+        
+        console.log('ALL CAMERA ICONS REMOVED');
+    };
+    
+    // Remove all cameras immediately and keep removing them
+    removeAllCameras();
+    
+    setTimeout(() => {
+        removeAllCameras();
+    }, 1000);
+    
+    setTimeout(() => {
+        removeAllCameras();
+    }, 3000);
+    
+    // CONTINUOUS GUARDIAN: Remove ANY camera icons that appear
+    setInterval(() => {
+        const cameraIcons = document.querySelectorAll('.fa-camera');
+        if (cameraIcons.length > 0) {
+            console.log(`GUARDIAN: Found ${cameraIcons.length} camera icons - removing ALL`);
+            cameraIcons.forEach(icon => icon.remove());
+            
+            // Clean site title
+            const siteTitleLink = document.querySelector('.site-title a');
+            if (siteTitleLink) {
+                siteTitleLink.innerHTML = 'Jayne Clamp';
+            }
+        }
+    }, 200); // Check every 200ms
 });
 
 // Disable drag start on images
@@ -2134,23 +2198,45 @@ function createGlobalFooter() {
     }
 }
 
-// Ensure single camera icon
-function ensureSingleCameraIcon() {
-    // Remove ALL existing camera icons
+// Debug function to count camera icons
+function debugCameraIcons() {
     const allCameraIcons = document.querySelectorAll('.fa-camera');
-    allCameraIcons.forEach(icon => {
-        if (icon.closest('.site-title')) {
-            icon.remove();
-        }
+    console.log(`Found ${allCameraIcons.length} camera icons:`);
+    allCameraIcons.forEach((icon, index) => {
+        console.log(`Camera ${index + 1}:`, icon, 'Parent:', icon.parentElement);
     });
     
-    // Add ONE camera icon to site title
-    const siteTitle = document.querySelector('.site-title a');
-    if (siteTitle && !siteTitle.querySelector('.fa-camera')) {
+    // Check for CSS-generated content
+    const siteTitle = document.querySelector('.site-title');
+    if (siteTitle) {
+        const beforeContent = window.getComputedStyle(siteTitle, '::before').content;
+        const afterContent = window.getComputedStyle(siteTitle, '::after').content;
+        console.log('Site title ::before content:', beforeContent);
+        console.log('Site title ::after content:', afterContent);
+        
+        const siteTitleLink = document.querySelector('.site-title a');
+        if (siteTitleLink) {
+            const linkBeforeContent = window.getComputedStyle(siteTitleLink, '::before').content;
+            const linkAfterContent = window.getComputedStyle(siteTitleLink, '::after').content;
+            console.log('Site title link ::before content:', linkBeforeContent);
+            console.log('Site title link ::after content:', linkAfterContent);
+        }
+    }
+}
+
+// Simple camera icon cleanup - NO LOOPS
+function ensureSingleCameraIcon() {
+    // Quietly remove all camera icons from site title
+    const allCamerasInTitle = document.querySelectorAll('.site-title .fa-camera');
+    allCamerasInTitle.forEach(icon => icon.remove());
+    
+    // Add exactly one camera icon after the name
+    const siteTitleLink = document.querySelector('.site-title a');
+    if (siteTitleLink && !siteTitleLink.querySelector('.fa-camera')) {
+        siteTitleLink.innerHTML = siteTitleLink.textContent.trim();
         const cameraIcon = document.createElement('i');
         cameraIcon.className = 'fas fa-camera';
-        cameraIcon.style.marginRight = '0.5rem';
-        siteTitle.insertBefore(cameraIcon, siteTitle.firstChild);
+        siteTitleLink.appendChild(cameraIcon);
     }
 }
 
