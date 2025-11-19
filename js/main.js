@@ -2532,42 +2532,6 @@ async function initializeTagsPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const tagParam = urlParams.get('tag');
     
-    // Try to load from cache first
-    const CACHE_KEY = 'jayne-clamp-tags-cache';
-    const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
-    const cached = localStorage.getItem(CACHE_KEY);
-    
-    if (cached) {
-        try {
-            const cacheData = JSON.parse(cached);
-            const cacheAge = Date.now() - cacheData.timestamp;
-            
-            if (cacheAge < CACHE_DURATION) {
-                console.log('Loading tags from cache (age: ' + Math.round(cacheAge / 1000 / 60) + ' minutes)');
-                allPhotosWithTags = cacheData.photos;
-                const allTags = new Map(cacheData.tags);
-                
-                displayAllTags(allTags);
-                setupTagSearch(allTags);
-                
-                // Handle URL parameters
-                handleTagPageParameters(urlParams, allTags, tagParam);
-                
-                tagsContainer.innerHTML = '<p style="color: #999; font-size: 0.9rem; text-align: center;">✓ Loaded from cache</p>';
-                setTimeout(() => {
-                    displayAllTags(allTags);
-                }, 100);
-                return;
-            } else {
-                console.log('Cache expired, fetching fresh data');
-                localStorage.removeItem(CACHE_KEY);
-            }
-        } catch (e) {
-            console.warn('Cache error:', e);
-            localStorage.removeItem(CACHE_KEY);
-        }
-    }
-    
     // Show loading with progress
     if (tagParam) {
         tagsContainer.innerHTML = `<p style="color: #999; width: 100%; text-align: center;">Loading photos tagged "${formatTagForDisplay(tagParam)}"... <span id="tags-progress">0</span> albums processed</p>`;
@@ -2675,18 +2639,8 @@ async function initializeTagsPage() {
     
     console.log(`Found ${allTags.size} unique tags across ${allPhotosWithTags.length} photos`);
     
-    // Save to cache
-    try {
-        const cacheData = {
-            timestamp: Date.now(),
-            photos: allPhotosWithTags,
-            tags: Array.from(allTags.entries())
-        };
-        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
-        console.log('✓ Tags cached for 24 hours');
-    } catch (e) {
-        console.warn('Could not save to cache:', e);
-    }
+    // Note: Caching disabled - dataset too large for localStorage
+    // With 77 albums and 1000+ photos, the data exceeds browser storage limits
     
     // Display all tags
     displayAllTags(allTags);
@@ -2766,8 +2720,34 @@ function setupTagSearch(allTags) {
     const searchInput = document.getElementById('tag-search');
     if (!searchInput) return;
     
+    // Prepare data for Fuse.js
+    const tagsArray = Array.from(allTags.entries()).map(([tag, photos]) => ({
+        tag: tag,
+        displayTag: formatTagForDisplay(tag),
+        normalizedTag: tag.toLowerCase().replace(/\s+/g, ''),
+        photos: photos
+    }));
+    
+    // Configure Fuse.js for fuzzy tag search
+    const fuseTags = new Fuse(tagsArray, {
+        keys: ['tag', 'displayTag', 'normalizedTag'],
+        threshold: 0.3, // 0 = exact match, 1 = match anything
+        distance: 100,
+        minMatchCharLength: 2,
+        includeScore: true
+    });
+    
+    // Configure Fuse.js for photo/album search
+    const fusePhotos = new Fuse(allPhotosWithTags, {
+        keys: ['title', 'albumTitle', 'description'],
+        threshold: 0.4,
+        distance: 100,
+        minMatchCharLength: 2,
+        includeScore: true
+    });
+    
     searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
+        const query = this.value.trim();
         
         if (query === '') {
             // Clear results
@@ -2776,32 +2756,18 @@ function setupTagSearch(allTags) {
             return;
         }
         
-        // Normalize query (remove spaces for tag matching)
-        const normalizedQuery = query.replace(/\s+/g, '');
-        
-        // Search through tags
         const matchingPhotos = [];
         
-        allTags.forEach((photos, tag) => {
-            // Normalize tag for comparison (remove spaces)
-            const normalizedTag = tag.toLowerCase().replace(/\s+/g, '');
-            
-            // Check if normalized tag matches normalized query
-            // OR if display version matches (for tags that already have spaces)
-            if (normalizedTag.includes(normalizedQuery) || 
-                formatTagForDisplay(tag).toLowerCase().includes(query)) {
-                matchingPhotos.push(...photos);
-            }
+        // Fuzzy search through tags
+        const tagResults = fuseTags.search(query);
+        tagResults.forEach(result => {
+            matchingPhotos.push(...result.item.photos);
         });
         
-        // Also search photo titles and album titles
-        allPhotosWithTags.forEach(photo => {
-            if (photo.title && photo.title.toLowerCase().includes(query)) {
-                matchingPhotos.push(photo);
-            }
-            if (photo.albumTitle && photo.albumTitle.toLowerCase().includes(query)) {
-                matchingPhotos.push(photo);
-            }
+        // Fuzzy search through photo titles and descriptions
+        const photoResults = fusePhotos.search(query);
+        photoResults.forEach(result => {
+            matchingPhotos.push(result.item);
         });
         
         // Remove duplicates
@@ -2848,12 +2814,24 @@ function displayPhotosGrid(photos, container) {
     currentFilteredPhotos = photos;
     
     container.innerHTML = photos.map((photo, index) => {
+        let description = photo.description ? photo.description.trim() : '';
+        
+        // Decode HTML entities
+        if (description) {
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = description;
+            description = textarea.value;
+        }
+        
         return `
-            <div class="photo-card" onclick="openTagsLightbox(${index})">
-                <img src="${photo.thumbnail}" alt="${photo.title || 'Photo'}" loading="lazy">
-                <div class="photo-overlay">
-                    <i class="fas fa-search-plus"></i>
+            <div class="photo-card" style="cursor: pointer; overflow: visible; height: auto;">
+                <div style="position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1;" onclick="openTagsLightbox(${index})">
+                    <img src="${photo.thumbnail}" alt="${photo.title || 'Photo'}" loading="lazy">
+                    <div class="photo-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
                 </div>
+                ${description ? `<p style="margin-top: 0.5rem; font-size: 0.75rem; color: #ccc; line-height: 1.4; text-align: left; padding: 0 0.25rem;">${description}</p>` : ''}
             </div>
         `;
     }).join('');
@@ -2983,4 +2961,10 @@ document.addEventListener('keydown', function(e) {
         closeSearchModal();
     }
 });
+
+// Refresh tags - reloads page to fetch fresh data from Flickr
+function refreshTagsCache() {
+    console.log('Reloading fresh data from Flickr...');
+    window.location.reload();
+}
 

@@ -80,6 +80,14 @@
             <div class="page-header">
                 <h2 class="page-title">Browse by Tags</h2>
                 <p class="page-subtitle">Search or click tags to find photos</p>
+                <button 
+                    onclick="refreshTagsCache()" 
+                    style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease;"
+                    onmouseover="this.style.background='rgba(255,255,255,0.2)'"
+                    onmouseout="this.style.background='rgba(255,255,255,0.1)'"
+                >
+                    <i class="fas fa-sync-alt"></i> Refresh Tags
+                </button>
             </div>
 
             <!-- Two Column Layout: Sidebar + Main Content -->
@@ -147,6 +155,30 @@
         }
     </style>
 
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-share" onclick="toggleLightboxShare()">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="lightbox-share-menu" id="lightbox-share-menu">
+                <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('pinterest'); return false;"><i class="fab fa-pinterest"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
+            </div>
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
@@ -162,6 +194,9 @@
         </div>
     </footer>
 
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    
     <script src="../js/main.js"></script>
     <script>
         // Initialize tags page
