@@ -695,6 +695,20 @@ const ALBUM_DATA = {
             filterNames: ['Michael Shannon', 'Jason Narducy', 'REM']
         },
         { 
+            title: '2023-06-24 Pink Stones @ Athfest | Athens, GA', 
+            photoCount: 9, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330439979/',
+            coverUrl: 'https://live.staticflickr.com/65535/54932541592_d6f12e6bdf_c.jpg',
+            albumPage: '../music/2023-06-24-pink-stones-athfest-athens-ga.html'
+        },
+        { 
+            title: '2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA', 
+            photoCount: 6, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330410616/',
+            coverUrl: 'https://live.staticflickr.com/65535/54933682333_3f00e98099_c.jpg',
+            albumPage: '../music/2021-06-05-jay-gonzalez-liberty-field-athens-ga.html'
+        },
+        { 
             title: '2025-02-27 Kevn Kinney, Lenny Hayes, Peter Buck, Mike Mills @ Rialto Room | Athens, GA', 
             photoCount: 3, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
