@@ -2526,7 +2526,16 @@ async function initializeTagsPage() {
     console.log('Initializing tags page...');
     
     const tagsContainer = document.getElementById('tags-container');
+    const searchInput = document.getElementById('tag-search');
     if (!tagsContainer) return;
+    
+    // Disable search until loaded
+    if (searchInput) {
+        searchInput.disabled = true;
+        searchInput.placeholder = 'Loading tags...';
+        searchInput.style.opacity = '0.5';
+        searchInput.style.cursor = 'not-allowed';
+    }
     
     // Check if there's a tag parameter in URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -2647,6 +2656,14 @@ async function initializeTagsPage() {
     
     // Setup search functionality
     setupTagSearch(allTags);
+    
+    // Re-enable search input
+    if (searchInput) {
+        searchInput.disabled = false;
+        searchInput.placeholder = 'Search tags, artists, venues...';
+        searchInput.style.opacity = '1';
+        searchInput.style.cursor = 'text';
+    }
     
     // Handle URL parameters
     handleTagPageParameters(urlParams, allTags, tagParam);
