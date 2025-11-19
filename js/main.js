@@ -83,6 +83,7 @@ const FLICKR_CONFIG = {
 
 // Extract album ID from Flickr URL
 function extractAlbumId(flickrUrl) {
+    if (!flickrUrl) return null;
     const match = flickrUrl.match(/albums\/(\d+)/);
     return match ? match[1] : null;
 }
@@ -103,7 +104,7 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
     
     try {
         do {
-            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,description&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
+            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
             console.log(`Fetching page ${page}/${totalPages}:`, url);
             
@@ -124,14 +125,23 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
                     });
                 }
                 
-                const pagePhotos = data.photoset.photo.map(photo => ({
-                    id: photo.id,
-                    title: photo.title,
-                    description: photo.description ? photo.description._content : '',
-                    thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
-                    large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-                    url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
-                }));
+                const pagePhotos = data.photoset.photo.map(photo => {
+                    // Debug: Log raw tag data from first photo
+                    if (data.photoset.photo.indexOf(photo) === 0 && photo.tags) {
+                        console.log('Raw tags from Flickr API:', photo.tags);
+                        console.log('Type:', typeof photo.tags);
+                    }
+                    
+                    return {
+                        id: photo.id,
+                        title: photo.title,
+                        description: photo.description ? photo.description._content : '',
+                        tags: photo.tags ? photo.tags.split(' ') : [],
+                        thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
+                        large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                        url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
+                    };
+                });
                 
                 allPhotos = allPhotos.concat(pagePhotos);
                 console.log(`Page ${page}: Added ${pagePhotos.length} photos. Total so far: ${allPhotos.length}`);
@@ -169,7 +179,7 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
     
     try {
         do {
-            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o,description&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
+            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
             console.log(`Alternative method - fetching page ${page}/${totalPages}`);
             
@@ -186,6 +196,7 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
                     id: photo.id,
                     title: photo.title,
                     description: photo.description ? photo.description._content : '',
+                    tags: photo.tags ? photo.tags.split(' ') : [],
                     thumbnail: photo.url_m || photo.url_s || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
                     large: photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
                     url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
@@ -833,6 +844,18 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-06-24-lona-athfest-athens-ga.html'
         },
         { 
+            title: '2023-04-06 Will Johnson @ Living Room Show | Athens, GA', 
+            photoCount: 7, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330408516/',
+            albumPage: '../music/2023-04-06-will-johnson-living-room-show-athens-ga.html'
+        },
+        { 
+            title: '2023-04-06 Spencer Thomas @ Living Room Show | Athens, GA', 
+            photoCount: 2, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330411882/',
+            albumPage: '../music/2023-04-06-spencer-thomas-living-room-show-athens-ga.html'
+        },
+        { 
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
@@ -1228,13 +1251,18 @@ async function displayAlbumPhotos(albumUrl) {
             console.log(`Photo ${i + 1}:`, {
                 title: photo.title,
                 description: photo.description,
+                tags: photo.tags,
                 hasDescription: !!(photo.description && photo.description.trim())
             });
         }
     });
     
-    // Store photos globally for lightbox
+    // Store photos globally for lightbox and tag filtering
     currentAlbumPhotos = photos;
+    allAlbumPhotos = photos;
+    
+    // Display photo tags if container exists
+    displayPhotoTags(photos);
     
     // Display photos in grid (descriptions will show in lightbox only)
     photosGrid.innerHTML = photos.map((photo, index) => `
@@ -2009,6 +2037,7 @@ function createGlobalHeader() {
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-menu">
+                        <li><a href="#" onclick="openSearchModal(); return false;" aria-label="Search"><i class="fas fa-search"></i></a></li>
                         <li class="collections-dropdown">
                             <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
@@ -2021,8 +2050,18 @@ function createGlobalHeader() {
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
-                        <li><a href="${basePath}index.html#about">About</a></li>
-                        <li><a href="${basePath}index.html#contact">Contact</a></li>
+                        <li><a href="${basePath}collections/tags.html">Tags</a></li>
+                        <li><a href="${basePath}contact.html">Contact</a></li>
+                        <li class="share-dropdown">
+                            <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                            <ul class="share-menu">
+                                <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                                <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
+                                <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                                <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -2118,8 +2157,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (siteTitleLink) {
             siteTitleLink.innerHTML = 'Jayne Clamp';
         }
-        
-        console.log('ALL CAMERA ICONS REMOVED');
     };
     
     // Remove all cameras immediately and keep removing them
@@ -2375,4 +2412,575 @@ function ensureSingleCameraIcon() {
         siteTitleLink.appendChild(cameraIcon);
     }
 }
+
+// Photo tags functionality
+let allAlbumPhotos = [];
+let currentTagFilter = null;
+
+function formatTagForDisplay(tag) {
+    // Return tags exactly as they are on Flickr
+    return tag;
+}
+
+function displayPhotoTags(photos) {
+    const tagsContainer = document.getElementById('photo-tags');
+    if (!tagsContainer) return;
+    
+    // Collect all unique tags from all photos
+    const tagSet = new Set();
+    photos.forEach(photo => {
+        if (photo.tags && photo.tags.length > 0) {
+            photo.tags.forEach(tag => tagSet.add(tag));
+        }
+    });
+    
+    const tags = Array.from(tagSet).sort();
+    
+    if (tags.length === 0) {
+        tagsContainer.style.display = 'none';
+        return;
+    }
+    
+    // Create tag buttons
+    tagsContainer.innerHTML = '<span style="color: #ccc; font-size: 0.9rem; margin-right: 0.5rem;">Filter by tag:</span>';
+    
+    // Add "All" button
+    const allButton = document.createElement('button');
+    allButton.textContent = 'All';
+    allButton.className = 'tag-button active';
+    allButton.style.cssText = 'padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.2); border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 0.85rem; transition: background 0.3s ease;';
+    allButton.onclick = () => filterPhotosByTag(null);
+    tagsContainer.appendChild(allButton);
+    
+    // Add individual tag buttons
+    tags.forEach(tag => {
+        const button = document.createElement('button');
+        button.textContent = formatTagForDisplay(tag);
+        button.className = 'tag-button';
+        button.dataset.originalTag = tag; // Store original tag for filtering
+        button.style.cssText = 'padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.1); border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 0.85rem; transition: background 0.3s ease;';
+        button.onmouseover = () => button.style.background = 'rgba(255,255,255,0.2)';
+        button.onmouseout = () => {
+            if (currentTagFilter !== tag) {
+                button.style.background = 'rgba(255,255,255,0.1)';
+            }
+        };
+        // Link to tags page with this tag
+        button.onclick = () => {
+            window.location.href = `../collections/tags.html?tag=${encodeURIComponent(tag)}`;
+        };
+        tagsContainer.appendChild(button);
+    });
+}
+
+function filterPhotosByTag(tag) {
+    currentTagFilter = tag;
+    
+    // Update button styles
+    const tagButtons = document.querySelectorAll('.tag-button');
+    tagButtons.forEach(button => {
+        if ((tag === null && button.textContent === 'All') || button.textContent === tag) {
+            button.style.background = 'rgba(255,255,255,0.2)';
+            button.classList.add('active');
+        } else {
+            button.style.background = 'rgba(255,255,255,0.1)';
+            button.classList.remove('active');
+        }
+    });
+    
+    // Filter photos
+    const filteredPhotos = tag === null 
+        ? allAlbumPhotos 
+        : allAlbumPhotos.filter(photo => photo.tags && photo.tags.includes(tag));
+    
+    // Re-render photo grid
+    const photosGrid = document.getElementById('photos-grid');
+    if (photosGrid) {
+        photosGrid.innerHTML = '';
+        filteredPhotos.forEach((photo, index) => {
+            const photoCard = document.createElement('div');
+            photoCard.className = 'photo-card';
+            photoCard.onclick = () => openLightbox(index, filteredPhotos);
+            
+            const img = document.createElement('img');
+            img.src = photo.thumbnail;
+            img.alt = photo.title || 'Photo';
+            img.loading = 'lazy';
+            
+            photoCard.appendChild(img);
+            photosGrid.appendChild(photoCard);
+        });
+        
+        // Update photo count
+        const subtitle = document.querySelector('.page-subtitle');
+        if (subtitle) {
+            subtitle.textContent = `${filteredPhotos.length} photo${filteredPhotos.length !== 1 ? 's' : ''}${tag ? ` tagged "${tag}"` : ''}`;
+        }
+    }
+}
+
+// Tags page functionality
+let allPhotosWithTags = []; // Store all photos globally for filtering
+
+async function initializeTagsPage() {
+    console.log('Initializing tags page...');
+    
+    const tagsContainer = document.getElementById('tags-container');
+    if (!tagsContainer) return;
+    
+    // Check if there's a tag parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const tagParam = urlParams.get('tag');
+    
+    // Try to load from cache first
+    const CACHE_KEY = 'jayne-clamp-tags-cache';
+    const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+    const cached = localStorage.getItem(CACHE_KEY);
+    
+    if (cached) {
+        try {
+            const cacheData = JSON.parse(cached);
+            const cacheAge = Date.now() - cacheData.timestamp;
+            
+            if (cacheAge < CACHE_DURATION) {
+                console.log('Loading tags from cache (age: ' + Math.round(cacheAge / 1000 / 60) + ' minutes)');
+                allPhotosWithTags = cacheData.photos;
+                const allTags = new Map(cacheData.tags);
+                
+                displayAllTags(allTags);
+                setupTagSearch(allTags);
+                
+                // Handle URL parameters
+                handleTagPageParameters(urlParams, allTags, tagParam);
+                
+                tagsContainer.innerHTML = '<p style="color: #999; font-size: 0.9rem; text-align: center;">✓ Loaded from cache</p>';
+                setTimeout(() => {
+                    displayAllTags(allTags);
+                }, 100);
+                return;
+            } else {
+                console.log('Cache expired, fetching fresh data');
+                localStorage.removeItem(CACHE_KEY);
+            }
+        } catch (e) {
+            console.warn('Cache error:', e);
+            localStorage.removeItem(CACHE_KEY);
+        }
+    }
+    
+    // Show loading with progress
+    if (tagParam) {
+        tagsContainer.innerHTML = `<p style="color: #999; width: 100%; text-align: center;">Loading photos tagged "${formatTagForDisplay(tagParam)}"... <span id="tags-progress">0</span> albums processed</p>`;
+    } else {
+        tagsContainer.innerHTML = '<p style="color: #999; width: 100%; text-align: center;">Loading photos and tags... <span id="tags-progress">0</span> albums processed</p>';
+    }
+    
+    // Fetch all photos with tags from all albums
+    const allTags = new Map(); // Map of tag -> array of photos
+    const allCollections = ['music', 'events', 'landscapes'];
+    let processedCount = 0;
+    let totalAlbums = 0;
+    
+    // Count total albums
+    allCollections.forEach(collectionType => {
+        totalAlbums += (ALBUM_DATA[collectionType] || []).length;
+    });
+    
+    // If filtering by tag, show results progressively
+    let progressivePhotos = [];
+    
+    // PARALLEL PROCESSING: Fetch multiple albums at once
+    const PARALLEL_LIMIT = 5; // Fetch 5 albums simultaneously
+    
+    for (const collectionType of allCollections) {
+        const albums = ALBUM_DATA[collectionType] || [];
+        
+        // Process albums in batches
+        for (let i = 0; i < albums.length; i += PARALLEL_LIMIT) {
+            const batch = albums.slice(i, i + PARALLEL_LIMIT);
+            
+            // Fetch this batch in parallel
+            await Promise.all(batch.map(async (album) => {
+                // Skip albums without flickrUrl
+                if (!album.flickrUrl) {
+                    processedCount++;
+                    return;
+                }
+                
+                // Fetch album photos to get tags
+                const albumId = extractAlbumId(album.flickrUrl);
+                if (!albumId) {
+                    processedCount++;
+                    console.warn(`Could not extract album ID from: ${album.flickrUrl}`);
+                    return;
+                }
+                
+                try {
+                    const photos = await fetchFlickrAlbumPhotos(albumId);
+                    processedCount++;
+                    
+                    // Update progress
+                    const progressEl = document.getElementById('tags-progress');
+                    if (progressEl) {
+                        progressEl.textContent = `${processedCount}/${totalAlbums}`;
+                    }
+                    
+                    if (!photos || photos.length === 0) return;
+                
+                // Process each photo with tags
+                photos.forEach(photo => {
+                    if (photo.tags && photo.tags.length > 0) {
+                        // Add album info to photo
+                        const photoWithAlbum = {
+                            ...photo,
+                            albumTitle: album.title,
+                            albumPage: album.albumPage,
+                            collection: collectionType
+                        };
+                        
+                        // Store photo globally
+                        allPhotosWithTags.push(photoWithAlbum);
+                        
+                        // Add photo to each of its tags
+                        photo.tags.forEach(tag => {
+                            if (!allTags.has(tag)) {
+                                allTags.set(tag, []);
+                            }
+                            allTags.get(tag).push(photoWithAlbum);
+                            
+                            // If we're filtering by this tag, add to progressive display
+                            if (tagParam && tag === tagParam) {
+                                progressivePhotos.push(photoWithAlbum);
+                            }
+                        });
+                    }
+                });
+                
+                // Update progressive display if filtering by tag
+                if (tagParam && progressivePhotos.length > 0) {
+                    const resultsTitle = document.getElementById('results-title');
+                    const photosGrid = document.getElementById('photos-grid');
+                    resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${progressivePhotos.length} found so far...)`;
+                    resultsTitle.style.display = 'block';
+                    console.log(`Displaying ${progressivePhotos.length} photos for tag "${tagParam}"`);
+                    displayPhotosGrid([...progressivePhotos], photosGrid);
+                }
+                } catch (error) {
+                    console.error(`Error fetching tags for album ${albumId}:`, error);
+                    processedCount++;
+                }
+            }));
+        }
+    }
+    
+    console.log(`Found ${allTags.size} unique tags across ${allPhotosWithTags.length} photos`);
+    
+    // Save to cache
+    try {
+        const cacheData = {
+            timestamp: Date.now(),
+            photos: allPhotosWithTags,
+            tags: Array.from(allTags.entries())
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+        console.log('✓ Tags cached for 24 hours');
+    } catch (e) {
+        console.warn('Could not save to cache:', e);
+    }
+    
+    // Display all tags
+    displayAllTags(allTags);
+    
+    // Setup search functionality
+    setupTagSearch(allTags);
+    
+    // Handle URL parameters
+    handleTagPageParameters(urlParams, allTags, tagParam);
+}
+
+// Helper function to handle tag page URL parameters
+function handleTagPageParameters(urlParams, allTags, tagParam) {
+    // Check for search parameter from search modal
+    const searchParam = urlParams.get('search');
+    if (searchParam) {
+        // Trigger search with the query
+        const searchInput = document.getElementById('tag-search');
+        if (searchInput) {
+            searchInput.value = searchParam;
+            searchInput.dispatchEvent(new Event('input'));
+        }
+    }
+    
+    // If we were filtering by tag, show final results
+    if (tagParam && allTags.has(tagParam)) {
+        const photos = allTags.get(tagParam);
+        const resultsTitle = document.getElementById('results-title');
+        resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${photos.length})`;
+        
+        // Highlight the tag in sidebar
+        const tagLinks = document.querySelectorAll('.tag-link');
+        tagLinks.forEach(link => {
+            if (link.dataset.tag === tagParam) {
+                link.style.background = 'rgba(255,255,255,0.3)';
+            }
+        });
+    }
+}
+
+function displayAllTags(allTags) {
+    const tagsContainer = document.getElementById('tags-container');
+    if (!tagsContainer) return;
+    
+    // Sort tags alphabetically for sidebar
+    const sortedTags = Array.from(allTags.entries())
+        .sort((a, b) => formatTagForDisplay(a[0]).localeCompare(formatTagForDisplay(b[0])));
+    
+    tagsContainer.innerHTML = '';
+    
+    sortedTags.forEach(([tag, photos]) => {
+        const tagLink = document.createElement('div');
+        tagLink.className = 'tag-link';
+        tagLink.dataset.tag = tag;
+        tagLink.style.cssText = 'padding: 0.6rem 0.8rem; margin-bottom: 0.25rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center;';
+        
+        const tagName = document.createElement('span');
+        tagName.textContent = formatTagForDisplay(tag);
+        tagName.style.cssText = 'color: #fff; font-size: 0.9rem;';
+        
+        const tagCount = document.createElement('span');
+        tagCount.textContent = photos.length;
+        tagCount.style.cssText = 'color: #999; font-size: 0.85rem; font-weight: 500;';
+        
+        tagLink.appendChild(tagName);
+        tagLink.appendChild(tagCount);
+        
+        tagLink.onmouseover = () => tagLink.style.background = 'rgba(255,255,255,0.15)';
+        tagLink.onmouseout = () => tagLink.style.background = 'rgba(255,255,255,0.05)';
+        tagLink.onclick = () => showPhotosForTag(tag, photos);
+        
+        tagsContainer.appendChild(tagLink);
+    });
+}
+
+function setupTagSearch(allTags) {
+    const searchInput = document.getElementById('tag-search');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        
+        if (query === '') {
+            // Clear results
+            document.getElementById('results-title').style.display = 'none';
+            document.getElementById('photos-grid').innerHTML = '';
+            return;
+        }
+        
+        // Normalize query (remove spaces for tag matching)
+        const normalizedQuery = query.replace(/\s+/g, '');
+        
+        // Search through tags
+        const matchingPhotos = [];
+        
+        allTags.forEach((photos, tag) => {
+            // Normalize tag for comparison (remove spaces)
+            const normalizedTag = tag.toLowerCase().replace(/\s+/g, '');
+            
+            // Check if normalized tag matches normalized query
+            // OR if display version matches (for tags that already have spaces)
+            if (normalizedTag.includes(normalizedQuery) || 
+                formatTagForDisplay(tag).toLowerCase().includes(query)) {
+                matchingPhotos.push(...photos);
+            }
+        });
+        
+        // Also search photo titles and album titles
+        allPhotosWithTags.forEach(photo => {
+            if (photo.title && photo.title.toLowerCase().includes(query)) {
+                matchingPhotos.push(photo);
+            }
+            if (photo.albumTitle && photo.albumTitle.toLowerCase().includes(query)) {
+                matchingPhotos.push(photo);
+            }
+        });
+        
+        // Remove duplicates
+        const uniquePhotos = Array.from(new Map(matchingPhotos.map(p => [p.id, p])).values());
+        
+        // Display results
+        showSearchResults(query, uniquePhotos);
+    });
+}
+
+function showPhotosForTag(tag, photos) {
+    const resultsTitle = document.getElementById('results-title');
+    const photosGrid = document.getElementById('photos-grid');
+    
+    resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tag)}" (${photos.length})`;
+    resultsTitle.style.display = 'block';
+    
+    displayPhotosGrid(photos, photosGrid);
+    
+    // Scroll to results
+    resultsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showSearchResults(query, photos) {
+    const resultsTitle = document.getElementById('results-title');
+    const photosGrid = document.getElementById('photos-grid');
+    
+    resultsTitle.textContent = `Search results for "${query}" (${photos.length})`;
+    resultsTitle.style.display = 'block';
+    
+    if (photos.length === 0) {
+        photosGrid.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No photos found</p>';
+        return;
+    }
+    
+    displayPhotosGrid(photos, photosGrid);
+}
+
+// Store current filtered photos for lightbox
+let currentFilteredPhotos = [];
+
+function displayPhotosGrid(photos, container) {
+    // Store photos globally for lightbox access
+    currentFilteredPhotos = photos;
+    
+    container.innerHTML = photos.map((photo, index) => {
+        return `
+            <div class="photo-card" onclick="openTagsLightbox(${index})">
+                <img src="${photo.thumbnail}" alt="${photo.title || 'Photo'}" loading="lazy">
+                <div class="photo-overlay">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Lightbox for tags page
+function openTagsLightbox(index) {
+    currentAlbumPhotos = currentFilteredPhotos;
+    openAlbumLightbox(index);
+}
+
+// Search Modal Functions
+function openSearchModal() {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('search-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'search-modal';
+        modal.innerHTML = `
+            <div class="search-modal-overlay" onclick="closeSearchModal()"></div>
+            <div class="search-modal-content">
+                <button class="search-modal-close" onclick="closeSearchModal()">&times;</button>
+                <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.2rem;">Search Photos</h3>
+                <form onsubmit="performSearch(event)">
+                    <input 
+                        type="text" 
+                        id="search-modal-input" 
+                        placeholder="Search by tag, artist, venue, event..." 
+                        style="width: 100%; padding: 1rem; font-size: 1.1rem; border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff; margin-bottom: 1rem;"
+                        autofocus
+                    >
+                    <button type="submit" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.2); border: none; border-radius: 8px; color: #fff; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.textContent = `
+            #search-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+            }
+            #search-modal.active {
+                display: block;
+            }
+            .search-modal-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(5px);
+            }
+            .search-modal-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(20,20,20,0.95);
+                padding: 2rem;
+                border-radius: 12px;
+                max-width: 500px;
+                width: 90%;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            }
+            .search-modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 2rem;
+                cursor: pointer;
+                opacity: 0.7;
+                transition: opacity 0.3s ease;
+            }
+            .search-modal-close:hover {
+                opacity: 1;
+            }
+            #search-modal button[type="submit"]:hover {
+                background: rgba(255,255,255,0.3);
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    modal.classList.add('active');
+    setTimeout(() => {
+        document.getElementById('search-modal-input').focus();
+    }, 100);
+}
+
+function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+function performSearch(event) {
+    event.preventDefault();
+    const query = document.getElementById('search-modal-input').value.trim();
+    if (query) {
+        // Get base path
+        const path = window.location.pathname;
+        const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') ? '../' : '';
+        
+        // Redirect to tags page with search query
+        window.location.href = `${basePath}collections/tags.html?search=${encodeURIComponent(query)}`;
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeSearchModal();
+    }
+});
 
