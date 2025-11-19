@@ -1267,8 +1267,8 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
         albums = albums.filter(album => album.title.startsWith(filterYear));
     }
 
-    // Filter by band if specified
-    if (filterBand !== 'all') {
+    // Filter by band if specified (for music collection)
+    if (filterBand !== 'all' && collectionType === 'music') {
         albums = albums.filter(album => {
             // Extract band name from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
             const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
@@ -1297,6 +1297,43 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             }
             
             return artistSection.toLowerCase().includes(filterBand.toLowerCase());
+        });
+    }
+    
+    // Filter by event type if specified (for events collection)
+    // Note: filterBand parameter is reused as filterEvent for events collection
+    if (filterBand !== 'all' && collectionType === 'events') {
+        const filterEvent = filterBand; // Reuse the parameter
+        albums = albums.filter(album => {
+            // Extract event name from title
+            let eventName = album.title;
+            
+            // Remove date prefix
+            eventName = eventName.replace(/^\d{4}-\d{2}-\d{2}\s+/, '');
+            
+            // Remove location suffix
+            eventName = eventName.split(/\s*[@|]\s*/)[0].trim();
+            
+            // Match against normalized event names
+            if (filterEvent === 'Wild Rumpus') {
+                return eventName.toLowerCase().includes('wild rumpus');
+            } else if (filterEvent === 'Pride Parade') {
+                return eventName.toLowerCase().includes('pride');
+            } else if (filterEvent === 'No Kings') {
+                return eventName.toLowerCase().includes('no kings');
+            } else if (filterEvent === 'Black Lives Matter') {
+                return eventName.toLowerCase().includes('black lives matter');
+            } else if (filterEvent === 'March For Our Lives') {
+                return eventName.toLowerCase().includes('march for our lives');
+            } else if (filterEvent === 'Jon Ossoff Rally') {
+                return eventName.toLowerCase().includes('ossoff');
+            } else if (filterEvent === 'UCW Labor Rally') {
+                return eventName.toLowerCase().includes('ucw') || eventName.toLowerCase().includes('labor rally');
+            } else if (filterEvent === 'UGA Homecoming') {
+                return eventName.toLowerCase().includes('homecoming');
+            } else {
+                return eventName.toLowerCase().includes(filterEvent.toLowerCase());
+            }
         });
     }
 
@@ -1645,6 +1682,67 @@ function initializeFilters(collectionType) {
         }
     }
     
+    // Initialize event filter for events collection
+    if (collectionType === 'events') {
+        const eventFilter = document.getElementById('event-filter');
+        if (eventFilter && ALBUM_DATA.events) {
+            // Clear existing options except "All Events"
+            eventFilter.innerHTML = '<option value="all">All Events</option>';
+            
+            // Extract unique event types from album titles
+            const eventTypes = new Set();
+            ALBUM_DATA.events.forEach(album => {
+                // Extract event name (everything after date and before location)
+                let eventName = album.title;
+                
+                // Remove date prefix (YYYY-MM-DD format)
+                eventName = eventName.replace(/^\d{4}-\d{2}-\d{2}\s+/, '');
+                
+                // Remove location suffix (| Location or @ Location)
+                eventName = eventName.split(/\s*[@|]\s*/)[0].trim();
+                
+                // Normalize event names
+                if (eventName.toLowerCase().includes('wild rumpus')) {
+                    eventTypes.add('Wild Rumpus');
+                } else if (eventName.toLowerCase().includes('pride')) {
+                    eventTypes.add('Pride Parade');
+                } else if (eventName.toLowerCase().includes('no kings')) {
+                    eventTypes.add('No Kings');
+                } else if (eventName.toLowerCase().includes('black lives matter')) {
+                    eventTypes.add('Black Lives Matter');
+                } else if (eventName.toLowerCase().includes('march for our lives')) {
+                    eventTypes.add('March For Our Lives');
+                } else if (eventName.toLowerCase().includes('ossoff')) {
+                    eventTypes.add('Jon Ossoff Rally');
+                } else if (eventName.toLowerCase().includes('ucw') || eventName.toLowerCase().includes('labor rally')) {
+                    eventTypes.add('UCW Labor Rally');
+                } else if (eventName.toLowerCase().includes('homecoming')) {
+                    eventTypes.add('UGA Homecoming');
+                } else {
+                    // For any other events, use the cleaned name
+                    eventTypes.add(eventName);
+                }
+            });
+            
+            // Sort event types alphabetically
+            const sortedEventTypes = Array.from(eventTypes).sort();
+            
+            // Add options to dropdown
+            sortedEventTypes.forEach(eventType => {
+                const option = document.createElement('option');
+                option.value = eventType;
+                option.textContent = eventType;
+                eventFilter.appendChild(option);
+            });
+            
+            // Add event filter event listener
+            eventFilter.addEventListener('change', function() {
+                const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+                displayAlbums(collectionType, selectedYear, this.value);
+            });
+        }
+    }
+    
     // Add year tab filtering
     const yearTabs = document.querySelectorAll('.year-tab');
     yearTabs.forEach(tab => {
@@ -1653,13 +1751,21 @@ function initializeFilters(collectionType) {
             yearTabs.forEach(t => t.classList.remove('active'));
             // Add active class to clicked tab
             this.classList.add('active');
-            // Filter albums by year and current band/venue selection
+            // Filter albums by year and current band/venue/event selection
             const year = this.dataset.year;
             const bandFilter = document.getElementById('band-filter');
             const venueFilter = document.getElementById('venue-filter');
+            const eventFilter = document.getElementById('event-filter');
             const selectedBand = bandFilter ? bandFilter.value : 'all';
             const selectedVenue = venueFilter ? venueFilter.value : 'all';
-            displayAlbums(collectionType, year, selectedBand, selectedVenue);
+            const selectedEvent = eventFilter ? eventFilter.value : 'all';
+            
+            // Call displayAlbums with appropriate parameters based on collection type
+            if (collectionType === 'events') {
+                displayAlbums(collectionType, year, selectedEvent);
+            } else {
+                displayAlbums(collectionType, year, selectedBand, selectedVenue);
+            }
         });
     });
 }

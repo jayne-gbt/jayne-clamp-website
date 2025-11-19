@@ -15,6 +15,21 @@
     <title>2017-12-14 5000 @ Caledonia | Athens, GA - Jayne Clamp Photography</title>
     <meta name="description" content="Photos from 2017-12-14 5000 @ Caledonia | Athens, GA">
     <meta name="keywords" content="5000, Caledonia, Athens Georgia, indie rock, alternative rock, Athens music scene, live music photography, concert photos, local bands, underground music">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2017-12-14 5000 @ Caledonia | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - 5000 at Caledonia">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54931548358_9c9c34f739_b.jpg">
+    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2017-12-14-5000-caledonia-athens-ga.html">
+    <meta property="og:site_name" content="Jayne Clamp Photography">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2017-12-14 5000 @ Caledonia | Athens, GA">
+    <meta name="twitter:description" content="Live music photography by Jayne Clamp">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54931548358_9c9c34f739_b.jpg">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -123,6 +138,32 @@
             <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-share" onclick="toggleLightboxShare()">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="lightbox-share-menu" id="lightbox-share-menu">
+                <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('pinterest'); return false;"><i class="fab fa-pinterest"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
+            </div>
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
 
     <script src="../js/main.js"></script>
     <script>

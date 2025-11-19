@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z1G54B1GV');
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,23 +39,25 @@
         <div class="container">
             <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
             <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <ul class="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="../collections.html">Collections <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
+                    <li class="collections-dropdown">
+                        <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                        <ul class="collections-menu">
                             <li><a href="../collections/music.html">Music</a></li>
-                            <li><a href="../collections/nature.html">Nature</a></li>
-                            <li><a href="../collections/street.html">Street</a></li>
-                            <li><a href="../collections/portraits.html">Portraits</a></li>
                             <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
                         </ul>
                     </li>
-                    <li><a href="../about.html">About</a></li>
                     <li><a href="../contact.html">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="share-button"><i class="fas fa-share"></i> Share</a>
-                        <ul class="dropdown-menu share-menu">
+                    <li class="share-dropdown">
+                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                        <ul class="share-menu">
                             <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
                             <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
@@ -60,8 +70,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <section class="album-section">
+    <!-- Album Photos Section -->
+    <section class="albums-section">
         <div class="container">
             <a href="../collections/music.html" class="back-button">
                 <i class="fas fa-arrow-left"></i> Back to Music
@@ -129,7 +139,7 @@
     <div id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-share" onclick="toggleLightboxShare()">
-                <i class="fas fa-share"></i>
+                <i class="fas fa-ellipsis-h"></i>
             </button>
             <div class="lightbox-share-menu" id="lightbox-share-menu">
                 <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
