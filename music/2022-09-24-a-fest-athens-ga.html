@@ -12,23 +12,23 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA - Jayne Clamp Photography</title>
-    <meta name="description" content="2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA">
-    <meta name="keywords" content="Jay Gonzalez, Liberty Field, Athens Georgia, rock, indie rock, Drive-By Truckers, live music photography, concert photos, Athens music scene">
+    <title>2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA">
+    <meta name="keywords" content="A-Fest, Blunt Bangs, Little Kings, Athens Georgia, reproductive justice, benefit concert, community festival, live music photography, concert photos, Athens music scene">
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA">
-    <meta property="og:description" content="Live music photography by Jayne Clamp - Jay Gonzalez performing at Liberty Field in Athens, GA">
-    <meta property="og:image" content="https://live.staticflickr.com/65535/54933682333_3f00e98099_c.jpg">
-    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2021-06-05-jay-gonzalez-liberty-field-athens-ga.html">
+    <meta property="og:title" content="2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - A-Fest with Blunt Bangs at Little Kings in Athens, GA">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54937496533_4042f9002c_c.jpg">
+    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2022-09-24-a-fest-athens-ga.html">
     <meta property="og:site_name" content="Jayne Clamp Photography">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA">
+    <meta name="twitter:title" content="2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA">
     <meta name="twitter:description" content="Live music photography by Jayne Clamp">
-    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54933682333_3f00e98099_c.jpg">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54937496533_4042f9002c_c.jpg">
     
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -61,7 +61,7 @@
                             <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
                             <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
-                            <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                            <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i></a></li>
                             <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
                         </ul>
                     </li>
@@ -78,34 +78,29 @@
             </a>
 
             <div class="page-header">
-                <h2 class="page-title">2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA</h2>
+                <h2 class="page-title">2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA</h2>
                 <p class="page-subtitle">Loading photo count...</p>
             </div>
 
             <div id="loading" class="loading">Loading photos...</div>
 
-            <!-- Photo Grid - populated by JavaScript -->
-            <div id="photos-grid" class="photos-grid">
-                <!-- Photos will be loaded dynamically via JavaScript -->
-            </div>
+            <div id="photos-grid" class="photos-grid"></div>
         </div>
     </section>
 
-    <!-- Artist Official Site -->
+    <!-- Artist / Festival Official Site -->
     <div class="container" style="text-align: center; padding: 1.5rem 0;">
         <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-flex; gap: 0.5rem; align-items: center;">
             <i class="fas fa-external-link-alt" style="color: #fff;"></i>
-            <a href="http://www.jaygonzalez.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500;">
-                Jay Gonzalez Official Site
+            <a href="https://www.afestathens.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500;">
+                A-Fest Music & Food Festival for Reproductive Justice
             </a>
         </div>
     </div>
 
     <!-- Photo Tags -->
     <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
-        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
-            <!-- Tags will be populated by JavaScript -->
-        </div>
+        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
     </div>
 
     <!-- Back Button (Bottom) -->
@@ -144,13 +139,9 @@
                 <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
             </div>
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()"><i class="fas fa-chevron-left"></i></button>
             <img id="lightbox-img" src="" alt="Photo">
-            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()"><i class="fas fa-chevron-right"></i></button>
             <div class="lightbox-caption" id="lightbox-caption"></div>
             <div class="lightbox-counter" id="lightbox-counter"></div>
         </div>
@@ -158,9 +149,8 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
-            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330410616/';
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330486349/';
             displayAlbumPhotos(albumUrl);
         });
     </script>
