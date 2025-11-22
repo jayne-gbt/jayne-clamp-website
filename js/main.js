@@ -729,6 +729,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
         { 
+            title: '2025-03-26 Patterson Hood & the Sensurrounders @ Terminal West | Atlanta, GA', 
+            photoCount: 25, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330484627/',
+            albumPage: '../music/2025-03-26-patterson-hood-sensurrounders-terminal-west-atlanta-ga.html'
+        },
+        { 
             title: '2025-04-04 David Lowery @ Cobham Triangle Park | Athens, GA', 
             photoCount: 5, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330474041/',
