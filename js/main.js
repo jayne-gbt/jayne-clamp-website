@@ -726,7 +726,28 @@ const ALBUM_DATA = {
             title: '2025-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
-            albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-athens-ga.html'
+            albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
+        },
+        { 
+            title: '2025-04-04 David Lowery @ Cobham Triangle Park | Athens, GA', 
+            photoCount: 5, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330474041/',
+            coverUrl: 'https://live.staticflickr.com/65535/54938296652_1fdd68fb7f_c.jpg',
+            albumPage: '../music/2025-04-04-david-lowery-cobham-triangle-park-athens-ga.html'
+        },
+        { 
+            title: '2025-04-04 Kit @ Cobham Triangle Park | Athens, GA', 
+            photoCount: 7, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330469810/',
+            coverUrl: 'https://live.staticflickr.com/65535/54939458499_fdae0da7fa_c.jpg',
+            albumPage: '../music/2025-04-04-kit-cobham-triangle-park-athens-ga.html'
+        },
+        { 
+            title: '2025-04-11 Jay Gonzalez & Sloan Brothers @ Flicker | Athens, GA', 
+            photoCount: 4, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330469965/',
+            coverUrl: 'https://live.staticflickr.com/65535/54939476809_f3752d5884_c.jpg',
+            albumPage: '../music/2025-04-11-jay-gonzalez-sloan-brothers-flicker-athens-ga.html'
         },
         { 
             title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
@@ -820,12 +841,6 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-07-18-jay-gonzalez-athentic-brewery-athens-ga.html'
         },
         { 
-            title: '2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982149/',
-            albumPage: '../music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html'
-        },
-        { 
             title: '2023-11-04 Jerry Joseph & the Jackmormons @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329992639/', 
@@ -857,6 +872,7 @@ const ALBUM_DATA = {
             title: '2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330357813/',
+            coverUrl: 'https://live.staticflickr.com/65535/54926455050_25d957e129_c.jpg',
             albumPage: '../music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html'
         },
         { 
@@ -899,6 +915,7 @@ const ALBUM_DATA = {
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329988510/',
+            coverUrl: 'https://live.staticflickr.com/65535/54880796156_bcb1067cbb_c.jpg',
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
         },
         { 
@@ -919,12 +936,14 @@ const ALBUM_DATA = {
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329979503/',
+            coverUrl: 'https://live.staticflickr.com/65535/54937643785_5dec809aef_c.jpg',
             albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
         { 
             title: '2023-02-10 Shotgun Shells: A Celebration of Todd McBride @ 40 Watt & Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330208208/',
+            coverUrl: 'https://live.staticflickr.com/65535/54911043681_22eee3c521_c.jpg',
             albumPage: '../music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
         },
         { 
@@ -1260,11 +1279,11 @@ function findAlbumByUrl(albumUrl) {
 }
 
 async function displayAlbumPhotos(albumUrl) {
-    const photosGrid = document.getElementById('photos-grid');
+    const photosGrid = document.getElementById('photo-grid');
     const loading = document.getElementById('loading');
     
     if (!photosGrid) {
-        console.error('photos-grid element not found');
+        console.error('photo-grid element not found');
         return;
     }
     
@@ -1398,13 +1417,27 @@ function openAlbumLightbox(index) {
 
 // Display albums from manual configuration
 function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all') {
+    console.log('=== DISPLAY ALBUMS DEBUG START ===');
+    console.log('displayAlbums called with:', collectionType, filterYear, filterBand, filterVenue);
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
+    console.log('albumsGrid element found:', !!albumsGrid);
+    console.log('loading element found:', !!loading);
     
-    if (!albumsGrid) return;
+    if (!albumsGrid) {
+        console.log('albumsGrid not found, returning');
+        return;
+    }
 
     // Get albums for this collection
     let albums = ALBUM_DATA[collectionType] || [];
+
+    // Sort albums by date (newest to oldest) - titles start with YYYY-MM-DD
+    albums.sort((a, b) => {
+        const dateA = a.title.substring(0, 10); // Extract YYYY-MM-DD
+        const dateB = b.title.substring(0, 10);
+        return dateB.localeCompare(dateA); // Sort descending (newest first)
+    });
 
     // Filter by year if specified
     if (filterYear !== 'all') {
@@ -1586,8 +1619,12 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
 
 // Initialize collections when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Main.js loaded successfully - Version 20251116-1710');
+    console.log('=== MAIN.JS DEBUG START ===');
+    console.log('Main.js loaded successfully - Version 20251122-0225');
     console.log('Current pathname:', window.location.pathname);
+    console.log('ALBUM_DATA exists:', !!ALBUM_DATA);
+    console.log('ALBUM_DATA.music length:', ALBUM_DATA.music ? ALBUM_DATA.music.length : 'undefined');
+    console.log('=== MAIN.JS DEBUG END ===');
     
     // Initialize collections if on a collection page
     if (window.location.pathname.includes('/collections/')) {
@@ -2210,6 +2247,11 @@ function initializeGlobalHeader() {
 
 // Global footer HTML template
 function createGlobalFooter() {
+    // Determine the correct path prefix based on current page location
+    const pathPrefix = window.location.pathname.includes('/music/') || 
+                      window.location.pathname.includes('/events/') || 
+                      window.location.pathname.includes('/landscapes/') ? '../' : '';
+    
     return `
         <footer class="site-footer">
             <div class="container">
@@ -2229,11 +2271,11 @@ function createGlobalFooter() {
                 </div>
                 <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
                 <div class="legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="${pathPrefix}privacy-policy.html">Privacy Policy</a>
                     <span class="separator">•</span>
-                    <a href="terms-of-use.html">Terms of Use</a>
+                    <a href="${pathPrefix}terms-of-use.html">Terms of Use</a>
                     <span class="separator">•</span>
-                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="${pathPrefix}sitemap.html">Sitemap</a>
                 </div>
             </div>
         </footer>
@@ -3100,5 +3142,17 @@ document.addEventListener('keydown', function(e) {
 function refreshTagsCache() {
     console.log('Reloading fresh data from Flickr...');
     window.location.reload();
+}
+
+// Initialize global header and footer immediately after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeGlobalHeader();
+        initializeGlobalFooter();
+    });
+} else {
+    // DOM is already loaded
+    initializeGlobalHeader();
+    initializeGlobalFooter();
 }
 

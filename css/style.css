@@ -233,7 +233,7 @@ img {
 }
 
 .site-title a:hover {
-    color: var(--accent) !important;
+    color: #17A2B8 !important;
     opacity: 1;
 }
 
@@ -274,7 +274,7 @@ img {
 }
 
 .nav-menu a:hover {
-    color: var(--accent) !important;
+    color: #17A2B8 !important;
     opacity: 1;
 }
 
@@ -323,8 +323,8 @@ img {
 }
 
 .share-menu a:hover {
-    background-color: var(--accent);
-    color: var(--white) !important;
+    background-color: #17A2B8;
+    color: #ffffff !important;
     opacity: 1;
 }
 
@@ -384,8 +384,8 @@ img {
 }
 
 .collections-menu a:hover {
-    background-color: var(--accent);
-    color: var(--white) !important;
+    background-color: #17A2B8;
+    color: #ffffff !important;
     opacity: 1;
 }
 
@@ -607,13 +607,13 @@ img {
 }
 
 .year-tab:hover {
-    color: var(--accent) !important;
+    color: #17A2B8 !important;
     background: transparent !important;
 }
 
 .year-tab.active {
-    color: var(--accent) !important;
-    border-bottom-color: var(--accent) !important;
+    color: #17A2B8 !important;
+    border-bottom-color: #17A2B8 !important;
     font-weight: 500 !important;
     background: transparent !important;
 }
@@ -649,8 +649,8 @@ img {
 }
 
 .back-button:hover {
-    background-color: var(--accent) !important;
-    border-color: var(--accent) !important;
+    background-color: #17A2B8 !important;
+    border-color: #17A2B8 !important;
     color: #ffffff !important;
 }
 
@@ -671,7 +671,7 @@ img {
 }
 
 .album-card:hover {
-    border-color: var(--accent);
+    border-color: #17A2B8;
 }
 
 .album-image {
@@ -1466,16 +1466,32 @@ img {
     }
 
     .lightbox-nav {
-        font-size: 2rem;
-        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        padding: 0.4rem 0.6rem;
+        background: rgba(0, 0, 0, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        transform-origin: center;
+    }
+
+    .lightbox-nav:hover {
+        background: rgba(0, 0, 0, 0.95) !important;
+        border-color: rgba(255, 255, 255, 0.7) !important;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     }
 
     .lightbox-prev {
-        left: 0.5rem;
+        left: 0.3rem;
     }
 
     .lightbox-next {
-        right: 0.5rem;
+        right: 0.3rem;
     }
 
     .lightbox-close {
