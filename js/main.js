@@ -277,6 +277,7 @@ function openLightbox(photos, index) {
     if (lightbox) {
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('lightbox-open');
     }
 }
 
@@ -286,6 +287,7 @@ function closeLightbox() {
     if (lightbox) {
         lightbox.style.display = 'none';
         document.body.style.overflow = 'auto';
+        document.body.classList.remove('lightbox-open');
     }
     if (shareMenu) {
         shareMenu.classList.remove('show');
@@ -331,14 +333,32 @@ function showLightboxImage() {
     }
 }
 
+// Throttle variables for lightbox navigation
+let lightboxNavigationThrottle = false;
+const LIGHTBOX_THROTTLE_DELAY = 300; // 300ms delay to prevent rapid clicking
+
 function nextLightboxImage() {
+    if (lightboxNavigationThrottle) return;
+    
+    lightboxNavigationThrottle = true;
     currentLightboxIndex = (currentLightboxIndex + 1) % lightboxPhotos.length;
     showLightboxImage();
+    
+    setTimeout(() => {
+        lightboxNavigationThrottle = false;
+    }, LIGHTBOX_THROTTLE_DELAY);
 }
 
 function prevLightboxImage() {
+    if (lightboxNavigationThrottle) return;
+    
+    lightboxNavigationThrottle = true;
     currentLightboxIndex = (currentLightboxIndex - 1 + lightboxPhotos.length) % lightboxPhotos.length;
     showLightboxImage();
+    
+    setTimeout(() => {
+        lightboxNavigationThrottle = false;
+    }, LIGHTBOX_THROTTLE_DELAY);
 }
 
 // Modern click-to-advance functionality
@@ -639,7 +659,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
         { 
-            title: '2025-09-07 Kevn Kinney & Peter Buck w Mike Mills @ Rialto Room | Athens, GA', 
+            title: '2025-09-07 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
             coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg',
@@ -709,7 +729,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2021-06-05-jay-gonzalez-liberty-field-athens-ga.html'
         },
         { 
-            title: '2025-02-27 Kevn Kinney, Lenny Hayes, Peter Buck, Mike Mills @ Rialto Room | Athens, GA', 
+            title: '2025-02-27 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 3, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
             coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg',
@@ -755,6 +775,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-04-04-kit-cobham-triangle-park-athens-ga.html'
         },
         { 
+            title: '2025-04-03 Gillian Welch & David Rawlings @ Classic Center | Athens, GA', 
+            photoCount: 3, 
+            flickrUrl: null,
+            coverUrl: 'https://i.ytimg.com/vi/Qg47lp6AHws/maxresdefault.jpg',
+            albumPage: '../music/2025-04-03-gillian-welch-david-rawlings-classic-center-athens-ga.html'
+        },
+        { 
             title: '2025-04-11 Jay Gonzalez & Sloan Brothers @ Flicker | Athens, GA', 
             photoCount: 4, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330469965/',
@@ -787,7 +814,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-10-11-kimberly-morgan-york-terrapin-beer-co-athens-ga.html'
         }, 
         { 
-            title: '2024-10-10 Doug Emhoff Event with Michael Stipe @ 1055 Barber | Athens, GA', 
+            title: '2024-10-10 Michael Stipe @ 1055 Barber | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
             coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
@@ -934,6 +961,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330486524/',
             coverUrl: 'https://live.staticflickr.com/65535/54937568999_6fdc41bd09_c.jpg',
             albumPage: '../music/2023-07-18-jay-gonzalez-athentic-brewery-athens-ga.html'
+        },
+        { 
+            title: '2023-07-15 Kimberly Morgan York @ Nowhere Bar | Athens, GA', 
+            photoCount: 19, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330531729/',
+            coverUrl: 'https://live.staticflickr.com/65535/54942426625_804ced667a_b.jpg',
+            albumPage: '../music/2023-07-15-kimberly-morgan-york-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2023-11-04 Jerry Joseph & the Jackmormons @ 40 Watt | Athens, GA', 
@@ -1292,6 +1326,13 @@ const ALBUM_DATA = {
             albumPage: '../events/2024-10-26-wild-rumpus-athens-ga.html'
         },
         { 
+            title: '2024-10-10 Doug Emhoff Event @ 1055 Barber | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
+            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
+            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
+        },
+        { 
             title: '2022-10-14 UGA Homecoming Parade | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192248/',
@@ -1575,7 +1616,13 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 artistSection = withMatch[1].trim();
             }
             
-            return artistSection.toLowerCase().includes(filterBand.toLowerCase());
+            // Normalize "Kevn Kinney Band" to "Kevn Kinney" for filtering
+            let normalizedArtistSection = artistSection;
+            if (normalizedArtistSection.toLowerCase() === 'kevn kinney band') {
+                normalizedArtistSection = 'Kevn Kinney';
+            }
+            
+            return normalizedArtistSection.toLowerCase().includes(filterBand.toLowerCase());
         });
     }
     
@@ -1880,6 +1927,11 @@ function initializeFilters(collectionType) {
                     // Normalize specific band names
                     if (cleanArtist.toLowerCase() === 'drive by truckers') {
                         cleanArtist = 'Drive-By Truckers';
+                    }
+                    
+                    // Normalize "Kevn Kinney Band" to just "Kevn Kinney" for dropdown filtering
+                    if (cleanArtist.toLowerCase() === 'kevn kinney band') {
+                        cleanArtist = 'Kevn Kinney';
                     }
                     
                     artists.add(cleanArtist);
