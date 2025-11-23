@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z1G54B1GV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="Photos from 2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA - Live music photography by Jayne Clamp featuring Lazy Horse performing at Cobham Triangle Park">
+    <meta name="keywords" content="Lazy Horse, Cobham Triangle Park, Athens Georgia, indie rock, alternative rock, live music photography, concert photos, Athens music scene, music photography, Georgia music, live performance, concert photography, Athens GA music venue, indie music, rock photography, music events, outdoor concert">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - Lazy Horse performing at Cobham Triangle Park in Athens, GA">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54939889787_5a4dd3e319_b.jpg">
+    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2025-05-09-lazy-horse-cobham-triangle-park-athens-ga.html">
+    <meta property="og:site_name" content="Jayne Clamp Photography">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA">
+    <meta name="twitter:description" content="Live music photography by Jayne Clamp">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54939889787_5a4dd3e319_b.jpg">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Placeholder for global header -->
+    <header class="site-header"></header>
+
+    <!-- Album Photos Section -->
+    <section class="albums-section">
+        <div class="container">
+            <a href="../collections/music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+
+            <div class="page-header">
+                <h2 class="page-title">2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA</h2>
+                <p class="page-subtitle">Loading photo count...</p>
+            </div>
+
+            <div id="loading" class="loading">Loading photos...</div>
+
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photo-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Tags -->
+    <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
+        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; border-radius: 8px;">
+            <!-- Tags will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Back Button (Bottom) -->
+    <div class="container" style="text-align: center; padding: 2rem 0;">
+        <a href="../collections/music.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Music
+        </a>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-share" onclick="toggleLightboxShare()">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="lightbox-share-menu" id="lightbox-share-menu">
+                <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('pinterest'); return false;"><i class="fab fa-pinterest"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
+            </div>
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Photo">
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-counter" id="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer"></footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Load photos from this specific Flickr album
+        document.addEventListener('DOMContentLoaded', function() {
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518974/';
+            displayAlbumPhotos(albumUrl);
+            
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
+        });
+    </script>
+</body>
+</html>

@@ -735,6 +735,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-03-26-patterson-hood-sensurrounders-terminal-west-atlanta-ga.html'
         },
         { 
+            title: '2025-03-05 Eric Carter & Scotty Nicholson @ Nowhere Bar | Athens, GA', 
+            photoCount: 8, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330505783/',
+            albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html'
+        },
+        { 
             title: '2025-04-04 David Lowery @ Cobham Triangle Park | Athens, GA', 
             photoCount: 5, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330474041/',
@@ -756,6 +762,24 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-04-11-jay-gonzalez-sloan-brothers-flicker-athens-ga.html'
         },
         { 
+            title: '2025-04-25 Cicada Rhythm @ Cobham Triangle Park | Athens, GA', 
+            photoCount: 6, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518389/',
+            albumPage: '../music/2025-04-25-cicada-rhythm-cobham-triangle-park-athens-ga.html'
+        },
+        { 
+            title: '2025-05-09 Rose Hotel @ Cobham Triangle Park | Athens, GA', 
+            photoCount: 14, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330485070/',
+            albumPage: '../music/2025-05-09-rose-hotel-cobham-triangle-park-athens-ga.html'
+        },
+        { 
+            title: '2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA', 
+            photoCount: 9, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518974/',
+            albumPage: '../music/2025-05-09-lazy-horse-cobham-triangle-park-athens-ga.html'
+        },
+        { 
             title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329963911/',
@@ -775,6 +799,18 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
             coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg',
             albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
+        },
+        { 
+            title: '2024-09-07 The Bad Ends @ 40 Watt | Athens, GA', 
+            photoCount: 27, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330492587/',
+            albumPage: '../music/2024-09-07-the-bad-ends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-05-24 Hayride @ Roadhouse | Athens, GA', 
+            photoCount: 16, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493037/',
+            albumPage: '../music/2024-05-24-hayride-roadhouse-athens-ga.html'
         }, 
         { 
             title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
@@ -787,6 +823,18 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247733/',
             albumPage: '../music/2024-04-04-alejandro-escovedo-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-04-13 Pilgrim @ Little Kings | Athens, GA', 
+            photoCount: 5, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493222/',
+            albumPage: '../music/2024-04-13-pilgrim-little-kings-athens-ga.html'
+        },
+        { 
+            title: '2024-04-11 Kimberly Morgan York @ House Party | Athens, GA', 
+            photoCount: 9, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330487035/',
+            albumPage: '../music/2024-04-11-kimberly-morgan-york-band-house-party-athens-ga.html'
         },
         { 
             title: '2024-04-20 Irreperable Damage @ Flicker | Athens, GA', 
@@ -815,6 +863,40 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
         },
         { 
+            title: '2024-02-14 Jay Gonzalez @ 40 Watt | Athens, GA', 
+            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-02-14 Claire Campbell @ 40 Watt | Athens, GA', 
+            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-02-14 Don Chambers @ 40 Watt | Athens, GA', 
+            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-02-14 Dave Marr @ 40 Watt | Athens, GA', 
+            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+        },
+        { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329982768/with/54887654154',
@@ -826,6 +908,13 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330282554/',
             albumPage: '../music/2024-01-26-lazer-wulf-georgia-theatre-athens-ga.html'
+        },
+        { 
+            title: '2023-12-16 Vincas @ 40 Watt | Athens, GA', 
+            photoCount: 22, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244243/',
+            coverUrl: 'https://live.staticflickr.com/65535/54913923967_88d498ed7a_b.jpg',
+            albumPage: '../music/2023-12-16-vincas-40-watt-athens-ga.html'
         },
         { 
             title: '2023-11-24 TaxiCab Verses @ Flicker | Athens, GA', 
@@ -866,6 +955,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329968407/', 
             coverUrl: 'https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg',
             albumPage: '../music/2023-10-07-baba-commandant-the-mandingo-band-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-10-12 Kimberly Morgan York @ Nowhere Bar | Athens, GA', 
+            photoCount: 13, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330487975/',
+            coverUrl: 'https://live.staticflickr.com/65535/54941356620_3d47a70241_b.jpg',
+            albumPage: '../music/2023-10-12-kimberly-morgan-york-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2023-09-30 David Barbe @ 40 Watt | Athens, GA', 
@@ -1610,7 +1706,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                          style="${album.title.includes('Rauncher') ? 'object-position: top;' : ''}"
                          onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
                     <div class="album-overlay">
-                        <h3>${album.title}</h3>
+                        <h3>${album.displayTitle || album.title}</h3>
                         <p class="album-info">${album.photoCount || '?'} photos</p>
                     </div>
                 </div>
@@ -1711,6 +1807,9 @@ function initializeFilters(collectionType) {
             // Extract unique artists from album titles
             const artists = new Set();
             ALBUM_DATA.music.forEach(album => {
+                // Always use the original title for extracting artist names for the dropdown
+                // This ensures individual artists like "Dave Marr" appear in the filter
+                
                 // Extract artist section (everything before @ or |)
                 let artistSection;
                 if (album.title.includes('@')) {

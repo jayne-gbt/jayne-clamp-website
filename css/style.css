@@ -23,12 +23,19 @@ body {
     color: #ffffff !important;
     line-height: 1.6;
     overflow-x: hidden;
+    /* Prevent mobile zoom and touch behaviors */
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+    /* Prevent horizontal overflow on mobile */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 a {
@@ -1177,7 +1184,7 @@ img {
     margin-top: 2rem;
 }
 
-/* Image Protection */
+/* Image Protection and Mobile Touch Optimization */
 img {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1188,6 +1195,11 @@ img {
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+    /* Prevent mobile zoom on image tap */
+    touch-action: manipulation;
+    /* Prevent image from being larger than container */
+    max-width: 100%;
+    height: auto;
 }
 
 .photo-card {
@@ -1197,6 +1209,9 @@ img {
     cursor: pointer;
     aspect-ratio: 1/1;
     background-color: transparent;
+    /* Optimize mobile touch behavior */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .photo-card img {
@@ -1482,8 +1497,27 @@ img {
     }
 }
 
-/* Mobile landscape orientation - bigger arrows for better usability */
+/* Mobile landscape orientation - bigger arrows and full-size photos */
 @media (max-width: 768px) and (orientation: landscape) {
+    /* Maximize lightbox space for landscape viewing */
+    #lightbox {
+        padding: 0.5rem;
+    }
+    
+    .lightbox-content {
+        max-width: 98%;
+        max-height: 98%;
+    }
+    
+    /* Full-size photos in landscape */
+    #lightbox-img {
+        max-width: 100%;
+        max-height: 95vh;
+        width: auto;
+        height: auto;
+    }
+    
+    /* Bigger arrows for better usability */
     .lightbox-nav {
         width: 40px;
         height: 40px;
@@ -1502,6 +1536,50 @@ img {
     .lightbox-next {
         right: 0.5rem;
     }
+    
+    /* Optimize caption and counter positioning */
+    .lightbox-caption {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .lightbox-counter {
+        font-size: 0.9rem;
+    }
+    
+    /* Optimize photo grid for landscape browsing */
+    .photos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Mobile touch optimization and zoom prevention */
+@media (max-width: 768px) {
+    /* Prevent horizontal scrolling and wobbling */
+    html, body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+    }
+    
+    /* Optimize all interactive elements for touch */
+    button, a, .photo-card, .lightbox-nav, .lightbox-close, .lightbox-share {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Ensure images don't cause layout shifts */
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Prevent double-tap zoom on specific elements */
+    .photos-grid, .photo-card, .lightbox-content {
+        touch-action: manipulation;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1512,6 +1590,42 @@ img {
     
     .albums-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Small mobile landscape - maximize photo viewing */
+@media (max-width: 480px) and (orientation: landscape) {
+    /* Minimal padding for maximum photo space */
+    #lightbox {
+        padding: 0.25rem;
+    }
+    
+    .lightbox-content {
+        max-width: 99%;
+        max-height: 99%;
+    }
+    
+    /* Nearly full viewport for photos */
+    #lightbox-img {
+        max-width: 100%;
+        max-height: 97vh;
+    }
+    
+    /* Compact controls for small landscape screens */
+    .lightbox-close, .lightbox-share {
+        top: -2rem;
+        width: 2rem !important;
+        height: 2rem !important;
+        font-size: 1.2rem;
+    }
+    
+    .lightbox-caption {
+        margin-top: 0.25rem;
+        font-size: 0.8rem;
+    }
+    
+    .lightbox-counter {
+        font-size: 0.8rem;
     }
 }
 
