@@ -2238,6 +2238,13 @@ function initializeGlobalHeader() {
         existingHeader.outerHTML = createGlobalHeader();
         console.log('Global header initialized - header replaced');
         
+        // Initialize mobile menu after header is replaced
+        console.log('Setting timeout to initialize mobile menu...');
+        setTimeout(() => {
+            console.log('Timeout fired, calling initializeMobileMenu...');
+            initializeMobileMenu();
+        }, 100);
+        
         // Check what the new header looks like
         const newHeader = document.querySelector('.site-header');
         if (newHeader) {
@@ -2495,7 +2502,6 @@ function acceptCookies() {
 // Show cookie notice on page load
 document.addEventListener('DOMContentLoaded', function() {
     showCookieNotice();
-    initializeMobileMenu();
 });
 
 // ===================================
@@ -2503,10 +2509,22 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===================================
 
 function initializeMobileMenu() {
+    console.log('🔧 initializeMobileMenu() called');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
+    console.log('🔧 Mobile toggle found:', mobileToggle);
+    console.log('🔧 Nav menu found:', navMenu);
+    
     if (mobileToggle && navMenu) {
+        // Check if already initialized to prevent duplicate listeners
+        if (mobileToggle.hasAttribute('data-initialized')) {
+            console.log('🔧 Mobile menu already initialized, skipping');
+            return;
+        }
+        
+        console.log('🔧 Adding click listener to mobile menu');
+        mobileToggle.setAttribute('data-initialized', 'true');
         mobileToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             mobileToggle.classList.toggle('active');
@@ -3150,15 +3168,5 @@ function refreshTagsCache() {
     window.location.reload();
 }
 
-// Initialize global header and footer immediately after DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeGlobalHeader();
-        initializeGlobalFooter();
-    });
-} else {
-    // DOM is already loaded
-    initializeGlobalHeader();
-    initializeGlobalFooter();
-}
+// Global header and footer initialization is handled above in the main DOMContentLoaded listener
 
