@@ -1785,3 +1785,34 @@ img {
     line-height: 1.4;
     margin-top: 0.2rem;
 }
+
+/* ===================================
+   TAG DISPLAY IMPROVEMENTS
+   =================================== */
+
+/* Ensure proper spacing in tag links */
+.tag-link {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Mobile-specific tag improvements */
+@media (max-width: 480px) {
+    /* On very small screens, hide tag counts to prevent cramping */
+    .tag-link span:nth-child(2) {
+        display: none;
+    }
+    
+    /* Adjust tag link padding for mobile */
+    .tag-link {
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Medium mobile screens - keep counts but ensure spacing */
+@media (min-width: 481px) and (max-width: 768px) {
+    .tag-link {
+        padding: 0.55rem 0.7rem !important;
+    }
+}

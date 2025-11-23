@@ -2700,8 +2700,19 @@ let allAlbumPhotos = [];
 let currentTagFilter = null;
 
 function formatTagForDisplay(tag) {
-    // Return tags exactly as they are on Flickr
-    return tag;
+    // Clean up tag display for better readability
+    let displayTag = tag;
+    
+    // Add spaces before capital letters in camelCase (e.g., "johnDoe" -> "john Doe")
+    displayTag = displayTag.replace(/([a-z])([A-Z])/g, '$1 $2');
+    
+    // Add spaces before numbers (e.g., "johndoe22" -> "johndoe 22")
+    displayTag = displayTag.replace(/([a-zA-Z])(\d)/g, '$1 $2');
+    
+    // Convert to title case for better readability
+    displayTag = displayTag.replace(/\b\w/g, l => l.toUpperCase());
+    
+    return displayTag;
 }
 
 function displayPhotoTags(photos) {
@@ -2994,18 +3005,10 @@ function displayAllTags(allTags) {
         const tagLink = document.createElement('div');
         tagLink.className = 'tag-link';
         tagLink.dataset.tag = tag;
-        tagLink.style.cssText = 'padding: 0.6rem 0.8rem; margin-bottom: 0.25rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: space-between; align-items: center;';
+        tagLink.style.cssText = 'padding: 0.6rem 0.8rem; margin-bottom: 0.25rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: block;';
         
-        const tagName = document.createElement('span');
-        tagName.textContent = formatTagForDisplay(tag);
-        tagName.style.cssText = 'color: #fff; font-size: 0.9rem;';
-        
-        const tagCount = document.createElement('span');
-        tagCount.textContent = photos.length;
-        tagCount.style.cssText = 'color: #999; font-size: 0.85rem; font-weight: 500;';
-        
-        tagLink.appendChild(tagName);
-        tagLink.appendChild(tagCount);
+        // Create a single text content with proper spacing
+        tagLink.innerHTML = `<span style="color: #fff; font-size: 0.9rem;">${formatTagForDisplay(tag)}</span><span style="color: #999; font-size: 0.85rem; font-weight: 500; margin-left: 0.5rem;">(${photos.length})</span>`;
         
         tagLink.onmouseover = () => tagLink.style.background = 'rgba(255,255,255,0.15)';
         tagLink.onmouseout = () => tagLink.style.background = 'rgba(255,255,255,0.05)';
