@@ -48,22 +48,34 @@
                 <p class="page-subtitle">Loading photo count...</p>
             </div>
 
-            <!-- Artist Official Site -->
-            <div class="container" style="text-align: center; padding: 1.5rem 0;">
-                <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-flex; gap: 0.5rem; align-items: center;">
-                    <i class="fas fa-external-link-alt" style="color: #fff;"></i>
-                    <a href="https://www.crackersoul.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500;">
-                        Cracker Official Site
-                    </a>
-                </div>
+            <div id="loading" class="loading">Loading photos...</div>
+
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photo-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
             </div>
 
-            <div id="photo-grid" class="photos-grid">
-                <!-- Photos will be loaded here by JavaScript -->
-            </div>
         </div>
     </section>
 
+    <!-- Artist Official Site -->
+    <div class="container" style="text-align: center; padding: 1.5rem 0;">
+        <div style="padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <a href="https://www.crackersoul.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; transition: background 0.3s ease;">
+                <i class="fas fa-external-link-alt"></i>
+                Cracker Official Site
+            </a>
+        </div>
+    </div>
+
+    <!-- Photo Tags -->
+    <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
+        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; border-radius: 8px;">
+            <!-- Tags will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Back Button (Bottom) -->
     <div class="container" style="text-align: center; padding: 2rem 0;">
         <a href="../collections/music.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Back to Music
@@ -97,9 +109,13 @@
 
     <script src="../js/main.js"></script>
     <script>
+        // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330474041/';
             displayAlbumPhotos(albumUrl);
+            
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
         });
     </script>
 </body>
