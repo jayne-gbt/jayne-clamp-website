@@ -61,9 +61,21 @@
             <div class="filters-container" style="display: flex; gap: 2rem; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin-bottom: 2rem;">
                 <div class="filter-group" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <label for="event-filter" style="font-size: 0.85rem; color: #ccc; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Filter by Event</label>
-                    <select id="event-filter" aria-label="Filter by event type" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
-                        <option value="all">All Events</option>
-                    </select>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <select id="event-filter" aria-label="Filter by event type" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
+                            <option value="all">All Events</option>
+                        </select>
+                        <button 
+                            id="clear-event-filter"
+                            onclick="clearEventFilter()"
+                            style="background: none; border: none; color: #ccc; cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease; display: none;"
+                            onmouseover="this.style.color='#fff'; this.style.background='rgba(255,255,255,0.1)'"
+                            onmouseout="this.style.color='#ccc'; this.style.background='none'"
+                            title="Clear event filter"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 

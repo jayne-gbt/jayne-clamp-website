@@ -64,15 +64,35 @@
             <div class="filters-container" style="display: flex; gap: 2rem; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin-bottom: 2rem;">
                 <div class="filter-group" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <label for="band-filter" style="font-size: 0.85rem; color: #ccc; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Filter by Artist</label>
-                    <select id="band-filter" aria-label="Filter by artist" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
-                        <option value="all">All Artists</option>
-                    </select>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <select id="band-filter" aria-label="Filter by artist" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
+                            <option value="all">All Artists</option>
+                        </select>
+                        <button 
+                            id="clear-artist-filter"
+                            onclick="clearArtistFilter()"
+                            style="background-color: rgba(0,0,0,0.5) !important; background: rgba(0,0,0,0.5) !important; border: 1px solid rgba(255,255,255,0.2) !important; color: #fff !important; cursor: pointer; padding: 0.25rem !important; border-radius: 50% !important; display: block !important; width: 24px !important; height: 24px !important; font-size: 12px !important; box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;"
+                            title="Clear artist filter"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="filter-group" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                     <label for="venue-filter" style="font-size: 0.85rem; color: #ccc; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Filter by Venue</label>
-                    <select id="venue-filter" aria-label="Filter by venue" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
-                        <option value="all">All Venues</option>
-                    </select>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <select id="venue-filter" aria-label="Filter by venue" style="font-size: 0.9rem; padding: 0.5rem 1rem; min-width: 160px;">
+                            <option value="all">All Venues</option>
+                        </select>
+                        <button 
+                            id="clear-venue-filter"
+                            onclick="clearVenueFilter()"
+                            style="background-color: rgba(0,0,0,0.5) !important; background: rgba(0,0,0,0.5) !important; border: 1px solid rgba(255,255,255,0.2) !important; color: #fff !important; cursor: pointer; padding: 0.25rem !important; border-radius: 50% !important; display: block !important; width: 24px !important; height: 24px !important; font-size: 12px !important; box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;"
+                            title="Clear venue filter"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 

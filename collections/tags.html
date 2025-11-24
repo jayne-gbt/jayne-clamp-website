@@ -113,8 +113,18 @@
                                 type="text" 
                                 id="tag-search" 
                                 placeholder="Search by tag, artist, venue, event..." 
-                                style="width: 100%; padding: 1rem 3rem 1rem 1rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff;"
+                                style="width: 100%; padding: 1rem 5.5rem 1rem 1rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff;"
                             >
+                            <button 
+                                id="clear-filter-btn"
+                                onclick="clearTagFilter()"
+                                style="position: absolute; right: 3.5rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ccc; cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease; display: none;"
+                                onmouseover="this.style.color='#fff'; this.style.background='rgba(255,255,255,0.1)'"
+                                onmouseout="this.style.color='#ccc'; this.style.background='none'"
+                                title="Clear filter"
+                            >
+                                <i class="fas fa-times"></i>
+                            </button>
                             <i class="fas fa-search" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: #999; pointer-events: none;"></i>
                         </div>
                     </div>
@@ -199,9 +209,56 @@
     
     <script src="../js/main.js"></script>
     <script>
+        // Clear tag filter function
+        function clearTagFilter() {
+            const searchInput = document.getElementById('tag-search');
+            const clearBtn = document.getElementById('clear-filter-btn');
+            const resultsSection = document.getElementById('results-section');
+            const resultsTitle = document.getElementById('results-title');
+            const photosGrid = document.getElementById('photos-grid');
+            
+            // Clear search input
+            searchInput.value = '';
+            
+            // Hide clear button
+            clearBtn.style.display = 'none';
+            
+            // Hide results section
+            resultsSection.style.display = 'none';
+            resultsTitle.style.display = 'none';
+            photosGrid.innerHTML = '';
+            
+            // Remove active state from any selected tags
+            document.querySelectorAll('.tag-link.active').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            
+            // Focus back on search input
+            searchInput.focus();
+        }
+        
+        // Show/hide clear button based on input content
+        function toggleClearButton() {
+            const searchInput = document.getElementById('tag-search');
+            const clearBtn = document.getElementById('clear-filter-btn');
+            
+            if (searchInput.value.trim() !== '') {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+        }
+        
         // Initialize tags page
         document.addEventListener('DOMContentLoaded', function() {
             initializeTagsPage();
+            
+            // Add event listener to search input to show/hide clear button
+            const searchInput = document.getElementById('tag-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', toggleClearButton);
+                searchInput.addEventListener('keyup', toggleClearButton);
+            }
         });
     </script>
 </body>

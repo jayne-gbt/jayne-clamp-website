@@ -749,6 +749,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
         { 
+            title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
+            photoCount: 24, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
+            coverUrl: 'https://live.staticflickr.com/65535/54941997732_77e9aab1de_b.jpg',
+            albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html'
+        },
+        { 
             title: '2025-03-26 Patterson Hood & the Sensurrounders @ Terminal West | Atlanta, GA', 
             photoCount: 25, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330484627/',
@@ -1012,7 +1019,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html'
         },
         { 
-            title: '2023-09-10 Jackmormons @ Heist Brewery | Athens, GA', 
+            title: '2023-09-10 Jerry Joseph and the Jackmormons @ Heist Brewery | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324995/',
             albumPage: '../music/2023-09-10-jackmormons-heist-brewery-athens-ga.html'
@@ -1616,10 +1623,18 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 artistSection = withMatch[1].trim();
             }
             
-            // Normalize "Kevn Kinney Band" to "Kevn Kinney" for filtering
+            // Normalize artist names for filtering
             let normalizedArtistSection = artistSection;
             if (normalizedArtistSection.toLowerCase() === 'kevn kinney band') {
                 normalizedArtistSection = 'Kevn Kinney';
+            }
+            
+            // Normalize Jerry Joseph variations to just "Jerry Joseph"
+            if (normalizedArtistSection.toLowerCase() === 'jerry joseph & the jackmormons' || 
+                normalizedArtistSection.toLowerCase() === 'jerry joseph and the jackmormons' ||
+                normalizedArtistSection.toLowerCase() === 'jackmormons' ||
+                normalizedArtistSection.toLowerCase() === 'the jackmormons') {
+                normalizedArtistSection = 'Jerry Joseph';
             }
             
             return normalizedArtistSection.toLowerCase().includes(filterBand.toLowerCase());
@@ -1934,6 +1949,14 @@ function initializeFilters(collectionType) {
                         cleanArtist = 'Kevn Kinney';
                     }
                     
+                    // Normalize Jerry Joseph variations to just "Jerry Joseph"
+                    if (cleanArtist.toLowerCase() === 'jerry joseph & the jackmormons' || 
+                        cleanArtist.toLowerCase() === 'jerry joseph and the jackmormons' ||
+                        cleanArtist.toLowerCase() === 'jackmormons' ||
+                        cleanArtist.toLowerCase() === 'the jackmormons') {
+                        cleanArtist = 'Jerry Joseph';
+                    }
+                    
                     artists.add(cleanArtist);
                 });
             });
@@ -1963,6 +1986,7 @@ function initializeFilters(collectionType) {
                 const venueFilter = document.getElementById('venue-filter');
                 const selectedVenue = venueFilter ? venueFilter.value : 'all';
                 displayAlbums(collectionType, selectedYear, this.value, selectedVenue);
+                updateClearButtonVisibility();
             });
         }
 
@@ -2017,6 +2041,7 @@ function initializeFilters(collectionType) {
                 const bandFilter = document.getElementById('band-filter');
                 const selectedBand = bandFilter ? bandFilter.value : 'all';
                 displayAlbums(collectionType, selectedYear, selectedBand, this.value);
+                updateClearButtonVisibility();
             });
         }
     }
@@ -2078,6 +2103,7 @@ function initializeFilters(collectionType) {
             eventFilter.addEventListener('change', function() {
                 const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
                 displayAlbums(collectionType, selectedYear, this.value);
+                updateClearButtonVisibility();
             });
         }
     }
@@ -2105,8 +2131,93 @@ function initializeFilters(collectionType) {
             } else {
                 displayAlbums(collectionType, year, selectedBand, selectedVenue);
             }
+            
+            // Update clear button visibility after year change
+            updateClearButtonVisibility();
         });
     });
+    
+    // Initialize clear button visibility on page load
+    setTimeout(() => {
+        updateClearButtonVisibility();
+    }, 100);
+}
+
+// ===================================
+// CLEAR FILTER FUNCTIONS
+// ===================================
+
+// Clear artist filter on music page
+function clearArtistFilter() {
+    const bandFilter = document.getElementById('band-filter');
+    const clearBtn = document.getElementById('clear-artist-filter');
+    
+    if (bandFilter) {
+        bandFilter.value = 'all';
+        clearBtn.style.display = 'none';
+        
+        // Trigger change event to update display
+        const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+        const venueFilter = document.getElementById('venue-filter');
+        const selectedVenue = venueFilter ? venueFilter.value : 'all';
+        displayAlbums('music', selectedYear, 'all', selectedVenue);
+    }
+}
+
+// Clear venue filter on music page
+function clearVenueFilter() {
+    const venueFilter = document.getElementById('venue-filter');
+    const clearBtn = document.getElementById('clear-venue-filter');
+    
+    if (venueFilter) {
+        venueFilter.value = 'all';
+        clearBtn.style.display = 'none';
+        
+        // Trigger change event to update display
+        const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+        const bandFilter = document.getElementById('band-filter');
+        const selectedBand = bandFilter ? bandFilter.value : 'all';
+        displayAlbums('music', selectedYear, selectedBand, 'all');
+    }
+}
+
+// Clear event filter on events page
+function clearEventFilter() {
+    const eventFilter = document.getElementById('event-filter');
+    const clearBtn = document.getElementById('clear-event-filter');
+    
+    if (eventFilter) {
+        eventFilter.value = 'all';
+        clearBtn.style.display = 'none';
+        
+        // Trigger change event to update display
+        const selectedYear = document.querySelector('.year-tab.active')?.dataset.year || 'all';
+        displayAlbums('events', selectedYear, 'all');
+    }
+}
+
+// Show/hide clear buttons based on filter selection
+function updateClearButtonVisibility() {
+    // Artist filter clear button
+    const bandFilter = document.getElementById('band-filter');
+    const clearArtistBtn = document.getElementById('clear-artist-filter');
+    if (bandFilter && clearArtistBtn) {
+        clearArtistBtn.style.display = bandFilter.value !== 'all' ? 'block' : 'none';
+    }
+    
+    // Venue filter clear button
+    const venueFilter = document.getElementById('venue-filter');
+    const clearVenueBtn = document.getElementById('clear-venue-filter');
+    if (venueFilter && clearVenueBtn) {
+        clearVenueBtn.style.display = venueFilter.value !== 'all' ? 'block' : 'none';
+    }
+    
+    // Event filter clear button
+    const eventFilter = document.getElementById('event-filter');
+    const clearEventBtn = document.getElementById('clear-event-filter');
+    if (eventFilter && clearEventBtn) {
+        clearEventBtn.style.display = eventFilter.value !== 'all' ? 'block' : 'none';
+    }
 }
 
 // ===================================
