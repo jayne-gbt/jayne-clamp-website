@@ -752,7 +752,7 @@ const ALBUM_DATA = {
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
             photoCount: 24, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
-            coverUrl: 'https://live.staticflickr.com/65535/54941997732_77e9aab1de_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54941997732_77e9aab1de_c.jpg',
             albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html'
         },
         { 
@@ -819,6 +819,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329963911/',
             coverUrl: 'https://live.staticflickr.com/65535/54065829880_14e5ba296a_b.jpg',
             albumPage: '../music/2024-10-11-kimberly-morgan-york-terrapin-beer-co-athens-ga.html'
+        }, 
+        { 
+            title: '2024-10-04 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
+            photoCount: 14, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330529218/',
+            coverUrl: 'https://live.staticflickr.com/65535/54943491400_77e9aab1de_c.jpg',
+            albumPage: '../music/2024-10-04-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         }, 
         { 
             title: '2024-10-10 Michael Stipe @ 1055 Barber | Athens, GA', 
@@ -897,38 +904,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
         },
         { 
-            title: '2024-02-14 Jay Gonzalez @ 40 Watt | Athens, GA', 
-            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
-            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
-        },
-        { 
-            title: '2024-02-14 Claire Campbell @ 40 Watt | Athens, GA', 
-            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
-            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
-        },
-        { 
-            title: '2024-02-14 Don Chambers @ 40 Watt | Athens, GA', 
-            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
-            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
-        },
-        { 
-            title: '2024-02-14 Dave Marr @ 40 Watt | Athens, GA', 
-            displayTitle: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA',
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
-            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
-        },
-        { 
             title: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493457/',
-            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html'
+            coverUrl: 'https://live.staticflickr.com/65535/54940085012_5d951ecdaf_c.jpg',
+            albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html',
+            filterNames: ['Dimmer Twins', 'Don Chambers', 'Dave Marr', 'Claire Campbell', 'Jay Gonzalez']
         },
         { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
@@ -1057,8 +1038,7 @@ const ALBUM_DATA = {
         { 
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329988510/',
-            coverUrl: 'https://live.staticflickr.com/65535/54880796156_bcb1067cbb_c.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
         },
         { 
@@ -1074,6 +1054,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330486669/',
             coverUrl: 'https://live.staticflickr.com/65535/54937643785_5dec809aef_c.jpg',
             albumPage: '../music/2023-03-10-cracker-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2023-03-04 Bloodkin @ Nowhere Bar | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330541379/',
+            albumPage: '../music/2023-03-04-bloodkin-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
@@ -1192,6 +1178,7 @@ const ALBUM_DATA = {
             title: '2022-02-27 Shotgun Shells: A Celebration of Todd McBride @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329979705/',
+            coverUrl: 'https://live.staticflickr.com/65535/51899449887_77e9aab1de_c.jpg',
             albumPage: '../music/2022-02-27-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
         },
         { 
@@ -1597,6 +1584,13 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     // Filter by band if specified (for music collection)
     if (filterBand !== 'all' && collectionType === 'music') {
         albums = albums.filter(album => {
+            // Check if album has custom filterNames array (for albums with multiple artists)
+            if (album.filterNames && Array.isArray(album.filterNames)) {
+                return album.filterNames.some(name => 
+                    name.toLowerCase().includes(filterBand.toLowerCase())
+                );
+            }
+            
             // Extract band name from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
             const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
             if (!match) return false;
@@ -1740,7 +1734,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
 
     // Display albums
     albumsGrid.innerHTML = albums.map((album, index) => {
-        const albumId = `album-${collectionType}-${index}`;
+        const albumId = `album-${collectionType}-${index}-${Date.now()}`;
         
         // If no coverUrl, fetch from Flickr API
         if (!album.coverUrl && album.flickrUrl) {
@@ -1869,6 +1863,12 @@ function initializeFilters(collectionType) {
             // Extract unique artists from album titles
             const artists = new Set();
             ALBUM_DATA.music.forEach(album => {
+                // Check if album has custom filterNames array (for albums with multiple artists)
+                if (album.filterNames && Array.isArray(album.filterNames)) {
+                    album.filterNames.forEach(name => artists.add(name));
+                    return; // Skip normal processing if filterNames exist
+                }
+                
                 // Always use the original title for extracting artist names for the dropdown
                 // This ensures individual artists like "Dave Marr" appear in the filter
                 
