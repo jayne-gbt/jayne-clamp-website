@@ -1096,7 +1096,7 @@ img {
     }
 
     .hero {
-        padding: 1.5rem 0 2rem;
+        padding: 1.5rem 0 0.5rem;
     }
 
     .hero-title {
@@ -1106,6 +1106,7 @@ img {
 
     .hero-subtitle {
         font-size: 1rem;
+        margin-bottom: 1rem;
     }
 
     .page-title {

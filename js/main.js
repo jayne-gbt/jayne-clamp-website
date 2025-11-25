@@ -702,9 +702,9 @@ const ALBUM_DATA = {
         },
         { 
             title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/in/datetaken-public/',
-            coverUrl: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg'
+            photoCount: 1, 
+            coverUrl: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
         },
         { 
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
@@ -752,7 +752,6 @@ const ALBUM_DATA = {
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
             photoCount: 24, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
-            coverUrl: 'https://live.staticflickr.com/65535/54941997732_77e9aab1de_c.jpg',
             albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html'
         },
         { 
@@ -824,7 +823,6 @@ const ALBUM_DATA = {
             title: '2024-10-04 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 14, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330529218/',
-            coverUrl: 'https://live.staticflickr.com/65535/54943491400_77e9aab1de_c.jpg',
             albumPage: '../music/2024-10-04-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         }, 
         { 
@@ -1064,7 +1062,7 @@ const ALBUM_DATA = {
         { 
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329979503/',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258537/',
             coverUrl: 'https://live.staticflickr.com/65535/54937643785_5dec809aef_c.jpg',
             albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
@@ -1173,13 +1171,6 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330452520/',
             coverUrl: 'https://live.staticflickr.com/65535/54937488894_58feba17b0_c.jpg',
             albumPage: '../music/2022-03-27-bo-bedingfield-world-famous-athens-ga.html'
-        },
-        { 
-            title: '2022-02-27 Shotgun Shells: A Celebration of Todd McBride @ 40 Watt | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329979705/',
-            coverUrl: 'https://live.staticflickr.com/65535/51899449887_77e9aab1de_c.jpg',
-            albumPage: '../music/2022-02-27-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
         },
         { 
             title: '2020-02-13 The Dexateens @ 40 Watt | Athens, GA', 
@@ -1294,7 +1285,7 @@ const ALBUM_DATA = {
          { 
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/with/54882711328',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329935603/',
             coverUrl: 'https://live.staticflickr.com/65535/54882711328_8efe955dea_b.jpg',
             albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
@@ -1308,7 +1299,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-06-14 No Kings @ Downtown Athens', 
             photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329940176/with/54885224370/',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329940176/',
             coverUrl: 'https://live.staticflickr.com/65535/54885223885_8a11e33546_b.jpg',
             albumPage: '../events/2025-06-14-no-kings-downtown-athens.html'
         },  
@@ -1415,12 +1406,70 @@ function findAlbumByUrl(albumUrl) {
     return null;
 }
 
+// Display single photo function (for albums with just one photo)
+async function displaySinglePhoto(photoUrl) {
+    const loading = document.getElementById('photo-count');
+    if (loading) loading.textContent = 'Loading photo...';
+
+    // Extract photo ID from URL
+    const photoId = photoUrl.match(/\/(\d+)\/?$/)?.[1];
+    if (!photoId) {
+        console.error('Could not extract photo ID from URL:', photoUrl);
+        return;
+    }
+
+    try {
+        // Get photo info from Flickr API
+        const url = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${FLICKR_CONFIG.apiKey}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.stat === 'ok') {
+            const photo = data.photo;
+
+            // Create photo object
+            const photoObj = {
+                id: photo.id,
+                title: photo.title._content,
+                description: photo.description._content || '',
+                thumbnail: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
+                large: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                url: photoUrl
+            };
+
+            // Update photo count
+            if (loading) loading.textContent = '1 photo';
+
+            // Display the photo
+            const photoGrid = document.getElementById('photo-grid');
+            if (photoGrid) {
+                photoGrid.innerHTML = `
+                    <div class="photo-item" onclick="openLightbox(0)">
+                        <img src="${photoObj.thumbnail}" alt="${photoObj.title}" loading="lazy">
+                    </div>
+                `;
+            }
+
+            // Store for lightbox
+            window.currentPhotos = [photoObj];
+
+        } else {
+            console.error('Flickr API error:', data.message);
+            if (loading) loading.textContent = 'Error loading photo';
+        }
+    } catch (error) {
+        console.error('Error fetching photo:', error);
+        if (loading) loading.textContent = 'Error loading photo';
+    }
+}
+
+// Display album photos function
 async function displayAlbumPhotos(albumUrl) {
-    const photosGrid = document.getElementById('photo-grid');
+    const photosGrid = document.getElementById('photo-grid') || document.getElementById('photos-grid');
     const loading = document.getElementById('loading');
-    
+
     if (!photosGrid) {
-        console.error('photo-grid element not found');
+        console.error('photo-grid or photos-grid element not found');
         return;
     }
     
@@ -1759,7 +1808,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                     <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/333333/FFFFFF?text=Loading...'}" 
                          alt="${album.title}" 
                          loading="lazy"
-                         style="${album.title.includes('Rauncher') ? 'object-position: top;' : ''}"
+                         style=""
                          onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
                     <div class="album-overlay">
                         <h3>${album.displayTitle || album.title}</h3>

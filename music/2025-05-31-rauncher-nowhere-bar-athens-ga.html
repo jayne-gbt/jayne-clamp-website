@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025-05-31 Rauncher @ Nowhere Bar | Athens, GA - Jayne Clamp Photography</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lightbox.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../music/index.html" class="active">Music</a></li>
+                    <li><a href="../collections/index.html">Collections</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="back-button">
+                <a href="index.html" class="btn btn-secondary">← Back to Music</a>
+            </div>
+            
+            <div class="album-header">
+                <h1>2025-05-31 Rauncher @ Nowhere Bar | Athens, GA</h1>
+                <div class="album-meta">
+                    <span class="photo-count">1 photo</span>
+                </div>
+            </div>
+
+            <div class="photo-grid" id="photo-grid">
+                <div class="photo-item" onclick="openLightbox(0)">
+                    <img src="https://live.staticflickr.com/65535/54885443589_d64f40f294_c.jpg" alt="Rauncher" loading="lazy" style="width: 100%; height: 250px; object-fit: cover; cursor: pointer;">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-nav">
+                <button id="lightbox-prev" class="lightbox-btn">&#8249;</button>
+                <button id="lightbox-next" class="lightbox-btn">&#8250;</button>
+            </div>
+            <div class="lightbox-counter">
+                <span id="lightbox-counter">1 / 1</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Jayne Clamp Photography</h3>
+                    <p>Capturing the energy and emotion of live music in Athens, GA and beyond.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../music/index.html">Music Photography</a></li>
+                        <li><a href="../collections/index.html">Collections</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="https://www.flickr.com/photos/jayneclamp/" target="_blank" rel="noopener">Flickr</a>
+                        <a href="mailto:jayne@jayneclamp.com">Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jayne Clamp Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Set up single photo for lightbox
+        window.currentPhotos = [{
+            id: '54885443589',
+            title: 'Rauncher',
+            description: '',
+            thumbnail: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_c.jpg',
+            large: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg',
+            url: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
+        }];
+    </script>
+</body>
+</html>
