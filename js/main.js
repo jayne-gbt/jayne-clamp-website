@@ -659,6 +659,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
         { 
+            title: '2025-09-10 Hayride @ CIne | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330564193/',
+            albumPage: '../music/2025-09-10-hayride-cine-athens-ga.html'
+        },
+        { 
             title: '2025-09-07 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
@@ -687,6 +693,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
         },
         { 
+            title: '2025-08-29 Infinite Favors @ Ideal | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330612052/',
+            albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html'
+        },
+        { 
             title: '2025-05-31 Vincas @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329969689/',
@@ -699,6 +711,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329948432/',
             coverUrl: 'https://live.staticflickr.com/65535/54885173011_ee959a91b3_b.jpg',
             albumPage: '../music/2025-05-31-johnny-falloon-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2025-05-29 Abe Partridge, David Barbe & Steve Shelley @ Rialto Room | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330621212/',
+            albumPage: '../music/2025-05-29-abe-partridge-david-barbe-steve-shelley-rialto-room-athens-ga.html'
         },
         { 
             title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
@@ -1268,7 +1286,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
         { 
-            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance @ Nowhere Bar | Athens, GA', 
+            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance (Bloodkin) @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534587/',
             albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html'
