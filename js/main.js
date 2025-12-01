@@ -699,6 +699,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html'
         },
         { 
+            title: '2025-08-29 Honeypuppy @ Ideal | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330652593/',
+            albumPage: '../music/2025-08-29-honeypuppy-ideal-athens-ga.html'
+        },
+        { 
             title: '2025-05-31 Vincas @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329969689/',
@@ -717,6 +723,12 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330621212/',
             albumPage: '../music/2025-05-29-abe-partridge-david-barbe-steve-shelley-rialto-room-athens-ga.html'
+        },
+        { 
+            title: '2025-05-26 Patterson Hood @ Lakeside Jam | Milledgeville, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330649268/',
+            albumPage: '../music/2025-05-26-patterson-hood-lakeside-jam-milledgeville-ga.html'
         },
         { 
             title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
