@@ -120,6 +120,30 @@
                 gap: 1.5rem;
             }
         }
+        
+        /* Tag styles */
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .tag.active {
+            background: #fff;
+            color: #000;
+        }
     </style>
 </head>
 <body>
@@ -179,6 +203,18 @@
             <!-- Video Grid -->
             <div id="video-grid" class="video-grid">
                 <!-- Videos will be loaded here -->
+            </div>
+            
+            <!-- Video Tags -->
+            <div class="container" style="text-align: center; padding: 2rem 0 1.5rem 0;">
+                <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <span class="tag" data-tag="atlanta">atlanta</span>
+                    <span class="tag" data-tag="paulmccartney">paul mccartney</span>
+                    <span class="tag" data-tag="statefarmarena">state farm arena</span>
+                    <span class="tag" data-tag="thebeatles">the beatles</span>
+                    <span class="tag" data-tag="livemusic">live music</span>
+                    <span class="tag" data-tag="atlantaconcerts">atlanta concerts</span>
+                </div>
             </div>
             
             <!-- Copyright Notice -->
@@ -315,7 +351,7 @@
                     if (fileId) {
                         const embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
                         return `
-                            <div class="video-card">
+                            <div class="video-card video-item" data-tags="atlanta,paulmccartney,statefarmarena,thebeatles,livemusic,atlantaconcerts">
                                 <div class="video-embed">
                                     <iframe 
                                         src="${embedUrl}" 
@@ -341,7 +377,7 @@
                 const embedClass = isShort ? 'video-embed shorts' : 'video-embed';
 
                 return `
-                    <div class="video-card">
+                    <div class="video-card video-item" data-tags="atlanta,paulmccartney,statefarmarena,thebeatles,livemusic,atlantaconcerts">
                         <div class="${embedClass}">
                             <iframe 
                                 src="https://www.youtube.com/embed/${videoId}" 
@@ -357,6 +393,71 @@
                     </div>
                 `;
             }).join('');
+            
+            // Set up tag click handlers after videos are loaded
+            setupTagHandlers();
+        }
+
+        // Function to set up tag click handlers
+        function setupTagHandlers() {
+            const tags = document.querySelectorAll('.tag');
+            console.log('Setting up tag handlers for', tags.length, 'tags');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tagName = this.dataset.tag;
+                    console.log('Tag clicked:', tagName);
+                    filterVideosByTag(tagName);
+                });
+            });
+        }
+
+        // Function to filter videos by tag
+        function filterVideosByTag(tag) {
+            console.log('Filtering videos by tag:', tag);
+            const videoItems = document.querySelectorAll('.video-item');
+            const tags = document.querySelectorAll('.tag');
+            
+            console.log('Found', videoItems.length, 'video items');
+            console.log('Found', tags.length, 'tag elements');
+            
+            // Update tag active states
+            tags.forEach(tagEl => {
+                if (tagEl.dataset.tag === tag) {
+                    tagEl.classList.add('active');
+                } else {
+                    tagEl.classList.remove('active');
+                }
+            });
+            
+            // Show/hide videos based on tag
+            videoItems.forEach(video => {
+                const videoTags = video.dataset.tags.split(',');
+                console.log('Video tags:', videoTags);
+                if (videoTags.includes(tag)) {
+                    video.style.display = 'block';
+                    console.log('Showing video');
+                } else {
+                    video.style.display = 'none';
+                    console.log('Hiding video');
+                }
+            });
+        }
+        
+        // Function to show all videos (clear filter)
+        function showAllVideos() {
+            const videoItems = document.querySelectorAll('.video-item');
+            const tags = document.querySelectorAll('.tag');
+            
+            // Remove active state from all tags
+            tags.forEach(tagEl => {
+                tagEl.classList.remove('active');
+            });
+            
+            // Show all videos
+            videoItems.forEach(video => {
+                video.style.display = 'block';
+            });
         }
 
         // Load videos when page loads

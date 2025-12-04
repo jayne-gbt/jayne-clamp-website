@@ -631,11 +631,29 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
         { 
-            title: '2025-11-02 Paul McCartney @ State Farm Arena | Atlanta, GA <i class="fas fa-video"></i>', 
-            photoCount: 15, 
+            title: '2025-11-02 Paul McCartney @ State Farm Arena | Atlanta, GA', 
+            photoCount: 16, 
             isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/BTMsMZICnNQ/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLCd17tCVjHmnICrdwhh_aNE1TIFZw',
-            albumPage: '../music/2025-11-02-paul-mccartney-state-farm-arena-videos.html'
+            albumPage: '../music/2025-11-02-paul-mccartney-state-farm-arena-videos.html',
+            manualTags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts'],
+            videos: [
+                {
+                    title: 'Let Me Roll It',
+                    youtubeId: 'QPijHe46C-U',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Live and Let Die',
+                    youtubeId: '10tI_Kgb3HE',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Ob-La-Di, Ob-La-Da',
+                    youtubeId: 'aBBR-O-DlIs',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                }
+            ]
         },
         { 
             title: '2025-10-19 Porchfest @ Athens, GA', 
@@ -690,6 +708,7 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329945912/',
             coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg',
+            filterNames: ['Sam Holt Band', 'Sunny Ortiz'],
             albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
         },
         { 
@@ -719,10 +738,17 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-05-31-johnny-falloon-nowhere-bar-athens-ga.html'
         },
         { 
-            title: '2025-05-29 Abe Partridge, David Barbe & Steve Shelley @ Rialto Room | Athens, GA', 
+            title: '2025-05-29 Abe Partridge @ Rialto Room | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330621212/',
-            albumPage: '../music/2025-05-29-abe-partridge-david-barbe-steve-shelley-rialto-room-athens-ga.html'
+            filterNames: ['Abe Partridge', 'David Barbe', 'Steve Shelley'],
+            albumPage: '../music/2025-05-29-abe-partridge-rialto-room-athens-ga.html'
+        },
+        { 
+            title: '2025-05-21 Tommy Stinson & Karla Rose @ Cine | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330675235/',
+            albumPage: '../music/2025-05-21-tommy-stinson-karla-rose-cine-athens-ga.html'
         },
         { 
             title: '2025-05-26 Patterson Hood @ Lakeside Jam | Milledgeville, GA', 
@@ -813,9 +839,40 @@ const ALBUM_DATA = {
         { 
             title: '2025-04-03 Gillian Welch & David Rawlings @ Classic Center | Athens, GA', 
             photoCount: 3, 
-            flickrUrl: null,
+            isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/Qg47lp6AHws/maxresdefault.jpg',
-            albumPage: '../music/2025-04-03-gillian-welch-david-rawlings-classic-center-athens-ga.html'
+            albumPage: '../music/2025-04-03-gillian-welch-david-rawlings-classic-center-athens-ga.html',
+            manualTags: ['gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic', 'sixwhitehorses', 'thatsthewayitgoes', 'waysidebackintime'],
+            videos: [
+                {
+                    title: 'Wayside / Back in Time',
+                    youtubeId: 'Qg47lp6AHws',
+                    tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                },
+                {
+                    title: "That's the Way It Goes",
+                    youtubeId: 'aRFz1bChgkA',
+                    tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                },
+                {
+                    title: 'Six White Horses',
+                    youtubeId: 'u9w-jkqych4',
+                    tags: ['sixwhitehorses', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                }
+            ]
+        },
+        { 
+            title: '2025-04-11 Steeple Benefit @ 40 Watt | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330709474/',
+            filterNames: ['Steeple Benefit', 'Granfalloons', 'The Bad Ends', 'Five Eight', 'Sunny Ortiz'],
+            albumPage: '../music/2025-04-11-steeple-benefit-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2025-04-11 Lee Bains @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330685535/',
+            albumPage: '../music/2025-04-11-lee-bains-flicker-athens-ga.html'
         },
         { 
             title: '2025-04-11 Jay Gonzalez & Sloan Brothers @ Flicker | Athens, GA', 
@@ -860,7 +917,25 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
             coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
-            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
+            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html',
+            manualTags: ['rem', 'davidbarbe', 'andylemaster', 'dougemhoff', 'michaelstipe', 'wendellgee', 'driver8', 'athensclarkecountydemocrats', 'athensmusic', 'politics', 'kamalaharris', 'democrats', 'presidentialcampaign'],
+            videos: [
+                {
+                    title: 'Wendell Gee',
+                    youtubeId: 'iEzos4yZNRg',
+                    tags: ['wendellgee', 'michaelstipe', 'davidbarbe', 'andylemaster', 'dougemhoff', 'kamalaharris', 'democrats', 'athensclarkecountydemocrats', 'politics', 'rem', 'presidentialcampaign']
+                },
+                {
+                    title: 'Story',
+                    youtubeId: 'YCGqsU8YHg4',
+                    tags: ['story', 'michaelstipe', 'davidbarbe', 'andylemaster', 'dougemhoff', 'kamalaharris', 'democrats', 'athensclarkecountydemocrats', 'politics', 'rem', 'presidentialcampaign']
+                },
+                {
+                    title: 'Driver 8',
+                    youtubeId: 'GEfZU9giVug',
+                    tags: ['driver8', 'michaelstipe', 'davidbarbe', 'andylemaster', 'dougemhoff', 'kamalaharris', 'democrats', 'athensclarkecountydemocrats', 'politics', 'rem', 'presidentialcampaign']
+                }
+            ]
         }, 
         { 
             title: '2024-09-30 David Barbe @ Flicker | Athens, GA', 
@@ -1359,13 +1434,6 @@ const ALBUM_DATA = {
             albumPage: '../events/2024-10-26-wild-rumpus-athens-ga.html'
         },
         { 
-            title: '2024-10-10 Doug Emhoff Event @ 1055 Barber | Athens, GA', 
-            photoCount: 11, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
-            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_b.jpg',
-            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html'
-        },
-        { 
             title: '2022-10-14 UGA Homecoming Parade | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192248/',
@@ -1512,7 +1580,7 @@ async function displaySinglePhoto(photoUrl) {
 }
 
 // Display album photos function
-async function displayAlbumPhotos(albumUrl) {
+async function displayAlbumPhotos(albumUrl, photoLimit = null) {
     const photosGrid = document.getElementById('photo-grid') || document.getElementById('photos-grid');
     const loading = document.getElementById('loading');
 
@@ -1541,13 +1609,19 @@ async function displayAlbumPhotos(albumUrl) {
     const albumData = findAlbumByUrl(albumUrl);
     if (albumData && albumData.manualPhotos) {
         console.log('Using manual photo list for album:', albumId);
-        const photos = albumData.manualPhotos.map(photo => ({
+        let photos = albumData.manualPhotos.map(photo => ({
             id: photo.id,
             title: photo.title,
             thumbnail: `https://live.staticflickr.com/2567/${photo.id}_411f84cb92_c.jpg`,
             large: `https://live.staticflickr.com/2567/${photo.id}_411f84cb92_b.jpg`,
             url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
         }));
+        
+        // Apply photo limit if specified
+        if (photoLimit && photos.length > photoLimit) {
+            photos = photos.slice(0, photoLimit);
+            console.log(`Limited manual photos to first ${photoLimit} (skipping video thumbnails)`);
+        }
         
         // Hide loading
         if (loading) loading.style.display = 'none';
@@ -1589,7 +1663,13 @@ async function displayAlbumPhotos(albumUrl) {
     }
     
     // Fetch photos from Flickr
-    const photos = await fetchFlickrAlbumPhotos(albumId);
+    let photos = await fetchFlickrAlbumPhotos(albumId);
+    
+    // Apply photo limit if specified
+    if (photoLimit && photos && photos.length > photoLimit) {
+        photos = photos.slice(0, photoLimit);
+        console.log(`Limited photos to first ${photoLimit} (skipping video thumbnails)`);
+    }
     
     // Hide loading
     if (loading) loading.style.display = 'none';
@@ -1613,6 +1693,16 @@ async function displayAlbumPhotos(albumUrl) {
     }
     
     console.log(`Successfully loaded ${photos.length} photos`);
+    
+    // Apply manual tags if specified (for albums where we limited photos but need to preserve tags)
+    if (albumData && albumData.manualTags) {
+        console.log('Applying manual tags to photos:', albumData.manualTags);
+        photos.forEach(photo => {
+            // Merge existing tags with manual tags, removing duplicates
+            const existingTags = photo.tags || [];
+            photo.tags = [...new Set([...existingTags, ...albumData.manualTags])];
+        });
+    }
     
     // Debug: Check what description data we have
     photos.forEach((photo, i) => {
@@ -3070,10 +3160,24 @@ function filterPhotosByTag(tag) {
             subtitle.textContent = `${filteredPhotos.length} photo${filteredPhotos.length !== 1 ? 's' : ''}${tag ? ` tagged "${tag}"` : ''}`;
         }
     }
+    
+    // Filter videos if they exist on the page
+    const videoItems = document.querySelectorAll('.video-item');
+    if (videoItems.length > 0) {
+        videoItems.forEach(video => {
+            const videoTags = video.getAttribute('data-tags');
+            if (tag === null || (videoTags && videoTags.split(',').includes(tag))) {
+                video.style.display = 'block';
+            } else {
+                video.style.display = 'none';
+            }
+        });
+    }
 }
 
 // Tags page functionality
 let allPhotosWithTags = []; // Store all photos globally for filtering
+let allVideosWithTags = []; // Store all videos globally for filtering
 
 async function initializeTagsPage() {
     console.log('Initializing tags page...');
@@ -3127,9 +3231,40 @@ async function initializeTagsPage() {
             
             // Fetch this batch in parallel
             await Promise.all(batch.map(async (album) => {
-                // Skip albums without flickrUrl
-                if (!album.flickrUrl) {
+                // Handle video-only albums
+                if (!album.flickrUrl || album.isVideoCollection) {
                     processedCount++;
+                    
+                    // Process video-only albums with manualTags and videos
+                    if (album.manualTags && album.videos) {
+                        // Process videos from this album
+                        album.videos.forEach(video => {
+                            const videoData = {
+                                id: video.youtubeId,
+                                youtubeId: video.youtubeId,
+                                title: video.title,
+                                url: `https://www.youtube.com/watch?v=${video.youtubeId}`,
+                                tags: video.tags || [],
+                                albumTitle: album.title,
+                                albumPage: album.albumPage,
+                                isVideo: true
+                            };
+                            
+                            // Add video to tag maps
+                            video.tags.forEach(tag => {
+                                if (!allTags.has(tag)) {
+                                    allTags.set(tag, []);
+                                }
+                                allTags.get(tag).push(videoData);
+                                console.log(`Added video "${video.title}" to tag "${tag}". Tag now has ${allTags.get(tag).length} items.`);
+                            });
+                            
+                            // Add to progressive results if filtering by tag
+                            if (tagParam && video.tags.includes(tagParam)) {
+                                progressivePhotos.push(videoData);
+                            }
+                        });
+                    }
                     return;
                 }
                 
@@ -3142,13 +3277,62 @@ async function initializeTagsPage() {
                 }
                 
                 try {
-                    const photos = await fetchFlickrAlbumPhotos(albumId);
+                    let photos = await fetchFlickrAlbumPhotos(albumId);
                     processedCount++;
+                    
+                    // Apply photo limit for specific albums (like Doug Emhoff event)
+                    if (album.albumPage && album.albumPage.includes('doug-emhoff-event-with-michael-stipe')) {
+                        if (photos && photos.length > 3) {
+                            photos = photos.slice(0, 3);
+                            console.log(`Limited Doug Emhoff photos to first 3 (skipping video thumbnails)`);
+                        }
+                    }
+                    
+                    // Apply manual tags if specified (for albums where we limited photos but need to preserve tags)
+                    if (album.manualTags && photos) {
+                        photos.forEach(photo => {
+                            // Merge existing tags with manual tags, removing duplicates
+                            const existingTags = photo.tags || [];
+                            photo.tags = [...new Set([...existingTags, ...album.manualTags])];
+                        });
+                    }
                     
                     // Update progress
                     const progressEl = document.getElementById('tags-progress');
                     if (progressEl) {
                         progressEl.textContent = `${processedCount}/${totalAlbums}`;
+                    }
+                    
+                    // Process videos if they exist in this album
+                    if (album.videos && album.videos.length > 0) {
+                        album.videos.forEach(video => {
+                            if (video.tags && video.tags.length > 0) {
+                                // Add album info to video
+                                const videoWithAlbum = {
+                                    ...video,
+                                    albumTitle: album.title,
+                                    albumPage: album.albumPage,
+                                    collection: collectionType,
+                                    type: 'video'
+                                };
+                                
+                                // Store video globally
+                                allVideosWithTags.push(videoWithAlbum);
+                                
+                                // Add video to each of its tags
+                                video.tags.forEach(tag => {
+                                    if (!allTags.has(tag)) {
+                                        allTags.set(tag, []);
+                                    }
+                                    allTags.get(tag).push(videoWithAlbum);
+                                    
+                                    // If we're filtering by this tag, add to progressive display
+                                    if (tagParam && tag === tagParam) {
+                                        progressivePhotos.push(videoWithAlbum);
+                                    }
+                                });
+                            }
+                        });
                     }
                     
                     if (!photos || photos.length === 0) return;
@@ -3161,7 +3345,8 @@ async function initializeTagsPage() {
                             ...photo,
                             albumTitle: album.title,
                             albumPage: album.albumPage,
-                            collection: collectionType
+                            collection: collectionType,
+                            type: 'photo'
                         };
                         
                         // Store photo globally
@@ -3186,10 +3371,28 @@ async function initializeTagsPage() {
                 if (tagParam && progressivePhotos.length > 0) {
                     const resultsTitle = document.getElementById('results-title');
                     const photosGrid = document.getElementById('photos-grid');
-                    resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${progressivePhotos.length} found so far...)`;
+                    const videosGrid = document.getElementById('videos-grid');
+                    const videosSection = document.getElementById('videos-section');
+                    
+                    // Separate photos and videos
+                    const photos = progressivePhotos.filter(item => item.type === 'photo');
+                    const videos = progressivePhotos.filter(item => item.type === 'video');
+                    
+                    resultsTitle.textContent = `Results for "${formatTagForDisplay(tagParam)}" (${progressivePhotos.length} found so far...)`;
                     resultsTitle.style.display = 'block';
-                    console.log(`Displaying ${progressivePhotos.length} photos for tag "${tagParam}"`);
-                    displayPhotosGrid([...progressivePhotos], photosGrid);
+                    
+                    console.log(`Displaying ${photos.length} photos and ${videos.length} videos for tag "${tagParam}"`);
+                    
+                    // Display photos
+                    if (photos.length > 0) {
+                        displayPhotosGrid([...photos], photosGrid);
+                    }
+                    
+                    // Display videos
+                    if (videos.length > 0 && videosGrid && videosSection) {
+                        displayVideosGrid([...videos], videosGrid);
+                        videosSection.style.display = 'block';
+                    }
                 }
                 } catch (error) {
                     console.error(`Error fetching tags for album ${albumId}:`, error);
@@ -3199,7 +3402,7 @@ async function initializeTagsPage() {
         }
     }
     
-    console.log(`Found ${allTags.size} unique tags across ${allPhotosWithTags.length} photos`);
+    console.log(`Found ${allTags.size} unique tags across ${allPhotosWithTags.length} photos and ${allVideosWithTags.length} videos`);
     
     // Note: Caching disabled - dataset too large for localStorage
     // With 77 albums and 1000+ photos, the data exceeds browser storage limits
@@ -3238,10 +3441,29 @@ function handleTagPageParameters(urlParams, allTags, tagParam) {
     // If we were filtering by tag, show final results
     if (tagParam && allTags.has(tagParam)) {
         const photos = allTags.get(tagParam);
+        console.log(`handleTagPageParameters: Found ${photos.length} items for tag "${tagParam}":`, photos);
+        photos.forEach((item, index) => {
+            console.log(`Item ${index}:`, item);
+            console.log(`Item ${index} isVideo:`, item.isVideo);
+        });
         const resultsTitle = document.getElementById('results-title');
         resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${photos.length})`;
         
-        // Highlight the tag in sidebar
+        // Display the photos/videos
+        const photosContainer = document.getElementById('photos-grid');
+        console.log('photosContainer element found:', photosContainer);
+        if (photosContainer) {
+            console.log('Calling displayPhotosGrid with', photos.length, 'items');
+            displayPhotosGrid(photos, photosContainer);
+        } else {
+            console.error('photos-grid element not found!');
+        }
+    } else if (tagParam) {
+        console.log(`handleTagPageParameters: Tag "${tagParam}" not found in allTags. Available tags:`, Array.from(allTags.keys()).sort());
+    }
+    
+    // Highlight the tag in sidebar
+    if (tagParam) {
         const tagLinks = document.querySelectorAll('.tag-link');
         tagLinks.forEach(link => {
             if (link.dataset.tag === tagParam) {
@@ -3308,6 +3530,15 @@ function setupTagSearch(allTags) {
         includeScore: true
     });
     
+    // Configure Fuse.js for video search
+    const fuseVideos = new Fuse(allVideosWithTags, {
+        keys: ['title', 'albumTitle'],
+        threshold: 0.4,
+        distance: 100,
+        minMatchCharLength: 2,
+        includeScore: true
+    });
+    
     searchInput.addEventListener('input', function() {
         const query = this.value.trim();
         
@@ -3315,85 +3546,199 @@ function setupTagSearch(allTags) {
             // Clear results
             document.getElementById('results-title').style.display = 'none';
             document.getElementById('photos-grid').innerHTML = '';
+            const videosSection = document.getElementById('videos-section');
+            if (videosSection) videosSection.style.display = 'none';
             return;
         }
         
-        const matchingPhotos = [];
+        const matchingItems = [];
         
         // Fuzzy search through tags
         const tagResults = fuseTags.search(query);
         tagResults.forEach(result => {
-            matchingPhotos.push(...result.item.photos);
+            matchingItems.push(...result.item.photos);
         });
         
         // Fuzzy search through photo titles and descriptions
         const photoResults = fusePhotos.search(query);
         photoResults.forEach(result => {
-            matchingPhotos.push(result.item);
+            matchingItems.push(result.item);
+        });
+        
+        // Fuzzy search through video titles
+        const videoResults = fuseVideos.search(query);
+        videoResults.forEach(result => {
+            matchingItems.push(result.item);
         });
         
         // Remove duplicates
-        const uniquePhotos = Array.from(new Map(matchingPhotos.map(p => [p.id, p])).values());
+        const uniqueItems = Array.from(new Map(matchingItems.map(item => [item.id || item.youtubeId, item])).values());
         
         // Display results
-        showSearchResults(query, uniquePhotos);
+        showSearchResults(query, uniqueItems);
     });
 }
 
-function showPhotosForTag(tag, photos) {
+function showPhotosForTag(tag, items) {
     const resultsTitle = document.getElementById('results-title');
     const photosGrid = document.getElementById('photos-grid');
+    const videosGrid = document.getElementById('videos-grid');
+    const videosSection = document.getElementById('videos-section');
     
-    resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tag)}" (${photos.length})`;
+    // Separate photos and videos
+    const photos = items.filter(item => item.type === 'photo');
+    const videos = items.filter(item => item.type === 'video');
+    
+    resultsTitle.textContent = `Results for "${formatTagForDisplay(tag)}" (${items.length} total)`;
     resultsTitle.style.display = 'block';
     
-    displayPhotosGrid(photos, photosGrid);
+    // Display photos
+    if (photos.length > 0) {
+        displayPhotosGrid(photos, photosGrid);
+    } else {
+        photosGrid.innerHTML = '';
+    }
+    
+    // Display videos
+    if (videos.length > 0 && videosGrid && videosSection) {
+        displayVideosGrid(videos, videosGrid);
+        videosSection.style.display = 'block';
+    } else if (videosSection) {
+        videosSection.style.display = 'none';
+    }
     
     // Scroll to results
     resultsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function showSearchResults(query, photos) {
+function showSearchResults(query, items) {
     const resultsTitle = document.getElementById('results-title');
     const photosGrid = document.getElementById('photos-grid');
+    const videosGrid = document.getElementById('videos-grid');
+    const videosSection = document.getElementById('videos-section');
     
-    resultsTitle.textContent = `Search results for "${query}" (${photos.length})`;
+    // Separate photos and videos
+    const photos = items.filter(item => item.type === 'photo');
+    const videos = items.filter(item => item.type === 'video');
+    
+    resultsTitle.textContent = `Search results for "${query}" (${items.length} total)`;
     resultsTitle.style.display = 'block';
     
-    if (photos.length === 0) {
-        photosGrid.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No photos found</p>';
+    if (items.length === 0) {
+        photosGrid.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No results found</p>';
+        if (videosSection) videosSection.style.display = 'none';
         return;
     }
     
-    displayPhotosGrid(photos, photosGrid);
+    // Display photos
+    if (photos.length > 0) {
+        displayPhotosGrid(photos, photosGrid);
+    } else {
+        photosGrid.innerHTML = '';
+    }
+    
+    // Display videos
+    if (videos.length > 0 && videosGrid && videosSection) {
+        displayVideosGrid(videos, videosGrid);
+        videosSection.style.display = 'block';
+    } else if (videosSection) {
+        videosSection.style.display = 'none';
+    }
 }
 
 // Store current filtered photos for lightbox
 let currentFilteredPhotos = [];
 
-function displayPhotosGrid(photos, container) {
-    // Store photos globally for lightbox access
-    currentFilteredPhotos = photos;
+function displayPhotosGrid(items, container) {
+    // Store items globally for lightbox access
+    currentFilteredPhotos = items;
     
-    container.innerHTML = photos.map((photo, index) => {
-        let description = photo.description ? photo.description.trim() : '';
-        
-        // Decode HTML entities
-        if (description) {
-            const textarea = document.createElement('textarea');
-            textarea.innerHTML = description;
-            description = textarea.value;
-        }
-        
-        return `
-            <div class="photo-card" style="cursor: pointer; overflow: visible; height: auto;">
-                <div style="position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1;" onclick="openTagsLightbox(${index})">
-                    <img src="${photo.thumbnail}" alt="${photo.title || 'Photo'}" loading="lazy">
-                    <div class="photo-overlay">
-                        <i class="fas fa-search-plus"></i>
+    // Separate photos and videos
+    const photos = items.filter(item => !item.isVideo);
+    const videos = items.filter(item => item.isVideo);
+    
+    console.log(`Displaying ${photos.length} photos and ${videos.length} videos for tag "${new URLSearchParams(window.location.search).get('tag') || 'all'}"`);
+    
+    if (videos.length > 0) {
+        console.log('Video objects found:', videos);
+        videos.forEach((video, index) => {
+            console.log(`Video ${index}:`, video);
+            console.log(`Video ${index} isVideo:`, video.isVideo);
+            console.log(`Video ${index} youtubeId:`, video.youtubeId);
+            console.log(`Video ${index} id:`, video.id);
+        });
+    }
+    
+    let html = '';
+    
+    // Display photos
+    if (photos.length > 0) {
+        html += photos.map((photo, index) => {
+            let description = photo.description ? photo.description.trim() : '';
+            
+            // Decode HTML entities
+            if (description) {
+                const textarea = document.createElement('textarea');
+                textarea.innerHTML = description;
+                description = textarea.value;
+            }
+            
+            return `
+                <div class="photo-card" style="cursor: pointer; overflow: visible; height: auto;">
+                    <div style="position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1;" onclick="openTagsLightbox(${index})">
+                        <img src="${photo.thumbnail}" alt="${photo.title || 'Photo'}" loading="lazy">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
+                    ${description ? `<p style="margin-top: 0.5rem; font-size: 0.75rem; color: #ccc; line-height: 1.4; text-align: left; padding: 0 0.25rem;">${description}</p>` : ''}
                 </div>
-                ${description ? `<p style="margin-top: 0.5rem; font-size: 0.75rem; color: #ccc; line-height: 1.4; text-align: left; padding: 0 0.25rem;">${description}</p>` : ''}
+            `;
+        }).join('');
+    }
+    
+    // Display videos
+    if (videos.length > 0) {
+        html += videos.map((video, index) => {
+            console.log('Rendering video:', video);
+            const videoId = video.youtubeId || video.id;
+            console.log('Video ID for embed:', videoId);
+            
+            return `
+                <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem; grid-column: 1 / -1;">
+                    <h4 style="color: #fff; margin-bottom: 1rem; text-align: center;">${video.title}</h4>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; max-width: 800px; margin: 0 auto;">
+                        <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #ccc; text-align: center;">
+                        From: <a href="${video.albumPage}" style="color: #fff; text-decoration: none;">${video.albumTitle}</a>
+                    </p>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    container.innerHTML = html;
+}
+
+// Display videos grid for tags page
+function displayVideosGrid(videos, container) {
+    container.innerHTML = videos.map((video, index) => {
+        return `
+            <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
+                <h4 style="color: #fff; margin-bottom: 1rem; text-align: center;">${video.title}</h4>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
+                    <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #ccc; text-align: center;">
+                    From: <a href="${video.albumPage}" style="color: #fff; text-decoration: none;">${video.albumTitle}</a>
+                </p>
             </div>
         `;
     }).join('');
@@ -3531,4 +3876,3 @@ function refreshTagsCache() {
 }
 
 // Global header and footer initialization is handled above in the main DOMContentLoaded listener
-

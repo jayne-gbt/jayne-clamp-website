@@ -44,8 +44,11 @@
     <style>
         /* EMERGENCY DARK MODE FIX */
         body { background-color: #000000 !important; color: #ffffff !important; }
-        /* Fix button hover text visibility */
-        .collection-card:hover .collection-btn { color: #000000 !important; }
+        /* Fix button hover text visibility - ensure black text on hover in both light and dark mode */
+        .collection-card:hover .collection-btn { 
+            color: #000000 !important; 
+            background: #ffffff !important;
+        }
     </style>
 </head>
 <body>

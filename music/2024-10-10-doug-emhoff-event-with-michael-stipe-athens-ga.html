@@ -79,7 +79,8 @@
 
             <div class="page-header">
                 <h2 class="page-title">2024-10-10 Doug Emhoff Event with Michael Stipe @ 1055 Barber | Athens, GA</h2>
-                <p class="page-subtitle">11 photos</p>
+                <p class="page-subtitle">Loading photo count...</p>
+                <p style="color: #ccc; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem; line-height: 1.4;">Michael Stipe performed a few songs, accompanied by Andy LeMaster & David Barbe, at Second Gentleman Doug Emhoff's event for "Kamala Harris for President"</p>
             </div>
 
             <div id="loading" class="loading">Loading photos...</div>
@@ -96,12 +97,11 @@
         <div class="container">
             <div class="page-header" style="text-align: center; margin-bottom: 2rem;">
                 <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem;">Performance Videos</h3>
-                <p style="color: #ccc; font-size: 1rem;">Michael Stipe performing R.E.M. classics</p>
             </div>
             
             <div class="videos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
                 <!-- Wendell Gee -->
-                <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
+                <div class="video-item" data-tags="wendellgee,michaelstipe,davidbarbe,andylemaster,dougemhoff,kamalaharris,democrats,athensclarkecountydemocrats,politics,rem,presidentialcampaign" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
                     <h4 style="color: #fff; margin-bottom: 1rem; text-align: center;">Wendell Gee</h4>
                     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
                         <iframe src="https://www.youtube.com/embed/iEzos4yZNRg" 
@@ -112,7 +112,7 @@
                 </div>
                 
                 <!-- Story -->
-                <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
+                <div class="video-item" data-tags="story,michaelstipe,davidbarbe,andylemaster,dougemhoff,kamalaharris,democrats,athensclarkecountydemocrats,politics,rem,presidentialcampaign" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
                     <h4 style="color: #fff; margin-bottom: 1rem; text-align: center;">Story</h4>
                     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
                         <iframe src="https://www.youtube.com/embed/YCGqsU8YHg4" 
@@ -123,7 +123,7 @@
                 </div>
                 
                 <!-- Driver 8 -->
-                <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
+                <div class="video-item" data-tags="driver8,michaelstipe,davidbarbe,andylemaster,dougemhoff,kamalaharris,democrats,athensclarkecountydemocrats,politics,rem,presidentialcampaign" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem;">
                     <h4 style="color: #fff; margin-bottom: 1rem; text-align: center;">Driver 8</h4>
                     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
                         <iframe src="https://www.youtube.com/embed/GEfZU9giVug" 
@@ -154,7 +154,11 @@
 
     <!-- Artist Official Site -->
     <div class="container" style="text-align: center; padding: 1.5rem 0;">
-        <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem;">
+        <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://remhq.com" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
+                <i class="fas fa-external-link-alt"></i>
+                R.E.M. HQ
+            </a>
             <a href="https://kamalaharris.com" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
                 <i class="fas fa-external-link-alt"></i>
                 Kamala Harris Official Site
@@ -217,10 +221,10 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // Load photos from this specific Flickr album
+        // Load photos from this specific Flickr album (first 3 only, skip video thumbnails)
         document.addEventListener('DOMContentLoaded', function() {
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/';
-            displayAlbumPhotos(albumUrl);
+            displayAlbumPhotos(albumUrl, 3); // Only show first 3 photos
         });
     </script>
 </body>

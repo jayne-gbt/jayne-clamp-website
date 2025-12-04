@@ -116,6 +116,30 @@
                 gap: 1.5rem;
             }
         }
+        
+        /* Tag styles */
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .tag.active {
+            background: #fff;
+            color: #000;
+        }
     </style>
 </head>
 <body class="album-page">
@@ -141,6 +165,21 @@
 
             <div id="video-grid" class="video-grid">
                 <!-- Videos will be loaded here -->
+            </div>
+            
+            <!-- Video Tags -->
+            <div class="container" style="text-align: center; padding: 2rem 0 1.5rem 0;">
+                <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <a href="../collections/tags.html?tag=gillianwelch" class="tag" data-tag="gillianwelch">gillianwelch</a>
+                    <a href="../collections/tags.html?tag=davidrawlings" class="tag" data-tag="davidrawlings">davidrawlings</a>
+                    <a href="../collections/tags.html?tag=classiccenter" class="tag" data-tag="classiccenter">classiccenter</a>
+                    <a href="../collections/tags.html?tag=athens" class="tag" data-tag="athens">athens</a>
+                    <a href="../collections/tags.html?tag=americana" class="tag" data-tag="americana">americana</a>
+                    <a href="../collections/tags.html?tag=livemusic" class="tag" data-tag="livemusic">livemusic</a>
+                    <a href="../collections/tags.html?tag=sixwhitehorses" class="tag" data-tag="sixwhitehorses">sixwhitehorses</a>
+                    <a href="../collections/tags.html?tag=thatsthewayitgoes" class="tag" data-tag="thatsthewayitgoes">thatsthewayitgoes</a>
+                    <a href="../collections/tags.html?tag=waysidebackintime" class="tag" data-tag="waysidebackintime">waysidebackintime</a>
+                </div>
             </div>
             
             <!-- Copyright Notice -->
@@ -244,8 +283,20 @@
             youtubeVideos.forEach((video, index) => {
                 const videoId = getYouTubeVideoId(video.url);
                 if (videoId) {
+                    // Determine specific song tag based on video title
+                    let songTag = '';
+                    if (video.title.includes('Wayside')) {
+                        songTag = 'waysidebackintime';
+                    } else if (video.title.includes('That\'s the Way')) {
+                        songTag = 'thatsthewayitgoes';
+                    } else if (video.title.includes('Six White Horses')) {
+                        songTag = 'sixwhitehorses';
+                    }
+                    
+                    const allTags = `${songTag},gillianwelch,davidrawlings,classiccenter,athens,americana,livemusic,sixwhitehorses,thatsthewayitgoes,waysidebackintime`;
+                    
                     videoHTML += `
-                        <div class="video-card">
+                        <div class="video-card video-item" data-tags="${allTags}">
                             <div class="video-embed">
                                 <iframe src="https://www.youtube.com/embed/${videoId}" 
                                         allowfullscreen>
