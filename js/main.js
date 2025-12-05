@@ -668,6 +668,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
             coverUrl: 'https://live.staticflickr.com/65535/54876776442_e83e6eea26_b.jpg',
             albumPage: '../music/2025-09-21-vincas-hendershots-athens-ga.html'
+        },
+        { 
+            title: '2025-09-27 The Pink Stones @ Flicker | Athens, GA', 
+            photoCount: 11, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330721156/',
+            coverUrl: 'https://live.staticflickr.com/65535/54964574971_37c1c3ac60_b.jpg',
+            albumPage: '../music/2025-09-27-the-pink-stones-flicker-athens-ga.html'
         }, 
         { 
             title: '2025-09-12 The Minus 5 & The Baseball Project @ 40 Watt | Athens, GA', 
@@ -710,6 +717,13 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54884859086_7ab1e2877e_b.jpg',
             filterNames: ['Sam Holt Band', 'Sunny Ortiz'],
             albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
+        },
+        { 
+            title: '2025-08-29 Pull Chains @ Ideal Bagels | Athens, GA', 
+            photoCount: 13, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330722597/',
+            coverUrl: 'https://live.staticflickr.com/65535/54964943969_726bbedd7e_b.jpg',
+            albumPage: '../music/2025-08-29-pull-chains-ideal-bagels-athens-ga.html'
         },
         { 
             title: '2025-08-29 Infinite Favors @ Ideal | Athens, GA', 
@@ -821,6 +835,13 @@ const ALBUM_DATA = {
             photoCount: 8, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330505783/',
             albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html'
+        },
+        { 
+            title: '2025-03-15 Thick Lizzy @ Foundry | Athens, GA', 
+            photoCount: 17, 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330715001/',
+            coverUrl: 'https://live.staticflickr.com/65535/54964190490_7402f5bdf8_b.jpg',
+            albumPage: '../music/2025-03-15-thick-lizzy-foundry-athens-ga.html'
         },
         { 
             title: '2025-04-04 David Lowery @ Cobham Triangle Park | Athens, GA', 
@@ -1176,6 +1197,7 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330208208/',
             coverUrl: 'https://live.staticflickr.com/65535/54911043681_22eee3c521_c.jpg',
+            filterNames: ['Classic City Jukebox', 'Shehehe', 'Mercyland', 'AD Blanco', 'Royal Velvet', 'Shotgun Saviors', 'The Arcs'],
             albumPage: '../music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
         },
         { 
@@ -3200,9 +3222,9 @@ async function initializeTagsPage() {
     
     // Show loading with progress
     if (tagParam) {
-        tagsContainer.innerHTML = `<p style="color: #999; width: 100%; text-align: center;">Loading photos tagged "${formatTagForDisplay(tagParam)}"... <span id="tags-progress">0</span> albums processed</p>`;
+        tagsContainer.innerHTML = `<p style="color: #999; width: 100%; text-align: center;">Summoning photos tagged "${formatTagForDisplay(tagParam)}" from the digital void... <span id="tags-progress">0</span> albums processed</p>`;
     } else {
-        tagsContainer.innerHTML = '<p style="color: #999; width: 100%; text-align: center;">Loading photos and tags... <span id="tags-progress">0</span> albums processed</p>';
+        tagsContainer.innerHTML = '<p style="color: #999; width: 100%; text-align: center;">Herding cats and organizing pixels... <span id="tags-progress">0</span> albums processed</p>';
     }
     
     // Fetch all photos with tags from all albums
