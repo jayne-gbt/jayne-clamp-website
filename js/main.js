@@ -805,7 +805,6 @@ const ALBUM_DATA = {
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364740380_9d40dc998f_b.jpg',
             albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html',
             filterNames: ['Michael Shannon', 'Jason Narducy', 'REM']
         },
