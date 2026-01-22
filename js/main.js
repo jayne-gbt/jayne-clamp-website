@@ -624,6 +624,31 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
+            title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
+            flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
+            albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
+        },
+        { 
+            title: '2026-01-12 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA', 
+            flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551582',
+            albumPage: '../music/2026-01-12-kevn-kinney-peter-buck-rialto-room-athens-ga.html'
+        },
+        { 
+            title: '2025-12-19 Bloodkin & Friends @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331586579/',
+            albumPage: '../music/2025-12-19-bloodkin-friends-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2025-12-19 Kevn Kinney @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551807/',
+            albumPage: '../music/2025-12-19-kevn-kinney-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2025-12-12 Nuci\'s Space 25th Anniversary @ Georgia Theatre | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
+            albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html'
+        },
+        { 
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
@@ -1427,6 +1452,11 @@ const ALBUM_DATA = {
         },
     ],
     events: [
+        { 
+            title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA', 
+            flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331571028',
+            albumPage: '../events/2026-01-13-get-ice-out-for-good-protest-athens-ga.html'
+        },
          { 
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
