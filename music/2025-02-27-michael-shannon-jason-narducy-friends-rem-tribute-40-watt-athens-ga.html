@@ -64,19 +64,9 @@
     <!-- Album Photos Section -->
     <section class="albums-section">
         <div class="container">
-            <div class="album-navigation">
-                <a href="../music.html" class="back-button">
-                    <i class="fas fa-arrow-left"></i> Back to Music Albums
-                </a>
-                <div class="album-nav-arrows">
-                    <button id="prev-album" class="album-nav-btn" title="Previous Album">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button id="next-album" class="album-nav-btn" title="Next Album">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
+            <a href="../music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
+            </a>
 
             <div class="page-header">
                 <h2 class="page-title">2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA</h2>
@@ -91,6 +81,20 @@
             </div>
         </div>
     </section>
+
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Lightbox -->
     <div id="lightbox">
