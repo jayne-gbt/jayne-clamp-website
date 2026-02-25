@@ -2719,8 +2719,8 @@ function createGlobalHeader() {
                         <li class="collections-dropdown">
                             <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
-                                <li><a href="${basePath}collections/music.html">Music</a></li>
-                                <li><a href="${basePath}collections/events.html">Events</a></li>
+                                <li><a href="${basePath}music.html">Music</a></li>
+                                <li><a href="${basePath}events.html">Events</a></li>
                                 <li><a href="${basePath}travel.html">Travel</a></li>
                                 <li><a href="${basePath}birds.html">Birds</a></li>
                                 <li><a href="${basePath}landscapes.html">Landscapes</a></li>
