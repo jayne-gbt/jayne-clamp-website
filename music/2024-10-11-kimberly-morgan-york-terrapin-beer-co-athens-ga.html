@@ -72,6 +72,10 @@
     <!-- Album Photos Section -->
     <section class="albums-section">
         <div class="container">
+            <a href="../music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
+            </a>
+
             <a href="../collections/music.html" class="back-button">
                 <i class="fas fa-arrow-left"></i> Back to Music Albums
             </a>
@@ -89,6 +93,23 @@
             </div>
         </div>
     </section>
+
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Lightbox -->
     <div id="lightbox">
@@ -173,6 +194,8 @@
     <script>
         // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize album navigation arrows
+            initializeAlbumNavigation();
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185180/';
             displayAlbumPhotos(albumUrl);
         });

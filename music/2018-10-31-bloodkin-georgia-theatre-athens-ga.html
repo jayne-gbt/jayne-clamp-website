@@ -93,6 +93,23 @@
         </div>
     </section>
 
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
@@ -154,6 +171,8 @@
         
         // Load photos when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize album navigation arrows
+            initializeAlbumNavigation();
             displayAlbumPhotos(flickrAlbumUrl);
         });
     </script>
