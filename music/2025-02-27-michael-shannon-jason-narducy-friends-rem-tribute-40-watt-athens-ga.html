@@ -64,9 +64,19 @@
     <!-- Album Photos Section -->
     <section class="albums-section">
         <div class="container">
-            <a href="../collections/music.html" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Music Albums
-            </a>
+            <div class="album-navigation">
+                <a href="../music.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Music Albums
+                </a>
+                <div class="album-nav-arrows">
+                    <button id="prev-album" class="album-nav-btn" title="Previous Album">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-album" class="album-nav-btn" title="Next Album">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
 
             <div class="page-header">
                 <h2 class="page-title">2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA</h2>
@@ -153,6 +163,9 @@
         // Load photos from this specific Flickr album with error handling
         document.addEventListener('DOMContentLoaded', function() {
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/';
+            
+            // Initialize album navigation arrows
+            initializeAlbumNavigation();
             
             // Try to load photos, but handle errors gracefully
             displayAlbumPhotos(albumUrl).catch(error => {

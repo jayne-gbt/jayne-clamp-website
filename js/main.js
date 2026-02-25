@@ -2406,6 +2406,72 @@ function initializeFilters(collectionType) {
 }
 
 // ===================================
+// ALBUM NAVIGATION FUNCTIONS
+// ===================================
+
+// Get album navigation data for previous/next functionality
+function getAlbumNavigation(currentAlbumPath, collectionType) {
+    if (!ALBUM_DATA[collectionType]) return { prev: null, next: null };
+    
+    // Sort albums by date (newest first, same as collection page)
+    const albums = [...ALBUM_DATA[collectionType]].sort((a, b) => {
+        const dateA = a.title.substring(0, 10);
+        const dateB = b.title.substring(0, 10);
+        return dateB.localeCompare(dateA);
+    });
+    
+    // Find current album index
+    const currentIndex = albums.findIndex(album => 
+        album.albumPage && currentAlbumPath.includes(album.albumPage.split('/').pop())
+    );
+    
+    if (currentIndex === -1) return { prev: null, next: null };
+    
+    return {
+        prev: currentIndex < albums.length - 1 ? albums[currentIndex + 1] : null,
+        next: currentIndex > 0 ? albums[currentIndex - 1] : null
+    };
+}
+
+// Initialize album navigation arrows
+function initializeAlbumNavigation() {
+    const prevBtn = document.getElementById('prev-album');
+    const nextBtn = document.getElementById('next-album');
+    
+    if (!prevBtn || !nextBtn) return;
+    
+    const currentPath = window.location.pathname;
+    const collectionType = currentPath.includes('/music/') ? 'music' : 
+                          currentPath.includes('/events/') ? 'events' : null;
+    
+    if (!collectionType) return;
+    
+    const navigation = getAlbumNavigation(currentPath, collectionType);
+    
+    // Set up previous album button
+    if (navigation.prev) {
+        prevBtn.onclick = () => {
+            window.location.href = navigation.prev.albumPage;
+        };
+        prevBtn.title = `Previous: ${navigation.prev.title}`;
+    } else {
+        prevBtn.disabled = true;
+        prevBtn.title = 'No previous album';
+    }
+    
+    // Set up next album button
+    if (navigation.next) {
+        nextBtn.onclick = () => {
+            window.location.href = navigation.next.albumPage;
+        };
+        nextBtn.title = `Next: ${navigation.next.title}`;
+    } else {
+        nextBtn.disabled = true;
+        nextBtn.title = 'No next album';
+    }
+}
+
+// ===================================
 // CLEAR FILTER FUNCTIONS
 // ===================================
 
