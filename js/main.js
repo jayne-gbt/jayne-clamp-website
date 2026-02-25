@@ -802,13 +802,6 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
         },
         { 
-            title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
-            photoCount: 22, 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
-            albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html',
-            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM']
-        },
-        { 
             title: '2023-06-24 Pink Stones @ Athfest | Athens, GA', 
             photoCount: 9, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330439979/',
@@ -841,6 +834,15 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
+        },
+        { 
+            title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
+            photoCount: 22,
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
+            albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html',
+            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM'],
+            // Album exists but not accessible via API - likely privacy/permission issue
+            apiAccessible: false
         },
         { 
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
@@ -1213,7 +1215,7 @@ const ALBUM_DATA = {
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258537/',
-            coverUrl: 'https://live.staticflickr.com/65535/54937643785_5dec809aef_c.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54916983482_fc96063e12_c.jpg',
             albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
         { 
@@ -1658,6 +1660,22 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
     
     // Check if this album has manual photos defined (for legacy albums with API issues)
     const albumData = findAlbumByUrl(albumUrl);
+    
+    // Check if album is marked as not API accessible
+    if (albumData && albumData.apiAccessible === false) {
+        console.log('Album marked as not API accessible, showing Flickr link');
+        photosGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #ccc;">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Photos from this album are available on Flickr</p>
+                <a href="${albumUrl}" target="_blank" style="color: #007bff; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                    View Album on Flickr →
+                </a>
+            </div>
+        `;
+        if (loading) loading.style.display = 'none';
+        return;
+    }
+    
     if (albumData && albumData.manualPhotos) {
         console.log('Using manual photo list for album:', albumId);
         let photos = albumData.manualPhotos.map(photo => ({
@@ -2703,14 +2721,14 @@ function createGlobalHeader() {
                             <ul class="collections-menu">
                                 <li><a href="${basePath}collections/music.html">Music</a></li>
                                 <li><a href="${basePath}collections/events.html">Events</a></li>
-                                <li><a href="${basePath}collections/travel.html">Travel</a></li>
-                                <li><a href="${basePath}collections/birds.html">Birds</a></li>
-                                <li><a href="${basePath}collections/landscapes.html">Landscapes</a></li>
-                                <li><a href="${basePath}collections/pets.html">Pets</a></li>
+                                <li><a href="${basePath}travel.html">Travel</a></li>
+                                <li><a href="${basePath}birds.html">Birds</a></li>
+                                <li><a href="${basePath}landscapes.html">Landscapes</a></li>
+                                <li><a href="${basePath}pets.html">Pets</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
-                        <li><a href="${basePath}collections/tags.html">Tags</a></li>
+                        <li><a href="${basePath}tags.html">Tags</a></li>
                         <li><a href="${basePath}contact.html">Contact</a></li>
                         <li class="share-dropdown">
                             <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
@@ -2782,7 +2800,7 @@ function createGlobalFooter() {
                         <i class="fab fa-soundcloud"></i>
                     </a>
                 </div>
-                <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+                <p class="copyright">&copy; 2026 Jayne Clamp | Photography & Website Design</p>
                 <div class="legal-links">
                     <a href="${pathPrefix}privacy-policy.html">Privacy Policy</a>
                     <span class="separator">•</span>

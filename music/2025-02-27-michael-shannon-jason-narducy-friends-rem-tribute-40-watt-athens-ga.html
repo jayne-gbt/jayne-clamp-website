@@ -150,10 +150,27 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // Load photos from this specific Flickr album
+        // Load photos from this specific Flickr album with error handling
         document.addEventListener('DOMContentLoaded', function() {
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/';
-            displayAlbumPhotos(albumUrl);
+            
+            // Try to load photos, but handle errors gracefully
+            displayAlbumPhotos(albumUrl).catch(error => {
+                console.log('Failed to load photos from Flickr API, showing fallback message');
+                const photoGrid = document.getElementById('photo-grid');
+                if (photoGrid) {
+                    photoGrid.innerHTML = `
+                        <div style="text-align: center; padding: 2rem; color: #ccc;">
+                            <p>Photos from this album are available on Flickr:</p>
+                            <a href="https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/" 
+                               target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-weight: bold;">
+                                View Album on Flickr →
+                            </a>
+                        </div>
+                    `;
+                }
+            });
         });
     </script>
 </body>

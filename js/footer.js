@@ -17,7 +17,7 @@ function createGlobalFooter() {
                     <i class="fab fa-flickr"></i>
                 </a>
             </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+            <p class="copyright">&copy; 2026 Jayne Clamp | Photography & Website Design</p>
             <div class="legal-links">
                 <a href="/privacy-policy.html">Privacy Policy</a>
                 <span class="separator">•</span>
