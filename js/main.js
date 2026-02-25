@@ -2041,7 +2041,13 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('=== MAIN.JS DEBUG END ===');
     
     // Initialize collections if on a collection page
-    if (window.location.pathname.includes('/collections/')) {
+    if (window.location.pathname.includes('/collections/') || 
+        window.location.pathname.includes('music.html') || 
+        window.location.pathname.includes('events.html') || 
+        window.location.pathname.includes('travel.html') || 
+        window.location.pathname.includes('birds.html') || 
+        window.location.pathname.includes('landscapes.html') || 
+        window.location.pathname.includes('pets.html')) {
         const collectionType = getCollectionTypeFromPath();
         console.log('Collection type detected:', collectionType);
         console.log('ALBUM_DATA available:', !!ALBUM_DATA);
@@ -3927,7 +3933,7 @@ function performSearch(event) {
         const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') ? '../' : '';
         
         // Redirect to tags page with search query
-        window.location.href = `${basePath}collections/tags.html?search=${encodeURIComponent(query)}`;
+        window.location.href = `${basePath}tags.html?search=${encodeURIComponent(query)}`;
     }
 }
 
