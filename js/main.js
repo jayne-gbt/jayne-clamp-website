@@ -2944,6 +2944,135 @@ function downloadLightboxImage() {
     }
 }
 
+// ===================================
+// FAVORITES SYSTEM
+// ===================================
+
+// Favorites management using localStorage
+const FavoritesManager = {
+    // Get all favorites from localStorage
+    getFavorites: function() {
+        const favorites = localStorage.getItem('jayne-clamp-favorites');
+        return favorites ? JSON.parse(favorites) : { albums: [], photos: [] };
+    },
+
+    // Save favorites to localStorage
+    saveFavorites: function(favorites) {
+        localStorage.setItem('jayne-clamp-favorites', JSON.stringify(favorites));
+    },
+
+    // Add album to favorites
+    addAlbum: function(albumData) {
+        const favorites = this.getFavorites();
+        const albumId = albumData.title + '|' + albumData.flickrUrl;
+        
+        // Check if already favorited
+        if (!favorites.albums.find(album => album.id === albumId)) {
+            favorites.albums.push({
+                id: albumId,
+                title: albumData.title,
+                flickrUrl: albumData.flickrUrl,
+                coverUrl: albumData.coverUrl,
+                albumPage: albumData.albumPage,
+                dateAdded: new Date().toISOString()
+            });
+            this.saveFavorites(favorites);
+        }
+    },
+
+    // Remove album from favorites
+    removeAlbum: function(albumId) {
+        const favorites = this.getFavorites();
+        favorites.albums = favorites.albums.filter(album => album.id !== albumId);
+        this.saveFavorites(favorites);
+    },
+
+    // Add photo to favorites
+    addPhoto: function(photoData) {
+        const favorites = this.getFavorites();
+        const photoId = photoData.src + '|' + photoData.albumTitle;
+        
+        // Check if already favorited
+        if (!favorites.photos.find(photo => photo.id === photoId)) {
+            favorites.photos.push({
+                id: photoId,
+                src: photoData.src,
+                albumTitle: photoData.albumTitle,
+                caption: photoData.caption || '',
+                dateAdded: new Date().toISOString()
+            });
+            this.saveFavorites(favorites);
+        }
+    },
+
+    // Remove photo from favorites
+    removePhoto: function(photoId) {
+        const favorites = this.getFavorites();
+        favorites.photos = favorites.photos.filter(photo => photo.id !== photoId);
+        this.saveFavorites(favorites);
+    },
+
+    // Check if album is favorited
+    isAlbumFavorited: function(albumData) {
+        const favorites = this.getFavorites();
+        const albumId = albumData.title + '|' + albumData.flickrUrl;
+        return favorites.albums.some(album => album.id === albumId);
+    },
+
+    // Check if photo is favorited
+    isPhotoFavorited: function(photoSrc, albumTitle) {
+        const favorites = this.getFavorites();
+        const photoId = photoSrc + '|' + albumTitle;
+        return favorites.photos.some(photo => photo.id === photoId);
+    }
+};
+
+// Toggle album favorite status
+function toggleAlbumFavorite(albumData, heartElement) {
+    const albumId = albumData.title + '|' + albumData.flickrUrl;
+    
+    if (FavoritesManager.isAlbumFavorited(albumData)) {
+        FavoritesManager.removeAlbum(albumId);
+        heartElement.classList.remove('favorited');
+        heartElement.innerHTML = '<i class="far fa-heart"></i>';
+        heartElement.title = 'Add to favorites';
+    } else {
+        FavoritesManager.addAlbum(albumData);
+        heartElement.classList.add('favorited');
+        heartElement.innerHTML = '<i class="fas fa-heart"></i>';
+        heartElement.title = 'Remove from favorites';
+    }
+}
+
+// Toggle photo favorite status
+function togglePhotoFavorite() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const heartElement = document.querySelector('.lightbox-favorite');
+    
+    if (!lightboxImg || !heartElement) return;
+    
+    const photoData = {
+        src: lightboxImg.src,
+        albumTitle: document.title.split(' - ')[0] || 'Photo',
+        caption: lightboxCaption ? lightboxCaption.textContent : ''
+    };
+    
+    const photoId = photoData.src + '|' + photoData.albumTitle;
+    
+    if (FavoritesManager.isPhotoFavorited(photoData.src, photoData.albumTitle)) {
+        FavoritesManager.removePhoto(photoId);
+        heartElement.classList.remove('favorited');
+        heartElement.innerHTML = '<i class="far fa-heart"></i>';
+        heartElement.title = 'Add to favorites';
+    } else {
+        FavoritesManager.addPhoto(photoData);
+        heartElement.classList.add('favorited');
+        heartElement.innerHTML = '<i class="fas fa-heart"></i>';
+        heartElement.title = 'Remove from favorites';
+    }
+}
+
 console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');
 
 // ===================================
