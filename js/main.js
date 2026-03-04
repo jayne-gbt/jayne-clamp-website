@@ -3251,7 +3251,7 @@ function displayPhotoTags(photos) {
         };
         // Link to tags page with this tag
         button.onclick = () => {
-            window.location.href = `../collections/tags.html?tag=${encodeURIComponent(tag)}`;
+            window.location.href = `../tags.html?tag=${encodeURIComponent(tag)}`;
         };
         tagsContainer.appendChild(button);
     });
