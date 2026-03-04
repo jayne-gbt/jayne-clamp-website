@@ -1,3 +1,4 @@
+# Redirect old /collections/ paths to new root paths
 /collections/music.html   /music.html   301
 /collections/events.html  /events.html  301
 /collections/birds.html   /birds.html   301
@@ -6,22 +7,14 @@
 /collections/travel.html  /travel.html  301
 /collections/tags.html    /tags.html    301
 
-# Make both .html and non-.html URLs work for collection pages
-/music     /music.html     200
-/events    /events.html    200
-/birds     /birds.html     200
-/landscapes /landscapes.html 200
-/pets      /pets.html      200
-/travel    /travel.html    200
-/tags      /tags.html      200
+# Redirect non-.html collection URLs to .html versions
+/music     /music.html     301
+/events    /events.html    301
+/birds     /birds.html     301
+/landscapes /landscapes.html 301
+/pets      /pets.html      301
+/travel    /travel.html    301
+/tags      /tags.html      301
 
-# Also handle .html versions (rewrite to same file)
-/music.html     /music.html     200
-/events.html    /events.html    200
-/birds.html     /birds.html     200
-/landscapes.html /landscapes.html 200
-/pets.html      /pets.html      200
-/travel.html    /travel.html    200
-/tags.html      /tags.html      200
-
+# Catch-all for other pages
 /*    /index.html   200
