@@ -2718,55 +2718,10 @@ function setAlbumSocialMeta(albumUrl) {
 }
 
 // ===================================
-// IMAGE PROTECTION
+// IMAGE DOWNLOAD FUNCTIONALITY
 // ===================================
 
-// Disable right-click context menu
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-});
-
-// Disable common keyboard shortcuts for dev tools and saving
-document.addEventListener('keydown', function(e) {
-    // Disable F12 (Dev Tools)
-    if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
-    }
-    
-    // Disable Ctrl+Shift+I (Dev Tools)
-    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-        e.preventDefault();
-        return false;
-    }
-    
-    // Disable Ctrl+U (View Source)
-    if (e.ctrlKey && e.key === 'u') {
-        e.preventDefault();
-        return false;
-    }
-    
-    // Disable Ctrl+S (Save Page)
-    if (e.ctrlKey && e.key === 's') {
-        e.preventDefault();
-        return false;
-    }
-    
-    // Disable Ctrl+Shift+C (Inspect Element)
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-        e.preventDefault();
-        return false;
-    }
-});
-
-// Disable text selection on images
-document.addEventListener('selectstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        return false;
-    }
-});
+// Allow right-click and downloads for user convenience
 
 // ===================================
 // GLOBAL HEADER SYSTEM
@@ -2948,13 +2903,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 200); // Check every 200ms
 });
 
-// Disable drag start on images
-document.addEventListener('dragstart', function(e) {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-        return false;
+// Allow image drag and download functionality
+
+// Download functionality for lightbox images
+function downloadLightboxImage() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (lightboxImg && lightboxImg.src) {
+        const link = document.createElement('a');
+        link.href = lightboxImg.src;
+        
+        // Get filename from image URL or use default
+        const urlParts = lightboxImg.src.split('/');
+        const filename = urlParts[urlParts.length - 1] || 'jayne-clamp-photo.jpg';
+        
+        link.download = filename;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
-});
+}
 
 console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');
 
