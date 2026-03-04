@@ -6,4 +6,13 @@
 /collections/travel.html  /travel.html  301
 /collections/tags.html    /tags.html    301
 
+# Redirect collection pages without .html to .html versions
+/music     /music.html     301
+/events    /events.html    301
+/birds     /birds.html     301
+/landscapes /landscapes.html 301
+/pets      /pets.html      301
+/travel    /travel.html    301
+/tags      /tags.html      301
+
 /*    /index.html   200
