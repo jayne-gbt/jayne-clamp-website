@@ -2756,6 +2756,7 @@ function createGlobalHeader() {
                             </ul>
                         </li>
                         <li><a href="${basePath}tags.html">Tags</a></li>
+                        <li><a href="${basePath}favorites.html">Favorites</a></li>
                         <li><a href="${basePath}contact.html">Contact</a></li>
                         <li class="share-dropdown">
                             <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
