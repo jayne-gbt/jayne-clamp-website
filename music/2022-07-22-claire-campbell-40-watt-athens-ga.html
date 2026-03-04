@@ -71,9 +71,6 @@
 
     <section class="albums-section">
         <div class="container">
-            <a href="../music.html" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Music Albums
-            </a>
 
             <a href="../collections/music.html" class="back-button">
                 <i class="fas fa-arrow-left"></i> Back to Music
@@ -90,22 +87,7 @@
         </div>
     </section>
 
-    <!-- Album Navigation at Bottom -->
-    <div class="album-bottom-navigation">
-        <div class="container">
-            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
-                <i class="fas fa-chevron-left"></i>
-                <span class="nav-label">Previous</span>
-            </button>
-            <a href="../music.html" class="back-button back-button-center">
-                <i class="fas fa-arrow-left"></i> Back to Music Albums
-            </a>
-            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
-                <span class="nav-label">Next</span>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
+    
 
     <div class="container" style="text-align: center; padding: 1.5rem 0;">
         <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-flex; gap: 0.5rem; align-items: center;">
@@ -170,5 +152,37 @@
             displayAlbumPhotos(albumUrl);
         });
     </script>
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music Albums
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+<!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
+                    <i class="fab fa-flickr"></i>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
+        </div>
+    </footer>
+
 </body>
 </html>
