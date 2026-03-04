@@ -16,5 +16,8 @@
 /travel    /travel.html    301
 /tags      /tags.html      301
 
+# Handle index.html redirect to clean root URL
+/index.html   /   301
+
 # Catch-all for other pages
 /*    /index.html   200
