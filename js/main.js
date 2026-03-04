@@ -2909,18 +2909,38 @@ document.addEventListener('DOMContentLoaded', function() {
 function downloadLightboxImage() {
     const lightboxImg = document.getElementById('lightbox-img');
     if (lightboxImg && lightboxImg.src) {
-        const link = document.createElement('a');
-        link.href = lightboxImg.src;
-        
-        // Get filename from image URL or use default
-        const urlParts = lightboxImg.src.split('/');
-        const filename = urlParts[urlParts.length - 1] || 'jayne-clamp-photo.jpg';
-        
-        link.download = filename;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Use fetch to get the image as a blob to bypass CORS issues
+        fetch(lightboxImg.src)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                
+                // Get filename from image URL or use default
+                const urlParts = lightboxImg.src.split('/');
+                let filename = urlParts[urlParts.length - 1] || 'jayne-clamp-photo.jpg';
+                
+                // Clean up Flickr filename to be more user-friendly
+                if (filename.includes('_')) {
+                    const parts = filename.split('_');
+                    filename = `jayne-clamp-${parts[0]}.jpg`;
+                }
+                
+                link.download = filename;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Clean up the blob URL
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.log('Download failed, opening image in new tab instead');
+                // Fallback: open in new tab if fetch fails
+                window.open(lightboxImg.src, '_blank');
+            });
     }
 }
 
