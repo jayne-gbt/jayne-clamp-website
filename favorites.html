@@ -73,8 +73,18 @@
         }
         
         .tab-button span {
-            color: inherit;
-            opacity: 1;
+            color: inherit !important;
+            opacity: 1 !important;
+            display: inline !important;
+            visibility: visible !important;
+        }
+        
+        .tab-button #album-count,
+        .tab-button #photo-count {
+            color: inherit !important;
+            opacity: 1 !important;
+            display: inline !important;
+            visibility: visible !important;
         }
         
         .tab-content {
@@ -229,6 +239,9 @@
                     <i class="far fa-heart"></i>
                     <h3>No Favorite Albums Yet</h3>
                     <p>Start exploring the <a href="music.html" style="color: var(--accent);">music</a> and <a href="events.html" style="color: var(--accent);">events</a> collections to save your favorites!</p>
+                    <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem;">
+                        <i class="fas fa-info-circle" style="font-size: 0.7rem; margin-right: 0.3rem;"></i><em>Your favorites are saved locally in your browser and will persist across visits, but may be lost if you clear your browser data.</em>
+                    </p>
                 </div>
                 <button class="clear-all" onclick="clearAllAlbums()" id="clear-albums-btn" style="display: none;">
                     Clear All Albums
@@ -242,6 +255,9 @@
                     <i class="far fa-heart"></i>
                     <h3>No Favorite Photos Yet</h3>
                     <p>Click the heart icon on any photo in the lightbox to save it to your favorites!</p>
+                    <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem;">
+                        <i class="fas fa-info-circle" style="font-size: 0.7rem; margin-right: 0.3rem;"></i><em>Your favorites are saved locally in your browser and will persist across visits, but may be lost if you clear your browser data.</em>
+                    </p>
                 </div>
                 <button class="clear-all" onclick="clearAllPhotos()" id="clear-photos-btn" style="display: none;">
                     Clear All Photos
