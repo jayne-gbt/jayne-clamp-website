@@ -19,5 +19,4 @@
 # Handle index.html redirect to clean root URL
 /index.html   /   301
 
-# Catch-all for other pages
-/*    /index.html   200
+# Note: SPA catch-all removed - this is a multi-page static site, not a SPA

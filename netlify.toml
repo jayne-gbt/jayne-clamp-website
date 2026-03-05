@@ -1,3 +1,6 @@
 [build]
   publish = "."
   command = "echo 'No build required - static site'"
+
+[build.processing.html]
+  pretty_urls = false

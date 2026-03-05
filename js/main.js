@@ -1963,8 +1963,8 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     if (albums.length === 0) {
         // Detect which collection page we're on
         const currentPath = window.location.pathname;
-        const isTravel = currentPath.includes('travel.html');
-        const isPets = currentPath.includes('pets.html');
+        const isTravel = currentPath.includes('travel.html') || currentPath.endsWith('/travel');
+        const isPets = currentPath.includes('pets.html') || currentPath.endsWith('/pets');
         
         let message = '';
         if (isTravel || isPets) {
@@ -2041,13 +2041,15 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('=== MAIN.JS DEBUG END ===');
     
     // Initialize collections if on a collection page
-    if (window.location.pathname.includes('/collections/') || 
-        window.location.pathname.includes('music.html') || 
-        window.location.pathname.includes('events.html') || 
-        window.location.pathname.includes('travel.html') || 
-        window.location.pathname.includes('birds.html') || 
-        window.location.pathname.includes('landscapes.html') || 
-        window.location.pathname.includes('pets.html')) {
+    // Handle both .html and non-.html URLs (Netlify Pretty URLs may strip .html)
+    const pagePath = window.location.pathname;
+    if (pagePath.includes('/collections/') || 
+        pagePath.includes('music.html') || pagePath.endsWith('/music') ||
+        pagePath.includes('events.html') || pagePath.endsWith('/events') ||
+        pagePath.includes('travel.html') || pagePath.endsWith('/travel') ||
+        pagePath.includes('birds.html') || pagePath.endsWith('/birds') ||
+        pagePath.includes('landscapes.html') || pagePath.endsWith('/landscapes') ||
+        pagePath.includes('pets.html') || pagePath.endsWith('/pets')) {
         const collectionType = getCollectionTypeFromPath();
         console.log('Collection type detected:', collectionType);
         console.log('ALBUM_DATA available:', !!ALBUM_DATA);
@@ -2731,7 +2733,9 @@ function setAlbumSocialMeta(albumUrl) {
 function createGlobalHeader() {
     // Determine if we're on index page or collection page for correct paths
     const isIndexPage = window.location.pathname.endsWith('/index.html') || window.location.pathname === '/';
-    const basePath = isIndexPage ? '' : '../';
+    const isRootPage = isIndexPage || 
+        /^\/(music|events|travel|birds|landscapes|pets|tags|favorites|contact|about)(\.html)?$/.test(window.location.pathname);
+    const basePath = isRootPage ? '' : '../';
 
     return `
         <header class="site-header">
@@ -4114,7 +4118,7 @@ function performSearch(event) {
     if (query) {
         // Get base path
         const path = window.location.pathname;
-        const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') ? '../' : '';
+        const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') || path.includes('/travel/') ? '../' : '';
         
         // Redirect to tags page with search query
         window.location.href = `${basePath}tags.html?search=${encodeURIComponent(query)}`;
