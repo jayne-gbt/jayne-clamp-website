@@ -209,10 +209,10 @@
             </div>
 
             <div class="favorites-tabs">
-                <button class="tab-button active" onclick="showTab('albums')">
+                <button class="tab-button active" onclick="showTab('albums')" id="albums-tab-btn">
                     <i class="fas fa-images"></i> Albums (<span id="album-count">0</span>)
                 </button>
-                <button class="tab-button" onclick="showTab('photos')">
+                <button class="tab-button" onclick="showTab('photos')" id="photos-tab-btn">
                     <i class="fas fa-camera"></i> Photos (<span id="photo-count">0</span>)
                 </button>
             </div>
@@ -266,7 +266,7 @@
 
             // Show selected tab
             document.getElementById(tabName + '-tab').classList.add('active');
-            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab-btn').classList.add('active');
         }
 
         function loadFavorites() {
