@@ -3750,7 +3750,7 @@ function displayAllTags(allTags) {
         const tagLink = document.createElement('div');
         tagLink.className = 'tag-link';
         tagLink.dataset.tag = tag;
-        tagLink.style.cssText = 'padding: 0.6rem 0.8rem; margin-bottom: 0.25rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: block;';
+        tagLink.style.cssText = 'padding: 0.3rem 0.8rem; margin-bottom: 0.1rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; display: block;';
         
         // Create a single text content with proper spacing
         tagLink.innerHTML = `<span style="color: #fff; font-size: 0.9rem;">${formatTagForDisplay(tag)}</span><span style="color: #999; font-size: 0.85rem; font-weight: 500; margin-left: 0.5rem;">(${photos.length})</span>`;

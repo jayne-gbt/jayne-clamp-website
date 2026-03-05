@@ -1886,7 +1886,7 @@ img {
     
     /* Adjust tag link padding for mobile */
     .tag-link {
-        padding: 0.5rem 0.6rem !important;
+        padding: 0.25rem 0.6rem !important;
         font-size: 0.85rem !important;
     }
 }
@@ -1894,7 +1894,7 @@ img {
 /* Medium mobile screens - keep counts but ensure spacing */
 @media (min-width: 481px) and (max-width: 768px) {
     .tag-link {
-        padding: 0.55rem 0.7rem !important;
+        padding: 0.3rem 0.7rem !important;
     }
 }
 
