@@ -624,6 +624,20 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
+            title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA', 
+            photoCount: 23,
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332369426/',
+            albumPage: '../music/2026-02-26-michael-shannon-jason-narducy-friends-40-watt-athens-ga.html',
+            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait']
+        },
+        { 
+            title: '2026-02-16 Drink the Sea @ 40 Watt | Athens, GA', 
+            photoCount: 25,
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332367660/',
+            albumPage: '../music/2026-02-16-drink-the-sea-40-watt-athens-ga.html',
+            filterNames: ['Drink the Sea']
+        },
+        { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
@@ -2740,7 +2754,7 @@ function createGlobalHeader() {
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${basePath}index.html">Jayne Clamp</a></h1>
+                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/IMG_7114.PNG" alt="Jayne Clamp Photography" style="height: 40px; width: auto; vertical-align: middle;"></a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
@@ -2763,13 +2777,12 @@ function createGlobalHeader() {
                         <li><a href="${basePath}favorites.html">Favorites</a></li>
                         <li><a href="${basePath}contact.html">Contact</a></li>
                         <li class="share-dropdown">
-                            <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                            <a href="#" class="share-trigger">Connect <i class="fas fa-chevron-down"></i></a>
                             <ul class="share-menu">
-                                <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
-                                <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
-                                <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
-                                <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
-                                <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                                <li><a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
+                                <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a></li>
+                                <li><a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener"><i class="fab fa-flickr"></i> Flickr</a></li>
+                                <li><a href="https://soundcloud.com/jclamp" target="_blank" rel="noopener"><i class="fab fa-soundcloud"></i> SoundCloud</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -2832,7 +2845,7 @@ function createGlobalFooter() {
                         <i class="fab fa-soundcloud"></i>
                     </a>
                 </div>
-                <p class="copyright">&copy; 2026 Jayne Clamp | Photography & Website Design</p>
+                <p class="copyright">&copy; 2026 Jayne Clamp Photography</p>
                 <div class="legal-links">
                     <a href="${pathPrefix}privacy-policy.html">Privacy Policy</a>
                     <span class="separator">•</span>
@@ -2869,43 +2882,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeGlobalFooter();
     initializeLightboxClickAdvance();
     
-    // SIMPLE SOLUTION: Remove ALL camera icons completely
-    const removeAllCameras = () => {
-        // Remove ALL camera icons from EVERYWHERE on the page
-        document.querySelectorAll('.fa-camera').forEach(icon => icon.remove());
-        
-        // Clean up site title to just be "Jayne Clamp"
-        const siteTitleLink = document.querySelector('.site-title a');
-        if (siteTitleLink) {
-            siteTitleLink.innerHTML = 'Jayne Clamp';
-        }
-    };
-    
-    // Remove all cameras immediately and keep removing them
-    removeAllCameras();
-    
-    setTimeout(() => {
-        removeAllCameras();
-    }, 1000);
-    
-    setTimeout(() => {
-        removeAllCameras();
-    }, 3000);
-    
-    // CONTINUOUS GUARDIAN: Remove ANY camera icons that appear
-    setInterval(() => {
-        const cameraIcons = document.querySelectorAll('.fa-camera');
-        if (cameraIcons.length > 0) {
-            console.log(`GUARDIAN: Found ${cameraIcons.length} camera icons - removing ALL`);
-            cameraIcons.forEach(icon => icon.remove());
-            
-            // Clean site title
-            const siteTitleLink = document.querySelector('.site-title a');
-            if (siteTitleLink) {
-                siteTitleLink.innerHTML = 'Jayne Clamp';
-            }
-        }
-    }, 200); // Check every 200ms
+    // Camera icon code removed - using logo image instead
 });
 
 // Allow image drag and download functionality
@@ -3292,20 +3269,9 @@ function debugCameraIcons() {
     }
 }
 
-// Simple camera icon cleanup - NO LOOPS
+// Camera icon disabled - using logo image instead
 function ensureSingleCameraIcon() {
-    // Quietly remove all camera icons from site title
-    const allCamerasInTitle = document.querySelectorAll('.site-title .fa-camera');
-    allCamerasInTitle.forEach(icon => icon.remove());
-    
-    // Add exactly one camera icon after the name
-    const siteTitleLink = document.querySelector('.site-title a');
-    if (siteTitleLink && !siteTitleLink.querySelector('.fa-camera')) {
-        siteTitleLink.innerHTML = siteTitleLink.textContent.trim();
-        const cameraIcon = document.createElement('i');
-        cameraIcon.className = 'fas fa-camera';
-        siteTitleLink.appendChild(cameraIcon);
-    }
+    return;
 }
 
 // Photo tags functionality

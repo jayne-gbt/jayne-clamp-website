@@ -45,7 +45,7 @@ a {
 }
 
 a:hover {
-    color: var(--accent) !important;
+    color: var(--accent);
 }
 
 /* Force white text on all common elements */
@@ -55,17 +55,20 @@ h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
 
 .site-title a {
     color: #ffffff !important;
+    font-size: 0 !important;
+    display: inline-block;
+}
+.site-title a img {
+    height: 70px;
+    width: auto;
+}
+.site-title .fa-camera,
+.site-title i {
+    display: none !important;
 }
 
 
-.site-title .fa-camera {
-    margin-left: 0.5rem !important;
-    font-size: 0.85em !important;
-    opacity: 0.8 !important;
-    color: #ffffff !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
-}
+/* Camera icon removed - using logo image instead */
 
 .main-nav a {
     color: #ffffff !important;
@@ -189,13 +192,7 @@ img {
     opacity: 1;
 }
 
-.site-title::after {
-    content: '\f030';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    color: var(--white);
-    font-size: 1.6rem;
-}
+/* Camera icon ::after removed - using logo image */
 
 .main-nav {
     position: relative;
@@ -1213,9 +1210,7 @@ img {
         font-size: 1.4rem;
     }
     
-    .site-title::after {
-        font-size: 1.2rem;
-    }
+    /* Camera icon ::after removed - using logo image */
 
     .hero-title {
         font-size: 1.6rem;

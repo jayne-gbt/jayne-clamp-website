@@ -39,11 +39,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/images/jayne-clamp-sketch.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/jayne-clamp-sketch.png">
     
-    <link rel="stylesheet" href="css/style.css?v=20260304-fix">
+    <link rel="stylesheet" href="css/style.css?v=20260305-logo">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* EMERGENCY DARK MODE FIX */
         body { background-color: #000000 !important; color: #ffffff !important; }
+        /* Logo image replacement */
+        .site-title a { font-size: 0 !important; display: inline-block !important; }
+        .site-title a img { height: 70px !important; width: auto !important; }
+        .site-title .fa-camera, .site-title i { display: none !important; }
         /* Fix button hover text visibility - ensure black text on hover in both light and dark mode */
         .collection-card:hover .collection-btn { 
             color: #000000 !important; 
@@ -53,13 +57,15 @@
 </head>
 <body>
     <!-- Placeholder for global header -->
-    <header class="site-header"></header>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="index.html"><img src="images/IMG_7114.PNG" alt="Jayne Clamp Photography" style="height: 40px; width: auto; vertical-align: middle;"></a></h1>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2 class="hero-title">Photography Collections</h2>
-            <!-- FORCE SYNC: Ensure live site matches local content -->
             <p class="hero-subtitle">Based in Athens, Georgia</p>
         </div>
     </section>
@@ -90,17 +96,6 @@
                     </div>
                 </a>
 
-                <!-- Travel Collection -->
-                <a href="travel.html" class="collection-card">
-                    <div class="collection-image">
-                        <img src="images/collections/travel-cover.jpg" alt="Travel Collection" loading="lazy">
-                        <div class="collection-overlay">
-                            <h3>Travel</h3>
-                            <span class="collection-btn">See Galleries</span>
-                        </div>
-                    </div>
-                </a>
-
                 <!-- Birds Collection -->
                 <a href="birds.html" class="collection-card">
                     <div class="collection-image">
@@ -123,6 +118,17 @@
                     </div>
                 </a>
 
+                <!-- Travel Collection -->
+                <a href="travel.html" class="collection-card">
+                    <div class="collection-image">
+                        <img src="images/collections/travel-cover.jpg" alt="Travel Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3>Travel</h3>
+                            <span class="collection-btn">See Galleries</span>
+                        </div>
+                    </div>
+                </a>
+
                 <!-- Pets Collection -->
                 <a href="pets.html" class="collection-card">
                     <div class="collection-image">
@@ -140,6 +146,6 @@
     <!-- Placeholder for global footer -->
     <footer class="site-footer"></footer>
 
-    <script src="js/main.js?v=20260304-deployment-fix"></script>
+    <script src="js/main.js?v=20260305-2243"></script>
 </body>
 </html>
