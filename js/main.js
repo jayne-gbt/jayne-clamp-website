@@ -413,9 +413,11 @@ function shareLightboxPhoto(platform) {
     const currentPhoto = lightboxPhotos[currentLightboxIndex];
     if (!currentPhoto) return;
     
-    // Share your website's album page URL instead of Flickr
-    const pageUrl = window.location.href;
-    const photoUrl = pageUrl; // Share the current album page
+    // Use jayneclamp.com domain with current path + photo index
+    const pagePath = window.location.pathname;
+    const baseUrl = `https://jayneclamp.com${pagePath}`;
+    const pageUrl = baseUrl;
+    const photoUrl = `${baseUrl}#photo-${currentLightboxIndex}`;
     
     const photoTitle = currentPhoto.title || 'Photo';
     const albumTitle = document.querySelector('.page-title')?.textContent || 'Photo Album';
@@ -434,7 +436,6 @@ function shareLightboxPhoto(platform) {
         case 'instagram':
             // Instagram doesn't support direct URL sharing, copy link instead
             copyToClipboard(photoUrl);
-            alert('Album URL copied! You can paste it in Instagram.');
             break;
         case 'threads':
             shareUrl = `https://threads.net/intent/post?text=${encodeURIComponent(albumTitle + ' - ' + photoUrl)}`;
@@ -450,7 +451,6 @@ function shareLightboxPhoto(platform) {
             break;
         case 'copy':
             copyToClipboard(photoUrl);
-            alert('Album URL copied to clipboard!');
             break;
     }
     
@@ -2754,7 +2754,7 @@ function createGlobalHeader() {
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/IMG_7114.PNG" alt="Jayne Clamp Photography" style="height: 40px; width: auto; vertical-align: middle;"></a></h1>
+                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/IMG_7114.PNG" alt="Jayne Clamp Photography" style="height: 70px; width: auto; vertical-align: middle;"></a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
