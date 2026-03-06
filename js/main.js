@@ -2766,9 +2766,9 @@ function createGlobalHeader() {
                             <ul class="collections-menu">
                                 <li><a href="${basePath}music.html">Music</a></li>
                                 <li><a href="${basePath}events.html">Events</a></li>
-                                <li><a href="${basePath}travel.html">Travel</a></li>
                                 <li><a href="${basePath}birds.html">Birds</a></li>
                                 <li><a href="${basePath}landscapes.html">Landscapes</a></li>
+                                <li><a href="${basePath}travel.html">Travel</a></li>
                                 <li><a href="${basePath}pets.html">Pets</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
