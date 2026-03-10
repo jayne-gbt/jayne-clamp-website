@@ -1468,6 +1468,11 @@ const ALBUM_DATA = {
     ],
     events: [
         { 
+            title: '2026-03-08 Detention Center Not Welcome Here Rally @ Courthouse | Monroe, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464', 
+            albumPage: '../events/2026-03-08-detention-center-not-welcome-here-rally-courthouse-monroe-ga.html' 
+        },
+        { 
             title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
             coverUrl: 'https://live.staticflickr.com/65535/55133360718_2809c9d469_b.jpg',
