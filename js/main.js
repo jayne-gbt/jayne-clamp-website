@@ -638,6 +638,11 @@ const ALBUM_DATA = {
             filterNames: ['Drink the Sea']
         },
         { 
+            title: '2026-02-14 Florry @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332461018/', 
+            albumPage: '../music/2026-02-14-florry-40-watt-athens-ga.html'
+        },
+        { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
