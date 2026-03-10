@@ -99,7 +99,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #17A2B8;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             margin-top: 1rem;
@@ -107,7 +107,7 @@
         }
         
         .setlist-link:hover {
-            color: #138496;
+            color: var(--accent-hover);
         }
         
         @media (max-width: 768px) {
@@ -168,6 +168,26 @@
                 <!-- Videos will be loaded here -->
             </div>
             
+            <!-- Copyright Notice -->
+            <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <p style="font-size: 0.85rem; color: #ccc; line-height: 1.5; margin: 0;">
+                    All rights to the performance, audio and visual content remain with the rights-holders (Gillian Welch, David Rawlings, their management/tour team, and venue). No infringement intended — posted for fan enjoyment and archival purposes.
+                </p>
+            </div>
+            
+            <!-- Artist Official Sites -->
+            <div class="artist-official-section">
+                <p class="section-label">Official Artist Sites</p>
+                <a href="https://gillianwelch.com" target="_blank" rel="noopener" class="artist-official-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Gillian Welch & David Rawlings
+                </a>
+                <a href="https://www.classicenter.com" target="_blank" rel="noopener" class="artist-official-link" style="margin-left: 0.75rem;">
+                    <i class="fas fa-external-link-alt"></i>
+                    Classic Center
+                </a>
+            </div>
+
             <!-- Video Tags -->
             <div class="container" style="text-align: center; padding: 2rem 0 1.5rem 0;">
                 <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
@@ -180,29 +200,6 @@
                     <a href="../tags.html?tag=sixwhitehorses" class="tag" data-tag="sixwhitehorses">sixwhitehorses</a>
                     <a href="../tags.html?tag=thatsthewayitgoes" class="tag" data-tag="thatsthewayitgoes">thatsthewayitgoes</a>
                     <a href="../tags.html?tag=waysidebackintime" class="tag" data-tag="waysidebackintime">waysidebackintime</a>
-                </div>
-            </div>
-            
-            <!-- Copyright Notice -->
-            <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <p style="font-size: 0.85rem; color: #ccc; line-height: 1.5; margin: 0;">
-                    All rights to the performance, audio and visual content remain with the rights-holders (Gillian Welch, David Rawlings, their management/tour team, and venue). No infringement intended — posted for fan enjoyment and archival purposes.
-                </p>
-            </div>
-            
-            <!-- Artist Official Sites -->
-            <div class="container" style="text-align: center; padding: 1.5rem 0;">
-                <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem;">
-                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center;">
-                        <a href="https://gillianwelch.com" target="_blank" rel="noopener" style="color: #fff !important; text-decoration: none; font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
-                            <i class="fas fa-external-link-alt"></i>
-                            Gillian & David's Official Site
-                        </a>
-                        <a href="https://www.classicenter.com" target="_blank" rel="noopener" style="color: #fff !important; text-decoration: none; font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.3s ease;">
-                            <i class="fas fa-external-link-alt"></i>
-                            Classic Center Official Site
-                        </a>
-                    </div>
                 </div>
             </div>
 
@@ -342,21 +339,6 @@
             </button>
         </div>
     </div>
-
-<!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
-        </div>
-    </footer>
 
 </body>
 </html>

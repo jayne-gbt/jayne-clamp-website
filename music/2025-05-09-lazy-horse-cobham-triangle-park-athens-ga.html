@@ -72,6 +72,26 @@
 
     
 
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer"></footer>
+
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
@@ -100,9 +120,6 @@
         </div>
     </div>
 
-    <!-- Placeholder for global footer -->
-    <footer class="site-footer"></footer>
-
     <script src="../js/main.js"></script>
     <script>
         // Load photos from this specific Flickr album
@@ -116,37 +133,6 @@
             setAlbumSocialMeta(albumUrl);
         });
     </script>
-    <!-- Album Navigation at Bottom -->
-    <div class="album-bottom-navigation">
-        <div class="container">
-            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
-                <i class="fas fa-chevron-left"></i>
-                <span class="nav-label">Previous</span>
-            </button>
-            <a href="../music.html" class="back-button back-button-center">
-                <i class="fas fa-arrow-left"></i> Back to Music
-            </a>
-            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
-                <span class="nav-label">Next</span>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-
-<!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
-        </div>
-    </footer>
 
 </body>
 </html>

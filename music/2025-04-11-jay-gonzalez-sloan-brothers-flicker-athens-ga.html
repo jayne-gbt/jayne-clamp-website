@@ -52,7 +52,7 @@
             <!-- Event Note -->
             <div class="container" style="text-align: center; padding: 1.5rem 0;">
                 <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-block;">
-                    <p style="color: #17A2B8; font-weight: 500; margin: 0; font-size: 1rem;">
+                    <p style="color: var(--accent); font-weight: 500; margin: 0; font-size: 1rem;">
                         7" Split Release Party
                     </p>
                 </div>
@@ -67,26 +67,37 @@
     
 
     <!-- Artist Official Sites -->
-    <div class="container" style="text-align: center; padding: 1.5rem 0;">
-        <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-flex; gap: 0.5rem; align-items: center;">
-            <i class="fas fa-external-link-alt" style="color: #fff;"></i>
-            <a href="http://www.jaygonzalez.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500;">
-                Jay Gonzalez Official Site
+    <div class="container artist-official-section">
+        <p class="section-label">Official Artist Sites</p>
+        <a href="http://www.jaygonzalez.com/" target="_blank" rel="noopener" class="artist-official-link">
+            <i class="fas fa-external-link-alt"></i>
+            Jay Gonzalez
+        </a>
+        <a href="https://sloanbrothersathensga.com/" target="_blank" rel="noopener" class="artist-official-link" style="margin-left: 0.75rem;">
+            <i class="fas fa-external-link-alt"></i>
+            Sloan Brothers
+        </a>
+    </div>
+
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music
             </a>
-        </div>
-        <div style="padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 1rem; display: inline-flex; gap: 0.5rem; align-items: center;">
-            <i class="fas fa-external-link-alt" style="color: #fff;"></i>
-            <a href="https://sloanbrothersathensga.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500;">
-                Sloan Brothers Official Site
-            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 
-    <div class="container" style="text-align: center; padding: 2rem 0;">
-        <a href="../music.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Music
-        </a>
-    </div>
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer"></footer>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
@@ -112,9 +123,6 @@
         </div>
     </div>
 
-    <!-- Placeholder for global footer -->
-    <footer class="site-footer"></footer>
-
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -124,37 +132,6 @@
             displayAlbumPhotos(albumUrl);
         });
     </script>
-    <!-- Album Navigation at Bottom -->
-    <div class="album-bottom-navigation">
-        <div class="container">
-            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
-                <i class="fas fa-chevron-left"></i>
-                <span class="nav-label">Previous</span>
-            </button>
-            <a href="../music.html" class="back-button back-button-center">
-                <i class="fas fa-arrow-left"></i> Back to Music
-            </a>
-            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
-                <span class="nav-label">Next</span>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-
-<!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
-        </div>
-    </footer>
 
 </body>
 </html>

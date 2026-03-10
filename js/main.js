@@ -1468,6 +1468,12 @@ const ALBUM_DATA = {
     ],
     events: [
         { 
+            title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
+            coverUrl: 'https://live.staticflickr.com/65535/55133360718_2809c9d469_b.jpg',
+            albumPage: '../events/2026-02-15-corey-forrester-drew-morgan-hendershots-athens-ga.html'
+        },
+        { 
             title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331571028',
             albumPage: '../events/2026-01-13-get-ice-out-for-good-protest-athens-ga.html'
@@ -2775,9 +2781,8 @@ function createGlobalHeader() {
                         </li>
                         <li><a href="${basePath}tags.html">Tags</a></li>
                         <li><a href="${basePath}favorites.html">Favorites</a></li>
-                        <li><a href="${basePath}contact.html">Contact</a></li>
                         <li class="share-dropdown">
-                            <a href="#" class="share-trigger">Connect <i class="fas fa-chevron-down"></i></a>
+                            <a href="${basePath}contact.html" class="share-trigger">Contact <i class="fas fa-chevron-down"></i></a>
                             <ul class="share-menu">
                                 <li><a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a></li>

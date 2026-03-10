@@ -61,14 +61,13 @@
 
     
 
-    <!-- Artist Official Site -->
-    <div class="container" style="text-align: center; padding: 1.5rem 0;">
-        <div style="padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-            <a href="https://cicadarhythm.com/" target="_blank" rel="noopener" style="color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 6px; transition: background 0.3s ease;">
-                <i class="fas fa-external-link-alt"></i>
-                Cicada Rhythm Official Site
-            </a>
-        </div>
+    <!-- Artist Official Site Section -->
+    <div class="container artist-official-section">
+        <p class="section-label">Official Artist Site</p>
+        <a href="https://cicadarhythm.com/" target="_blank" rel="noopener" class="artist-official-link">
+            <i class="fas fa-external-link-alt"></i>
+            Cicada Rhythm
+        </a>
     </div>
 
     <!-- Photo Tags -->
@@ -81,6 +80,26 @@
     
 
     
+
+    <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer"></footer>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
@@ -110,9 +129,6 @@
         </div>
     </div>
 
-    <!-- Placeholder for global footer -->
-    <footer class="site-footer"></footer>
-
     <script src="../js/main.js"></script>
     <script>
         // Load photos from this specific Flickr album
@@ -126,37 +142,6 @@
             setAlbumSocialMeta(albumUrl);
         });
     </script>
-    <!-- Album Navigation at Bottom -->
-    <div class="album-bottom-navigation">
-        <div class="container">
-            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
-                <i class="fas fa-chevron-left"></i>
-                <span class="nav-label">Previous</span>
-            </button>
-            <a href="../music.html" class="back-button back-button-center">
-                <i class="fas fa-arrow-left"></i> Back to Music
-            </a>
-            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
-                <span class="nav-label">Next</span>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-
-<!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
-        </div>
-    </footer>
 
 </body>
 </html>
