@@ -763,7 +763,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
         },
         { 
-            title: '2025-08-29 Pull Chains @ Ideal Bagels | Athens, GA', 
+            title: '2025-08-29 Pull Chains @ Ideal | Athens, GA', 
             photoCount: 13, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330722597/',
             coverUrl: 'https://live.staticflickr.com/65535/54964943969_726bbedd7e_b.jpg',
@@ -821,7 +821,7 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
         },
         { 
-            title: '2023-06-24 Pink Stones @ Athfest | Athens, GA', 
+            title: '2023-06-24 The Pink Stones @ Athfest | Athens, GA', 
             photoCount: 9, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330439979/',
             coverUrl: 'https://live.staticflickr.com/65535/54932541592_d6f12e6bdf_c.jpg',
