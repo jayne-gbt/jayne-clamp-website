@@ -624,19 +624,17 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
-        { 
             title: '2026-03-13 Bloodkin @ Holly Theatre | Dahlonega, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332563345/', 
             albumPage: '../music/2026-03-13-bloodkin-holly-theatre-dahlonega-ga.html' 
         },
-        {
+        { 
             title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA', 
             photoCount: 23,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332369426/',
             albumPage: '../music/2026-02-26-michael-shannon-jason-narducy-friends-40-watt-athens-ga.html',
             filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait']
         },
-        {
         { 
             title: '2026-02-16 Drink the Sea @ 40 Watt | Athens, GA', 
             photoCount: 25,
@@ -644,43 +642,31 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-02-16-drink-the-sea-40-watt-athens-ga.html',
             filterNames: ['Drink the Sea']
         },
-        {
-        { 
-            title: '2026-02-14 Florry @ 40 Watt | Athens, GA', 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332461018/', 
-            albumPage: '../music/2026-02-14-florry-40-watt-athens-ga.html'
-        },
-        {
         { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2026-01-12 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551582',
             albumPage: '../music/2026-01-12-kevn-kinney-peter-buck-rialto-room-athens-ga.html'
         },
-        {
         { 
             title: '2025-12-19 Bloodkin & Friends @ 40 Watt | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331586579/',
             albumPage: '../music/2025-12-19-bloodkin-friends-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2025-12-19 Kevn Kinney @ 40 Watt | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551807/',
             albumPage: '../music/2025-12-19-kevn-kinney-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2025-12-12 Nuci\'s Space 25th Anniversary @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
             albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
@@ -688,7 +674,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54922647191_6b0fe32e37_b.jpg',
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2025-11-02 Paul McCartney @ State Farm Arena | Atlanta, GA', 
             photoCount: 16, 
@@ -702,13 +687,11 @@ const ALBUM_DATA = {
                     youtubeId: 'QPijHe46C-U',
                     tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
                 },
-        {
                 {
                     title: 'Live and Let Die',
                     youtubeId: '10tI_Kgb3HE',
                     tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
                 },
-        {
                 {
                     title: 'Ob-La-Di, Ob-La-Da',
                     youtubeId: 'aBBR-O-DlIs',
@@ -716,7 +699,6 @@ const ALBUM_DATA = {
                 }
             ]
         },
-        {
         { 
             title: '2025-10-19 Porchfest @ Athens, GA', 
             photoCount: 12, 
@@ -724,7 +706,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876264980_887cfb1a8e_b.jpg',
             albumPage: '../music/2025-10-19-porchfest-athens-ga.html'
         },
-        {
         { 
             title: '2025-09-21 Vincas @ Hendershots | Athens, GA', 
             photoCount: 11, 
@@ -732,7 +713,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876776442_e83e6eea26_b.jpg',
             albumPage: '../music/2025-09-21-vincas-hendershots-athens-ga.html'
         },
-        {
         { 
             title: '2025-09-27 The Pink Stones @ Flicker | Athens, GA', 
             photoCount: 11, 
@@ -747,14 +727,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg',
             albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2025-09-10 Hayride @ CIne | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330564193/',
             albumPage: '../music/2025-09-10-hayride-cine-athens-ga.html'
         },
-        {
         { 
             title: '2025-09-07 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 11, 
@@ -762,7 +740,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_b.jpg',
             albumPage: '../music/2025-09-07-kevn-kinney-peter-buck-w-mike-mills-rialto-room-athens-ga.html'
         },
-        {
         { 
             title: '2025-09-06 James McMurtry @ 40 Watt | Athens, GA',
             photoCount: 11, 
@@ -785,7 +762,6 @@ const ALBUM_DATA = {
             filterNames: ['Sam Holt Band', 'Sunny Ortiz'],
             albumPage: '../music/2025-08-30-sam-holt-band-remembering-mikey-todd-live-wire-athens-ga.html'
         },
-        {
         { 
             title: '2025-08-29 Pull Chains @ Ideal Bagels | Athens, GA', 
             photoCount: 13, 
@@ -793,21 +769,18 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54964943969_726bbedd7e_b.jpg',
             albumPage: '../music/2025-08-29-pull-chains-ideal-bagels-athens-ga.html'
         },
-        {
         { 
             title: '2025-08-29 Infinite Favors @ Ideal | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330612052/',
             albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html'
         },
-        {
         { 
             title: '2025-08-29 Honeypuppy @ Ideal | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330652593/',
             albumPage: '../music/2025-08-29-honeypuppy-ideal-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-31 Vincas @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
@@ -815,7 +788,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54885354709_e2e51bf9a2_b.jpg',
             albumPage: '../music/2025-05-31-vincas-nowhere-bar-athens-ga.html'
         },
-        {
          { 
             title: '2025-05-31 Johnny Falloon @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
@@ -823,7 +795,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54885173011_ee959a91b3_b.jpg',
             albumPage: '../music/2025-05-31-johnny-falloon-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-29 Abe Partridge @ Rialto Room | Athens, GA', 
             photoCount: 11, 
@@ -831,28 +802,24 @@ const ALBUM_DATA = {
             filterNames: ['Abe Partridge', 'David Barbe', 'Steve Shelley'],
             albumPage: '../music/2025-05-29-abe-partridge-rialto-room-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-21 Tommy Stinson & Karla Rose @ Cine | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330675235/',
             albumPage: '../music/2025-05-21-tommy-stinson-karla-rose-cine-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-26 Patterson Hood @ Lakeside Jam | Milledgeville, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330649268/',
             albumPage: '../music/2025-05-26-patterson-hood-lakeside-jam-milledgeville-ga.html'
         },
-        {
         { 
             title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
             photoCount: 1, 
             coverUrl: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
         },
-        {
         { 
             title: '2023-06-24 Pink Stones @ Athfest | Athens, GA', 
             photoCount: 9, 
@@ -860,7 +827,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54932541592_d6f12e6bdf_c.jpg',
             albumPage: '../music/2023-06-24-pink-stones-athfest-athens-ga.html'
         },
-        {
         { 
             title: '2021-06-05 Jay Gonzalez @ Liberty Field | Athens, GA', 
             photoCount: 6, 
@@ -868,7 +834,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54933682333_3f00e98099_c.jpg',
             albumPage: '../music/2021-06-05-jay-gonzalez-liberty-field-athens-ga.html'
         },
-        {
         { 
             title: '2025-02-27 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 3, 
@@ -876,7 +841,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg',
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
-        {
         { 
             title: '2025-02-17 Classic City Wrestling w Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -890,7 +854,6 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
-        {
         { 
             title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
             photoCount: 22,
@@ -900,28 +863,24 @@ const ALBUM_DATA = {
             // Album exists but not accessible via API - likely privacy/permission issue
             apiAccessible: false
         },
-        {
         { 
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
             photoCount: 24, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
             albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2025-03-26 Patterson Hood & the Sensurrounders @ Terminal West | Atlanta, GA', 
             photoCount: 25, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330484627/',
             albumPage: '../music/2025-03-26-patterson-hood-sensurrounders-terminal-west-atlanta-ga.html'
         },
-        {
         { 
             title: '2025-03-05 Eric Carter & Scotty Nicholson @ Nowhere Bar | Athens, GA', 
             photoCount: 8, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330505783/',
             albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2025-03-15 Thick Lizzy @ Foundry | Athens, GA', 
             photoCount: 17, 
@@ -929,7 +888,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54964190490_7402f5bdf8_b.jpg',
             albumPage: '../music/2025-03-15-thick-lizzy-foundry-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-04 David Lowery @ Cobham Triangle Park | Athens, GA', 
             photoCount: 5, 
@@ -937,7 +895,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54938296652_1fdd68fb7f_c.jpg',
             albumPage: '../music/2025-04-04-david-lowery-cobham-triangle-park-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-04 Kit @ Cobham Triangle Park | Athens, GA', 
             photoCount: 7, 
@@ -945,7 +902,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54939458499_fdae0da7fa_c.jpg',
             albumPage: '../music/2025-04-04-kit-cobham-triangle-park-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-03 Gillian Welch & David Rawlings @ Classic Center | Athens, GA', 
             photoCount: 3, 
@@ -959,13 +915,11 @@ const ALBUM_DATA = {
                     youtubeId: 'Qg47lp6AHws',
                     tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
                 },
-        {
                 {
                     title: "That's the Way It Goes",
                     youtubeId: 'aRFz1bChgkA',
                     tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
                 },
-        {
                 {
                     title: 'Six White Horses',
                     youtubeId: 'u9w-jkqych4',
@@ -973,7 +927,6 @@ const ALBUM_DATA = {
                 }
             ]
         },
-        {
         { 
             title: '2025-04-11 Steeple Benefit @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -981,14 +934,12 @@ const ALBUM_DATA = {
             filterNames: ['Steeple Benefit', 'Granfalloons', 'The Bad Ends', 'Five Eight', 'Sunny Ortiz'],
             albumPage: '../music/2025-04-11-steeple-benefit-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-11 Lee Bains @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330685535/',
             albumPage: '../music/2025-04-11-lee-bains-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-11 Jay Gonzalez & Sloan Brothers @ Flicker | Athens, GA', 
             photoCount: 4, 
@@ -996,28 +947,24 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54939476809_f3752d5884_c.jpg',
             albumPage: '../music/2025-04-11-jay-gonzalez-sloan-brothers-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2025-04-25 Cicada Rhythm @ Cobham Triangle Park | Athens, GA', 
             photoCount: 6, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518389/',
             albumPage: '../music/2025-04-25-cicada-rhythm-cobham-triangle-park-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-09 Rose Hotel @ Cobham Triangle Park | Athens, GA', 
             photoCount: 14, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330485070/',
             albumPage: '../music/2025-05-09-rose-hotel-cobham-triangle-park-athens-ga.html'
         },
-        {
         { 
             title: '2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA', 
             photoCount: 9, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518974/',
             albumPage: '../music/2025-05-09-lazy-horse-cobham-triangle-park-athens-ga.html'
         },
-        {
         { 
             title: '2024-10-11 Kimberly Morgan York @ Terrapin Beer Co. | Athens, GA', 
             photoCount: 11, 
@@ -1044,13 +991,11 @@ const ALBUM_DATA = {
                     youtubeId: 'iEzos4yZNRg',
                     tags: ['wendellgee', 'michaelstipe', 'davidbarbe', 'andylemaster', 'dougemhoff', 'kamalaharris', 'democrats', 'athensclarkecountydemocrats', 'politics', 'rem', 'presidentialcampaign']
                 },
-        {
                 {
                     title: 'Story',
                     youtubeId: 'YCGqsU8YHg4',
                     tags: ['story', 'michaelstipe', 'davidbarbe', 'andylemaster', 'dougemhoff', 'kamalaharris', 'democrats', 'athensclarkecountydemocrats', 'politics', 'rem', 'presidentialcampaign']
                 },
-        {
                 {
                     title: 'Driver 8',
                     youtubeId: 'GEfZU9giVug',
@@ -1065,14 +1010,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_b.jpg',
             albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2024-09-07 The Bad Ends @ 40 Watt | Athens, GA', 
             photoCount: 27, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330492587/',
             albumPage: '../music/2024-09-07-the-bad-ends-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2024-05-24 Hayride @ Roadhouse | Athens, GA', 
             photoCount: 16, 
@@ -1085,28 +1028,24 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330251330/',
             albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247733/',
             albumPage: '../music/2024-04-04-alejandro-escovedo-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2024-04-13 Pilgrim @ Little Kings | Athens, GA', 
             photoCount: 5, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493222/',
             albumPage: '../music/2024-04-13-pilgrim-little-kings-athens-ga.html'
         },
-        {
         { 
             title: '2024-04-11 Kimberly Morgan York @ House Party | Athens, GA', 
             photoCount: 9, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330487035/',
             albumPage: '../music/2024-04-11-kimberly-morgan-york-band-house-party-athens-ga.html'
         },
-        {
         { 
             title: '2024-04-20 Irreperable Damage @ Flicker | Athens, GA', 
             photoCount: 6, 
@@ -1114,14 +1053,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54936449937_bd06e0ed3c_c.jpg',
             albumPage: '../music/2024-04-20-irreperable-damage-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2024-03-01 Lona @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247523/',
             albumPage: '../music/2024-03-01-lona-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2024-02-15 Vision Video @ 40 Watt | Athens, GA', 
             photoCount: 6, 
@@ -1129,14 +1066,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937524283_39edfc2795_c.jpg',
             albumPage: '../music/2024-02-15-vision-video-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2024-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330343237/',
             albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2024-02-14 Dimmer Twins & Friends @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1145,7 +1080,6 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-02-14-dimmer-twins-friends-40-watt-athens-ga.html',
             filterNames: ['Dimmer Twins', 'Don Chambers', 'Dave Marr', 'Claire Campbell', 'Jay Gonzalez']
         },
-        {
         { 
             title: '2024-01-26 Bit Brigade @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
@@ -1153,14 +1087,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887654154_1a2bbe03b2_b.jpg',
             albumPage: '../music/2024-01-26-bit-brigade-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2024-01-26 Lazer/Wulf @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330282554/',
             albumPage: '../music/2024-01-26-lazer-wulf-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2023-12-16 Vincas @ 40 Watt | Athens, GA', 
             photoCount: 22, 
@@ -1168,21 +1100,18 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54913923967_88d498ed7a_b.jpg',
             albumPage: '../music/2023-12-16-vincas-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-11-24 TaxiCab Verses @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
             albumPage: '../music/2023-11-24-taxicab-verses-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2023-11-24 Jacob Morris @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193693/',
             albumPage: '../music/2023-11-24-jacob-morris-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2023-07-18 Jay Gonzalez @ Athentic Brewery | Athens, GA', 
             photoCount: 2, 
@@ -1190,7 +1119,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937568999_6fdc41bd09_c.jpg',
             albumPage: '../music/2023-07-18-jay-gonzalez-athentic-brewery-athens-ga.html'
         },
-        {
         { 
             title: '2023-07-15 Kimberly Morgan York @ Nowhere Bar | Athens, GA', 
             photoCount: 19, 
@@ -1198,7 +1126,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54942426625_804ced667a_b.jpg',
             albumPage: '../music/2023-07-15-kimberly-morgan-york-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2023-11-04 Jerry Joseph & the Jackmormons @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1206,7 +1133,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887676938_5139120bee_b.jpg',
             albumPage: '../music/2023-11-04-jerry-joseph-the-jackmormons-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-10-07 TaxiCab Verses @ 40 Watt | Athens, GA', 
             photoCount: 10, 
@@ -1214,7 +1140,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54930448852_9453baf315_b.jpg',
             albumPage: '../music/2023-10-07-taxicab-verses-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-10-07 Baba Commandant & the Mandingo Band @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1222,7 +1147,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887240071_f8ff887ce5_b.jpg',
             albumPage: '../music/2023-10-07-baba-commandant-the-mandingo-band-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-10-12 Kimberly Morgan York @ Nowhere Bar | Athens, GA', 
             photoCount: 13, 
@@ -1230,7 +1154,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54941356620_3d47a70241_b.jpg',
             albumPage: '../music/2023-10-12-kimberly-morgan-york-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2023-09-30 David Barbe @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1238,7 +1161,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887353605_67e82e3d0c_b.jpg',
             albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
@@ -1246,56 +1168,48 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54926455050_25d957e129_c.jpg',
             albumPage: '../music/2023-09-30-pilgrim-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2023-09-10 Jerry Joseph and the Jackmormons @ Heist Brewery | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324995/',
             albumPage: '../music/2023-09-10-jackmormons-heist-brewery-athens-ga.html'
         },
-        {
         { 
             title: '2023-08-26 Telemarket @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330342632/',
             albumPage: '../music/2023-08-26-telemarket-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-08-12 Drug Ducks @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172460/',
             albumPage: '../music/2023-08-12-drug-ducks-nowhere-athens-ga.html'
         },
-        {
         { 
             title: '2023-06-24 Lona @ AthFest | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330794/',
             albumPage: '../music/2023-06-24-lona-athfest-athens-ga.html'
         },
-        {
         { 
             title: '2023-04-06 Will Johnson @ Living Room Show | Athens, GA', 
             photoCount: 7, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330408516/',
             albumPage: '../music/2023-04-06-will-johnson-living-room-show-athens-ga.html'
         },
-        {
         { 
             title: '2023-04-06 Spencer Thomas @ Living Room Show | Athens, GA', 
             photoCount: 2, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330411882/',
             albumPage: '../music/2023-04-06-spencer-thomas-living-room-show-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-23 JD Pinkus & Daniel Mason @ Cine | Athens, GA', 
             photoCount: 5, 
@@ -1303,7 +1217,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54936453727_9c179be67d_c.jpg',
             albumPage: '../music/2023-03-23-jd-pinkus-daniel-mason-cine-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-10 Cracker @ 40 Watt | Athens, GA', 
             photoCount: 8, 
@@ -1311,14 +1224,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937643785_5dec809aef_c.jpg',
             albumPage: '../music/2023-03-10-cracker-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-04 Bloodkin @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330541379/',
             albumPage: '../music/2023-03-04-bloodkin-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
             photoCount: 11, 
@@ -1326,7 +1237,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54916983482_fc96063e12_c.jpg',
             albumPage: '../music/2023-03-25-elf-power-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2023-02-10 Shotgun Shells: A Celebration of Todd McBride @ 40 Watt & Nowhere Bar | Athens, GA', 
             photoCount: 11, 
@@ -1335,7 +1245,6 @@ const ALBUM_DATA = {
             filterNames: ['Classic City Jukebox', 'Shehehe', 'Mercyland', 'AD Blanco', 'Royal Velvet', 'Shotgun Saviors', 'The Arcs'],
             albumPage: '../music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html'
         },
-        {
         { 
             title: '2023-03-10 Kimberly Morgan York @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1343,14 +1252,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54886514342_342d0e0b2b_b.jpg',
             albumPage: '../music/2023-03-10-kimberly-morgan-york-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-12-13 Supernova Rainbow of Fun @ Nuci\'s Space', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172345/',
             albumPage: '../music/2022-12-13-supernova-rainbow-of-fun-nucis-space.html'
         },
-        {
         { 
             title: '2022-12-13 Clay Leverett & John Neff @ Nuci\'s Space | Athens, GA', 
             photoCount: 7, 
@@ -1358,35 +1265,30 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54936434472_98005f57b1_c.jpg',
             albumPage: '../music/2022-12-13-clay-leverett-john-neff-nucis-space-athens-ga.html'
         },
-        {
         { 
             title: '2022-11-27 Bloodkin @ Nuci\'s Space | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534192/',
             albumPage: '../music/2022-11-27-bloodkin-nucis-space-athens-ga.html'
         },
-        {
         { 
             title: '2022-10-02 Hunter Morris @ Porchfest | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330346052/',
             albumPage: '../music/2022-10-02-hunter-morris-porchfest-athens-ga.html'
         },
-        {
         { 
             title: '2022-09-15 Brown Dwarf @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330252736/',
             albumPage: '../music/2022-09-15-brown-dwarf-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-09-02 Infinite Favors @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330369904/',
             albumPage: '../music/2022-09-02-infinite-favors-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-09-02 Don Chambers @ 40 Watt | Athens, GA', 
             photoCount: 6, 
@@ -1394,7 +1296,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937489223_590defb396_c.jpg',
             albumPage: '../music/2022-09-02-don-chambers-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-09-24 A-Fest with Blunt Bangs @ Little Kings | Athens, GA', 
             photoCount: 6, 
@@ -1402,7 +1303,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937496533_4042f9002c_c.jpg',
             albumPage: '../music/2022-09-24-a-fest-athens-ga.html'
         },
-        {
         { 
             title: '2022-07-22 Kimberly Morgan York @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1410,7 +1310,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54884346352_08513c42a3_b.jpg',
             albumPage: '../music/2022-07-22-kimberly-morgan-york-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-07-22 Claire Campbell @ 40 Watt | Athens, GA', 
             photoCount: 6, 
@@ -1418,14 +1317,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937277471_73d9f2292b_c.jpg',
             albumPage: '../music/2022-07-22-claire-campbell-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-06-26 Kevn Kinney Band @ AthFest | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258602/',
             albumPage: '../music/2022-06-26-kevn-kinney-band-athfest-athens-ga.html'
         },
-        {
         { 
             title: '2022-05-22 The Wydelles @ 40 Watt | Athens, GA', 
             photoCount: 6, 
@@ -1433,7 +1330,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54936381962_1f567eec3f_c.jpg',
             albumPage: '../music/2022-05-22-the-wydelles-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2022-04-10 Patterson Hood, Claire Campbell & Jay Gonzalez @ Creature Comforts | Athens, GA',
             photoCount: 11, 
@@ -1441,7 +1337,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887666343_32bb0a8754_b.jpg',
             albumPage: '../music/2022-04-10-patterson-hood-claire-campbell-jay-gonzalez-creature-comforts-athens-ga.html'
         },
-        {
         { 
             title: '2022-03-27 Bo Bedingfield @ World Famous | Athens, GA', 
             photoCount: 7, 
@@ -1449,14 +1344,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937488894_58feba17b0_c.jpg',
             albumPage: '../music/2022-03-27-bo-bedingfield-world-famous-athens-ga.html'
         },
-        {
         { 
             title: '2022-02-26 Kimberly Morgan York @ The Root | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330527475/',
             albumPage: '../music/2022-02-26-kimberly-morgan-york-the-root-athens-ga.html'
         },
-        {
         { 
             title: '2020-02-13 The Dexateens @ 40 Watt | Athens, GA', 
             photoCount: 9, 
@@ -1464,14 +1357,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54931548358_9c9c34f739_b.jpg',
             albumPage: '../music/2020-02-13-the-dexateens-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2019-12-31 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
             albumPage: '../music/2019-12-31-five-eight-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2019-10-21 Steel Pulse @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
@@ -1479,14 +1370,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54886596559_161315c87d_b.jpg',
             albumPage: '../music/2019-10-21-steel-pulse-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2019-09-12 Bloodkin @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330327/',
             albumPage: '../music/2019-09-12-bloodkin-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2019-05-03 Matt Talbott @ Espresso Machine Studio | Athens, GA', 
             photoCount: 2, 
@@ -1494,7 +1383,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937376014_12f07a7797_c.jpg',
             albumPage: '../music/2019-05-03-matt-talbott-espresso-machine-studio-athens-ga.html'
         },
-        {
         { 
             title: '2019-05-30 Andrew Prater @ Flicker | Athens, GA', 
             photoCount: 7, 
@@ -1502,42 +1390,36 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54937477214_e10024d858_c.jpg',
             albumPage: '../music/2019-05-30-andrew-prater-flicker-athens-ga.html'
         },
-        {
         { 
             title: '2019-03-30 Hayride @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330305987/',
             albumPage: '../music/2019-03-30-hayride-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2019-03-22 The Rock*A*Teens @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330338565/',
             albumPage: '../music/2019-03-22-rock-a-teens-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2019-02-01 David Barbe & the Quick Hooks @ Caledonia | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
             albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
         },
-        {
         { 
             title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330229651/',
             albumPage: '../music/2018-12-29-lona-caledonia-athens-ga.html'
         },
-        {
         { 
             title: '2018-11-08 Robyn Hitchcock @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345098/',
             albumPage: '../music/2018-11-08-robyn-hitchcock-40-watt-athens-ga.html'
         },
-        {
         { 
             title: '2018-10-31 Bloodkin @ Georgia Theatre | Athens, GA', 
             photoCount: 9, 
@@ -1545,49 +1427,42 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54931383658_6af651a0c5_b.jpg',
             albumPage: '../music/2018-10-31-bloodkin-georgia-theatre-athens-ga.html'
         },
-        {
         { 
             title: '2018-10-31 Jerry Joseph & the Jackmormons @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
             albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
         },
-        {
         { 
             title: '2018-07-14 Cinemechanica @ Caledonia | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324630/',
             albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
-        {
         { 
             title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance (Bloodkin) @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534587/',
             albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html'
         },
-        {
         { 
             title: '2018-06-04 Daniel Hutchens & David Barbe @ Georgia Theatre Rooftop | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330320628/',
             albumPage: '../music/2018-06-04-daniel-hutchens-david-barbe-georgia-theatre-rooftop-athens-ga.html'
         },
-        {
         { 
             title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204669/',
             albumPage: '../music/2017-12-14-5000-caledonia-athens-ga.html'
         },
-        {
         { 
             title: '2017-07-27 Jerry Joseph, Todd Nance & John Neff @ The Foundry | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330222401/',
             albumPage: '../music/2017-07-27-jerry-joseph-todd-nance-john-neff-the-foundry-athens-ga.html'
         },
-        {
         { 
             title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -1595,28 +1470,19 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg',
             albumPage: '../music/2011-06-02-jerry-joseph-bloodkin-todd-nance-40-watt-athens-ga.html'
         },
-        {
     ],
     events: [
-        { 
-            title: '2026-03-08 Detention Center Not Welcome Here Rally @ Courthouse | Monroe, GA', 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464', 
-            albumPage: '../events/2026-03-08-detention-center-not-welcome-here-rally-courthouse-monroe-ga.html' 
-        },
-        {
         { 
             title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
             coverUrl: 'https://live.staticflickr.com/65535/55133360718_2809c9d469_b.jpg',
             albumPage: '../events/2026-02-15-corey-forrester-drew-morgan-hendershots-athens-ga.html'
         },
-        {
         { 
             title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331571028',
             albumPage: '../events/2026-01-13-get-ice-out-for-good-protest-athens-ga.html'
         },
-        {
          { 
             title: '2025-10-25 Wild Rumpus @ Athens, GA', 
             photoCount: 11, 
@@ -1645,14 +1511,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54098561188_ce988963fc_b.jpg',
             albumPage: '../events/2024-10-26-wild-rumpus-athens-ga.html'
         },
-        {
         { 
             title: '2022-10-14 UGA Homecoming Parade | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192248/',
             albumPage: '../events/2022-10-14-uga-homecoming-parade-athens-ga.html'
         },
-        {
         { 
             title: '2022-09-17 UCW Labor Rally w Stacey Abrams @ Athens, GA', 
             photoCount: 11, 
@@ -1660,7 +1524,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54886322487_2b2240f709_b.jpg',
             albumPage: '../events/2022-09-17-ucw-labor-rally-w-stacey-abrams-athens-ga.html'
         },
-        {
         { 
             title: '2022-06-12 Pride Parade @ Athens, GA',
             photoCount: 11, 
@@ -1668,7 +1531,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54886560369_27df1d1567_b.jpg',
             albumPage: '../events/2022-06-12-pride-parade-athens-ga.html'
         },
-        {
         { 
             title: '2021-10-31 Wild Rumpus Halloween | Athens, GA', 
             photoCount: 11, 
@@ -1676,14 +1538,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54886500317_39f45f57ac_b.jpg',
             albumPage: '../events/2021-10-31-wild-rumpus-halloween-athens-ga.html'
         },
-        {
         { 
             title: '2020-11-13 Jon Ossoff Senate Runoff Rally | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345548/',
             albumPage: '../events/2020-11-13-jon-ossoff-senate-runoff-rally-athens-ga.html'
         },
-        {
         { 
             title: '2020-06-06 Black Lives Matter Protest | Athens, GA', 
             photoCount: 11, 
@@ -1691,7 +1551,6 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54887679959_4cc6bae0aa_b.jpg',
             albumPage: '../events/2020-06-06-black-lives-matter-protest-athens-ga.html'
         },
-        {
         { 
             title: '2018-03-24 March for Our Lives Rally | Athens, GA', 
             photoCount: 11, 
@@ -2763,7 +2622,6 @@ if (contactForm) {
             headers: {
                 'Content-Type': 'application/json'
             },
-        {
             body: JSON.stringify(formData)
         })
         .then(response => response.json())
