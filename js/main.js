@@ -1440,7 +1440,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
         { 
-            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance (Bloodkin) @ Nowhere Bar | Athens, GA', 
+            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534587/',
             albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html'
