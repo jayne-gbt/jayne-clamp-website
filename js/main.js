@@ -867,7 +867,8 @@ const ALBUM_DATA = {
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
             photoCount: 24, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
-            albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html'
+            albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html',
+            filterNames: ['Elf Power', 'Giant Day', 'Marshmallow Coast', 'Heather McIntosh', 'Scott Spillane', 'Robert Schneider', 'Max Schneider', 'The Apples in Stereo', 'The Rishis', 'Jason NeSmith', 'John Kiran Fernandes', 'Robbee Cucchiaro', 'John Ferguson', 'Laura Carter', 'Peter Erchick', 'Franklin Russell', 'Peter Alvanos', 'Derek Almstead', 'Emily Growden', 'Ryan Bousqet', 'Eric Allen', 'John Hill', 'Gary Olsen', 'Kris Deason']
         },
         { 
             title: '2025-03-26 Patterson Hood & the Sensurrounders @ Terminal West | Atlanta, GA', 
