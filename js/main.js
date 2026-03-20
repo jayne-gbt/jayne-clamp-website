@@ -634,14 +634,15 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-03-11-gary-numan-40-watt-athens-ga.html' 
         },
         { 
+            title: '2026-03-07 Infinite Favors @ Dead Beat Club | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332616190/', 
+            albumPage: '../music/2026-03-07-infinite-favors-dead-beat-club-athens-ga.html', 
+            filterNames: ['Andrew Prater'] 
+        },
+        { 
             title: '2026-03-07 Bursters @ Dead Beat Club | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332649564/', 
             albumPage: '../music/2026-03-07-bursters-dead-beat-club-athens-ga.html' 
-        },
-        { 
-            title: '2026-03-07 Infinite Favors @ Dead Beat Club | Athens, GA', 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332616190/', 
-            albumPage: '../music/2026-03-07-infinite-favors-dead-beat-club-athens-ga.html' 
         },
         { 
             title: '2026-03-07 Johann Greco @ Dead Beat Club | Athens, GA', 
@@ -803,7 +804,8 @@ const ALBUM_DATA = {
             title: '2025-08-29 Infinite Favors @ Ideal | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330612052/',
-            albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html'
+            albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html', 
+            filterNames: ['Andrew Prater']
         },
         { 
             title: '2025-08-29 Honeypuppy @ Ideal | Athens, GA', 
@@ -1318,7 +1320,8 @@ const ALBUM_DATA = {
             title: '2022-09-02 Infinite Favors @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330369904/',
-            albumPage: '../music/2022-09-02-infinite-favors-40-watt-athens-ga.html'
+            albumPage: '../music/2022-09-02-infinite-favors-40-watt-athens-ga.html', 
+            filterNames: ['Andrew Prater']
         },
         { 
             title: '2022-09-02 Don Chambers @ 40 Watt | Athens, GA', 
