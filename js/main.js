@@ -629,6 +629,26 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-03-13-bloodkin-holly-theatre-dahlonega-ga.html' 
         },
         { 
+            title: '2026-03-11 Gary Numan @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332613305/', 
+            albumPage: '../music/2026-03-11-gary-numan-40-watt-athens-ga.html' 
+        },
+        { 
+            title: '2026-03-07 Bursters @ Dead Beat Club | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332649564/', 
+            albumPage: '../music/2026-03-07-bursters-dead-beat-club-athens-ga.html' 
+        },
+        { 
+            title: '2026-03-07 Infinite Favors @ Dead Beat Club | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332616190/', 
+            albumPage: '../music/2026-03-07-infinite-favors-dead-beat-club-athens-ga.html' 
+        },
+        { 
+            title: '2026-03-07 Johann Greco @ Dead Beat Club | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332649474/', 
+            albumPage: '../music/2026-03-07-johann-greco-dead-beat-club-athens-ga.html' 
+        },
+        { 
             title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA', 
             photoCount: 23,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332369426/',
@@ -641,6 +661,16 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332367660/',
             albumPage: '../music/2026-02-16-drink-the-sea-40-watt-athens-ga.html',
             filterNames: ['Drink the Sea']
+        },
+        { 
+            title: '2026-02-14 Florry @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332461018/', 
+            albumPage: '../music/2026-02-14-florry-40-watt-athens-ga.html' 
+        },
+        { 
+            title: '2026-02-13 The Lanes @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332622026/', 
+            albumPage: '../music/2026-02-13-the-lanes-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
