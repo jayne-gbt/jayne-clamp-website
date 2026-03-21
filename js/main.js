@@ -674,6 +674,11 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-02-13-the-lanes-40-watt-athens-ga.html' 
         },
         { 
+            title: '2026-02-13 Camp Amped Band @ 40 Watt | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332630290/', 
+            albumPage: '../music/2026-02-13-camp-amped-band-40-watt-athens-ga.html' 
+        },
+        { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
