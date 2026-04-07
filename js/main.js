@@ -624,6 +624,12 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
+            title: '2026-03-21 Don Chambers & Julia Barfield @ Dead Beat Club | Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332815161/', 
+            albumPage: '../music/2026-03-21-don-chambers-julia-barfield-dead-beat-club-athens-ga.html', 
+            filterNames: ['Don Chambers', 'Julia Barfield'] 
+        },
+        { 
             title: '2026-03-13 Bloodkin @ Holly Theatre | Dahlonega, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332563345/', 
             albumPage: '../music/2026-03-13-bloodkin-holly-theatre-dahlonega-ga.html' 
@@ -1517,10 +1523,21 @@ const ALBUM_DATA = {
     ],
     events: [
         { 
+            title: '2026-04-05 Detention Center Not Welcome Here Rally @ Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/', 
+            albumPage: '../events/2026-04-05-detention-center-not-welcome-here-rally-athens-ga.html', 
+            filterNames: ['Detention Center']
+        },
+        { 
             title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
             coverUrl: 'https://live.staticflickr.com/65535/55133360718_2809c9d469_b.jpg',
             albumPage: '../events/2026-02-15-corey-forrester-drew-morgan-hendershots-athens-ga.html'
+        },
+        { 
+            title: '2026-03-28 No Kings #3 @ Athens, GA', 
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332808125/', 
+            albumPage: '../events/2026-03-28-no-kings-3-athens-ga.html' 
         },
         { 
             title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA', 
@@ -1535,14 +1552,14 @@ const ALBUM_DATA = {
             albumPage: '../events/2025-10-25-wild-rumpus-athens-ga.html'
         }, 
         { 
-            title: '2025-10-18 No Kings @ Athens, GA', 
+            title: '2025-10-18 No Kings #2 @ Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329866562/',
             coverUrl: 'https://live.staticflickr.com/65535/54875117537_93e96d972a_b.jpg',
             albumPage: '../events/2025-10-18-no-kings-athens-ga.html'
         },  
         { 
-            title: '2025-06-14 No Kings @ Downtown Athens', 
+            title: '2025-06-14 No Kings #1 @ Downtown Athens', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329940176/',
             coverUrl: 'https://live.staticflickr.com/65535/54885223885_8a11e33546_b.jpg',
@@ -2809,7 +2826,7 @@ function createGlobalHeader() {
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/IMG_7114.PNG" alt="Jayne Clamp Photography" style="height: 70px; width: auto; vertical-align: middle;"></a></h1>
+                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/JayneClamp.PNG" alt="Jayne Clamp Photography" style="height: 70px; width: auto; vertical-align: middle;"></a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
