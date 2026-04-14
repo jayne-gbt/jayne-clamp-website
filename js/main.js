@@ -712,7 +712,8 @@ const ALBUM_DATA = {
         { 
             title: '2025-12-12 Nuci\'s Space 25th Anniversary @ Georgia Theatre | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
-            albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html'
+            albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html',
+            filterNames: ['Clare Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power']
         },
         { 
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
@@ -888,6 +889,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
             coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg',
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
+        },
+        { 
+            title: '2025-07-07 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room | Athens, GA',
+            albumPage: '../music/2025-07-07-kevn-kinney-peter-buck-david-barbe-rialtoroom-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck', 'David Barbe'],
+            manualTags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers'],
         },
         { 
             title: '2025-02-17 Classic City Wrestling w Drive-By Truckers @ 40 Watt | Athens, GA', 
@@ -1519,6 +1526,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72157626752915571/',
             coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_b.jpg',
             albumPage: '../music/2011-06-02-jerry-joseph-bloodkin-todd-nance-40-watt-athens-ga.html'
+        },
+        { 
+            title: '2006-03-02 Patterson Hood & Friends @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://jayneclamp.com/images/PHoodFriends2006.png', 
+            filterNames: ['Patterson Hood', 'John Neff', 'Brad Morgan', 'Dave Schools', 'Mike Cooley'],
+            manualTags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter'],
         },
     ],
     events: [

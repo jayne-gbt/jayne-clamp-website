@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z1G54B1GV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025-11-02 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room (Videos) - Jayne Clamp Photography</title>
+    <meta name="description" content="2025-11-02 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room - Video Collection">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2025-11-02 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room (Videos)">
+    <meta property="og:description" content="Live concert videos by Jayne Clamp - 2025-11-02 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room">
+    <meta property="og:image" content="https://i.ytimg.com/vi/BTMsMZICnNQ/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLCd17tCVjHmnICrdwhh_aNE1TIFZw">
+    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2025-11-02-paul-mccartney-state-farm-arena-videos.html">
+    <meta property="og:site_name" content="Jayne Clamp Photography">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2025-11-02 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room (Videos)">
+    <meta name="twitter:description" content="Live concert videos by Jayne Clamp">
+    <meta name="twitter:image" content="https://i.ytimg.com/vi/BTMsMZICnNQ/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&rs=AOn4CLCd17tCVjHmnICrdwhh_aNE1TIFZw">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Force Band on the Run to start a new row (it's now video 10) */
+        .video-card:nth-child(10) {
+            grid-column: 1;
+        }
+        
+        /* Force Entrance (first Short) to start row 5 (it's now video 11) */
+        .video-card:nth-child(11) {
+            grid-column: 1;
+        }
+        
+        @media (max-width: 1200px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-embed {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio for regular videos */
+        }
+        
+        .video-embed.shorts {
+            padding-bottom: 177.78%; /* 9:16 aspect ratio for Shorts */
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .video-info {
+            padding: 1rem;
+        }
+        
+        .video-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .video-description {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+        
+        .page-title .fa-video {
+            margin-left: 0.5rem;
+            color: #ff6b6b;
+        }
+        
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Tag styles - matching other album pages */
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .tag.active {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li class="collections-dropdown">
+                        <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                        <ul class="collections-menu">
+                            <li><a href="../collections/music.html">Music</a></li>
+                            <li><a href="../collections/events.html">Events</a></li>
+                            <li><a href="../collections/travel.html">Travel</a></li>
+                            <li><a href="../collections/birds.html">Birds</a></li>
+                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
+                            <li><a href="../collections/pets.html">Pets</a></li>
+                            <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li class="share-dropdown">
+                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
+                        <ul class="share-menu">
+                            <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
+                            <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#" onclick="shareToPinterest(); return false;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                            <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" onclick="copyPageLink(); return false;"><i class="fas fa-link"></i> Copy Link</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="album-page">
+        <div class="container">
+            <a href="../music.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+
+            <div class="page-header">
+                <h2 class="page-title">2025-07-07 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room | Athens, GA <i class="fas fa-video"></i></h2>
+                <p class="page-subtitle" id="video-count">Loading videos...</p>
+                <p class="page-subtitle"><a href="https://www.setlist.fm/setlist/paul-mccartney/2025/state-farm-arena-atlanta-ga-6b456a6e.html" target="_blank" style="color: #fff; text-decoration: underline;">Setlist</a></p>
+            </div>
+
+            <div id="loading" class="loading">Loading videos...</div>
+
+            <!-- Video Grid -->
+            <div id="video-grid" class="video-grid">
+                <!-- Videos will be loaded here -->
+            </div>
+            
+            <!-- Copyright Notice -->
+            <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <p style="font-size: 0.85rem; color: #ccc; line-height: 1.5; margin: 0;">
+                    All rights to the performance, audio and visual content remain with the rights-holders (Kevn Kinney, Peter Buck & David Barbe, his management/tour team, and venue). No infringement intended — posted for fan enjoyment and archival purposes.
+                </p>
+            </div>
+            
+            <!-- Artist Official Site Section -->
+            <div class="artist-official-section">
+                <p class="section-label">Official Artist Site</p>
+                <a href="https://paulmccartney.com" target="_blank" rel="noopener" class="artist-official-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Kevn Kinney, Peter Buck & David Barbe
+                </a>
+            </div>
+
+            <!-- Video Tags -->
+            <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
+                <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <a href="../tags.html?tag=athensga" class="tag" data-tag="athensga">athensga</a>
+                    <a href="../tags.html?tag=athensgamusic" class="tag" data-tag="athensgamusic">athensgamusic</a>
+                    <a href="../tags.html?tag=kevnkinney" class="tag" data-tag="kevnkinney">kevn kinney</a>
+                    <a href="../tags.html?tag=peterbuck" class="tag" data-tag="peterbuck">peter buck</a>
+                    <a href="../tags.html?tag=davidbarbe" class="tag" data-tag="davidbarbe">david barbe</a>
+                    <a href="../tags.html?tag=rialto" class="tag" data-tag="rialto">rialto</a>
+                    <a href="../tags.html?tag=livemusic" class="tag" data-tag="livemusic">live music</a>
+                    <a href="../tags.html?tag=driventruckers" class="tag" data-tag="driventruckers">drive-by truckers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+        <!-- Album Navigation at Bottom -->
+    <div class="album-bottom-navigation">
+        <div class="container">
+            <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
+                <i class="fas fa-chevron-left"></i>
+                <span class="nav-label">Previous</span>
+            </button>
+            <a href="../music.html" class="back-button back-button-center">
+                <i class="fas fa-arrow-left"></i> Back to Music
+            </a>
+            <button id="next-album" class="album-nav-btn album-nav-right" title="Next Album">
+                <span class="nav-label">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+<!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-share" onclick="toggleLightboxShare()">
+                <i class="fas fa-share"></i>
+            </button>
+            <div class="lightbox-share-menu" id="lightbox-share-menu">
+                <a href="#" onclick="togglePhotoFavorite(); return false;" class="lightbox-favorite" title="Add to favorites"><i class="far fa-heart"></i></a>
+                <a href="#" onclick="downloadLightboxImage(); return false;" title="Download Image"><i class="fas fa-download"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('pinterest'); return false;"><i class="fab fa-pinterest"></i></a>
+                <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
+            </div>
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <button id="lightbox-prev" onclick="prevLightboxImage()">&#8249;</button>
+                <button id="lightbox-next" onclick="nextLightboxImage()">&#8250;</button>
+            </div>
+            <div id="lightbox-counter" class="lightbox-counter"></div>
+        </div>
+    </div>
+
+    <script src="../js/main.js?v=20260413-2100"></script>
+    <script>
+        // Video data - Regular videos first, then Shorts
+        const youtubeVideos = [
+            { url: 'https://www.youtube.com/watch?v=mX6wkiLh_-Y', title: 'Kevn Kinney, Peter Buck & David Barbe @ Rialto Room 2025-07-07' }
+        ];
+
+        // Function to extract YouTube video ID from URL (including Shorts)
+        function getYouTubeVideoId(url) {
+            // Handle YouTube Shorts URLs
+            const shortsMatch = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
+            if (shortsMatch) {
+                return shortsMatch[1];
+            }
+            
+            // Handle regular YouTube URLs
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        // Function to load and display videos
+        function loadVideos() {
+            const videoGrid = document.getElementById('video-grid');
+            const loading = document.getElementById('loading');
+            const videoCount = document.getElementById('video-count');
+
+            if (youtubeVideos.length === 0) {
+                videoGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">No videos added yet</p>
+                        <p style="font-size: 0.95rem;">Videos will be added soon</p>
+                    </div>
+                `;
+                if (loading) loading.style.display = 'none';
+                if (videoCount) videoCount.textContent = 'Videos coming soon';
+                return;
+            }
+
+            // Hide loading
+            if (loading) loading.style.display = 'none';
+            
+            // Update video count
+            if (videoCount) {
+                videoCount.textContent = `${youtubeVideos.length} video${youtubeVideos.length !== 1 ? 's' : ''}`;
+            }
+
+            // Generate video cards
+            videoGrid.innerHTML = youtubeVideos.map(video => {
+                // Skip placeholder entries
+                if (video.url.includes('PLACEHOLDER')) {
+                    return '';
+                }
+
+                // Handle Google Drive videos
+                if (video.isGoogleDrive) {
+                    // Extract Google Drive file ID and create embed URL
+                    const fileId = video.url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+                    if (fileId) {
+                        const embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                        return `
+                            <div class="video-card video-item" data-tags="athens,kevnkinney,peterbuck,davidbarbe,livemusic,rialto">
+                                <div class="video-embed">
+                                    <iframe 
+                                        src="${embedUrl}" 
+                                        title="${video.title || 'Kevn Kinney, Peter Buck & David Barbe Video'}"
+                                        allow="autoplay">
+                                    </iframe>
+                                </div>
+                                <div class="video-info">
+                                    <div class="video-title">${video.title || 'Kevn Kinney, Peter Buck & David Barbe Performance'}</div>
+                                    ${video.description ? `<div class="video-description">${video.description}</div>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+
+                // Handle YouTube videos
+                const videoId = getYouTubeVideoId(video.url);
+                if (!videoId) return '';
+
+                // Check if this is a YouTube Short
+                const isShort = video.url.includes('/shorts/');
+                const embedClass = isShort ? 'video-embed shorts' : 'video-embed';
+
+                return `
+                    <div class="video-card video-item" data-tags="athens,kevnkinney,peterbuck,davidbarbe,livemusic,rialto">
+                        <div class="${embedClass}">
+                            <iframe 
+                                src="https://www.youtube.com/embed/${videoId}" 
+                                title="${video.title || 'Kevn Kinney, Peter Buck & David Barbe Video'}"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">${video.title || 'Kevn Kinney, Peter Buck & David Barbe Performance'}</div>
+                            ${video.description ? `<div class="video-description">${video.description}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Set up tag click handlers after videos are loaded
+            setupTagHandlers();
+        }
+
+        // Function to set up tag click handlers
+        function setupTagHandlers() {
+            const tags = document.querySelectorAll('.tag-button[data-tag]');
+            console.log('Setting up tag handlers for', tags.length, 'tags');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tagName = this.dataset.tag;
+                    console.log('Tag clicked:', tagName);
+                    filterVideosByTag(tagName);
+                });
+            });
+        }
+
+        // Function to filter videos by tag
+        function filterVideosByTag(tag) {
+            console.log('Filtering videos by tag:', tag);
+            const videoItems = document.querySelectorAll('.video-item');
+            const tags = document.querySelectorAll('.tag-button');
+            
+            console.log('Found', videoItems.length, 'video items');
+            console.log('Found', tags.length, 'tag elements');
+            
+            // Update tag active states
+            tags.forEach(tagEl => {
+                if (tagEl.dataset.tag === tag) {
+                    tagEl.classList.add('active');
+                } else {
+                    tagEl.classList.remove('active');
+                }
+            });
+            
+            // Show/hide videos based on tag
+            videoItems.forEach(video => {
+                const videoTags = video.dataset.tags.split(',');
+                console.log('Video tags:', videoTags);
+                if (videoTags.includes(tag)) {
+                    video.style.display = 'block';
+                    console.log('Showing video');
+                } else {
+                    video.style.display = 'none';
+                    console.log('Hiding video');
+                }
+            });
+        }
+        
+        // Function to show all videos (clear filter)
+        function showAllVideos() {
+            const videoItems = document.querySelectorAll('.video-item');
+            const tags = document.querySelectorAll('.tag-button');
+            
+            // Remove active state from all tags
+            tags.forEach(tagEl => {
+                tagEl.classList.remove('active');
+            });
+            
+            // Mark All button as active
+            const allBtn = document.querySelector('.tag-button:not([data-tag])');
+            if (allBtn) allBtn.classList.add('active');
+            
+            // Show all videos
+            videoItems.forEach(video => {
+                video.style.display = 'block';
+            });
+        }
+
+        // Load videos when page loads
+        document.addEventListener('DOMContentLoaded', loadVideos);
+    </script>
+</body>
+</html>
