@@ -1529,6 +1529,7 @@ const ALBUM_DATA = {
         },
         { 
             title: '2006-03-02 Patterson Hood & Friends @ 40 Watt | Athens, GA', 
+            albumPage: '../music/2006-03-02-patterson-hood-friends-40-watt-athens-ga.html',
             coverUrl: 'https://jayneclamp.com/images/PHoodFriends2006.png', 
             filterNames: ['Patterson Hood', 'John Neff', 'Brad Morgan', 'Dave Schools', 'Mike Cooley'],
             manualTags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter'],
