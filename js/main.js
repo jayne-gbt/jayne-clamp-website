@@ -624,6 +624,13 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         { 
+            title: '2026-04-11 Drivin N Cryin @ 40 Watt | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333192494/',
+            albumPage: '../music/2026-04-11-drivin-n-cryin-40-watt-athens-ga.html',
+            filterNames: ['Drivin N Cryin', 'Kevn Kinney', 'Tim Nielsen', 'R.S. Field'],
+            manualTags: ['drivinncryin', 'kevnkinney', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'southernrock'],
+        },
+        {
             title: '2026-03-21 Don Chambers & Julia Barfield @ Dead Beat Club | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332815161/', 
             albumPage: '../music/2026-03-21-don-chambers-julia-barfield-dead-beat-club-athens-ga.html', 
