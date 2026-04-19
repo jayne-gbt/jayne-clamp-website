@@ -1543,7 +1543,13 @@ const ALBUM_DATA = {
         },
     ],
     events: [
-        { 
+        {
+            title: '2026-04-14 Protest Against JD Vance Turning Point Rally @ Akins Ford Arena | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333183378/',
+            albumPage: '../events/2026-04-14-protest-jd-vance-turning-point-rally-athens-ga.html',
+            filterNames: ['Protest', 'JD Vance', 'Turning Point', 'Young Dems UGA', 'UGA YDSA'],
+        },
+        {
             title: '2026-04-05 Detention Center Not Welcome Here Rally @ Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/', 
             albumPage: '../events/2026-04-05-detention-center-not-welcome-here-rally-athens-ga.html', 
