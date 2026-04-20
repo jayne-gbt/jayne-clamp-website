@@ -1472,6 +1472,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
             albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
         },
+        {
+            title: '2019-02-01 The Wydelles @ Caledonia | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345488/',
+            albumPage: '../music/2019-02-01-the-wydelles-caledonia-athens-ga.html',
+            filterNames: ['The Wydelles'],
+        },
         { 
             title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
             photoCount: 11, 
