@@ -890,6 +890,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54933682333_3f00e98099_c.jpg',
             albumPage: '../music/2021-06-05-jay-gonzalez-liberty-field-athens-ga.html'
         },
+        {
+            title: '2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244008/',
+            albumPage: '../music/2021-09-16-addie-tonic-southern-brewing-co-athens-ga.html',
+            filterNames: ['Addie Tonic'],
+        },
         { 
             title: '2025-02-27 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 3, 
@@ -1004,7 +1010,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-04-11-lee-bains-flicker-athens-ga.html'
         },
         { 
-            title: '2025-04-11 Jay Gonzalez & Sloan Brothers @ Flicker | Athens, GA', 
+            title: '2025-04-11 Jay Gonzalez & Sloan Brothers Release Party @ Flicker | Athens, GA', 
             photoCount: 4, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330469965/',
             coverUrl: 'https://live.staticflickr.com/65535/54939476809_f3752d5884_c.jpg',
