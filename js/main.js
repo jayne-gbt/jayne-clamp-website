@@ -669,6 +669,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-02-26-michael-shannon-jason-narducy-friends-40-watt-athens-ga.html',
             filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait']
         },
+        {
+            title: '2026-02-25 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332257799/',
+            albumPage: '../music/2026-02-25-kevn-kinney-peter-buck-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney'],
+        },
         { 
             title: '2026-02-16 Drink the Sea @ 40 Watt | Athens, GA', 
             photoCount: 25,
@@ -728,6 +734,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330299990/',
             coverUrl: 'https://live.staticflickr.com/65535/54922647191_6b0fe32e37_b.jpg',
             albumPage: '../music/2025-11-11-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
+        },
+        {
+            title: '2025-12-12 Heartbreakers @ Nowhere Bar | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332485984/',
+            albumPage: '../music/2025-12-12-heartbreakers-nowhere-bar-athens-ga.html',
+            filterNames: ['Heartbreakers'],
         },
         { 
             title: '2025-11-02 Paul McCartney @ State Farm Arena | Atlanta, GA', 
@@ -1299,6 +1311,12 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330541379/',
             albumPage: '../music/2023-03-04-bloodkin-nowhere-bar-athens-ga.html'
         },
+        {
+            title: '2023-02-09 Weaponized Flesh @ Georgia Theatre | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330453275/',
+            albumPage: '../music/2023-02-09-weaponized-flesh-georgia-theatre-athens-ga.html',
+            filterNames: ['Weaponized Flesh'],
+        },
         { 
             title: '2023-03-25 Elf Power @ Flicker | Athens, GA', 
             photoCount: 11, 
@@ -1345,6 +1363,12 @@ const ALBUM_DATA = {
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330346052/',
             albumPage: '../music/2022-10-02-hunter-morris-porchfest-athens-ga.html'
+        },
+        {
+            title: '2022-10-02 Tom Hiel @ Porchfest | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330486389/',
+            albumPage: '../music/2022-10-02-tom-hiel-porchfest-athens-ga.html',
+            filterNames: ['Tom Hiel'],
         },
         { 
             title: '2022-09-15 Brown Dwarf @ 40 Watt | Athens, GA', 
@@ -1567,6 +1591,12 @@ const ALBUM_DATA = {
             albumPage: '../events/2026-04-05-detention-center-not-welcome-here-rally-athens-ga.html', 
             filterNames: ['Detention Center']
         },
+        {
+            title: '2026-03-08 Detention Center Not Welcome Here Rally @ Courthouse | Monroe, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/',
+            albumPage: '../events/2026-03-08-detention-center-not-welcome-here-rally-courthouse-monroe-ga.html',
+            filterNames: ['Detention Center'],
+        },
         { 
             title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
@@ -1623,6 +1653,11 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329962161/with/54887201501',
             coverUrl: 'https://live.staticflickr.com/65535/54886322487_2b2240f709_b.jpg',
             albumPage: '../events/2022-09-17-ucw-labor-rally-w-stacey-abrams-athens-ga.html'
+        },
+        {
+            title: '2022-10-19 Stacey Abrams Bus Tour @ College Square | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330456911/',
+            albumPage: '../events/2022-10-19-stacey-abrams-bus-tour-college-square-athens-ga.html',
         },
         { 
             title: '2022-06-12 Pride Parade @ Athens, GA',
