@@ -21,7 +21,6 @@ const ViewTracker = {
     // Track album view
     trackAlbumView: function(albumId) {
         if (this.isOwner()) {
-            console.log(`Album ${albumId} - View not tracked (site owner)`);
             return this.getAlbumViews(albumId);
         }
         const views = this.getViews();
@@ -33,7 +32,6 @@ const ViewTracker = {
     // Track photo view
     trackPhotoView: function(photoId) {
         if (this.isOwner()) {
-            console.log(`Photo ${photoId} - View not tracked (site owner)`);
             return this.getPhotoViews(photoId);
         }
         const views = this.getViews();
@@ -91,7 +89,6 @@ function extractAlbumId(flickrUrl) {
 // Fetch ALL photos from a Flickr album using pagination
 async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
     if (!FLICKR_CONFIG.apiKey || FLICKR_CONFIG.apiKey === 'YOUR_FLICKR_API_KEY') {
-        console.warn('Flickr API key not configured. Using fallback method.');
         return null;
     }
 
@@ -100,16 +97,13 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
     let totalPages = 1;
     const perPage = 100; // Maximum allowed by Flickr API
     
-    console.log(`Fetching ALL photos from album ${albumId}...`);
     
     try {
         do {
             const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
-            console.log(`Fetching page ${page}/${totalPages}:`, url);
             
             const response = await fetch(url);
-            console.log(`Page ${page} response status:`, response.status);
             
             const data = await response.json();
             
@@ -117,19 +111,11 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
                 // Update total pages from first response
                 if (page === 1) {
                     totalPages = data.photoset.pages;
-                    console.log('Album info:', {
-                        id: data.photoset.id,
-                        total: data.photoset.total,
-                        pages: data.photoset.pages,
-                        perpage: data.photoset.perpage
-                    });
                 }
                 
                 const pagePhotos = data.photoset.photo.map(photo => {
                     // Debug: Log raw tag data from first photo
                     if (data.photoset.photo.indexOf(photo) === 0 && photo.tags) {
-                        console.log('Raw tags from Flickr API:', photo.tags);
-                        console.log('Type:', typeof photo.tags);
                     }
                     
                     return {
@@ -144,24 +130,20 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
                 });
                 
                 allPhotos = allPhotos.concat(pagePhotos);
-                console.log(`Page ${page}: Added ${pagePhotos.length} photos. Total so far: ${allPhotos.length}`);
                 
                 page++;
             } else {
                 console.error('Flickr API error:', data.message || 'Unknown error');
-                console.log('Trying alternative method for older album...');
                 
                 // Try alternative method for older albums
                 return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
             }
         } while (page <= totalPages && allPhotos.length < maxPhotos);
         
-        console.log(`✅ Fetched ALL ${allPhotos.length} photos from album ${albumId}`);
         return allPhotos;
         
     } catch (error) {
         console.error('Error fetching Flickr photos:', error);
-        console.log('Trying alternative method for older album...');
         
         // Try alternative method for older albums
         return await fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos);
@@ -170,7 +152,6 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
 
 // Alternative method for older Flickr albums with pagination
 async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
-    console.log('Using alternative method with pagination for album:', albumId);
     
     let allPhotos = [];
     let page = 1;
@@ -181,7 +162,6 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
         do {
             const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_s,url_m,url_l,url_o,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
-            console.log(`Alternative method - fetching page ${page}/${totalPages}`);
             
             const response = await fetch(url);
             const data = await response.json();
@@ -189,7 +169,6 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
             if (data.stat === 'ok' && data.photoset && data.photoset.photo) {
                 if (page === 1) {
                     totalPages = data.photoset.pages;
-                    console.log(`Alternative method - Album has ${data.photoset.total} photos across ${totalPages} pages`);
                 }
                 
                 const pagePhotos = data.photoset.photo.map(photo => ({
@@ -203,7 +182,6 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
                 }));
                 
                 allPhotos = allPhotos.concat(pagePhotos);
-                console.log(`Alternative method - Page ${page}: Added ${pagePhotos.length} photos. Total: ${allPhotos.length}`);
                 
                 page++;
             } else {
@@ -212,7 +190,6 @@ async function fetchFlickrAlbumPhotosAlternative(albumId, maxPhotos = 500) {
             }
         } while (page <= totalPages && allPhotos.length < maxPhotos);
         
-        console.log(`✅ Alternative method fetched ALL ${allPhotos.length} photos from album ${albumId}`);
         return allPhotos;
         
     } catch (error) {
@@ -304,7 +281,6 @@ function showLightboxImage() {
         
         // Track photo view (private - logged to console only)
         const photoViews = ViewTracker.trackPhotoView(photo.id);
-        console.log(`Photo ${photo.id} viewed ${photoViews} times (private stat)`);
         
         // Track photo view in Google Analytics
         if (typeof gtag !== 'undefined') {
@@ -422,14 +398,6 @@ function shareLightboxPhoto(platform) {
     const photoTitle = currentPhoto.title || 'Photo';
     const albumTitle = document.querySelector('.page-title')?.textContent || 'Photo Album';
     
-    // Debug log to help troubleshoot
-    console.log('Sharing photo:', {
-        platform,
-        photoUrl,
-        photoTitle,
-        currentPhoto
-    });
-    
     let shareUrl = '';
     
     switch(platform) {
@@ -473,11 +441,9 @@ function copyToClipboard(text) {
         return false;
     }
     
-    console.log('Copying to clipboard:', text);
     
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
-            console.log('Successfully copied to clipboard');
         }).catch(err => {
             console.error('Failed to copy to clipboard:', err);
             alert('Failed to copy to clipboard');
@@ -493,7 +459,6 @@ function copyToClipboard(text) {
             document.body.removeChild(textArea);
             
             if (successful) {
-                console.log('Successfully copied to clipboard (fallback)');
             } else {
                 console.error('Failed to copy to clipboard (fallback)');
                 alert('Failed to copy to clipboard');
@@ -1816,14 +1781,12 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
         return;
     }
     
-    console.log('Fetching photos for album ID:', albumId);
     
     // Check if this album has manual photos defined (for legacy albums with API issues)
     const albumData = findAlbumByUrl(albumUrl);
     
     // Check if album is marked as not API accessible
     if (albumData && albumData.apiAccessible === false) {
-        console.log('Album marked as not API accessible, showing Flickr link');
         photosGrid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #ccc;">
                 <p style="font-size: 1.2rem; margin-bottom: 1rem;">Photos from this album are available on Flickr</p>
@@ -1837,7 +1800,6 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
     }
     
     if (albumData && albumData.manualPhotos) {
-        console.log('Using manual photo list for album:', albumId);
         let photos = albumData.manualPhotos.map(photo => ({
             id: photo.id,
             title: photo.title,
@@ -1849,7 +1811,6 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
         // Apply photo limit if specified
         if (photoLimit && photos.length > photoLimit) {
             photos = photos.slice(0, photoLimit);
-            console.log(`Limited manual photos to first ${photoLimit} (skipping video thumbnails)`);
         }
         
         // Hide loading
@@ -1874,13 +1835,11 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
             </div>
         `).join('');
         
-        console.log(`Successfully loaded ${photos.length} manual photos`);
         return;
     }
     
     // Track album view (private - logged to console only)
     const viewCount = ViewTracker.trackAlbumView(albumId);
-    console.log(`Album ${albumId} viewed ${viewCount} times (private stat)`);
     
     // Track album view in Google Analytics
     if (typeof gtag !== 'undefined') {
@@ -1897,7 +1856,6 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
     // Apply photo limit if specified
     if (photoLimit && photos && photos.length > photoLimit) {
         photos = photos.slice(0, photoLimit);
-        console.log(`Limited photos to first ${photoLimit} (skipping video thumbnails)`);
     }
     
     // Hide loading
@@ -1921,11 +1879,9 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
         return;
     }
     
-    console.log(`Successfully loaded ${photos.length} photos`);
     
     // Apply manual tags if specified (for albums where we limited photos but need to preserve tags)
     if (albumData && albumData.manualTags) {
-        console.log('Applying manual tags to photos:', albumData.manualTags);
         photos.forEach(photo => {
             // Merge existing tags with manual tags, removing duplicates
             const existingTags = photo.tags || [];
@@ -1935,14 +1891,6 @@ async function displayAlbumPhotos(albumUrl, photoLimit = null) {
     
     // Debug: Check what description data we have
     photos.forEach((photo, i) => {
-        if (i < 3) { // Log first 3 photos for debugging
-            console.log(`Photo ${i + 1}:`, {
-                title: photo.title,
-                description: photo.description,
-                tags: photo.tags,
-                hasDescription: !!(photo.description && photo.description.trim())
-            });
-        }
     });
     
     // Store photos globally for lightbox and tag filtering
@@ -1970,15 +1918,10 @@ function openAlbumLightbox(index) {
 
 // Display albums from manual configuration
 function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all') {
-    console.log('=== DISPLAY ALBUMS DEBUG START ===');
-    console.log('displayAlbums called with:', collectionType, filterYear, filterBand, filterVenue);
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
-    console.log('albumsGrid element found:', !!albumsGrid);
-    console.log('loading element found:', !!loading);
     
     if (!albumsGrid) {
-        console.log('albumsGrid not found, returning');
         return;
     }
 
@@ -2193,12 +2136,6 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
 
 // Initialize collections when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('=== MAIN.JS DEBUG START ===');
-    console.log('Main.js loaded successfully - Version 20251122-0225');
-    console.log('Current pathname:', window.location.pathname);
-    console.log('ALBUM_DATA exists:', !!ALBUM_DATA);
-    console.log('ALBUM_DATA.music length:', ALBUM_DATA.music ? ALBUM_DATA.music.length : 'undefined');
-    console.log('=== MAIN.JS DEBUG END ===');
     
     // Initialize collections if on a collection page
     // Handle both .html and non-.html URLs (Netlify Pretty URLs may strip .html)
@@ -2211,12 +2148,8 @@ document.addEventListener('DOMContentLoaded', function() {
         pagePath.includes('landscapes.html') || pagePath.endsWith('/landscapes') ||
         pagePath.includes('pets.html') || pagePath.endsWith('/pets')) {
         const collectionType = getCollectionTypeFromPath();
-        console.log('Collection type detected:', collectionType);
-        console.log('ALBUM_DATA available:', !!ALBUM_DATA);
-        console.log('Collection data available:', collectionType && ALBUM_DATA[collectionType] ? ALBUM_DATA[collectionType].length : 'No data');
         
         if (collectionType && ALBUM_DATA[collectionType]) {
-            console.log('Calling displayAlbums for:', collectionType);
             displayAlbums(collectionType);
             initializeFilters(collectionType);
         } else {
@@ -2261,7 +2194,6 @@ function getAlbumUrlFromPage() {
 // Get collection type from current path
 function getCollectionTypeFromPath() {
     const path = window.location.pathname;
-    console.log('Checking path for collection type:', path);
     
     // Handle both /collections/music and music.html formats
     if (path.includes('music.html') || path.includes('/music')) return 'music';
@@ -2271,7 +2203,6 @@ function getCollectionTypeFromPath() {
     if (path.includes('landscapes.html') || path.includes('/landscapes')) return 'landscapes';
     if (path.includes('pets.html') || path.includes('/pets')) return 'pets';
     
-    console.log('No collection type matched for path:', path);
     return null;
 }
 
@@ -2786,35 +2717,21 @@ if (contactForm) {
 window.viewStats = function() {
     const views = ViewTracker.getViews();
     const isOwner = ViewTracker.isOwner();
-    console.log('=== VIEW STATISTICS ===');
-    console.log(`Owner Mode: ${isOwner ? '✓ ENABLED (your views not tracked)' : '✗ DISABLED'}`);
-    console.log(`Total Album Views: ${ViewTracker.getTotalAlbumViews()}`);
-    console.log(`Total Photo Views: ${ViewTracker.getTotalPhotoViews()}`);
-    console.log('\n--- Album Views ---');
     Object.entries(views.albums).sort((a, b) => b[1] - a[1]).forEach(([id, count]) => {
-        console.log(`Album ${id}: ${count} views`);
     });
-    console.log('\n--- Top 10 Photos ---');
     Object.entries(views.photos).sort((a, b) => b[1] - a[1]).slice(0, 10).forEach(([id, count]) => {
-        console.log(`Photo ${id}: ${count} views`);
     });
-    console.log('\n--- Commands ---');
-    console.log('enableOwnerMode() - Exclude your views from tracking');
-    console.log('disableOwnerMode() - Include your views in tracking');
-    console.log('localStorage.removeItem("photoViews") - Clear all stats');
     return views;
 };
 
 // Enable owner mode (exclude your views)
 window.enableOwnerMode = function() {
     localStorage.setItem('siteOwner', 'true');
-    console.log('✓ Owner mode ENABLED - Your views will not be tracked');
 };
 
 // Disable owner mode (include your views)
 window.disableOwnerMode = function() {
     localStorage.removeItem('siteOwner');
-    console.log('✓ Owner mode DISABLED - Your views will be tracked');
 };
 
 // ===================================
@@ -2870,13 +2787,6 @@ function setAlbumSocialMeta(albumUrl) {
     }
     
     updateSocialMetaTags(albumTitle, albumDescription, imageUrl, pageUrl);
-    
-    console.log('Updated social meta tags:', {
-        title: albumTitle,
-        description: albumDescription,
-        image: imageUrl,
-        url: pageUrl
-    });
 }
 
 // ===================================
@@ -2941,25 +2851,18 @@ function createGlobalHeader() {
 function initializeGlobalHeader() {
     const existingHeader = document.querySelector('.site-header');
     if (existingHeader) {
-        console.log('Found existing header:', existingHeader);
-        console.log('Original header HTML:', existingHeader.outerHTML.substring(0, 200) + '...');
         existingHeader.outerHTML = createGlobalHeader();
-        console.log('Global header initialized - header replaced');
         
         // Initialize mobile menu after header is replaced
-        console.log('Setting timeout to initialize mobile menu...');
         setTimeout(() => {
-            console.log('Timeout fired, calling initializeMobileMenu...');
             initializeMobileMenu();
         }, 100);
         
         // Check what the new header looks like
         const newHeader = document.querySelector('.site-header');
         if (newHeader) {
-            console.log('New header HTML:', newHeader.outerHTML.substring(0, 200) + '...');
         }
     } else {
-        console.log('No existing header found to replace');
     }
 }
 
@@ -3009,15 +2912,12 @@ function initializeGlobalFooter() {
     if (existingFooter && existingFooter.parentNode) {
         try {
             existingFooter.outerHTML = createGlobalFooter();
-            console.log('Global footer initialized');
         } catch (error) {
-            console.log('Footer replacement failed, appending instead:', error);
             document.body.insertAdjacentHTML('beforeend', createGlobalFooter());
         }
     } else {
         // No existing footer or no parent, just append
         document.body.insertAdjacentHTML('beforeend', createGlobalFooter());
-        console.log('Global footer appended');
     }
 }
 
@@ -3064,7 +2964,6 @@ function downloadLightboxImage() {
                 window.URL.revokeObjectURL(url);
             })
             .catch(error => {
-                console.log('Download failed, opening image in new tab instead');
                 // Fallback: open in new tab if fetch fails
                 window.open(lightboxImg.src, '_blank');
             });
@@ -3200,8 +3099,6 @@ function togglePhotoFavorite() {
     }
 }
 
-console.log('💡 Tip: Type viewStats() to see statistics | enableOwnerMode() to exclude your views');
-
 // ===================================
 // SCROLL POSITION RESTORATION
 // ===================================
@@ -3214,7 +3111,6 @@ function saveScrollPosition() {
     // Only save for collection pages
     if (path.includes('/collections/')) {
         sessionStorage.setItem('scrollPosition_' + path, scrollY.toString());
-        console.log('Saved scroll position:', scrollY, 'for', path);
     }
 }
 
@@ -3234,7 +3130,6 @@ function restoreScrollPosition() {
                     top: scrollY,
                     behavior: 'smooth'
                 });
-                console.log('Restored scroll position:', scrollY, 'for', path);
             }, 100);
         }
     }
@@ -3343,21 +3238,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===================================
 
 function initializeMobileMenu() {
-    console.log('🔧 initializeMobileMenu() called');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
-    console.log('🔧 Mobile toggle found:', mobileToggle);
-    console.log('🔧 Nav menu found:', navMenu);
     
     if (mobileToggle && navMenu) {
         // Check if already initialized to prevent duplicate listeners
         if (mobileToggle.hasAttribute('data-initialized')) {
-            console.log('🔧 Mobile menu already initialized, skipping');
             return;
         }
         
-        console.log('🔧 Adding click listener to mobile menu');
         mobileToggle.setAttribute('data-initialized', 'true');
         mobileToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
@@ -3387,13 +3277,10 @@ function initializeMobileMenu() {
     }
 }
 
-
 // Debug function to count camera icons
 function debugCameraIcons() {
     const allCameraIcons = document.querySelectorAll('.fa-camera');
-    console.log(`Found ${allCameraIcons.length} camera icons:`);
     allCameraIcons.forEach((icon, index) => {
-        console.log(`Camera ${index + 1}:`, icon, 'Parent:', icon.parentElement);
     });
     
     // Check for CSS-generated content
@@ -3401,15 +3288,11 @@ function debugCameraIcons() {
     if (siteTitle) {
         const beforeContent = window.getComputedStyle(siteTitle, '::before').content;
         const afterContent = window.getComputedStyle(siteTitle, '::after').content;
-        console.log('Site title ::before content:', beforeContent);
-        console.log('Site title ::after content:', afterContent);
         
         const siteTitleLink = document.querySelector('.site-title a');
         if (siteTitleLink) {
             const linkBeforeContent = window.getComputedStyle(siteTitleLink, '::before').content;
             const linkAfterContent = window.getComputedStyle(siteTitleLink, '::after').content;
-            console.log('Site title link ::before content:', linkBeforeContent);
-            console.log('Site title link ::after content:', linkAfterContent);
         }
     }
 }
@@ -3554,7 +3437,6 @@ let allPhotosWithTags = []; // Store all photos globally for filtering
 let allVideosWithTags = []; // Store all videos globally for filtering
 
 async function initializeTagsPage() {
-    console.log('Initializing tags page...');
     
     const tagsContainer = document.getElementById('tags-container');
     const searchInput = document.getElementById('tag-search');
@@ -3630,7 +3512,6 @@ async function initializeTagsPage() {
                                     allTags.set(tag, []);
                                 }
                                 allTags.get(tag).push(videoData);
-                                console.log(`Added video "${video.title}" to tag "${tag}". Tag now has ${allTags.get(tag).length} items.`);
                             });
                             
                             // Add to progressive results if filtering by tag
@@ -3646,7 +3527,6 @@ async function initializeTagsPage() {
                 const albumId = extractAlbumId(album.flickrUrl);
                 if (!albumId) {
                     processedCount++;
-                    console.warn(`Could not extract album ID from: ${album.flickrUrl}`);
                     return;
                 }
                 
@@ -3658,7 +3538,6 @@ async function initializeTagsPage() {
                     if (album.albumPage && album.albumPage.includes('doug-emhoff-event-with-michael-stipe')) {
                         if (photos && photos.length > 3) {
                             photos = photos.slice(0, 3);
-                            console.log(`Limited Doug Emhoff photos to first 3 (skipping video thumbnails)`);
                         }
                     }
                     
@@ -3755,7 +3634,6 @@ async function initializeTagsPage() {
                     resultsTitle.textContent = `Results for "${formatTagForDisplay(tagParam)}" (${progressivePhotos.length} found so far...)`;
                     resultsTitle.style.display = 'block';
                     
-                    console.log(`Displaying ${photos.length} photos and ${videos.length} videos for tag "${tagParam}"`);
                     
                     // Display photos
                     if (photos.length > 0) {
@@ -3776,7 +3654,6 @@ async function initializeTagsPage() {
         }
     }
     
-    console.log(`Found ${allTags.size} unique tags across ${allPhotosWithTags.length} photos and ${allVideosWithTags.length} videos`);
     
     // Note: Caching disabled - dataset too large for localStorage
     // With 77 albums and 1000+ photos, the data exceeds browser storage limits
@@ -3815,25 +3692,19 @@ function handleTagPageParameters(urlParams, allTags, tagParam) {
     // If we were filtering by tag, show final results
     if (tagParam && allTags.has(tagParam)) {
         const photos = allTags.get(tagParam);
-        console.log(`handleTagPageParameters: Found ${photos.length} items for tag "${tagParam}":`, photos);
         photos.forEach((item, index) => {
-            console.log(`Item ${index}:`, item);
-            console.log(`Item ${index} isVideo:`, item.isVideo);
         });
         const resultsTitle = document.getElementById('results-title');
         resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${photos.length})`;
         
         // Display the photos/videos
         const photosContainer = document.getElementById('photos-grid');
-        console.log('photosContainer element found:', photosContainer);
         if (photosContainer) {
-            console.log('Calling displayPhotosGrid with', photos.length, 'items');
             displayPhotosGrid(photos, photosContainer);
         } else {
             console.error('photos-grid element not found!');
         }
     } else if (tagParam) {
-        console.log(`handleTagPageParameters: Tag "${tagParam}" not found in allTags. Available tags:`, Array.from(allTags.keys()).sort());
     }
     
     // Highlight the tag in sidebar
@@ -4031,15 +3902,9 @@ function displayPhotosGrid(items, container) {
     const photos = items.filter(item => !item.isVideo);
     const videos = items.filter(item => item.isVideo);
     
-    console.log(`Displaying ${photos.length} photos and ${videos.length} videos for tag "${new URLSearchParams(window.location.search).get('tag') || 'all'}"`);
     
     if (videos.length > 0) {
-        console.log('Video objects found:', videos);
         videos.forEach((video, index) => {
-            console.log(`Video ${index}:`, video);
-            console.log(`Video ${index} isVideo:`, video.isVideo);
-            console.log(`Video ${index} youtubeId:`, video.youtubeId);
-            console.log(`Video ${index} id:`, video.id);
         });
     }
     
@@ -4074,9 +3939,7 @@ function displayPhotosGrid(items, container) {
     // Display videos
     if (videos.length > 0) {
         html += videos.map((video, index) => {
-            console.log('Rendering video:', video);
             const videoId = video.youtubeId || video.id;
-            console.log('Video ID for embed:', videoId);
             
             return `
                 <div class="video-item" style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem; grid-column: 1 / -1;">
@@ -4245,7 +4108,6 @@ document.addEventListener('keydown', function(e) {
 
 // Refresh tags - reloads page to fetch fresh data from Flickr
 function refreshTagsCache() {
-    console.log('Reloading fresh data from Flickr...');
     window.location.reload();
 }
 
