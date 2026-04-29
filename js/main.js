@@ -642,7 +642,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-02-25 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA',
-            coverUrl: 'https://live.staticflickr.com/65535/55117753881_ac539a0485_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/55116883952_54ea7b58e6_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332257799/',
             albumPage: '../music/2026-02-25-kevn-kinney-peter-buck-rialto-room-athens-ga.html',
             filterNames: ['Kevn Kinney', 'Peter Buck', 'Scott McCaughey', 'Elizabeth Cook', 'Jason Narducy'],
