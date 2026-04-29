@@ -588,7 +588,13 @@ const ALBUM_DATA = {
     music: [
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
-        { 
+        {
+            title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
+            albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
+            filterNames: ['Robyn Hitchcock', 'Emma Swift'],
+        },
+        {
             title: '2026-04-11 Drivin N Cryin @ 40 Watt | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333192494/',
             albumPage: '../music/2026-04-11-drivin-n-cryin-40-watt-athens-ga.html',
