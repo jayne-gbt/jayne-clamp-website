@@ -589,6 +589,13 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-05-10 Red Dwarf Star @ World Famous | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55293776164_1997dd8cfa_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846185/',
+            albumPage: '../music/2026-05-10-red-dwarf-star-world-famous-athens-ga.html',
+            filterNames: ['Red Dwarf Star'],
+        },
+        {
             title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
             albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
