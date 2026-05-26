@@ -589,6 +589,13 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55293605061_6a145cae72_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846615/',
+            albumPage: '../music/2026-05-11-steve-wynn-peter-buck-rialto-room-athens-ga.html',
+            filterNames: ['Steve Wynn', 'Peter Buck'],
+        },
+        {
             title: '2026-05-10 Red Dwarf Star @ World Famous | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55293776164_1997dd8cfa_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846185/',
