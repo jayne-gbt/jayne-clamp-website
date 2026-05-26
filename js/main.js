@@ -610,6 +610,13 @@ const ALBUM_DATA = {
             filterNames: ['Real Wow'],
         },
         {
+            title: '2026-05-09 Kindercore 30 Expo Night 3 @ 40 Watt | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55293808561_d35908a526_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333875019/',
+            albumPage: '../music/2026-05-09-kindercore-30-expo-night-3-40-watt-athens-ga.html',
+            filterNames: ['Kindercore 30', 'Maserati', 'Shehehe', 'Vincas', 'Gentleman Jesse', 'Black Nerd Ninja', 'Big Trouble', "Molly's Lips"],
+        },
+        {
             title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
             albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
