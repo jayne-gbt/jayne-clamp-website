@@ -617,6 +617,13 @@ const ALBUM_DATA = {
             filterNames: ['Kindercore 30', 'Maserati', 'Shehehe', 'Vincas', 'Gentleman Jesse', 'Black Nerd Ninja', 'Big Trouble', "Molly's Lips"],
         },
         {
+            title: '2026-05-07 Kindercore 30 Expo Night 1 @ 40 Watt | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55295391375_2fc5b491a6_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333856975/',
+            albumPage: '../music/2026-05-07-kindercore-30-expo-night-1-40-watt-athens-ga.html',
+            filterNames: ['The Pink Stones', 'Dog Person', 'Japancakes', 'Grape Soda', 'Man or Astro-Man?', 'Peter Buck'],
+        },
+        {
             title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
             albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
