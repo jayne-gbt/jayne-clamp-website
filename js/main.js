@@ -596,6 +596,13 @@ const ALBUM_DATA = {
             filterNames: ['Red Dwarf Star'],
         },
         {
+            title: '2026-05-10 Real Wow @ World Famous | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55293698008_d8c4682866_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333844332/',
+            albumPage: '../music/2026-05-10-real-wow-world-famous-athens-ga.html',
+            filterNames: ['Real Wow'],
+        },
+        {
             title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
             albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
