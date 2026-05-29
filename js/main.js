@@ -1593,12 +1593,6 @@ const ALBUM_DATA = {
             filterNames: ['Protest', 'JD Vance', 'Turning Point', 'Young Dems UGA', 'UGA YDSA'],
         },
         {
-            title: '2026-04-05 Detention Center Not Welcome Here Rally @ Athens, GA', 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/', 
-            albumPage: '../events/2026-04-05-detention-center-not-welcome-here-rally-athens-ga.html', 
-            filterNames: ['Detention Center']
-        },
-        {
             title: '2026-03-08 Detention Center Not Welcome Here Rally @ Courthouse | Monroe, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/',
             albumPage: '../events/2026-03-08-detention-center-not-welcome-here-rally-courthouse-monroe-ga.html',
