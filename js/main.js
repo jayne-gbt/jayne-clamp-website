@@ -942,13 +942,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
         { 
-            title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA', 
+            title: '2025-02-27 Michael Shannon, Jason Narducy & Friends REM Tribute @ 40 Watt | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54364546979_4b18efdd91_b.jpg', 
             photoCount: 22,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205246/',
             albumPage: '../music/2025-02-27-michael-shannon-jason-narducy-friends-rem-tribute-40-watt-athens-ga.html',
-            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM'],
-            // Album exists but not accessible via API - likely privacy/permission issue
-            apiAccessible: false
+            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM']
         },
         { 
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
