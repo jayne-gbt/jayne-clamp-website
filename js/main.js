@@ -798,7 +798,7 @@ const ALBUM_DATA = {
             title: '2025-09-12 The Minus 5 & The Baseball Project @ 40 Watt | Athens, GA', 
             photoCount: 18, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329875831/',
-            coverUrl: 'https://live.staticflickr.com/65535/54876815267_699a46d880_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54876815267_9522dcb508_b.jpg',
             albumPage: '../music/2025-09-12-the-minus-5-the-baseball-project-40-watt-athens-ga.html'
         },
         { 
