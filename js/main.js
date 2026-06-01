@@ -919,7 +919,7 @@ const ALBUM_DATA = {
             title: '2025-02-27 Kevn Kinney @ Rialto Room | Athens, GA', 
             photoCount: 3, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
-            coverUrl: 'https://live.staticflickr.com/65535/54363461472_0b17468aa4_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54364334221_4a08118231_b.jpg',
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
         { 
