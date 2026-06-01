@@ -932,7 +932,7 @@ const ALBUM_DATA = {
             title: '2025-02-17 Classic City Wrestling w Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/',
-            coverUrl: 'https://live.staticflickr.com/65535/54364287441_e8189d542b_b.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/54363416132_5f542d9cae_b.jpg',
             albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html'
         }, 
         { 
