@@ -306,10 +306,10 @@ function showLightboxImage() {
             }
         }
         if (lightboxCounter) lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxPhotos.length}`;
+        
     }
 }
 
-// Throttle variables for lightbox navigation
 let lightboxNavigationThrottle = false;
 const LIGHTBOX_THROTTLE_DELAY = 300; // 300ms delay to prevent rapid clicking
 
@@ -410,9 +410,6 @@ function shareLightboxPhoto(platform) {
             break;
         case 'facebook':
             shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(photoUrl)}`;
-            break;
-        case 'pinterest':
-            shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&description=${encodeURIComponent(albumTitle)}`;
             break;
         case 'bluesky':
             shareUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(albumTitle + ' - ' + photoUrl)}`;
@@ -568,12 +565,6 @@ function shareToFacebook() {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
 }
 
-function shareToPinterest() {
-    const url = encodeURIComponent(window.location.href);
-    const description = encodeURIComponent('Check out Jayne Clamp Photography');
-    window.open(`https://pinterest.com/pin/create/button/?url=${url}&description=${description}`, '_blank', 'width=600,height=400');
-}
-
 function shareToBluesky() {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent('Check out Jayne Clamp Photography');
@@ -594,6 +585,48 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846615/',
             albumPage: '../music/2026-05-11-steve-wynn-peter-buck-rialto-room-athens-ga.html',
             filterNames: ['Steve Wynn', 'Peter Buck'],
+        },
+        {
+            title: '2026-06-27 Slightly Famous Somebodies @ 40 Watt - AthFest Night 2 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334541834/',
+            albumPage: '../music/2026-06-27-slightly-famous-somebodies-40-watt-athfest-night-2-athens-ga.html',
+            filterNames: ['Slightly Famous Somebodies'],
+        },
+        {
+            title: '2026-06-27 Kevn Kinney & Peter Buck @ 40 Watt - AthFest Night 2 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514935/',
+            albumPage: '../music/2026-06-27-kevn-kinney-peter-buck-40-watt-athfest-night-2-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck'],
+        },
+        {
+            title: '2026-06-27 Bloodkin @ Georgia Theatre - AthFest Night 2 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514775/',
+            albumPage: '../music/2026-06-27-bloodkin-georgia-theatre-athfest-night-2-athens-ga.html',
+            filterNames: ['Bloodkin'],
+        },
+        {
+            title: '2026-06-27 Bland Halen @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334534283/',
+            albumPage: '../music/2026-06-27-bland-halen-nowhere-bar-athfest-night-2-athens-ga.html',
+            filterNames: ['Bland Halen'],
+        },
+        {
+            title: '2026-06-27 The Arcs @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334516992/',
+            albumPage: '../music/2026-06-27-the-arcs-nowhere-bar-athfest-night-2-athens-ga.html',
+            filterNames: ['The Arcs'],
+        },
+        {
+            title: '2026-06-27 Lilly Hiatt @ Georgia Theatre - AthFest Night 1 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334517262/',
+            albumPage: '../music/2026-06-27-lilly-hiatt-georgia-theatre-athfest-night-1-athens-ga.html',
+            filterNames: ['Lilly Hiatt'],
+        },
+        {
+            title: '2026-06-27 Spencer Thomas @ GA Theatre Rooftop - AthFest Night 1 | Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334519187/',
+            albumPage: '../music/2026-06-27-spencer-thomas-ga-theatre-rooftop-athfest-night-1-athens-ga.html',
+            filterNames: ['Spencer Thomas'],
         },
         {
             title: '2026-05-10 Red Dwarf Star @ World Famous | Athens, GA',
@@ -2839,33 +2872,30 @@ function createGlobalHeader() {
     // Determine if we're on index page or collection page for correct paths
     const isIndexPage = window.location.pathname.endsWith('/index.html') || window.location.pathname === '/';
     const isRootPage = isIndexPage || 
-        /^\/(music|events|travel|birds|landscapes|pets|tags|favorites|contact|about)(\.html)?$/.test(window.location.pathname);
+        /^\/(music|events|travel|birds|landscapes|pets|tags|contact|about)(\.html)?$/.test(window.location.pathname);
     const basePath = isRootPage ? '' : '../';
 
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${basePath}index.html"><img src="${basePath}images/JayneClamp.PNG" alt="Jayne Clamp Photography" style="height: 70px; width: auto; vertical-align: middle;"></a></h1>
+                <h1 class="site-title"><a href="${basePath}index.html"><img id="site-logo" src="${basePath}images/JayneClampLogoTrans.png?v=1" alt="Jayne Clamp Photography" style="height: 85px; width: auto; vertical-align: middle;"></a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-menu">
+                        <li><button class="theme-toggle" onclick="toggleTheme(); return false;" aria-label="Toggle light/dark mode"><i class="fas fa-moon"></i></button></li>
                         <li><a href="#" onclick="openSearchModal(); return false;" aria-label="Search"><i class="fas fa-search"></i></a></li>
                         <li class="collections-dropdown">
                             <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
                                 <li><a href="${basePath}music.html">Music</a></li>
                                 <li><a href="${basePath}events.html">Events</a></li>
-                                <li><a href="${basePath}birds.html">Birds</a></li>
-                                <li><a href="${basePath}landscapes.html">Landscapes</a></li>
-                                <li><a href="${basePath}travel.html">Travel</a></li>
-                                <li><a href="${basePath}pets.html">Pets</a></li>
+                                <li><a href="${basePath}misc.html">Misc</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
                         <li><a href="${basePath}tags.html">Tags</a></li>
-                        <li><a href="${basePath}favorites.html">Favorites</a></li>
                         <li class="share-dropdown">
                             <a href="${basePath}contact.html" class="share-trigger">Contact <i class="fas fa-chevron-down"></i></a>
                             <ul class="share-menu">
@@ -2928,7 +2958,29 @@ function createGlobalFooter() {
                         <i class="fab fa-soundcloud"></i>
                     </a>
                 </div>
-                <p class="copyright">&copy; 2026 Jayne Clamp Photography</p>
+                <div class="footer-nav">
+                    <a href="${pathPrefix}index.html">Home</a>
+                    <div class="footer-dropdown">
+                        <a href="${pathPrefix}index.html#collections" class="footer-dropdown-trigger"><span>Collections</span><i class="fas fa-chevron-down"></i></a>
+                        <ul class="footer-dropdown-menu">
+                            <li><a href="${pathPrefix}music.html">Music</a></li>
+                            <li><a href="${pathPrefix}events.html">Events</a></li>
+                            <li><a href="${pathPrefix}misc.html">Misc</a></li>
+                            <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                        </ul>
+                    </div>
+                    <a href="${pathPrefix}tags.html">Tags</a>
+                    <div class="footer-dropdown">
+                        <a href="${pathPrefix}contact.html" class="footer-dropdown-trigger"><span>Contact</span><i class="fas fa-chevron-down"></i></a>
+                        <ul class="footer-dropdown-menu">
+                            <li><a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a></li>
+                            <li><a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener"><i class="fab fa-flickr"></i> Flickr</a></li>
+                            <li><a href="https://soundcloud.com/jclamp" target="_blank" rel="noopener"><i class="fab fa-soundcloud"></i> SoundCloud</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="copyright">&copy; 2026 Jayne Clamp</p>
                 <div class="legal-links">
                     <a href="${pathPrefix}privacy-policy.html">Privacy Policy</a>
                     <span class="separator">•</span>
@@ -2956,12 +3008,59 @@ function initializeGlobalFooter() {
     }
 }
 
+// ===================================
+// THEME TOGGLE (light / dark mode)
+// ===================================
+// Default theme is dark. User can toggle to light; choice persists in localStorage.
+function getStoredTheme() {
+    try {
+        return localStorage.getItem('theme') || 'dark';
+    } catch (e) {
+        return 'dark';
+    }
+}
+
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    updateThemeIcon(theme);
+    updateLogoForTheme(theme);
+}
+
+function updateLogoForTheme(theme) {
+    const logo = document.getElementById('site-logo');
+    if (!logo) return;
+    const newFile = theme === 'light' ? 'JayneClampLogoTrans.png' : 'JayneClampLogoTransInvert.png';
+    logo.src = logo.src.replace(/JayneClampLogoTrans(Invert)?\.(png|jpg)/, newFile);
+}
+
+function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-toggle i');
+    if (!icon) return;
+    // Show a sun in light mode (click to go dark), a moon in dark mode (click to go light)
+    icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+function toggleTheme() {
+    const next = getStoredTheme() === 'light' ? 'dark' : 'light';
+    try {
+        localStorage.setItem('theme', next);
+    } catch (e) {}
+    applyTheme(next);
+}
+
 // Initialize global header and footer when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeGlobalHeader(); // Re-enabled for consistent navigation
     initializeGlobalFooter();
     initializeLightboxClickAdvance();
-    
+
+    // Apply saved theme and sync the toggle icon (header is built above)
+    applyTheme(getStoredTheme());
+
     // Camera icon code removed - using logo image instead
 });
 
@@ -3004,137 +3103,6 @@ function downloadLightboxImage() {
             });
     }
 }
-
-// ===================================
-// FAVORITES SYSTEM
-// ===================================
-
-// Favorites management using localStorage
-const FavoritesManager = {
-    // Get all favorites from localStorage
-    getFavorites: function() {
-        const favorites = localStorage.getItem('jayne-clamp-favorites');
-        return favorites ? JSON.parse(favorites) : { albums: [], photos: [] };
-    },
-
-    // Save favorites to localStorage
-    saveFavorites: function(favorites) {
-        localStorage.setItem('jayne-clamp-favorites', JSON.stringify(favorites));
-    },
-
-    // Add album to favorites
-    addAlbum: function(albumData) {
-        const favorites = this.getFavorites();
-        const albumId = albumData.title + '|' + albumData.flickrUrl;
-        
-        // Check if already favorited
-        if (!favorites.albums.find(album => album.id === albumId)) {
-            favorites.albums.push({
-                id: albumId,
-                title: albumData.title,
-                flickrUrl: albumData.flickrUrl,
-                coverUrl: albumData.coverUrl,
-                albumPage: albumData.albumPage,
-                dateAdded: new Date().toISOString()
-            });
-            this.saveFavorites(favorites);
-        }
-    },
-
-    // Remove album from favorites
-    removeAlbum: function(albumId) {
-        const favorites = this.getFavorites();
-        favorites.albums = favorites.albums.filter(album => album.id !== albumId);
-        this.saveFavorites(favorites);
-    },
-
-    // Add photo to favorites
-    addPhoto: function(photoData) {
-        const favorites = this.getFavorites();
-        const photoId = photoData.src + '|' + photoData.albumTitle;
-        
-        // Check if already favorited
-        if (!favorites.photos.find(photo => photo.id === photoId)) {
-            favorites.photos.push({
-                id: photoId,
-                src: photoData.src,
-                albumTitle: photoData.albumTitle,
-                caption: photoData.caption || '',
-                dateAdded: new Date().toISOString()
-            });
-            this.saveFavorites(favorites);
-        }
-    },
-
-    // Remove photo from favorites
-    removePhoto: function(photoId) {
-        const favorites = this.getFavorites();
-        favorites.photos = favorites.photos.filter(photo => photo.id !== photoId);
-        this.saveFavorites(favorites);
-    },
-
-    // Check if album is favorited
-    isAlbumFavorited: function(albumData) {
-        const favorites = this.getFavorites();
-        const albumId = albumData.title + '|' + albumData.flickrUrl;
-        return favorites.albums.some(album => album.id === albumId);
-    },
-
-    // Check if photo is favorited
-    isPhotoFavorited: function(photoSrc, albumTitle) {
-        const favorites = this.getFavorites();
-        const photoId = photoSrc + '|' + albumTitle;
-        return favorites.photos.some(photo => photo.id === photoId);
-    }
-};
-
-// Toggle album favorite status
-function toggleAlbumFavorite(albumData, heartElement) {
-    const albumId = albumData.title + '|' + albumData.flickrUrl;
-    
-    if (FavoritesManager.isAlbumFavorited(albumData)) {
-        FavoritesManager.removeAlbum(albumId);
-        heartElement.classList.remove('favorited');
-        heartElement.innerHTML = '<i class="far fa-heart"></i>';
-        heartElement.title = 'Add to favorites';
-    } else {
-        FavoritesManager.addAlbum(albumData);
-        heartElement.classList.add('favorited');
-        heartElement.innerHTML = '<i class="fas fa-heart"></i>';
-        heartElement.title = 'Remove from favorites';
-    }
-}
-
-// Toggle photo favorite status
-function togglePhotoFavorite() {
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const heartElement = document.querySelector('.lightbox-favorite');
-    
-    if (!lightboxImg || !heartElement) return;
-    
-    const photoData = {
-        src: lightboxImg.src,
-        albumTitle: document.title.split(' - ')[0] || 'Photo',
-        caption: lightboxCaption ? lightboxCaption.textContent : ''
-    };
-    
-    const photoId = photoData.src + '|' + photoData.albumTitle;
-    
-    if (FavoritesManager.isPhotoFavorited(photoData.src, photoData.albumTitle)) {
-        FavoritesManager.removePhoto(photoId);
-        heartElement.classList.remove('favorited');
-        heartElement.innerHTML = '<i class="far fa-heart"></i>';
-        heartElement.title = 'Add to favorites';
-    } else {
-        FavoritesManager.addPhoto(photoData);
-        heartElement.classList.add('favorited');
-        heartElement.innerHTML = '<i class="fas fa-heart"></i>';
-        heartElement.title = 'Remove from favorites';
-    }
-}
-
-// ===================================
 // SCROLL POSITION RESTORATION
 // ===================================
 
@@ -3474,6 +3442,7 @@ let allVideosWithTags = []; // Store all videos globally for filtering
 async function initializeTagsPage() {
     
     const tagsContainer = document.getElementById('tags-container');
+    const loadingMessage = document.getElementById('tags-loading-message');
     const searchInput = document.getElementById('tag-search');
     if (!tagsContainer) return;
     
@@ -3489,11 +3458,13 @@ async function initializeTagsPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const tagParam = urlParams.get('tag');
     
-    // Show loading with progress
-    if (tagParam) {
-        tagsContainer.innerHTML = `<p style="color: #999; width: 100%; text-align: center;">Summoning photos tagged "${formatTagForDisplay(tagParam)}" from the digital void... <span id="tags-progress">0</span> albums processed</p>`;
-    } else {
-        tagsContainer.innerHTML = '<p style="color: #999; width: 100%; text-align: center;">Herding cats and organizing pixels... <span id="tags-progress">0</span> albums processed</p>';
+    // Show loading message in main body area
+    if (loadingMessage) {
+        if (tagParam) {
+            loadingMessage.innerHTML = `<p style="color: #999 !important; width: 100%; text-align: center; margin: 1rem 0;">Summoning photos tagged "${formatTagForDisplay(tagParam)}" from the digital void... <span id="tags-progress">0</span> albums processed</p>`;
+        } else {
+            loadingMessage.innerHTML = '<p style="color: #999 !important; width: 100%; text-align: center; margin: 1rem 0;">Herding cats and organizing pixels... <span id="tags-progress">0</span> albums processed</p>';
+        }
     }
     
     // Fetch all photos with tags from all albums
@@ -3693,6 +3664,15 @@ async function initializeTagsPage() {
     // Note: Caching disabled - dataset too large for localStorage
     // With 77 albums and 1000+ photos, the data exceeds browser storage limits
     
+    // Hide main body loading message once tags are ready
+    if (loadingMessage) loadingMessage.innerHTML = '';
+
+    // Show hint to pick a tag or search, unless we're already filtering by tag
+    const tagsHint = document.getElementById('tags-hint');
+    if (tagsHint && !tagParam) {
+        tagsHint.style.display = 'block';
+    }
+
     // Display all tags
     displayAllTags(allTags);
     
@@ -3828,6 +3808,8 @@ function setupTagSearch(allTags) {
             document.getElementById('photos-grid').innerHTML = '';
             const videosSection = document.getElementById('videos-section');
             if (videosSection) videosSection.style.display = 'none';
+            const tagsHint = document.getElementById('tags-hint');
+            if (tagsHint) tagsHint.style.display = 'block';
             return;
         }
         
@@ -3864,6 +3846,8 @@ function showPhotosForTag(tag, items) {
     const photosGrid = document.getElementById('photos-grid');
     const videosGrid = document.getElementById('videos-grid');
     const videosSection = document.getElementById('videos-section');
+    const tagsHint = document.getElementById('tags-hint');
+    if (tagsHint) tagsHint.style.display = 'none';
     
     // Separate photos and videos
     const photos = items.filter(item => item.type === 'photo');
@@ -3896,6 +3880,8 @@ function showSearchResults(query, items) {
     const photosGrid = document.getElementById('photos-grid');
     const videosGrid = document.getElementById('videos-grid');
     const videosSection = document.getElementById('videos-section');
+    const tagsHint = document.getElementById('tags-hint');
+    if (tagsHint) tagsHint.style.display = 'none';
     
     // Separate photos and videos
     const photos = items.filter(item => item.type === 'photo');

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script data-theme-init>(function(){try{if(localStorage.getItem("theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}})();</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
     <script>
@@ -22,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="2026-05-07 Kindercore 30 Expo Night 1 @ 40 Watt | Athens, GA">
     <meta name="twitter:description" content="Photography by Jayne Clamp">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css?v=20260531-2349">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -76,12 +77,10 @@
         <div class="lightbox-content">
             <button class="lightbox-share" onclick="toggleLightboxShare()"><i class="fas fa-ellipsis-h"></i></button>
             <div class="lightbox-share-menu" id="lightbox-share-menu">
-                <a href="#" onclick="togglePhotoFavorite(); return false;" class="lightbox-favorite" title="Add to favorites"><i class="far fa-heart"></i></a>
                 <a href="#" onclick="downloadLightboxImage(); return false;" title="Download Image"><i class="fas fa-download"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
-                <a href="#" onclick="shareLightboxPhoto('pinterest'); return false;"><i class="fab fa-pinterest"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
             </div>
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
@@ -93,7 +92,7 @@
         </div>
     </div>
 
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js?v=20260531-2349"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             initializeAlbumNavigation();

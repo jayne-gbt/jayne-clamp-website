@@ -173,7 +173,7 @@ img {
 
 .site-title {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 2px;
     display: flex;
     align-items: center;
@@ -211,7 +211,7 @@ img {
     font-size: 0.95rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .nav-menu a:hover {
@@ -340,15 +340,16 @@ img {
 
 .hero-title {
     font-size: 3rem;
-    font-weight: 200;
+    font-weight: 400;
     letter-spacing: 3px;
-    margin-bottom: 0.5rem;
+    
+    padding-bottom: 0.5rem;
 }
 
 .hero-subtitle {
     font-size: 1rem;
     color: #666666 !important;
-    font-weight: 200 !important;
+    font-weight: 400 !important;
     letter-spacing: 1px;
 }
 
@@ -409,7 +410,7 @@ img {
 
 .collection-overlay h3 {
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 2px;
     margin-bottom: 0.3rem;
 }
@@ -468,6 +469,10 @@ img {
 .page-header {
     text-align: center;
     margin-bottom: 2rem;
+}
+
+#tags-loading-message:empty {
+    display: none;
 }
 
 /* Year Tabs */
@@ -542,7 +547,7 @@ img {
     font-size: 1rem !important;
     cursor: pointer !important;
     transition: var(--transition) !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     letter-spacing: 0.5px !important;
     margin-bottom: -1px !important;
 }
@@ -561,15 +566,16 @@ img {
 
 .page-title {
     font-size: 3rem;
-    font-weight: 200;
+    font-weight: 400;
     letter-spacing: 3px;
-    margin-bottom: 0.5rem;
+    
+    padding-bottom: 0.5rem;
 }
 
 .page-subtitle {
     font-size: 1.1rem;
     color: var(--light-gray);
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .back-button {
@@ -768,9 +774,10 @@ img {
 
 .album-overlay h3 {
     font-size: 0.85rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
+    
+    padding-bottom: 0.5rem;
     line-height: 1.2;
     display: flex;
     align-items: center;
@@ -840,7 +847,8 @@ img {
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    
+    padding-bottom: 0.5rem;
     font-size: 0.95rem;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -931,6 +939,93 @@ img {
 .social-links a:hover {
     opacity: 0.7;
     transform: translateY(-3px);
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-nav a {
+    color: #999999 !important;
+    text-decoration: none;
+    font-weight: normal !important;
+    transition: var(--transition);
+}
+
+.footer-nav a:hover {
+    color: #ffffff !important;
+}
+
+.footer-dropdown {
+    position: relative;
+}
+
+.footer-dropdown-trigger {
+    font-weight: normal !important;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.footer-dropdown-trigger i {
+    font-size: 0.6rem;
+    opacity: 0.7;
+    margin-left: -0.1rem;
+}
+
+.footer-dropdown-menu {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    min-width: 160px;
+    text-align: left;
+    z-index: 100;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+}
+
+.footer-dropdown:hover .footer-dropdown-menu,
+.footer-dropdown-menu:hover {
+    display: block;
+}
+
+.footer-dropdown-menu li {
+    padding: 0;
+}
+
+.footer-dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    color: #999999 !important;
+    font-size: 0.85rem;
+    font-weight: normal !important;
+    white-space: nowrap;
+}
+
+.footer-dropdown-menu a:hover {
+    background-color: var(--accent);
+    color: #ffffff !important;
 }
 
 .copyright {
@@ -1048,7 +1143,7 @@ img {
 .legal-section h2 {
     color: var(--white);
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 500;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--gray);
@@ -1057,7 +1152,7 @@ img {
 .legal-section h3 {
     color: var(--white);
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 500;
     margin: 1.5rem 0 0.75rem 0;
 }
 
@@ -1075,7 +1170,8 @@ img {
 }
 
 .legal-section li {
-    margin-bottom: 0.5rem;
+    
+    padding-bottom: 0.5rem;
 }
 
 .legal-section a {
@@ -1889,7 +1985,7 @@ img {
 .lightbox-title {
     color: #ffffff;
     font-size: 0.90rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 0.3rem;
     line-height: 1.3;
 }
@@ -1897,7 +1993,7 @@ img {
 .lightbox-description {
     color: #ffffff;
     font-size: 0.85rem;
-    font-weight: 300;
+    font-weight: 500;
     font-style: italic;
     opacity: 0.8;
     line-height: 1.4;
@@ -1991,4 +2087,295 @@ img {
         left: 10px !important;
         max-width: 50% !important;
     }
+}
+
+/* ===================================
+   LIGHT THEME (manual toggle)
+   Default site is dark. Adding
+   data-theme="light" on <html> flips
+   surfaces to a white background.
+   =================================== */
+html[data-theme="light"] {
+    --black: #ffffff;
+    --white: #1a1a1a;
+    --gray: #f0f0f0;
+    --light-gray: #888888;
+    --accent: #c9a200;
+    --accent-hover: #a98800;
+}
+
+/* Base surfaces */
+html[data-theme="light"] body {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] a {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] a:hover {
+    color: var(--accent) !important;
+}
+
+/* Text elements */
+html[data-theme="light"] :is(h1, h2, h3, h4, h5, h6, p, span, div, li, td, th) {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .site-title a,
+html[data-theme="light"] .main-nav a {
+    color: #1a1a1a !important;
+}
+
+/* Icons default to dark in light mode */
+html[data-theme="light"] :is(i, .fa, .fas, .far, .fab, .fal, .fad) {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .mobile-menu-toggle,
+html[data-theme="light"] .mobile-menu-toggle i,
+html[data-theme="light"] .fa-chevron-down {
+    color: #1a1a1a !important;
+}
+
+/* Header & footer */
+html[data-theme="light"] .site-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Logo is white-on-transparent; flip to black for the light header */
+html[data-theme="light"] .site-title img {
+    filter: brightness(0);
+}
+
+html[data-theme="light"] .site-footer {
+    background-color: #ffffff !important;
+    border-top: 1px solid #e0e0e0;
+}
+
+html[data-theme="light"] :is(.copyright, .legal-links, .legal-links a, .footer-nav a, .footer-nav i, .footer-dropdown-trigger, .footer-dropdown-trigger i) {
+    color: #777777 !important;
+}
+
+html[data-theme="light"] .legal-links a:hover,
+html[data-theme="light"] .footer-nav a:hover,
+html[data-theme="light"] .footer-dropdown-trigger:hover {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .footer-dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+}
+
+html[data-theme="light"] .footer-dropdown-menu a {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .footer-dropdown-menu a:hover {
+    background-color: var(--accent);
+    color: #ffffff !important;
+}
+
+/* Dropdown menus */
+html[data-theme="light"] .share-menu,
+html[data-theme="light"] .collections-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+}
+
+html[data-theme="light"] .share-menu a,
+html[data-theme="light"] .collections-menu a {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .share-menu a:hover,
+html[data-theme="light"] .collections-menu a:hover {
+    background-color: var(--accent);
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .share-menu a:hover *,
+html[data-theme="light"] .collections-menu a:hover * {
+    color: #ffffff !important;
+}
+
+/* Outline buttons (back / nav / artist link) */
+html[data-theme="light"] :is(.back-button, .album-nav-btn, .artist-official-link) {
+    color: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+}
+
+html[data-theme="light"] :is(.back-button, .album-nav-btn, .artist-official-link) i {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .back-button:hover,
+html[data-theme="light"] .album-nav-btn:hover:not(:disabled),
+html[data-theme="light"] .artist-official-link:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .back-button:hover i,
+html[data-theme="light"] .album-nav-btn:hover:not(:disabled) i,
+html[data-theme="light"] .artist-official-link:hover i {
+    color: #ffffff !important;
+}
+
+/* Solid buttons -> dark on light. Exclude utility/icon buttons that
+   manage their own transparent styling (year tabs, theme/menu toggles). */
+html[data-theme="light"] button:not(.year-tab):not(.theme-toggle):not(.mobile-menu-toggle):not(.album-nav-btn),
+html[data-theme="light"] .submit-button,
+html[data-theme="light"] .cookie-notice button {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 2px solid #1a1a1a !important;
+}
+
+html[data-theme="light"] button:not(.year-tab):not(.theme-toggle):not(.mobile-menu-toggle):not(.album-nav-btn) i,
+html[data-theme="light"] .submit-button i,
+html[data-theme="light"] .cookie-notice button i {
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] button:not(.year-tab):not(.theme-toggle):not(.mobile-menu-toggle):not(.album-nav-btn):hover,
+html[data-theme="light"] .submit-button:hover,
+html[data-theme="light"] .cookie-notice button:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+}
+
+/* Year filter tabs: transparent text buttons (not solid boxes) */
+html[data-theme="light"] .year-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+html[data-theme="light"] .year-tab {
+    background: transparent !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+html[data-theme="light"] .year-tab:hover,
+html[data-theme="light"] .year-tab.active {
+    background: transparent !important;
+    color: var(--accent) !important;
+}
+
+/* Filter labels readable on white */
+html[data-theme="light"] .filter-group label {
+    color: #555555 !important;
+}
+
+/* Bottom album navigation strip: white background, solid dark buttons */
+html[data-theme="light"] .album-bottom-navigation {
+    background: #ffffff !important;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Outline style to match the top Back to Music button:
+   white background, black border, black font/icons. */
+html[data-theme="light"] .album-bottom-navigation .album-nav-btn,
+html[data-theme="light"] .album-bottom-navigation .back-button {
+    background-color: #ffffff !important;
+    border-color: #1a1a1a !important;
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .album-bottom-navigation .album-nav-btn *,
+html[data-theme="light"] .album-bottom-navigation .back-button * {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .album-bottom-navigation .album-nav-btn:hover:not(:disabled),
+html[data-theme="light"] .album-bottom-navigation .back-button:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .album-bottom-navigation .album-nav-btn:hover:not(:disabled) *,
+html[data-theme="light"] .album-bottom-navigation .back-button:hover * {
+    color: #ffffff !important;
+}
+
+/* Keep the theme toggle button transparent like other nav icons */
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] .theme-toggle:hover {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* Form fields */
+html[data-theme="light"] :is(select, input, textarea),
+html[data-theme="light"] .form-group input,
+html[data-theme="light"] .form-group textarea {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid #cccccc !important;
+}
+
+html[data-theme="light"] select option {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] :is(select, input, textarea):focus {
+    border-color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .band-filter select option {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Cards get a visible border so they read on white */
+html[data-theme="light"] :is(.album-card, .collection-card) {
+    border-color: rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="light"] .album-card:hover,
+html[data-theme="light"] .collection-card:hover {
+    border-color: var(--accent) !important;
+}
+
+/* Keep overlays / lightbox dark with white text (photos read best on black) */
+html[data-theme="light"] :is(
+    .collection-overlay, .collection-overlay *,
+    .album-overlay, .album-overlay *,
+    .photo-overlay, .photo-overlay *,
+    .lightbox-content, .lightbox-title, .lightbox-description,
+    .lightbox-counter, .lightbox-caption,
+    .lightbox-nav, .lightbox-close, .lightbox-share,
+    .lightbox-nav i, .lightbox-close i, .lightbox-share i,
+    .lightbox-share-menu, .lightbox-share-menu a, .lightbox-share-menu a i,
+    .photo-overlay i, .album-overlay i, .collection-overlay i
+) {
+    color: #ffffff !important;
+}
+
+/* Boost lightbox share button visibility in light mode */
+html[data-theme="light"] .lightbox-share {
+    opacity: 0.8 !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    padding: 0.25rem !important;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.theme-toggle i {
+    color: inherit !important;
+    pointer-events: none;
 }
