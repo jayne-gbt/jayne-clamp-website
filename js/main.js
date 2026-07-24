@@ -1,4 +1,38 @@
 // ===================================
+// EARLY THEME APPLICATION (prevents flash)
+// ===================================
+(function() {
+    try {
+        var saved = localStorage.getItem('theme');
+        var theme;
+        if (saved) {
+            theme = saved;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            theme = 'light';
+        } else {
+            theme = 'dark';
+        }
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    } catch (e) {}
+})();
+
+// ===================================
+// HIRES TOKEN SYSTEM
+// ===================================
+const HIRES_TOKEN = '1013';
+let hiresMode = false;
+
+function checkHiresAccess() {
+    const params = new URLSearchParams(window.location.search);
+    hiresMode = params.get('hires') === HIRES_TOKEN;
+    return hiresMode;
+}
+
+// ===================================
 // VIEW TRACKING SYSTEM
 // ===================================
 const ViewTracker = {
@@ -100,7 +134,7 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
     
     try {
         do {
-            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
+            const url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${FLICKR_CONFIG.apiKey}&photoset_id=${albumId}&extras=url_c,url_h,url_o,url_l,url_k,description,tags&format=json&nojsoncallback=1&per_page=${perPage}&page=${page}`;
             
             
             const response = await fetch(url);
@@ -124,7 +158,8 @@ async function fetchFlickrAlbumPhotos(albumId, maxPhotos = 500) {
                         description: photo.description ? photo.description._content : '',
                         tags: photo.tags ? photo.tags.split(' ') : [],
                         thumbnail: photo.url_c || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`,
-                        large: photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                        large: photo.url_k || photo.url_h || photo.url_l || photo.url_o || `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+                        original: photo.url_o || photo.url_k || null,
                         url: `https://www.flickr.com/photos/${FLICKR_CONFIG.userId}/${photo.id}/`
                     };
                 });
@@ -291,7 +326,68 @@ function showLightboxImage() {
             });
         }
         
-        lightboxImg.src = photo.large;
+        // Determine image quality based on hires mode
+        const imageUrl = hiresMode ? (photo.original || photo.large) : (photo.thumbnail || photo.large);
+        lightboxImg.src = imageUrl;
+        
+        // Inject watermark and download link into share menu
+        const lightboxContent = lightboxImg.closest('.lightbox-content');
+        if (lightboxContent) {
+            // Inject watermark if not present
+            let watermark = lightboxContent.querySelector('.lightbox-watermark');
+            if (!watermark) {
+                watermark = document.createElement('div');
+                watermark.className = 'lightbox-watermark';
+                watermark.textContent = 'Jayne Clamp';
+                lightboxContent.appendChild(watermark);
+            }
+            watermark.style.display = hiresMode ? 'none' : 'block';
+            
+            // Inject download link into share menu if not present
+            const shareMenu = document.getElementById('lightbox-share-menu');
+            if (shareMenu) {
+                let downloadLink = shareMenu.querySelector('.lightbox-download-link');
+                if (!downloadLink) {
+                    downloadLink = document.createElement('a');
+                    downloadLink.className = 'lightbox-download-link';
+                    downloadLink.href = '#';
+                    downloadLink.innerHTML = '<i class="fas fa-download"></i>';
+                    downloadLink.title = 'Download';
+                    shareMenu.appendChild(downloadLink);
+                }
+                // Store current photo URL for download handler
+                downloadLink.dataset.downloadUrl = imageUrl;
+                downloadLink.dataset.downloadName = photo.title ? photo.title.replace(/[^a-z0-9]/gi, '_') + '.jpg' : 'photo.jpg';
+                // Remove old handler and add new one with current URL
+                const newLink = downloadLink.cloneNode(true);
+                newLink.dataset.downloadUrl = imageUrl;
+                newLink.dataset.downloadName = photo.title ? photo.title.replace(/[^a-z0-9]/gi, '_') + '.jpg' : 'photo.jpg';
+                downloadLink.parentNode.replaceChild(newLink, downloadLink);
+                newLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const url = this.dataset.downloadUrl;
+                    const filename = this.dataset.downloadName;
+                    // Fetch the image as a blob and trigger download
+                    fetch(url)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const blobUrl = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = blobUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(blobUrl);
+                        })
+                        .catch(err => {
+                            // Fallback: open in new tab
+                            window.open(url, '_blank');
+                        });
+                });
+            }
+        }
         if (lightboxCaption) {
             // Show title and description in lightbox
             const hasDescription = photo.description && photo.description.trim();
@@ -480,6 +576,31 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ===================================
+// RIGHT-CLICK PROTECTION (public mode)
+// ===================================
+document.addEventListener('contextmenu', function(e) {
+    if (!hiresMode) {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox && lightbox.style.display === 'flex') {
+            if (e.target.id === 'lightbox-img' || e.target.closest('.lightbox-content')) {
+                e.preventDefault();
+            }
+        }
+    }
+});
+
+document.addEventListener('dragstart', function(e) {
+    if (!hiresMode) {
+        if (e.target.id === 'lightbox-img') {
+            e.preventDefault();
+        }
+    }
+});
+
+// Check for hires access on page load
+checkHiresAccess();
+
+// ===================================
 // MOBILE MENU TOGGLE
 // ===================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -580,6 +701,38 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-07-17 Cinemechanica @ 40 Watt | Athens, GA',
+            photoCount: 0,
+            coverUrl: 'https://live.staticflickr.com/65535/55413621487_5c0129704f_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334809770/',
+            albumPage: '../music/2026-07-17-cinemechanica-40-watt-athens-ga.html',
+            filterNames: ['Cinemechanica'],
+        },
+        {
+            title: '2026-07-17 Tiger Bear Wolf @ 40 Watt | Athens, GA',
+            photoCount: 20,
+            coverUrl: 'https://live.staticflickr.com/65535/55412860634_d3fe6ddccb_c.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334816503/',
+            albumPage: '../music/2026-07-17-tiger-bear-wolf-40-watt-athens-ga.html',
+            filterNames: ['Tiger Bear Wolf'],
+        },
+        {
+            title: '2026-07-17 Real WOW @ 40 Watt | Athens, GA',
+            photoCount: 14,
+            coverUrl: 'https://live.staticflickr.com/65535/55412742438_6c7b9d8235_c.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334796090/',
+            albumPage: '../music/2026-07-17-real-wow-40-watt-athens-ga.html',
+            filterNames: ['Real Wow'],
+        },
+        {
+            title: '2026-06-28 Carl Broemel & Tyler Ramsey @ AthFest | Athens, GA',
+            photoCount: 14,
+            coverUrl: 'https://live.staticflickr.com/65535/55413108805_c8c841b3c0_c.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334824914/',
+            albumPage: '../music/2026-06-28-carl-broemel-tyler-ramsey-athfest-athens-ga.html',
+            filterNames: ['Carl Broemel', 'Tyler Ramsey'],
+        },
+        {
             title: '2026-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55293605061_6a145cae72_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846615/',
@@ -588,42 +741,65 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-06-27 Slightly Famous Somebodies @ 40 Watt - AthFest Night 2 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55374382355_a2de9ba8bf_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334541834/',
             albumPage: '../music/2026-06-27-slightly-famous-somebodies-40-watt-athfest-night-2-athens-ga.html',
             filterNames: ['Slightly Famous Somebodies'],
         },
         {
             title: '2026-06-27 Kevn Kinney & Peter Buck @ 40 Watt - AthFest Night 2 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55374151249_3905f364c4_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514935/',
             albumPage: '../music/2026-06-27-kevn-kinney-peter-buck-40-watt-athfest-night-2-athens-ga.html',
             filterNames: ['Kevn Kinney', 'Peter Buck'],
         },
         {
             title: '2026-06-27 Bloodkin @ Georgia Theatre - AthFest Night 2 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55373009402_b2bf894401_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514775/',
             albumPage: '../music/2026-06-27-bloodkin-georgia-theatre-athfest-night-2-athens-ga.html',
             filterNames: ['Bloodkin'],
         },
         {
             title: '2026-06-27 Bland Halen @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55374004796_4e834b3a4a_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334534283/',
             albumPage: '../music/2026-06-27-bland-halen-nowhere-bar-athfest-night-2-athens-ga.html',
             filterNames: ['Bland Halen'],
         },
         {
             title: '2026-06-27 The Arcs @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55374237519_d917e28f98_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334516992/',
             albumPage: '../music/2026-06-27-the-arcs-nowhere-bar-athfest-night-2-athens-ga.html',
             filterNames: ['The Arcs'],
         },
         {
-            title: '2026-06-27 Lilly Hiatt @ Georgia Theatre - AthFest Night 1 | Athens, GA',
+            title: '2026-06-26 Heffner @ 40 Watt AthFest | Athens, GA',
+            photoCount: 15,
+            coverUrl: 'https://live.staticflickr.com/65535/55412728981_5196114c38_c.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334816728/',
+            albumPage: '../music/2026-06-26-heffner-40-watt-athfest-athens-ga.html',
+            filterNames: ['Heffner'],
+        },
+        {
+            title: '2026-06-26 Mountain of Youth @ 40 Watt AthFest | Athens, GA',
+            photoCount: 19,
+            coverUrl: 'https://live.staticflickr.com/65535/55416015911_e401099598_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334818175/',
+            albumPage: '../music/2026-06-26-mountain-of-youth-40-watt-athfest-athens-ga.html',
+            filterNames: ['Mountain of Youth'],
+        },
+        {
+            title: '2026-06-26 Lilly Hiatt @ Georgia Theatre - AthFest Night 1 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55373144512_c774ff7b9c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334517262/',
             albumPage: '../music/2026-06-27-lilly-hiatt-georgia-theatre-athfest-night-1-athens-ga.html',
             filterNames: ['Lilly Hiatt'],
         },
         {
-            title: '2026-06-27 Spencer Thomas @ GA Theatre Rooftop - AthFest Night 1 | Athens, GA',
+            title: '2026-06-26 Spencer Thomas @ GA Theatre Rooftop - AthFest Night 1 | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55374441678_7de0d28f68_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334519187/',
             albumPage: '../music/2026-06-27-spencer-thomas-ga-theatre-rooftop-athfest-night-1-athens-ga.html',
             filterNames: ['Spencer Thomas'],
@@ -658,52 +834,61 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-04-24 Robyn Hitchcock & Emma Swift @ 40 Watt | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55236454222_b264ce1de1_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333365621/',
             albumPage: '../music/2026-04-24-robyn-hitchcock-emma-swift-40-watt-athens-ga.html',
             filterNames: ['Robyn Hitchcock', 'Emma Swift'],
         },
         {
             title: '2026-04-11 Drivin N Cryin @ 40 Watt | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55216349343_e96e54fe75_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333192494/',
             albumPage: '../music/2026-04-11-drivin-n-cryin-40-watt-athens-ga.html',
             filterNames: ['Drivin N Cryin', 'Kevn Kinney', 'Tim Nielsen', 'R.S. Field'],
-            manualTags: ['drivinncryin', 'kevnkinney', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'southernrock'],
+            manualTags: ['drivinncryin', 'kevnkinney', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'southernrock'],
         },
         {
             title: '2026-03-21 Don Chambers & Julia Barfield @ Dead Beat Club | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55179206795_eeb8624a3a_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332815161/', 
             albumPage: '../music/2026-03-21-don-chambers-julia-barfield-dead-beat-club-athens-ga.html', 
             filterNames: ['Don Chambers', 'Julia Barfield'] 
         },
         { 
             title: '2026-03-13 Bloodkin @ Holly Theatre | Dahlonega, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55152604660_df16339702_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332563345/', 
             albumPage: '../music/2026-03-13-bloodkin-holly-theatre-dahlonega-ga.html' 
         },
         { 
             title: '2026-03-11 Gary Numan @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55156289332_b6e63eea51_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332613305/', 
             albumPage: '../music/2026-03-11-gary-numan-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-03-07 Infinite Favors @ Dead Beat Club | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55157804249_bcebf05b10_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332616190/', 
             albumPage: '../music/2026-03-07-infinite-favors-dead-beat-club-athens-ga.html', 
             filterNames: ['Andrew Prater'] 
         },
         { 
             title: '2026-03-07 Bursters @ Dead Beat Club | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55157904590_039305dd24_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332649564/', 
             albumPage: '../music/2026-03-07-bursters-dead-beat-club-athens-ga.html' 
         },
         { 
             title: '2026-03-07 Johann Greco @ Dead Beat Club | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55157514161_8317d696e8_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332649474/', 
             albumPage: '../music/2026-03-07-johann-greco-dead-beat-club-athens-ga.html' 
         },
         { 
             title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA', 
             photoCount: 23,
+            coverUrl: 'https://live.staticflickr.com/65535/55131421835_a8a27c4b56_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332369426/',
             albumPage: '../music/2026-02-26-michael-shannon-jason-narducy-friends-40-watt-athens-ga.html',
             filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait']
@@ -718,52 +903,62 @@ const ALBUM_DATA = {
         { 
             title: '2026-02-16 Drink the Sea @ 40 Watt | Athens, GA', 
             photoCount: 25,
+            coverUrl: 'https://live.staticflickr.com/65535/55131608744_423b7d251f_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332367660/',
             albumPage: '../music/2026-02-16-drink-the-sea-40-watt-athens-ga.html',
             filterNames: ['Drink the Sea']
         },
         { 
             title: '2026-02-14 Florry @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55138490577_1c0a22249c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332461018/', 
             albumPage: '../music/2026-02-14-florry-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-02-13 The Lanes @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55157889885_9c3cbe93fa_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332622026/', 
             albumPage: '../music/2026-02-13-the-lanes-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-02-13 Camp Amped Band @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55159380930_9845a286ec_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332630290/', 
             albumPage: '../music/2026-02-13-camp-amped-band-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-02-11 MJ Lenderman @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55159643860_706230d80d_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332632425/', 
             albumPage: '../music/2026-02-11-mj-lenderman-40-watt-athens-ga.html' 
         },
         { 
             title: '2026-01-17 Bit Brigade @ Georgia Theatre | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55051103586_3630ed24e3_c.jpg',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551762/',
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
         },
         { 
             title: '2026-01-12 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55051084731_676e94a58c_c.jpg',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551582',
             albumPage: '../music/2026-01-12-kevn-kinney-peter-buck-rialto-room-athens-ga.html'
         },
         { 
             title: '2025-12-19 Bloodkin & Friends @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55050217367_32065cb1dd_c.jpg',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331586579/',
             albumPage: '../music/2025-12-19-bloodkin-friends-40-watt-athens-ga.html'
         },
         { 
             title: '2025-12-19 Kevn Kinney @ 40 Watt | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55051366749_419ef77a87_c.jpg',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551807/',
             albumPage: '../music/2025-12-19-kevn-kinney-40-watt-athens-ga.html'
         },
         { 
             title: '2025-12-12 Nuci\'s Space 25th Anniversary @ Georgia Theatre | Athens, GA', 
+            coverUrl: 'https://live.staticflickr.com/65535/55051739731_c6285abdec_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
             albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html',
             filterNames: ['Clare Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power']
@@ -777,6 +972,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2025-12-12 Heartbreakers @ Nowhere Bar | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55140694366_cbc8dcf19b_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332485984/',
             albumPage: '../music/2025-12-12-heartbreakers-nowhere-bar-athens-ga.html',
             filterNames: ['Heartbreakers'],
@@ -837,6 +1033,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-09-10 Hayride @ CIne | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54947420774_059b0ffca9_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330564193/',
             albumPage: '../music/2025-09-10-hayride-cine-athens-ga.html'
         },
@@ -879,6 +1076,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-08-29 Infinite Favors @ Ideal | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54953586548_9545345316_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330612052/',
             albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html', 
             filterNames: ['Andrew Prater']
@@ -886,6 +1084,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-08-29 Honeypuppy @ Ideal | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54956484694_919333ea09_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330652593/',
             albumPage: '../music/2025-08-29-honeypuppy-ideal-athens-ga.html'
         },
@@ -906,6 +1105,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-05-29 Abe Partridge @ Rialto Room | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54954749934_a9ab1bb9e3_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330621212/',
             filterNames: ['Abe Partridge', 'David Barbe', 'Steve Shelley'],
             albumPage: '../music/2025-05-29-abe-partridge-rialto-room-athens-ga.html'
@@ -913,12 +1113,14 @@ const ALBUM_DATA = {
         { 
             title: '2025-05-21 Tommy Stinson & Karla Rose @ Cine | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54960790421_d1dcc2d7f6_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330675235/',
             albumPage: '../music/2025-05-21-tommy-stinson-karla-rose-cine-athens-ga.html'
         },
         { 
             title: '2025-05-26 Patterson Hood @ Lakeside Jam | Milledgeville, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54956121983_2b5bf7b687_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330649268/',
             albumPage: '../music/2025-05-26-patterson-hood-lakeside-jam-milledgeville-ga.html'
         },
@@ -944,6 +1146,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2021-09-16 Addie Tonic @ Southern Brewing Co | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54915085775_242f7af6fe_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330244008/',
             albumPage: '../music/2021-09-16-addie-tonic-southern-brewing-co-athens-ga.html',
             filterNames: ['Addie Tonic'],
@@ -971,6 +1174,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54363516592_1689c9d9ef_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324235638/',
             albumPage: '../music/2025-02-15-drive-by-truckers-40-watt-homecoming-athens-ga.html'
         },
@@ -985,6 +1189,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-03-29 A Celebration of the Joyful Life of W. Cullen Hart @ 40 Watt | Athens, GA', 
             photoCount: 24, 
+            coverUrl: 'https://live.staticflickr.com/65535/54941997732_6716282897_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330509701/',
             albumPage: '../music/2025-03-29-w-cullen-hart-celebration-40-watt-athens-ga.html',
             filterNames: ['Elf Power', 'Giant Day', 'Marshmallow Coast', 'Heather McIntosh', 'Scott Spillane', 'Robert Schneider', 'Max Schneider', 'The Apples in Stereo', 'The Rishis', 'Jason NeSmith', 'John Kiran Fernandes', 'Robbee Cucchiaro', 'John Ferguson', 'Laura Carter', 'Peter Erchick', 'Franklin Russell', 'Peter Alvanos', 'Derek Almstead', 'Emily Growden', 'Ryan Bousqet', 'Eric Allen', 'John Hill', 'Gary Olsen', 'Kris Deason']
@@ -992,12 +1197,14 @@ const ALBUM_DATA = {
         { 
             title: '2025-03-26 Patterson Hood & the Sensurrounders @ Terminal West | Atlanta, GA', 
             photoCount: 25, 
+            coverUrl: 'https://live.staticflickr.com/65535/54940218808_f74ca2168f_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330484627/',
             albumPage: '../music/2025-03-26-patterson-hood-sensurrounders-terminal-west-atlanta-ga.html'
         },
         { 
             title: '2025-03-05 Eric Carter & Scotty Nicholson @ Nowhere Bar | Athens, GA', 
             photoCount: 8, 
+            coverUrl: 'https://live.staticflickr.com/65535/54940841323_cc6a7dd82c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330505783/',
             albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html'
         },
@@ -1050,6 +1257,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-04-11 Steeple Benefit @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54959945072_95bdbb451f_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330709474/',
             filterNames: ['Steeple Benefit', 'Granfalloons', 'The Bad Ends', 'Five Eight', 'Sunny Ortiz'],
             albumPage: '../music/2025-04-11-steeple-benefit-40-watt-athens-ga.html'
@@ -1057,6 +1265,7 @@ const ALBUM_DATA = {
         { 
             title: '2025-04-11 Lee Bains @ Flicker | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54962023655_14fa63a92f_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330685535/',
             albumPage: '../music/2025-04-11-lee-bains-flicker-athens-ga.html'
         },
@@ -1070,18 +1279,21 @@ const ALBUM_DATA = {
         { 
             title: '2025-04-25 Cicada Rhythm @ Cobham Triangle Park | Athens, GA', 
             photoCount: 6, 
+            coverUrl: 'https://live.staticflickr.com/65535/54941003840_e7a1917e56_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518389/',
             albumPage: '../music/2025-04-25-cicada-rhythm-cobham-triangle-park-athens-ga.html'
         },
         { 
             title: '2025-05-09 Rose Hotel @ Cobham Triangle Park | Athens, GA', 
             photoCount: 14, 
+            coverUrl: 'https://live.staticflickr.com/65535/54940963019_bc3a32441f_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330485070/',
             albumPage: '../music/2025-05-09-rose-hotel-cobham-triangle-park-athens-ga.html'
         },
         { 
             title: '2025-05-09 Lazy Horse @ Cobham Triangle Park | Athens, GA', 
             photoCount: 9, 
+            coverUrl: 'https://live.staticflickr.com/65535/54939889787_5a4dd3e319_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330518974/',
             albumPage: '../music/2025-05-09-lazy-horse-cobham-triangle-park-athens-ga.html'
         },
@@ -1095,6 +1307,7 @@ const ALBUM_DATA = {
         { 
             title: '2024-10-04 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
             photoCount: 14, 
+            coverUrl: 'https://live.staticflickr.com/65535/54943491400_532f1bc134_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330529218/',
             albumPage: '../music/2024-10-04-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         }, 
@@ -1133,36 +1346,42 @@ const ALBUM_DATA = {
         { 
             title: '2024-09-07 The Bad Ends @ 40 Watt | Athens, GA', 
             photoCount: 27, 
+            coverUrl: 'https://live.staticflickr.com/65535/54939998232_42de63d001_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330492587/',
             albumPage: '../music/2024-09-07-the-bad-ends-40-watt-athens-ga.html'
         },
         { 
             title: '2024-05-24 Hayride @ Roadhouse | Athens, GA', 
             photoCount: 16, 
+            coverUrl: 'https://live.staticflickr.com/65535/54941114218_5b2efbc770_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493037/',
             albumPage: '../music/2024-05-24-hayride-roadhouse-athens-ga.html'
         }, 
         { 
             title: '2024-04-26 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54918040659_af9e2b2db2_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330251330/',
             albumPage: '../music/2024-04-26-five-eight-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2024-04-04 Alejandro Escovedo @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54915305274_38ef59a4f6_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247733/',
             albumPage: '../music/2024-04-04-alejandro-escovedo-40-watt-athens-ga.html'
         },
         { 
             title: '2024-04-13 Pilgrim @ Little Kings | Athens, GA', 
             photoCount: 5, 
+            coverUrl: 'https://live.staticflickr.com/65535/54940928031_68ed2e124c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330493222/',
             albumPage: '../music/2024-04-13-pilgrim-little-kings-athens-ga.html'
         },
         { 
             title: '2024-04-11 Kimberly Morgan York @ House Party | Athens, GA', 
             photoCount: 9, 
+            coverUrl: 'https://live.staticflickr.com/65535/54941194494_e70a488c74_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330487035/',
             albumPage: '../music/2024-04-11-kimberly-morgan-york-band-house-party-athens-ga.html'
         },
@@ -1176,6 +1395,7 @@ const ALBUM_DATA = {
         { 
             title: '2024-03-01 Lona @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54915343105_0e505f503b_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330247523/',
             albumPage: '../music/2024-03-01-lona-40-watt-athens-ga.html'
         },
@@ -1189,6 +1409,7 @@ const ALBUM_DATA = {
         { 
             title: '2024-02-15 Drive-By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54925322792_50ec14ecf0_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330343237/',
             albumPage: '../music/2024-02-15-drive-by-truckers-40-watt-athens-ga.html'
         },
@@ -1210,6 +1431,7 @@ const ALBUM_DATA = {
         { 
             title: '2024-01-26 Lazer/Wulf @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54916895602_172af7eb5d_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330282554/',
             albumPage: '../music/2024-01-26-lazer-wulf-georgia-theatre-athens-ga.html'
         },
@@ -1223,12 +1445,14 @@ const ALBUM_DATA = {
         { 
             title: '2023-11-24 TaxiCab Verses @ Flicker | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909326078_b63c4ebffb_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192738/',
             albumPage: '../music/2023-11-24-taxicab-verses-flicker-athens-ga.html'
         },
         { 
             title: '2023-11-24 Jacob Morris @ Flicker | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909524315_15e97a2607_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193693/',
             albumPage: '../music/2023-11-24-jacob-morris-flicker-athens-ga.html'
         },
@@ -1291,42 +1515,49 @@ const ALBUM_DATA = {
         { 
             title: '2023-09-10 Jerry Joseph and the Jackmormons @ Heist Brewery | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54924912294_fb04420a39_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324995/',
             albumPage: '../music/2023-09-10-jackmormons-heist-brewery-athens-ga.html'
         },
         { 
             title: '2023-08-26 Telemarket @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54926297153_2b4ccca0b8_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330342632/',
             albumPage: '../music/2023-08-26-telemarket-40-watt-athens-ga.html'
         },
         { 
             title: '2023-08-12 Drug Ducks @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909410185_359f81a775_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172460/',
             albumPage: '../music/2023-08-12-drug-ducks-nowhere-athens-ga.html'
         },
         { 
             title: '2023-06-24 Lona @ AthFest | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54922586906_ba88587b18_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330794/',
             albumPage: '../music/2023-06-24-lona-athfest-athens-ga.html'
         },
         { 
             title: '2023-04-06 Will Johnson @ Living Room Show | Athens, GA', 
             photoCount: 7, 
+            coverUrl: 'https://live.staticflickr.com/65535/54933201596_aa7764b17e_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330408516/',
             albumPage: '../music/2023-04-06-will-johnson-living-room-show-athens-ga.html'
         },
         { 
             title: '2023-04-06 Spencer Thomas @ Living Room Show | Athens, GA', 
             photoCount: 2, 
+            coverUrl: 'https://live.staticflickr.com/65535/54933476769_4d0c877631_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330411882/',
             albumPage: '../music/2023-04-06-spencer-thomas-living-room-show-athens-ga.html'
         },
         { 
             title: '2023-03-25 Eyelids @ Flicker | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54908216232_01d6dc0be0_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204479/',
             albumPage: '../music/2023-03-25-eyelids-flicker-athens-ga.html'
         },
@@ -1347,11 +1578,13 @@ const ALBUM_DATA = {
         { 
             title: '2023-03-04 Bloodkin @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54943193631_97ee675877_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330541379/',
             albumPage: '../music/2023-03-04-bloodkin-nowhere-bar-athens-ga.html'
         },
         {
             title: '2023-02-09 Weaponized Flesh @ Georgia Theatre | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54936478462_f868957720_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330453275/',
             albumPage: '../music/2023-02-09-weaponized-flesh-georgia-theatre-athens-ga.html',
             filterNames: ['Weaponized Flesh'],
@@ -1381,6 +1614,7 @@ const ALBUM_DATA = {
         { 
             title: '2022-12-13 Supernova Rainbow of Fun @ Nuci\'s Space', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909309683_47e3fe91ec_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330172345/',
             albumPage: '../music/2022-12-13-supernova-rainbow-of-fun-nucis-space.html'
         },
@@ -1394,17 +1628,20 @@ const ALBUM_DATA = {
         { 
             title: '2022-11-27 Bloodkin @ Nuci\'s Space | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54945680355_e1fbbd7492_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534192/',
             albumPage: '../music/2022-11-27-bloodkin-nucis-space-athens-ga.html'
         },
         { 
             title: '2022-10-02 Hunter Morris @ Porchfest | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54926776968_fb15ea5d51_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330346052/',
             albumPage: '../music/2022-10-02-hunter-morris-porchfest-athens-ga.html'
         },
         {
             title: '2022-10-02 Tom Hiel @ Porchfest | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54937504668_82f518e27c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330486389/',
             albumPage: '../music/2022-10-02-tom-hiel-porchfest-athens-ga.html',
             filterNames: ['Tom Hiel'],
@@ -1412,12 +1649,14 @@ const ALBUM_DATA = {
         { 
             title: '2022-09-15 Brown Dwarf @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54917678081_76a2549449_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330252736/',
             albumPage: '../music/2022-09-15-brown-dwarf-40-watt-athens-ga.html'
         },
         { 
             title: '2022-09-02 Infinite Favors @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54925470172_5ba96d31cc_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330369904/',
             albumPage: '../music/2022-09-02-infinite-favors-40-watt-athens-ga.html', 
             filterNames: ['Andrew Prater']
@@ -1453,6 +1692,7 @@ const ALBUM_DATA = {
         { 
             title: '2022-06-26 Kevn Kinney Band @ AthFest | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54916993407_a5dbc5c5da_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330258602/',
             albumPage: '../music/2022-06-26-kevn-kinney-band-athfest-athens-ga.html'
         },
@@ -1480,6 +1720,7 @@ const ALBUM_DATA = {
         { 
             title: '2022-02-26 Kimberly Morgan York @ The Root | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54945675825_8b1d4c77e1_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330527475/',
             albumPage: '../music/2022-02-26-kimberly-morgan-york-the-root-athens-ga.html'
         },
@@ -1493,6 +1734,7 @@ const ALBUM_DATA = {
         { 
             title: '2019-12-31 Five Eight @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909533495_9659552f43_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330193758/',
             albumPage: '../music/2019-12-31-five-eight-nowhere-bar-athens-ga.html'
         },
@@ -1506,6 +1748,7 @@ const ALBUM_DATA = {
         { 
             title: '2019-09-12 Bloodkin @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54924886149_bfcf9d0139_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330330327/',
             albumPage: '../music/2019-09-12-bloodkin-nowhere-bar-athens-ga.html'
         },
@@ -1526,23 +1769,27 @@ const ALBUM_DATA = {
         { 
             title: '2019-03-30 Hayride @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54922851519_3b81b8f43d_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330305987/',
             albumPage: '../music/2019-03-30-hayride-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2019-03-22 The Rock*A*Teens @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54926603725_d3b8dbf6ab_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330338565/',
             albumPage: '../music/2019-03-22-rock-a-teens-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2019-02-01 David Barbe & the Quick Hooks @ Caledonia | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54926524124_f6ecf053a4_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
             albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
         },
         {
             title: '2019-02-01 The Wydelles @ Caledonia | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54924884828_126f9990f6_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345488/',
             albumPage: '../music/2019-02-01-the-wydelles-caledonia-athens-ga.html',
             filterNames: ['The Wydelles'],
@@ -1550,12 +1797,14 @@ const ALBUM_DATA = {
         { 
             title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54915396460_1ea5fc0dd4_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330229651/',
             albumPage: '../music/2018-12-29-lona-caledonia-athens-ga.html'
         },
         { 
             title: '2018-11-08 Robyn Hitchcock @ 40 Watt | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54923749097_77bfe5bc68_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345098/',
             albumPage: '../music/2018-11-08-robyn-hitchcock-40-watt-athens-ga.html'
         },
@@ -1569,36 +1818,42 @@ const ALBUM_DATA = {
         { 
             title: '2018-10-31 Jerry Joseph & the Jackmormons @ Georgia Theatre | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54915381534_34ae6a3d08_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330228355/',
             albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
         },
         { 
             title: '2018-07-14 Cinemechanica @ Caledonia | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54924813388_76d314616c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324630/',
             albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
         { 
             title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance @ Nowhere Bar | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54945415971_50f151d6f2_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534587/',
             albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2018-06-04 Daniel Hutchens & David Barbe @ Georgia Theatre Rooftop | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54922946845_bb7774df40_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330320628/',
             albumPage: '../music/2018-06-04-daniel-hutchens-david-barbe-georgia-theatre-rooftop-athens-ga.html'
         },
         { 
             title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54909332968_99ef23f946_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204669/',
             albumPage: '../music/2017-12-14-5000-caledonia-athens-ga.html'
         },
         { 
             title: '2017-07-27 Jerry Joseph, Todd Nance & John Neff @ The Foundry | Athens, GA', 
             photoCount: 11, 
+            coverUrl: 'https://live.staticflickr.com/65535/54914785638_d2962168ec_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330222401/',
             albumPage: '../music/2017-07-27-jerry-joseph-todd-nance-john-neff-the-foundry-athens-ga.html'
         },
@@ -1618,6 +1873,14 @@ const ALBUM_DATA = {
         },
     ],
     events: [
+        {
+            title: '2026-07-15 World Cup England vs Argentina @ Atlanta Stadium | Atlanta, GA',
+            photoCount: 22,
+            coverUrl: 'https://live.staticflickr.com/65535/55414631776_e9e8be3088_b.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334830753/',
+            albumPage: '../events/2026-07-15-world-cup-england-argentina-atlanta-stadium-atlanta-ga.html',
+            filterNames: ['World Cup'],
+        },
         {
             title: '2026-04-14 Protest Against JD Vance Turning Point Rally @ Akins Ford Arena | Athens, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333183378/',
@@ -1984,6 +2247,21 @@ function openAlbumLightbox(index) {
     openLightbox(currentAlbumPhotos, index);
 }
 
+// Normalize venue names so dropdown/filter show one canonical entry per venue.
+// Consolidates all "Georgia Theatre" spellings/suffixes into "Georgia Theatre"
+// (and "Georgia Theatre Rooftop" for rooftop shows), and strips "- AthFest Night X" suffixes.
+function normalizeVenueName(venue) {
+    if (!venue) return venue;
+    let v = venue.trim();
+    // Strip trailing event-night suffixes like " - AthFest Night 2"
+    v = v.replace(/\s*[-–—]\s*AthFest.*$/i, '').trim();
+    // Georgia Theatre variations
+    if (/theat(?:re|er)/i.test(v) && /\b(?:georgia|ga)\b/i.test(v)) {
+        return /rooftop/i.test(v) ? 'Georgia Theatre Rooftop' : 'Georgia Theatre';
+    }
+    return v;
+}
+
 // Display albums from manual configuration
 function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all') {
     const albumsGrid = document.getElementById('albums-grid');
@@ -2120,9 +2398,12 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             
             // Check if the selected venue matches any of the venues in this album
             // Handle combined venues like "40 Watt & Nowhere Bar"
+            // Compare on normalized names so Georgia Theatre variations collapse to one
+            // while keeping "Georgia Theatre Rooftop" distinct.
+            const normalizedFilter = normalizeVenueName(filterVenue).toLowerCase();
             const individualVenues = venue.split(/\s*&\s+/);
-            return individualVenues.some(individualVenue => 
-                individualVenue.toLowerCase().includes(filterVenue.toLowerCase())
+            return individualVenues.some(individualVenue =>
+                normalizeVenueName(individualVenue.trim()).toLowerCase() === normalizedFilter
             );
         });
     }
@@ -2162,20 +2443,16 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     // Display albums
     albumsGrid.innerHTML = albums.map((album, index) => {
         const albumId = `album-${collectionType}-${index}-${Date.now()}`;
-        
-        // If no coverUrl, fetch from Flickr API
+
+        // If no coverUrl but we have a Flickr album, mark for lazy cover fetch (on scroll into view)
+        let lazyAttr = '';
         if (!album.coverUrl && album.flickrUrl) {
             const flickrAlbumId = extractAlbumId(album.flickrUrl);
             if (flickrAlbumId) {
-                fetchFlickrAlbumCover(flickrAlbumId).then(coverUrl => {
-                    const imgElement = document.querySelector(`#${albumId} img`);
-                    if (imgElement && coverUrl) {
-                        imgElement.src = coverUrl;
-                    }
-                });
+                lazyAttr = ` data-lazy-cover="${flickrAlbumId}"`;
             }
         }
-        
+
         return `
             <a href="${album.albumPage || album.flickrUrl}" 
                ${album.albumPage ? '' : 'target="_blank" rel="noopener"'} 
@@ -2186,7 +2463,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                     <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/333333/FFFFFF?text=Loading...'}" 
                          alt="${album.title}" 
                          loading="lazy"
-                         style=""
+                         style=""${lazyAttr}
                          onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
                     <div class="album-overlay">
                         <h3>${album.displayTitle || album.title}</h3>
@@ -2196,6 +2473,41 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             </a>
         `;
     }).join('');
+
+    // Lazy-fetch Flickr covers only when their card scrolls into view (fallback for albums without a baked-in coverUrl)
+    lazyLoadAlbumCovers(albumsGrid);
+}
+
+// Fetch Flickr album covers on demand as cards enter the viewport
+function lazyLoadAlbumCovers(container) {
+    const lazyImgs = container.querySelectorAll('img[data-lazy-cover]');
+    if (lazyImgs.length === 0) return;
+
+    const loadCover = (img) => {
+        const flickrAlbumId = img.getAttribute('data-lazy-cover');
+        if (!flickrAlbumId) return;
+        img.removeAttribute('data-lazy-cover');
+        fetchFlickrAlbumCover(flickrAlbumId).then(coverUrl => {
+            if (coverUrl) img.src = coverUrl;
+        });
+    };
+
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: no observer support, just load them all
+        lazyImgs.forEach(loadCover);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadCover(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '300px' });
+
+    lazyImgs.forEach(img => observer.observe(img));
 }
 
 // ===================================
@@ -2441,7 +2753,7 @@ function initializeFilters(collectionType) {
                         // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
                         const individualVenues = venue.split(/\s*&\s+/);
                         individualVenues.forEach(individualVenue => {
-                            venues.add(individualVenue.trim());
+                            venues.add(normalizeVenueName(individualVenue.trim()));
                         });
                     }
                 }
@@ -2505,6 +2817,8 @@ function initializeFilters(collectionType) {
                     eventTypes.add('UCW Labor Rally');
                 } else if (eventName.toLowerCase().includes('homecoming')) {
                     eventTypes.add('UGA Homecoming');
+                } else if (eventName.toLowerCase().includes('world cup')) {
+                    eventTypes.add('World Cup');
                 } else {
                     // For any other events, use the cleaned name
                     eventTypes.add(eventName);
@@ -2884,7 +3198,6 @@ function createGlobalHeader() {
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="nav-menu">
-                        <li><button class="theme-toggle" onclick="toggleTheme(); return false;" aria-label="Toggle light/dark mode"><i class="fas fa-moon"></i></button></li>
                         <li><a href="#" onclick="openSearchModal(); return false;" aria-label="Search"><i class="fas fa-search"></i></a></li>
                         <li class="collections-dropdown">
                             <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
@@ -3014,7 +3327,13 @@ function initializeGlobalFooter() {
 // Default theme is dark. User can toggle to light; choice persists in localStorage.
 function getStoredTheme() {
     try {
-        return localStorage.getItem('theme') || 'dark';
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        // No saved preference - respect system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            return 'light';
+        }
+        return 'dark';
     } catch (e) {
         return 'dark';
     }
@@ -3039,9 +3358,12 @@ function updateLogoForTheme(theme) {
 
 function updateThemeIcon(theme) {
     const icon = document.querySelector('.theme-toggle i');
-    if (!icon) return;
+    const heroIcon = document.querySelector('.hero-theme-toggle i');
+    if (!icon && !heroIcon) return;
     // Show a sun in light mode (click to go dark), a moon in dark mode (click to go light)
-    icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+    const iconClass = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+    if (icon) icon.className = iconClass;
+    if (heroIcon) heroIcon.className = iconClass;
 }
 
 function toggleTheme() {
@@ -3064,45 +3386,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Camera icon code removed - using logo image instead
 });
 
-// Allow image drag and download functionality
-
-// Download functionality for lightbox images
-function downloadLightboxImage() {
-    const lightboxImg = document.getElementById('lightbox-img');
-    if (lightboxImg && lightboxImg.src) {
-        // Use fetch to get the image as a blob to bypass CORS issues
-        fetch(lightboxImg.src)
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                
-                // Get filename from image URL or use default
-                const urlParts = lightboxImg.src.split('/');
-                let filename = urlParts[urlParts.length - 1] || 'jayne-clamp-photo.jpg';
-                
-                // Clean up Flickr filename to be more user-friendly
-                if (filename.includes('_')) {
-                    const parts = filename.split('_');
-                    filename = `jayne-clamp-${parts[0]}.jpg`;
-                }
-                
-                link.download = filename;
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                // Clean up the blob URL
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => {
-                // Fallback: open in new tab if fetch fails
-                window.open(lightboxImg.src, '_blank');
-            });
-    }
-}
 // SCROLL POSITION RESTORATION
 // ===================================
 
