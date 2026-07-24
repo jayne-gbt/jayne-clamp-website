@@ -172,7 +172,6 @@ img {
 }
 
 .site-title {
-    margin-left: -0.5rem;
     font-size: 1.8rem;
     font-weight: 500;
     letter-spacing: 2px;
@@ -1395,7 +1394,6 @@ html[data-theme="light"] .cookie-notice button:hover {
 
 @media (max-width: 480px) {
     .site-title {
-    margin-left: -0.5rem;
         font-size: 1.4rem;
     }
     
@@ -1701,7 +1699,7 @@ img {
 
 /* Watermark visible in light mode */
 html[data-theme="light"] .lightbox-watermark {
-    color: #ffffff !important;
+    color: #000000 !important;
 }
 
 
@@ -1948,7 +1946,7 @@ html[data-theme="light"] .lightbox-watermark {
     }
     
     .lightbox-watermark {
-        color: #ffffff !important;
+        color: #000000 !important;
     }
     
     .site-header {

@@ -13,28 +13,29 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2022-07-22 Claire Campbell @ 40 Watt | Athens, GA - Jayne Clamp Photography</title>
-    <meta name="description" content="2022-07-22 Claire Campbell @ 40 Watt | Athens, GA">
-    <meta name="keywords" content="Claire Campbell, 40 Watt Club, Hope For Agoldensummer, Athens Georgia, indie folk, Americana, live music photography, concert photos, Athens music scene">
+    <title>2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA - Jayne Clamp Photography</title>
+    <meta name="description" content="Photos from 2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA">
+    <meta name="keywords" content="Scattrbrain, 40 Watt Club, AthFest, Athens Georgia, indie rock, Athens music scene, live music photography, concert photos, local bands, underground music">
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="2022-07-22 Claire Campbell @ 40 Watt | Athens, GA">
-    <meta property="og:description" content="Live music photography by Jayne Clamp - Claire Campbell performing at the 40 Watt Club in Athens, GA">
-    <meta property="og:image" content="https://live.staticflickr.com/65535/54937277471_73d9f2292b_c.jpg">
-    <meta property="og:url" content="https://jayne-clamp.netlify.app/music/2022-07-22-claire-campbell-40-watt-athens-ga.html">
+    <meta property="og:title" content="2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA">
+    <meta property="og:description" content="Live music photography by Jayne Clamp - 2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/55412728981_5196114c38_c.jpg">
+    <meta property="og:url" content="https://jayneclamp.com/music/2026-06-26-scattrbrain-40-watt-athfest-athens-ga.html">
     <meta property="og:site_name" content="Jayne Clamp Photography">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2022-07-22 Claire Campbell @ 40 Watt | Athens, GA">
+    <meta name="twitter:title" content="2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA">
     <meta name="twitter:description" content="Live music photography by Jayne Clamp">
-    <meta name="twitter:image" content="https://live.staticflickr.com/65535/54937277471_73d9f2292b_c.jpg">
+    <meta name="twitter:image" content="https://live.staticflickr.com/65535/55412728981_5196114c38_c.jpg">
     
     <link rel="stylesheet" href="../css/style.css?v=20260723-0150">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Header -->
     <header class="site-header">
         <div class="container">
             <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
@@ -64,45 +65,38 @@
                             <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
                         </ul>
                     </li>
+                    <li><a href="#" onclick="copyPageLink(); return false;"><i class="fas fa-link"></i> Copy Link</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="albums-section">
+    <!-- Main Content -->
+
+    <section class="album-page">
         <div class="container">
+            <div style="padding-top: 1.5rem;">
+                <a href="../music.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Music</a>
+            </div>
 
-            <a href="../music.html" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Music
-            </a>
-
-            <div class="page-header">
-                <h2 class="page-title">2022-07-22 Claire Campbell @ 40 Watt | Athens, GA</h2>
+<div class="page-header">
+                <h2 class="page-title">2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA</h2>
                 <p class="page-subtitle">Loading photo count...</p>
             </div>
 
             <div id="loading" class="loading">Loading photos...</div>
 
-            <div id="photo-grid" class="photos-grid"></div>
+            <!-- Photo Grid - populated by JavaScript -->
+            <div id="photo-grid" class="photos-grid">
+                <!-- Photos will be loaded dynamically via JavaScript -->
+            </div>
         </div>
     </section>
 
     
 
-    <!-- Artist Official Site Section -->
-    <div class="container artist-official-section">
-        <p class="section-label">Official Artist Site</p>
-        <a href="https://www.hopeforagoldensummer.com/" target="_blank" rel="noopener" class="artist-official-link">
-            <i class="fas fa-external-link-alt"></i>
-            Claire Campbell
-        </a>
-    </div>
-
-    <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
-        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
-    </div>
-
-<div id="lightbox">
+    <!-- Lightbox -->
+    <div id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-share" onclick="toggleLightboxShare()">
                 <i class="fas fa-ellipsis-h"></i>
@@ -114,24 +108,39 @@
                 <a href="#" onclick="shareLightboxPhoto('copy'); return false;"><i class="fas fa-link"></i></a>
             </div>
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-nav lightbox-prev" onclick="prevLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             <img id="lightbox-img" src="" alt="Photo">
-            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()"><i class="fas fa-chevron-right"></i></button>
+            <button class="lightbox-nav lightbox-next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
             <div class="lightbox-caption" id="lightbox-caption"></div>
             <div class="lightbox-counter" id="lightbox-counter"></div>
         </div>
     </div>
 
-    <script src="../js/main.js?v=20260724-1410"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize album navigation arrows
-            initializeAlbumNavigation();
-            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720330474313/';
-            displayAlbumPhotos(albumUrl);
-        });
-    </script>
-    <!-- Album Navigation at Bottom -->
+    <!-- Artist Official Site Section -->
+    <div class="container artist-official-section">
+        <p class="section-label">Official Artist Site</p>
+        <a href="https://www.facebook.com/profile.php?id=61575272129622" target="_blank" rel="noopener" class="artist-official-link">
+            <i class="fab fa-facebook"></i>
+            Scattrbrain
+        </a>
+    </div>
+
+    <!-- Photo Tags -->
+    <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
+        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+            <!-- Tags will be populated by JavaScript -->
+        </div>
+    </div>
+
+    
+
+    
+
+        <!-- Album Navigation at Bottom -->
     <div class="album-bottom-navigation">
         <div class="container">
             <button id="prev-album" class="album-nav-btn album-nav-left" title="Previous Album">
@@ -149,5 +158,24 @@
     </div>
 
 <!-- Footer -->
-    </body>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2025 Jayne Clamp | Website Design by Jayne Clamp</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js?v=20260724-1410"></script>
+    <script>
+        // Load photos from this specific Flickr album
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize album navigation arrows
+            initializeAlbumNavigation();
+            const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720334819695/';
+            displayAlbumPhotos(albumUrl);
+            
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
+        });
+    </script>
+</body>
 </html>
