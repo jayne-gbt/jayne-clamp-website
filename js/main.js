@@ -730,6 +730,7 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334824914/',
             albumPage: '../music/2026-06-28-carl-broemel-tyler-ramsey-athfest-athens-ga.html',
             filterNames: ['Carl Broemel', 'Tyler Ramsey', 'AthFest'],
+            manualTags: ['Carl Broemel', 'Tyler Ramsey', 'AthFest'],
         },
         {
             title: '2026-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
