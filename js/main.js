@@ -794,7 +794,7 @@ const ALBUM_DATA = {
             filterNames: ['Heffner', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Mountain of Youth @ 40 Watt | AthFest',
+            title: '2026-06-26 Mountain of Youth @ 40 Watt AthFest | Athens, GA',
             photoCount: 19,
             coverUrl: 'https://live.staticflickr.com/65535/55416015911_e401099598_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334818175/',
