@@ -702,7 +702,6 @@ const ALBUM_DATA = {
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
             title: '2026-07-17 Cinemechanica @ 40 Watt | Athens, GA',
-            photoCount: 0,
             coverUrl: 'https://live.staticflickr.com/65535/55413621487_5c0129704f_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334809770/',
             albumPage: '../music/2026-07-17-cinemechanica-40-watt-athens-ga.html',
