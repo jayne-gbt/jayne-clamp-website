@@ -724,12 +724,12 @@ const ALBUM_DATA = {
             filterNames: ['Real Wow'],
         },
         {
-            title: '2026-06-28 Carl Broemel & Tyler Ramsey @ AthFest | Athens, GA',
+            title: '2026-06-28 Carl Broemel & Tyler Ramsey @ AthFest',
             photoCount: 14,
             coverUrl: 'https://live.staticflickr.com/65535/55413108805_c8c841b3c0_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334824914/',
             albumPage: '../music/2026-06-28-carl-broemel-tyler-ramsey-athfest-athens-ga.html',
-            filterNames: ['Carl Broemel', 'Tyler Ramsey'],
+            filterNames: ['Carl Broemel', 'Tyler Ramsey', 'AthFest'],
         },
         {
             title: '2026-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
@@ -743,21 +743,21 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/55374382355_a2de9ba8bf_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334541834/',
             albumPage: '../music/2026-06-27-slightly-famous-somebodies-40-watt-athfest-night-2-athens-ga.html',
-            filterNames: ['Slightly Famous Somebodies'],
+            filterNames: ['Slightly Famous Somebodies', '40 Watt', 'AthFest'],
         },
         {
             title: '2026-06-27 Kevn Kinney & Peter Buck @ 40 Watt | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374151249_3905f364c4_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514935/',
             albumPage: '../music/2026-06-27-kevn-kinney-peter-buck-40-watt-athfest-night-2-athens-ga.html',
-            filterNames: ['Kevn Kinney', 'Peter Buck'],
+            filterNames: ['Kevn Kinney', 'Peter Buck', '40 Watt', 'AthFest'],
         },
         {
             title: '2026-06-27 Bloodkin @ Georgia Theatre | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55373009402_b2bf894401_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514775/',
             albumPage: '../music/2026-06-27-bloodkin-georgia-theatre-athfest-night-2-athens-ga.html',
-            filterNames: ['Bloodkin'],
+            filterNames: ['Bloodkin', 'Georgia Theatre', 'AthFest'],
         },
         {
             title: '2026-06-27 Bland Halen @ Nowhere Bar | AthFest',
@@ -781,7 +781,6 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-06-26 Scattrbrain @ 40 Watt | AthFest',
-            photoCount: 0,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334819695/',
             albumPage: '../music/2026-06-26-scattrbrain-40-watt-athfest-athens-ga.html',
             filterNames: ['Scattrbrain', '40 Watt', 'AthFest'],
@@ -795,7 +794,7 @@ const ALBUM_DATA = {
             filterNames: ['Heffner', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Mountain of Youth @ 40 Watt - AthFest | Athens, GA',
+            title: '2026-06-26 Mountain of Youth @ 40 Watt | AthFest',
             photoCount: 19,
             coverUrl: 'https://live.staticflickr.com/65535/55416015911_e401099598_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334818175/',
@@ -803,14 +802,14 @@ const ALBUM_DATA = {
             filterNames: ['Mountain of Youth', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Lilly Hiatt @ Georgia Theatre - AthFest Night 1 | Athens, GA',
+            title: '2026-06-26 Lilly Hiatt @ Georgia Theatre | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55373144512_c774ff7b9c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334517262/',
             albumPage: '../music/2026-06-27-lilly-hiatt-georgia-theatre-athfest-night-1-athens-ga.html',
             filterNames: ['Lilly Hiatt', 'Georgia Theatre', 'AthFest'],
         },
         {
-            title: '2026-06-26 Spencer Thomas @ GA Theatre Rooftop - AthFest Night 1 | Athens, GA',
+            title: '2026-06-26 Spencer Thomas @ Georgia Theatre Rooftop | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374441678_7de0d28f68_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334519187/',
             albumPage: '../music/2026-06-27-spencer-thomas-ga-theatre-rooftop-athfest-night-1-athens-ga.html',
