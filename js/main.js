@@ -740,76 +740,82 @@ const ALBUM_DATA = {
             filterNames: ['Steve Wynn', 'Peter Buck'],
         },
         {
-            title: '2026-06-27 Slightly Famous Somebodies @ 40 Watt - AthFest Night 2 | Athens, GA',
+            title: '2026-06-27 Slightly Famous Somebodies @ 40 Watt | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374382355_a2de9ba8bf_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334541834/',
             albumPage: '../music/2026-06-27-slightly-famous-somebodies-40-watt-athfest-night-2-athens-ga.html',
             filterNames: ['Slightly Famous Somebodies'],
         },
         {
-            title: '2026-06-27 Kevn Kinney & Peter Buck @ 40 Watt - AthFest Night 2 | Athens, GA',
+            title: '2026-06-27 Kevn Kinney & Peter Buck @ 40 Watt | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374151249_3905f364c4_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514935/',
             albumPage: '../music/2026-06-27-kevn-kinney-peter-buck-40-watt-athfest-night-2-athens-ga.html',
             filterNames: ['Kevn Kinney', 'Peter Buck'],
         },
         {
-            title: '2026-06-27 Bloodkin @ Georgia Theatre - AthFest Night 2 | Athens, GA',
+            title: '2026-06-27 Bloodkin @ Georgia Theatre | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55373009402_b2bf894401_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334514775/',
             albumPage: '../music/2026-06-27-bloodkin-georgia-theatre-athfest-night-2-athens-ga.html',
             filterNames: ['Bloodkin'],
         },
         {
-            title: '2026-06-27 Bland Halen @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            title: '2026-06-27 Bland Halen @ Nowhere Bar | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374004796_4e834b3a4a_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334534283/',
             albumPage: '../music/2026-06-27-bland-halen-nowhere-bar-athfest-night-2-athens-ga.html',
-            filterNames: ['Bland Halen'],
+            filterNames: ['Bland Halen', 'Nowhere Bar', 'AthFest'],
         },
         {
-            title: '2026-06-27 The Arcs @ Nowhere Bar - AthFest Night 2 | Athens, GA',
+            title: '2026-06-27 The Arcs @ Nowhere Bar | AthFest',
             coverUrl: 'https://live.staticflickr.com/65535/55374237519_d917e28f98_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334516992/',
             albumPage: '../music/2026-06-27-the-arcs-nowhere-bar-athfest-night-2-athens-ga.html',
-            filterNames: ['The Arcs'],
+            filterNames: ['The Arcs', 'Nowhere Bar', 'AthFest'],
         },
         {
-            title: '2026-06-26 Scattrbrain @ 40 Watt AthFest | Athens, GA',
+            title: '2026-06-27 Wieuca @ Nowhere Bar | AthFest',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334844283/',
+            albumPage: '../music/2026-06-27-wieuca-nowhere-bar-athfest-night-2-athens-ga.html',
+            filterNames: ['Wieuca', 'Nowhere Bar', 'AthFest'],
+        },
+        {
+            title: '2026-06-26 Scattrbrain @ 40 Watt | AthFest',
             photoCount: 0,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334819695/',
             albumPage: '../music/2026-06-26-scattrbrain-40-watt-athfest-athens-ga.html',
-            filterNames: ['Scattrbrain'],
+            filterNames: ['Scattrbrain', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Heffner @ 40 Watt AthFest | Athens, GA',
+            title: '2026-06-26 Heffner @ 40 Watt | AthFest',
             photoCount: 15,
             coverUrl: 'https://live.staticflickr.com/65535/55412728981_5196114c38_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334816728/',
             albumPage: '../music/2026-06-26-heffner-40-watt-athfest-athens-ga.html',
-            filterNames: ['Heffner'],
+            filterNames: ['Heffner', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Mountain of Youth @ 40 Watt AthFest | Athens, GA',
+            title: '2026-06-26 Mountain of Youth @ 40 Watt - AthFest | Athens, GA',
             photoCount: 19,
             coverUrl: 'https://live.staticflickr.com/65535/55416015911_e401099598_b.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334818175/',
             albumPage: '../music/2026-06-26-mountain-of-youth-40-watt-athfest-athens-ga.html',
-            filterNames: ['Mountain of Youth'],
+            filterNames: ['Mountain of Youth', '40 Watt', 'AthFest'],
         },
         {
             title: '2026-06-26 Lilly Hiatt @ Georgia Theatre - AthFest Night 1 | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55373144512_c774ff7b9c_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334517262/',
             albumPage: '../music/2026-06-27-lilly-hiatt-georgia-theatre-athfest-night-1-athens-ga.html',
-            filterNames: ['Lilly Hiatt'],
+            filterNames: ['Lilly Hiatt', 'Georgia Theatre', 'AthFest'],
         },
         {
             title: '2026-06-26 Spencer Thomas @ GA Theatre Rooftop - AthFest Night 1 | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55374441678_7de0d28f68_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334519187/',
             albumPage: '../music/2026-06-27-spencer-thomas-ga-theatre-rooftop-athfest-night-1-athens-ga.html',
-            filterNames: ['Spencer Thomas'],
+            filterNames: ['Spencer Thomas', 'Georgia Theatre Rooftop', 'AthFest'],
         },
         {
             title: '2026-05-10 Red Dwarf Star @ World Famous | Athens, GA',
@@ -2403,6 +2409,11 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 return true;
             }
             
+            // Special handling for AthFest events
+            if (album.title.toLowerCase().includes('athfest') && filterVenue.toLowerCase() === 'athfest') {
+                return true;
+            }
+            
             // Check if the selected venue matches any of the venues in this album
             // Handle combined venues like "40 Watt & Nowhere Bar"
             // Compare on normalized names so Georgia Theatre variations collapse to one
@@ -2607,7 +2618,12 @@ function initializeFilters(collectionType) {
             ALBUM_DATA.music.forEach(album => {
                 // Check if album has custom filterNames array (for albums with multiple artists)
                 if (album.filterNames && Array.isArray(album.filterNames)) {
-                    album.filterNames.forEach(name => artists.add(name));
+                    album.filterNames.forEach(name => {
+                        // Don't add event names like AthFest, Porchfest to band filter
+                        if (name.toLowerCase() !== 'athfest' && name.toLowerCase() !== 'porchfest') {
+                            artists.add(name);
+                        }
+                    });
                     return; // Skip normal processing if filterNames exist
                 }
                 
@@ -2741,6 +2757,29 @@ function initializeFilters(collectionType) {
             // Extract unique venues from album titles
             const venues = new Set();
             ALBUM_DATA.music.forEach(album => {
+                // Check if album has custom filterNames array (for albums with multiple artists)
+                if (album.filterNames && Array.isArray(album.filterNames)) {
+                    album.filterNames.forEach(name => {
+                        // Don't add event names like AthFest, Porchfest to venue filter
+                        if (name.toLowerCase() !== 'athfest' && name.toLowerCase() !== 'porchfest') {
+                            venues.add(name);
+                        }
+                    });
+                    return; // Skip normal processing if filterNames exist
+                }
+                
+                // Special handling for AthFest events - add as 'AthFest' and skip venue extraction
+                if (album.title.toLowerCase().includes('athfest')) {
+                    venues.add('AthFest');
+                    return; // Skip venue extraction for AthFest albums
+                }
+                
+                // Special handling for Porchfest events
+                if (album.title.toLowerCase().includes('porchfest')) {
+                    venues.add('Porchfest');
+                    return; // Skip venue extraction for Porchfest albums
+                }
+                
                 // Extract venue from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
                 const atMatch = album.title.match(/\s+@\s+(.+?)(?:\s*\|\s*|$)/);
                 const pipeMatch = album.title.match(/\s+\|\s+(.+?)$/);
@@ -2753,16 +2792,11 @@ function initializeFilters(collectionType) {
                 }
                 
                 if (venue) {
-                    // Special handling for Porchfest events
-                    if (album.title.toLowerCase().includes('porchfest')) {
-                        venues.add('Porchfest');
-                    } else {
-                        // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
-                        const individualVenues = venue.split(/\s*&\s+/);
-                        individualVenues.forEach(individualVenue => {
-                            venues.add(normalizeVenueName(individualVenue.trim()));
-                        });
-                    }
+                    // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
+                    const individualVenues = venue.split(/\s*&\s+/);
+                    individualVenues.forEach(individualVenue => {
+                        venues.add(normalizeVenueName(individualVenue.trim()));
+                    });
                 }
             });
             
