@@ -3764,6 +3764,108 @@ function filterPhotosByTag(tag) {
 let allPhotosWithTags = []; // Store all photos globally for filtering
 let allVideosWithTags = []; // Store all videos globally for filtering
 
+// IndexedDB helper functions for tags caching
+const TAGS_CACHE_DB = 'tags-cache';
+const TAGS_CACHE_STORE = 'tags-data';
+const TAGS_CACHE_KEY = 'all-tags-data';
+const CACHE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+async function openTagsCacheDB() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(TAGS_CACHE_DB, 1);
+        
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve(request.result);
+        
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains(TAGS_CACHE_STORE)) {
+                db.createObjectStore(TAGS_CACHE_STORE);
+            }
+        };
+    });
+}
+
+async function saveTagsToCache(tagsData, albumCount) {
+    try {
+        const db = await openTagsCacheDB();
+        const transaction = db.transaction([TAGS_CACHE_STORE], 'readwrite');
+        const store = transaction.objectStore(TAGS_CACHE_STORE);
+        
+        const cacheData = {
+            tags: Array.from(tagsData.entries()),
+            timestamp: Date.now(),
+            albumCount: albumCount
+        };
+        
+        store.put(cacheData, TAGS_CACHE_KEY);
+        
+        return new Promise((resolve, reject) => {
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+        });
+    } catch (error) {
+        console.error('Error saving tags to cache:', error);
+        return false;
+    }
+}
+
+async function loadTagsFromCache() {
+    try {
+        const db = await openTagsCacheDB();
+        const transaction = db.transaction([TAGS_CACHE_STORE], 'readonly');
+        const store = transaction.objectStore(TAGS_CACHE_STORE);
+        const request = store.get(TAGS_CACHE_KEY);
+        
+        return new Promise((resolve, reject) => {
+            request.onsuccess = () => {
+                const cacheData = request.result;
+                if (!cacheData) {
+                    resolve(null);
+                    return;
+                }
+                
+                // Check if cache is expired
+                const age = Date.now() - cacheData.timestamp;
+                if (age > CACHE_EXPIRY_MS) {
+                    console.log('Tags cache expired, age:', age, 'ms');
+                    resolve(null);
+                    return;
+                }
+                
+                // Convert array back to Map
+                const tagsMap = new Map(cacheData.tags);
+                resolve({
+                    tags: tagsMap,
+                    timestamp: cacheData.timestamp,
+                    albumCount: cacheData.albumCount
+                });
+            };
+            request.onerror = () => reject(request.error);
+        });
+    } catch (error) {
+        console.error('Error loading tags from cache:', error);
+        return null;
+    }
+}
+
+async function clearTagsCache() {
+    try {
+        const db = await openTagsCacheDB();
+        const transaction = db.transaction([TAGS_CACHE_STORE], 'readwrite');
+        const store = transaction.objectStore(TAGS_CACHE_STORE);
+        store.delete(TAGS_CACHE_KEY);
+        
+        return new Promise((resolve, reject) => {
+            transaction.oncomplete = () => resolve(true);
+            transaction.onerror = () => reject(transaction.error);
+        });
+    } catch (error) {
+        console.error('Error clearing tags cache:', error);
+        return false;
+    }
+}
+
 async function initializeTagsPage() {
     
     const tagsContainer = document.getElementById('tags-container');
@@ -3792,6 +3894,9 @@ async function initializeTagsPage() {
         }
     }
     
+    // Try to load from cache first
+    const cachedData = await loadTagsFromCache();
+    
     // Fetch all photos with tags from all albums
     const allTags = new Map(); // Map of tag -> array of photos
     const allCollections = ['music', 'events', 'landscapes'];
@@ -3803,11 +3908,64 @@ async function initializeTagsPage() {
         totalAlbums += (ALBUM_DATA[collectionType] || []).length;
     });
     
+    // If cache is fresh and album count matches, use it
+    if (cachedData && cachedData.albumCount === totalAlbums) {
+        console.log('Loading tags from cache - instant load!');
+        allTags.clear();
+        cachedData.tags.forEach((value, key) => {
+            allTags.set(key, value);
+        });
+        
+        // Rebuild allPhotosWithTags and allVideosWithTags from cache
+        allPhotosWithTags = [];
+        allVideosWithTags = [];
+        allTags.forEach((items) => {
+            items.forEach(item => {
+                if (item.type === 'photo') {
+                    allPhotosWithTags.push(item);
+                } else if (item.type === 'video') {
+                    allVideosWithTags.push(item);
+                }
+            });
+        });
+        
+        // Update loading message to show cache was used
+        if (loadingMessage) {
+            const cacheAge = Math.floor((Date.now() - cachedData.timestamp) / 1000 / 60); // minutes
+            loadingMessage.innerHTML = `<p style="color: #999 !important; width: 100%; text-align: center; margin: 1rem 0;">Loaded from cache (${cacheAge} minutes old) - <span id="tags-progress">${totalAlbums}</span> albums</p>`;
+        }
+        
+        // Update cache status indicator
+        const cacheStatus = document.getElementById('cache-status');
+        if (cacheStatus) {
+            const cacheAge = Math.floor((Date.now() - cachedData.timestamp) / 1000 / 60);
+            cacheStatus.innerHTML = `<i class="fas fa-database"></i> Cached (${cacheAge} minutes old) • <a href="#" onclick="refreshTagsCache(); return false;" style="color: #ccc; text-decoration: underline;">Refresh</a>`;
+        }
+        
+        // Display tags immediately
+        displayTags(allTags);
+        
+        // Enable search
+        if (searchInput) {
+            searchInput.disabled = false;
+            searchInput.placeholder = 'Search by tag, artist, venue, event...';
+            searchInput.style.opacity = '1';
+            searchInput.style.cursor = 'text';
+        }
+        
+        // If filtering by tag, show results
+        if (tagParam) {
+            filterByTag(tagParam);
+        }
+        
+        return;
+    }
+    
     // If filtering by tag, show results progressively
     let progressivePhotos = [];
     
     // PARALLEL PROCESSING: Fetch multiple albums at once
-    const PARALLEL_LIMIT = 5; // Fetch 5 albums simultaneously
+    const PARALLEL_LIMIT = 10; // Fetch 10 albums simultaneously (increased from 5)
     
     for (const collectionType of allCollections) {
         const albums = ALBUM_DATA[collectionType] || [];
@@ -3985,9 +4143,15 @@ async function initializeTagsPage() {
         }
     }
     
+    // Save to IndexedDB cache after fetching
+    await saveTagsToCache(allTags, totalAlbums);
+    console.log('Tags saved to cache');
     
-    // Note: Caching disabled - dataset too large for localStorage
-    // With 77 albums and 1000+ photos, the data exceeds browser storage limits
+    // Update cache status indicator to show fresh data
+    const cacheStatus = document.getElementById('cache-status');
+    if (cacheStatus) {
+        cacheStatus.innerHTML = `<i class="fas fa-database"></i> Fresh data (just cached) • <a href="#" onclick="refreshTagsCache(); return false;" style="color: #ccc; text-decoration: underline;">Refresh</a>`;
+    }
     
     // Hide main body loading message once tags are ready
     if (loadingMessage) loadingMessage.innerHTML = '';
@@ -4453,7 +4617,10 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Refresh tags - reloads page to fetch fresh data from Flickr
-function refreshTagsCache() {
+async function refreshTagsCache() {
+    // Clear the cache and reload
+    await clearTagsCache();
+    console.log('Tags cache cleared, reloading...');
     window.location.reload();
 }
 
