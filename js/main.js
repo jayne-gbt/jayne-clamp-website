@@ -2301,15 +2301,6 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
         albums = albums.filter(album => album.title.startsWith(filterYear));
     }
 
-    // Initial load: only show first batch for performance (Instagram browser optimization)
-    const INITIAL_ALBUM_COUNT = 12;
-    if (!append && albums.length > INITIAL_ALBUM_COUNT) {
-        albums = albums.slice(0, INITIAL_ALBUM_COUNT);
-        window.hasMoreAlbums = true;
-    } else {
-        window.hasMoreAlbums = false;
-    }
-
     // Filter by band if specified (for music collection)
     if (filterBand !== 'all' && collectionType === 'music') {
         albums = albums.filter(album => {
@@ -2435,6 +2426,17 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
                 normalizeVenueName(individualVenue.trim()).toLowerCase() === normalizedFilter
             );
         });
+    }
+
+    // Initial load: only show first batch for performance (Instagram browser optimization)
+    const INITIAL_ALBUM_COUNT = 12;
+    if (!append && albums.length > INITIAL_ALBUM_COUNT) {
+        albums = albums.slice(0, INITIAL_ALBUM_COUNT);
+        window.hasMoreAlbums = true;
+        window.currentAlbumIndex = INITIAL_ALBUM_COUNT;
+    } else {
+        window.hasMoreAlbums = false;
+        window.currentAlbumIndex = albums.length;
     }
 
     // Hide loading
