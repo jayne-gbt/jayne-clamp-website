@@ -2275,10 +2275,10 @@ function normalizeVenueName(venue) {
 }
 
 // Display albums from manual configuration
-function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all') {
+function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', filterVenue = 'all', append = false) {
     const albumsGrid = document.getElementById('albums-grid');
     const loading = document.getElementById('loading');
-    
+
     if (!albumsGrid) {
         return;
     }
@@ -2293,9 +2293,21 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
         return dateB.localeCompare(dateA); // Sort descending (newest first)
     });
 
+    // Store filtered albums globally for load more functionality
+    window.currentFilteredAlbums = albums;
+
     // Filter by year if specified
     if (filterYear !== 'all') {
         albums = albums.filter(album => album.title.startsWith(filterYear));
+    }
+
+    // Initial load: only show first batch for performance (Instagram browser optimization)
+    const INITIAL_ALBUM_COUNT = 12;
+    if (!append && albums.length > INITIAL_ALBUM_COUNT) {
+        albums = albums.slice(0, INITIAL_ALBUM_COUNT);
+        window.hasMoreAlbums = true;
+    } else {
+        window.hasMoreAlbums = false;
     }
 
     // Filter by band if specified (for music collection)
@@ -2493,6 +2505,93 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
 
     // Lazy-fetch Flickr covers only when their card scrolls into view (fallback for albums without a baked-in coverUrl)
     lazyLoadAlbumCovers(albumsGrid);
+
+    // Show/hide load more button
+    updateLoadMoreButton();
+}
+
+// Load more albums when "Load More" button is clicked
+function loadMoreAlbums() {
+    const albumsGrid = document.getElementById('albums-grid');
+    const collectionType = getCollectionTypeFromPath();
+
+    if (!albumsGrid || !window.currentFilteredAlbums || !collectionType) {
+        return;
+    }
+
+    const INITIAL_ALBUM_COUNT = 12;
+    const LOAD_MORE_COUNT = 12;
+    const currentIndex = window.currentAlbumIndex || INITIAL_ALBUM_COUNT;
+    const nextBatch = window.currentFilteredAlbums.slice(currentIndex, currentIndex + LOAD_MORE_COUNT);
+
+    if (nextBatch.length === 0) {
+        window.hasMoreAlbums = false;
+        updateLoadMoreButton();
+        return;
+    }
+
+    // Append new albums to the grid
+    const albumCards = nextBatch.map((album, index) => {
+        const albumId = `album-${collectionType}-${currentIndex + index}-${Date.now()}`;
+
+        let lazyAttr = '';
+        if (!album.coverUrl && album.flickrUrl) {
+            const flickrAlbumId = extractAlbumId(album.flickrUrl);
+            if (flickrAlbumId) {
+                lazyAttr = ` data-lazy-cover="${flickrAlbumId}"`;
+            }
+        }
+
+        return `
+            <a href="${album.albumPage || album.flickrUrl}"
+               ${album.albumPage ? '' : 'target="_blank" rel="noopener"'}
+               class="album-card"
+               id="${albumId}"
+               onclick="if(typeof gtag !== 'undefined') { gtag('event', 'album_card_click', { 'album_title': '${album.title.replace(/<[^>]*>/g, '').replace(/'/g, "\\'")}', 'collection': '${collectionType}' }); }">
+                <div class="album-image">
+                    <img src="${album.coverUrl || 'https://via.placeholder.com/800x600/333333/FFFFFF?text=Loading...'}"
+                         alt="${album.title}"
+                         loading="lazy"
+                         style=""${lazyAttr}
+                         onerror="this.src='https://via.placeholder.com/800x600/000000/FFFFFF?text=${encodeURIComponent(album.title)}'">
+                    <div class="album-overlay">
+                        <h3>${album.displayTitle || album.title}</h3>
+                        <p class="album-info">${album.photoCount || '?'} photos</p>
+                    </div>
+                </div>
+            </a>
+        `;
+    }).join('');
+
+    albumsGrid.insertAdjacentHTML('beforeend', albumCards);
+
+    // Update current index
+    window.currentAlbumIndex = currentIndex + LOAD_MORE_COUNT;
+
+    // Check if there are more albums to load
+    if (window.currentAlbumIndex >= window.currentFilteredAlbums.length) {
+        window.hasMoreAlbums = false;
+    }
+
+    // Lazy-load covers for new cards
+    lazyLoadAlbumCovers(albumsGrid);
+
+    // Update button visibility
+    updateLoadMoreButton();
+}
+
+// Update the load more button visibility
+function updateLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (!loadMoreBtn) return;
+
+    if (window.hasMoreAlbums && window.currentFilteredAlbums && window.currentAlbumIndex < window.currentFilteredAlbums.length) {
+        loadMoreBtn.style.display = 'block';
+        const remaining = window.currentFilteredAlbums.length - window.currentAlbumIndex;
+        loadMoreBtn.textContent = `Load More (${remaining} remaining)`;
+    } else {
+        loadMoreBtn.style.display = 'none';
+    }
 }
 
 // Fetch Flickr album covers on demand as cards enter the viewport
