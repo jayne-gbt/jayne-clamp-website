@@ -2429,7 +2429,7 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     }
 
     // Initial load: only show first batch for performance (Instagram browser optimization)
-    const INITIAL_ALBUM_COUNT = 12;
+    const INITIAL_ALBUM_COUNT = 24;
     if (!append && albums.length > INITIAL_ALBUM_COUNT) {
         albums = albums.slice(0, INITIAL_ALBUM_COUNT);
         window.hasMoreAlbums = true;
@@ -2521,8 +2521,8 @@ function loadMoreAlbums() {
         return;
     }
 
-    const INITIAL_ALBUM_COUNT = 12;
-    const LOAD_MORE_COUNT = 12;
+    const INITIAL_ALBUM_COUNT = 24;
+    const LOAD_MORE_COUNT = 24;
     const currentIndex = window.currentAlbumIndex || INITIAL_ALBUM_COUNT;
     const nextBatch = window.currentFilteredAlbums.slice(currentIndex, currentIndex + LOAD_MORE_COUNT);
 
