@@ -2853,44 +2853,33 @@ function initializeFilters(collectionType) {
         if (venueFilter && ALBUM_DATA.music) {
             // Clear existing options except "All Venues"
             venueFilter.innerHTML = '<option value="all">All Venues</option>';
-            
+
             // Extract unique venues from album titles
             const venues = new Set();
             ALBUM_DATA.music.forEach(album => {
-                // Check if album has custom filterNames array (for albums with multiple artists)
-                if (album.filterNames && Array.isArray(album.filterNames)) {
-                    album.filterNames.forEach(name => {
-                        // Don't add event names like AthFest, Porchfest to venue filter
-                        if (name.toLowerCase() !== 'athfest' && name.toLowerCase() !== 'porchfest') {
-                            venues.add(name);
-                        }
-                    });
-                    return; // Skip normal processing if filterNames exist
-                }
-                
                 // Special handling for AthFest events - add as 'AthFest' and skip venue extraction
                 if (album.title.toLowerCase().includes('athfest')) {
                     venues.add('AthFest');
                     return; // Skip venue extraction for AthFest albums
                 }
-                
+
                 // Special handling for Porchfest events
                 if (album.title.toLowerCase().includes('porchfest')) {
                     venues.add('Porchfest');
                     return; // Skip venue extraction for Porchfest albums
                 }
-                
+
                 // Extract venue from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
                 const atMatch = album.title.match(/\s+@\s+(.+?)(?:\s*\|\s*|$)/);
                 const pipeMatch = album.title.match(/\s+\|\s+(.+?)$/);
-                
+
                 let venue = '';
                 if (atMatch) {
                     venue = atMatch[1].trim();
                 } else if (pipeMatch) {
                     venue = pipeMatch[1].trim();
                 }
-                
+
                 if (venue) {
                     // Split venues that are combined with & (e.g., "40 Watt & Nowhere Bar")
                     const individualVenues = venue.split(/\s*&\s+/);
