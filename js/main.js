@@ -1889,7 +1889,7 @@ const ALBUM_DATA = {
             title: '2026-07-15 World Cup England vs Argentina @ Atlanta Stadium | Atlanta, GA',
             photoCount: 22,
             coverUrl: 'https://live.staticflickr.com/65535/55414631776_e9e8be3088_b.jpg',
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334830753/',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334823270/',
             albumPage: '../events/2026-07-15-world-cup-england-argentina-atlanta-stadium-atlanta-ga.html',
             filterNames: ['World Cup'],
         },
