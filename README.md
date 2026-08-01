@@ -1,112 +1,18 @@
-# Jayne Clamp Photography Website
+# Jayne Clamp Photography
 
-A sleek, modern photography showcase website with Flickr integration.
+Photography portfolio site - black background, collections for Music, Events, Travel, Birds, Landscapes, and Misc. Photos are hosted on Flickr; the site fetches and displays them through the Flickr API.
 
-## Features
-
-- **Black background with white text** - Clean, professional design
-- **6 Collections**: Music, Events, Travel, Birds, Landscapes, Pets
-- **Flickr Integration** - Albums stored on Flickr, displayed beautifully on your site
-- **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-- **Contact Form** - Simple contact form for inquiries
-- **Social Sharing** - Share to Facebook, Pinterest, and Twitter
-- **Social Links** - Instagram and Flickr icons in footer
-
-## Setup Instructions
-
-### 1. Get Your Flickr API Key
-
-1. Go to https://www.flickr.com/services/api/
-2. Apply for a non-commercial API key
-3. Copy your API key
-
-### 2. Configure Flickr Integration
-
-Open `js/main.js` and update the Flickr configuration:
-
-```javascript
-const FLICKR_CONFIG = {
-    apiKey: 'YOUR_FLICKR_API_KEY', // Replace with your actual API key
-    userId: '198613393@N03', // Your Flickr user ID
-    collections: {
-        music: 'COLLECTION_ID',
-        events: 'COLLECTION_ID',
-        travel: 'COLLECTION_ID',
-        birds: 'COLLECTION_ID',
-        landscapes: 'COLLECTION_ID',
-        pets: 'COLLECTION_ID'
-    }
-};
-```
-
-### 3. Add Collection Cover Images
-
-Place cover images in the `images/collections/` folder:
-- `music-cover.jpg`
-- `events-cover.jpg`
-- `travel-cover.jpg`
-- `birds-cover.jpg`
-- `landscapes-cover.jpg`
-- `pets-cover.jpg`
-
-### 4. Deploy
-
-Upload all files to your web hosting service or use a platform like:
-- Netlify
-- Vercel
-- GitHub Pages
-
-## File Structure
+## Structure
 
 ```
-jayne-clamp-website/
-├── index.html              # Homepage with collections grid
-├── contact.html            # Contact page with form
-├── css/
-│   └── style.css          # All styles
-├── js/
-│   └── main.js            # JavaScript functionality
-├── collections/
-│   ├── music.html
-│   ├── events.html
-│   ├── travel.html
-│   ├── birds.html
-│   ├── landscapes.html
-│   └── pets.html
-└── images/
-    └── collections/       # Collection cover images
+index.html, music.html, events.html, ...   collection pages
+music/, events/, landscapes/, ...          individual show/album pages
+css/style.css                              styles
+js/main.js                                 Flickr fetching, album data, filtering, lightbox
 ```
 
-## Customization
+`js/main.js` contains `ALBUM_DATA`, a per-collection list of shows/albums with their Flickr URLs, cover images, and (optionally) a link to a dedicated page under `music/` or `events/` etc. See the docs folder (sibling to this repo, not published) for the full workflow on adding a new album.
 
-### Colors
-Edit CSS variables in `css/style.css`:
-```css
-:root {
-    --black: #000000;
-    --white: #ffffff;
-    --gray: #333333;
-    --light-gray: #666666;
-}
-```
+## Hosting
 
-### Social Links
-Update Instagram and Flickr URLs in all HTML files.
-
-### Contact Form
-The contact form currently uses a placeholder submission. To make it functional, integrate with a backend service like:
-- Formspree
-- Netlify Forms
-- EmailJS
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
-
-## License
-
-© 2025 Jayne Clamp. All rights reserved.
+Netlify, deployed from this repo's `main` branch on GitHub - push to `main` and Netlify builds and deploys automatically.
