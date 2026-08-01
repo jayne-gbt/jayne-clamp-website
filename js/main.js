@@ -790,18 +790,18 @@ const ALBUM_DATA = {
         {
             title: '2026-06-26 Heffner @ 40 Watt | AthFest',
             photoCount: 15,
-            coverUrl: 'https://live.staticflickr.com/65535/55412728981_5196114c38_z.jpg',
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334816728/',
+            coverUrl: 'https://live.staticflickr.com/65535/55415812882_c1a08f1d0f_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334823565/',
             albumPage: '../music/2026-06-26-heffner-40-watt-athfest-athens-ga.html',
             filterNames: ['Heffner', '40 Watt', 'AthFest'],
         },
         {
-            title: '2026-06-26 Mountain of Youth @ 40 Watt AthFest | Athens, GA',
+            title: '2026-06-26 Mountain of Youth @ Georgia Theatre Rooftop | AthFest',
             photoCount: 19,
-            coverUrl: 'https://live.staticflickr.com/65535/55416015911_e401099598_z.jpg',
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334818175/',
-            albumPage: '../music/2026-06-26-mountain-of-youth-40-watt-athfest-athens-ga.html',
-            filterNames: ['Mountain of Youth', '40 Watt', 'AthFest'],
+            coverUrl: 'https://live.staticflickr.com/65535/55417188550_a27b1f16bb_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334828347/',
+            albumPage: '../music/2026-06-26-mountain-of-youth-georgia-theatre-rooftop-athfest-athens-ga.html',
+            filterNames: ['Mountain of Youth', 'Georgia Theatre Rooftop', 'AthFest'],
         },
         {
             title: '2026-06-26 Lilly Hiatt @ Georgia Theatre | AthFest',
@@ -1171,11 +1171,17 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54364334221_4a08118231_z.jpg',
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
         },
-        { 
+        {
             title: '2025-07-07 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room | Athens, GA',
+            photoCount: 1,
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/mX6wkiLh_-Y/maxresdefault.jpg',
             albumPage: '../music/2025-07-07-kevn-kinney-peter-buck-david-barbe-rialtoroom-athens-ga.html',
             filterNames: ['Kevn Kinney', 'Peter Buck', 'David Barbe'],
             manualTags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers'],
+            videos: [
+                { url: 'https://www.youtube.com/watch?v=mX6wkiLh_-Y', title: 'Kevn Kinney, Peter Buck & David Barbe @ Rialto Room 2025-07-07' }
+            ],
         },
         { 
             title: '2025-02-17 Classic City Wrestling w Drive-By Truckers @ 40 Watt | Athens, GA', 
@@ -1896,6 +1902,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-04-14 Protest Against JD Vance Turning Point Rally @ Akins Ford Arena | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/55216651940_3fc39a2fbf_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333183378/',
             albumPage: '../events/2026-04-14-protest-jd-vance-turning-point-rally-athens-ga.html',
             filterNames: ['Protest', 'JD Vance', 'Turning Point', 'Young Dems UGA', 'UGA YDSA'],
@@ -1965,6 +1972,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2022-10-19 Stacey Abrams Bus Tour @ College Square | Athens, GA',
+            coverUrl: 'https://live.staticflickr.com/65535/54937360076_cd5f977eec_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330456911/',
             albumPage: '../events/2022-10-19-stacey-abrams-bus-tour-college-square-athens-ga.html',
         },

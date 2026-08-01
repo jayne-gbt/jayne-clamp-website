@@ -19,4 +19,7 @@
 # Handle index.html redirect to clean root URL
 /index.html   /   301
 
+# Renamed album page (venue correction: 40 Watt -> Georgia Theatre Rooftop)
+/music/2026-06-26-mountain-of-youth-40-watt-athfest-athens-ga.html /music/2026-06-26-mountain-of-youth-georgia-theatre-rooftop-athfest-athens-ga.html 301
+
 # Note: SPA catch-all removed - this is a multi-page static site, not a SPA
