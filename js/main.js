@@ -973,7 +973,7 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/55051739731_c6285abdec_c.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
             albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html',
-            filterNames: ['Clare Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power']
+            filterNames: ['Claire Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power']
         },
         { 
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
