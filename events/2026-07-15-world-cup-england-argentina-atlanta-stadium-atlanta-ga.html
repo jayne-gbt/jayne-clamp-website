@@ -30,44 +30,12 @@
     <meta name="twitter:description" content="Event photography by Jayne Clamp">
     <meta name="twitter:image" content="https://live.staticflickr.com/65535/55414631776_e9e8be3088_b.jpg">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260724-1259">
+    <link rel="stylesheet" href="../css/style.css?v=20260723-0150">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
-            <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu">
-                    <li class="collections-dropdown">
-                        <a href="../index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
-                        <ul class="collections-menu">
-                            <li><a href="../collections/music.html">Music</a></li>
-                            <li><a href="../collections/events.html">Events</a></li>
-                            <li><a href="../collections/travel.html">Travel</a></li>
-                            <li><a href="../collections/birds.html">Birds</a></li>
-                            <li><a href="../collections/landscapes.html">Landscapes</a></li>
-                            <li><a href="../collections/pets.html">Pets</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../contact.html">Contact</a></li>
-                    <li class="share-dropdown">
-                        <a href="#" class="share-trigger">Share <i class="fas fa-chevron-down"></i></a>
-                        <ul class="share-menu">
-                            <li><a href="#" onclick="shareToInstagram(); return false;"><i class="fab fa-instagram"></i> Instagram</a></li>
-                            <li><a href="#" onclick="shareToThreads(); return false;"><i class="fas fa-at"></i> Threads</a></li>
-                            <li><a href="#" onclick="shareToFacebook(); return false;"><i class="fab fa-facebook"></i> Facebook</a></li>
-                            <li><a href="#" onclick="shareToBluesky(); return false;"><i class="fas fa-cloud"></i> Bluesky</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Placeholder for global header -->
+    <header class="site-header"></header>
 
     <!-- Album Photos Section -->
     <section class="albums-section">
@@ -91,17 +59,9 @@
         </div>
     </section>
 
-    <!-- Official Site Section -->
-    <div class="container artist-official-section">
-        <p class="section-label">Official Sites</p>
-        <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="artist-official-link">
-            <i class="fas fa-external-link-alt"></i>
-            FIFA World Cup
-        </a>
-        <a href="https://www.atlantaga.gov/" target="_blank" rel="noopener" class="artist-official-link">
-            <i class="fas fa-external-link-alt"></i>
-            City of Atlanta
-        </a>
+    <!-- Photo Tags -->
+    <div class="container" style="text-align: center; padding: 0 0 1.5rem 0;">
+        <div id="photo-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
     </div>
 
     <!-- Album Navigation at Bottom -->
@@ -121,20 +81,8 @@
         </div>
     </div>
 
-<!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/jaynecougarmelonclamp" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.flickr.com/photos/jayneclamp" target="_blank" rel="noopener" aria-label="Flickr">
-                    <i class="fab fa-flickr"></i>
-                </a>
-            </div>
-            <p class="copyright">&copy; 2026 Jayne Clamp | Website Design by Jayne Clamp</p>
-        </div>
-    </footer>
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer" id="global-footer"></footer>
 
     <!-- Lightbox -->
     <div id="lightbox">
@@ -161,7 +109,7 @@
         </div>
     </div>
 
-    <script src="../js/main.js?v=20260724-1410"></script>
+    <script src="../js/main.js?v=20260801-0050"></script>
     <script>
         // Load photos from this specific Flickr album
         document.addEventListener('DOMContentLoaded', function() {
@@ -169,6 +117,9 @@
             initializeAlbumNavigation();
             const albumUrl = 'https://www.flickr.com/photos/jayneclamp/albums/72177720334830753/';
             displayAlbumPhotos(albumUrl);
+
+            // Update social media meta tags dynamically
+            setAlbumSocialMeta(albumUrl);
         });
     </script>
 </body>
