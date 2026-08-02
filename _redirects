@@ -22,4 +22,7 @@
 # Renamed album page (venue correction: 40 Watt -> Georgia Theatre Rooftop)
 /music/2026-06-26-mountain-of-youth-40-watt-athfest-athens-ga.html /music/2026-06-26-mountain-of-youth-georgia-theatre-rooftop-athfest-athens-ga.html 301
 
+# Duplicate Shotgun Shells page (wrong date) consolidated into the correct one
+/music/2022-02-27-shotgun-shells-celebration-todd-mcbride-athens-ga.html /music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html 301
+
 # Note: SPA catch-all removed - this is a multi-page static site, not a SPA

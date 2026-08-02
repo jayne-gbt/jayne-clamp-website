@@ -1175,7 +1175,11 @@ const ALBUM_DATA = {
             filterNames: ['Kevn Kinney', 'Peter Buck', 'David Barbe'],
             manualTags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers'],
             videos: [
-                { url: 'https://www.youtube.com/watch?v=mX6wkiLh_-Y', title: 'Kevn Kinney, Peter Buck & David Barbe @ Rialto Room 2025-07-07' }
+                {
+                    youtubeId: 'mX6wkiLh_-Y',
+                    title: 'Kevn Kinney, Peter Buck & David Barbe @ Rialto Room 2025-07-07',
+                    tags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers']
+                }
             ],
         },
         { 
@@ -4036,15 +4040,15 @@ async function initializeTagsPage() {
                             };
                             
                             // Add video to tag maps
-                            video.tags.forEach(tag => {
+                            videoData.tags.forEach(tag => {
                                 if (!allTags.has(tag)) {
                                     allTags.set(tag, []);
                                 }
                                 allTags.get(tag).push(videoData);
                             });
-                            
+
                             // Add to progressive results if filtering by tag
-                            if (tagParam && video.tags.includes(tagParam)) {
+                            if (tagParam && videoData.tags.includes(tagParam)) {
                                 progressivePhotos.push(videoData);
                             }
                         });
