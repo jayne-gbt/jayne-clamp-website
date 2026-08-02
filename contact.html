@@ -12,6 +12,10 @@
     </script>
     
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Jayne Clamp Photography</title>
     <meta name="description" content="Get in touch with Jayne Clamp for photography inquiries and collaborations. Athens, Georgia photographer available for music, events, portraits, and commercial work.">
@@ -21,15 +25,15 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Contact - Jayne Clamp Photography">
     <meta property="og:description" content="Get in touch with Athens photographer Jayne Clamp for music, events, portraits, and commercial photography.">
-    <meta property="og:image" content="https://jayne-clamp.netlify.app/images/jayne-clamp-sketch.png">
-    <meta property="og:url" content="https://jayne-clamp.netlify.app/contact.html">
+    <meta property="og:image" content="https://jayneclamp.com/images/jayne-clamp-sketch.png">
+    <meta property="og:url" content="https://jayneclamp.com/contact.html">
     <meta property="og:site_name" content="Jayne Clamp Photography">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact - Jayne Clamp Photography">
     <meta name="twitter:description" content="Contact Athens photographer Jayne Clamp for photography services.">
-    <meta name="twitter:image" content="https://jayne-clamp.netlify.app/images/jayne-clamp-sketch.png">
+    <meta name="twitter:image" content="https://jayneclamp.com/images/jayne-clamp-sketch.png">
     <link rel="stylesheet" href="css/style.css?v=20260723-0150">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://live.staticflickr.com" crossorigin>
@@ -86,7 +90,12 @@
                     <img src="images/IMG_9635.JPG" alt="Jayne Clamp" loading="lazy">
                 </div>
 
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden" hidden>
+                        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </p>
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -129,7 +138,7 @@
                     <i class="fab fa-flickr"></i>
                 </a>
             </div>
-            <p class="copyright">&copy; 2025 Jayne Clamp | Photography & Website Design</p>
+            <p class="copyright">&copy; 2026 Jayne Clamp</p>
             <div class="legal-links">
                 <a href="privacy-policy.html">Privacy Policy</a>
                 <span class="separator">•</span>

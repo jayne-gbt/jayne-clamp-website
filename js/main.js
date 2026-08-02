@@ -705,6 +705,21 @@ const ALBUM_DATA = {
             filterNames: ['Real Wow'],
         },
         {
+            title: '2026-06-16 Hayride @ Nowhere Bar | Athens, GA',
+            photoCount: 30,
+            coverUrl: 'https://live.staticflickr.com/65535/55436683308_73d3ae13f5_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334944977/',
+            albumPage: '../music/2026-06-16-hayride-nowhere-bar-athens-ga.html',
+        },
+        {
+            title: '2026-06-06 Patterson Hood @ Amplify Decatur | Decatur, GA',
+            photoCount: 15,
+            coverUrl: 'https://live.staticflickr.com/65535/55436988935_06347d9090_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334949651/',
+            albumPage: '../music/2026-06-06-patterson-hood-amplify-decatur-decatur-ga.html',
+            filterNames: ['Patterson Hood'],
+        },
+        {
             title: '2026-06-28 Carl Broemel & Tyler Ramsey @ Hull St Stage | AthFest',
             photoCount: 14,
             coverUrl: 'https://live.staticflickr.com/65535/55417136675_4b49a179ef_z.jpg',
@@ -714,7 +729,7 @@ const ALBUM_DATA = {
             manualTags: ['Carl Broemel', 'Tyler Ramsey', 'AthFest'],
         },
         {
-            title: '2926-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
+            title: '2026-05-11 Steve Wynn & Peter Buck @ Rialto Room | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55293605061_6a145cae72_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333846615/',
             albumPage: '../music/2026-05-11-steve-wynn-peter-buck-rialto-room-athens-ga.html',
@@ -3139,56 +3154,28 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const formMessage = document.getElementById('form-message');
         const submitButton = contactForm.querySelector('.submit-button');
-        
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
 
-        // Disable submit button
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
 
-        // Simulate form submission (replace with actual backend endpoint)
-        setTimeout(() => {
-            formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
-            formMessage.className = 'form-message success';
-            formMessage.style.display = 'block';
-            
-            // Reset form
-            contactForm.reset();
-            submitButton.disabled = false;
-            submitButton.textContent = 'Send Message';
+        const body = new URLSearchParams(new FormData(contactForm)).toString();
 
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }, 1000);
-
-        // In production, replace the above with actual form submission:
-        /*
-        fetch('/api/contact', {
+        fetch('/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+            if (!response.ok) throw new Error('Submission failed');
             formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
             formMessage.className = 'form-message success';
             formMessage.style.display = 'block';
             contactForm.reset();
         })
-        .catch(error => {
+        .catch(() => {
             formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
             formMessage.className = 'form-message error';
             formMessage.style.display = 'block';
@@ -3196,8 +3183,8 @@ if (contactForm) {
         .finally(() => {
             submitButton.disabled = false;
             submitButton.textContent = 'Send Message';
+            setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
         });
-        */
     });
 }
 
@@ -3308,7 +3295,7 @@ function createGlobalHeader() {
                             <ul class="collections-menu">
                                 <li><a href="${basePath}music.html">Music</a></li>
                                 <li><a href="${basePath}events.html">Events</a></li>
-                                <li><a href="${basePath}misc.html">Misc</a></li>
+                                <li><a href="${basePath}misc.html">Other</a></li>
                                 <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                             </ul>
                         </li>
@@ -3380,7 +3367,7 @@ function createGlobalFooter() {
                         <ul class="footer-dropdown-menu">
                             <li><a href="${pathPrefix}music.html">Music</a></li>
                             <li><a href="${pathPrefix}events.html">Events</a></li>
-                            <li><a href="${pathPrefix}misc.html">Misc</a></li>
+                            <li><a href="${pathPrefix}misc.html">Other</a></li>
                             <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
                         </ul>
                     </div>
@@ -3395,7 +3382,7 @@ function createGlobalFooter() {
                         </ul>
                     </div>
                 </div>
-                <p class="copyright">&copy; 2026 Jayne Clamp</p>
+                <p class="copyright">&copy; ${new Date().getFullYear()} Jayne Clamp</p>
                 <div class="legal-links">
                     <a href="${pathPrefix}privacy-policy.html">Privacy Policy</a>
                     <span class="separator">•</span>
