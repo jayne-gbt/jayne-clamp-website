@@ -2644,9 +2644,6 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
         return dateB.localeCompare(dateA); // Sort descending (newest first)
     });
 
-    // Store filtered albums globally for load more functionality
-    window.currentFilteredAlbums = albums;
-
     // Filter by year if specified
     if (filterYear !== 'all') {
         albums = albums.filter(album => album.title.startsWith(filterYear));
@@ -2778,6 +2775,11 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             );
         });
     }
+
+    // Store filtered albums globally for load more functionality
+    // (must happen after year/band/venue filtering so "Load More" only
+    // ever pulls from within the currently active filter)
+    window.currentFilteredAlbums = albums;
 
     // Initial load: only show first batch for performance (Instagram browser optimization)
     const INITIAL_ALBUM_COUNT = 18;
