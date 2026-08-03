@@ -46,32 +46,19 @@
     <style>
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-        
-        /* Force Band on the Run to start a new row (it's now video 10) */
-        .video-card:nth-child(10) {
-            grid-column: 1;
-        }
-        
-        /* Force Entrance (first Short) to start row 5 (it's now video 11) */
-        .video-card:nth-child(11) {
-            grid-column: 1;
-        }
-        
-        @media (max-width: 1200px) {
-            .video-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
+
         .video-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
         }
         
         .video-card:hover {
@@ -206,18 +193,19 @@
                 <p class="page-subtitle">Gimme Shelter Benefit</p>
             </div>
 
+            <div style="text-align: center; margin: 0 0 2rem 0; padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <p style="font-size: 0.95rem; color: #ddd; line-height: 1.6; margin: 0;">
+                    <strong>Patterson Hood & Friends "Shattered" (Rolling Stones)</strong> — Gimme Shelter Benefit, 40 Watt, Athens, GA — 2006-03-02.
+                    Friends: Mike Cooley, John Neff & Brad Morgan (Drive-By Truckers), Dave Schools (Widespread Panic).
+                    Filmed by Matt Rankin & friends &bull; Audio by Sloan Simpson.
+                </p>
+            </div>
+
             <div id="loading" class="loading">Loading videos...</div>
 
             <!-- Video Grid -->
             <div id="video-grid" class="video-grid">
                 <!-- Videos will be loaded here -->
-            </div>
-            
-            <!-- Copyright Notice -->
-            <div style="text-align: center; margin: 3rem 0 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <p style="font-size: 0.85rem; color: #ccc; line-height: 1.5; margin: 0;">
-                    All rights to the performance, audio and visual content remain with the rights-holders (Patterson Hood & Friends, his management/tour team, and venue). No infringement intended — posted for fan enjoyment and archival purposes.
-                </p>
             </div>
             
             <!-- Artist Official Site Section -->

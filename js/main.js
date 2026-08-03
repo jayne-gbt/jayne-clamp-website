@@ -687,6 +687,13 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334844213/',
             albumPage: '../music/2026-07-17-cinemechanica-40-watt-athens-ga.html',
             filterNames: ['Cinemechanica'],
+            videos: [
+                {
+                    title: 'Get Out of Here Hitler',
+                    youtubeId: '_cnSf8OnY4E',
+                    tags: ['cinemechanica', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
         },
         {
             title: '2026-07-17 Tiger Bear Wolf @ 40 Watt | Athens, GA',
@@ -854,6 +861,13 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-04-11-drivin-n-cryin-40-watt-athens-ga.html',
             filterNames: ['Drivin N Cryin', 'Kevn Kinney', 'Tim Nielsen', 'R.S. Field'],
             manualTags: ['drivinncryin', 'kevnkinney', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'southernrock'],
+            videos: [
+                {
+                    title: 'Crazy Train & Fly Me Courageous',
+                    youtubeId: 'dOsZnWTenDk',
+                    tags: ['drivinncryin', 'kevnkinney', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'southernrock']
+                }
+            ],
         },
         {
             title: '2026-03-21 Don Chambers & Julia Barfield @ Dead Beat Club | Athens, GA', 
@@ -894,12 +908,19 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-03-07-johann-greco-dead-beat-club-athens-ga.html' 
         },
         { 
-            title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA', 
+            title: '2026-02-26 Michael Shannon, Jason Narducy & Friends @ 40 Watt | Athens, GA',
             photoCount: 23,
             coverUrl: 'https://live.staticflickr.com/65535/55131421835_a8a27c4b56_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332369426/',
             albumPage: '../music/2026-02-26-michael-shannon-jason-narducy-friends-40-watt-athens-ga.html',
-            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait']
+            filterNames: ['Michael Shannon', 'Jason Narducy', 'REM', 'Peter Buck', 'Bill Berry', 'Scott McCaughey', 'Vanessa Briscoe Hay', 'Linda Hopper', 'Bobcat Goldthwait'],
+            videos: [
+                {
+                    title: 'Nightswimming (R.E.M.)',
+                    youtubeId: 'PWfJojzOEcQ',
+                    tags: ['michaelshannon', 'jasonnarducy', 'rem', 'peterbuck', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
         },
         {
             title: '2026-02-25 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA',
@@ -1006,6 +1027,61 @@ const ALBUM_DATA = {
                 {
                     title: 'Ob-La-Di, Ob-La-Da',
                     youtubeId: 'aBBR-O-DlIs',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'The End (Partial Song)',
+                    youtubeId: 'HDexMvOO2Jo',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Love Me Do (Partial Song)',
+                    youtubeId: 'iPZFpEtpfNA',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Lady Madonna II',
+                    youtubeId: 'TiRLWf5z2b4',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Helter Skelter (Partial Song)',
+                    youtubeId: 'DEwqv66d1Cg',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Band On The Run (Partial Song)',
+                    youtubeId: 'dI43f6O6pPI',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Entrance',
+                    youtubeId: 'RQatK1gFMpo',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'In Spite Of All The Danger (Partial)',
+                    youtubeId: '1AxUHooisg8',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Here Today (Partial Song)',
+                    youtubeId: 'n5U4x9AjckI',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Paul McCartney & band @ State Farm Arena',
+                    youtubeId: 'BTMsMZICnNQ',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'First Exit',
+                    youtubeId: 'xZZVPWeV6mM',
+                    tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
+                },
+                {
+                    title: 'Final Exit',
+                    youtubeId: 'IjAUBDnzUUU',
                     tags: ['atlanta', 'paulmccartney', 'statefarmarena', 'thebeatles', 'livemusic', 'atlantaconcerts']
                 }
             ]
@@ -1160,11 +1236,23 @@ const ALBUM_DATA = {
             filterNames: ['Addie Tonic'],
         },
         { 
-            title: '2025-02-27 Kevn Kinney, Lenny Kaye, Peter Buck, Mike Mills @ Rialto Room | Athens, GA', 
-            photoCount: 3, 
+            title: '2025-02-27 Kevn Kinney, Lenny Kaye, Peter Buck, Mike Mills @ Rialto Room | Athens, GA',
+            photoCount: 3,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
             coverUrl: 'https://live.staticflickr.com/65535/54364334221_4a08118231_z.jpg',
-            albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html'
+            albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html',
+            videos: [
+                {
+                    title: 'Honeysuckle Blue',
+                    youtubeId: '34LFotDbyFA',
+                    tags: ['kevnkinney', 'lennykaye', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    title: 'Ghost Dance',
+                    youtubeId: 'mAPQsLxZt7Q',
+                    tags: ['kevnkinney', 'lennykaye', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
         },
         {
             title: '2025-07-07 Kevn Kinney, Peter Buck & David Barbe @ Rialto Room | Athens, GA',
@@ -1876,18 +1964,275 @@ const ALBUM_DATA = {
             albumPage: '../music/2017-07-27-jerry-joseph-todd-nance-john-neff-the-foundry-athens-ga.html'
         },
         { 
-            title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA', 
-            photoCount: 11, 
+            title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA',
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72157626752915571/',
             coverUrl: 'https://live.staticflickr.com/2567/5794530220_411f84cb92_z.jpg',
-            albumPage: '../music/2011-06-02-jerry-joseph-bloodkin-todd-nance-40-watt-athens-ga.html'
+            albumPage: '../music/2011-06-02-jerry-joseph-bloodkin-todd-nance-40-watt-athens-ga.html',
+            filterNames: ['Jerry Joseph', 'Daniel Hutchens', 'Eric Carter', 'William Tonks', 'Todd Nance'],
+            videos: [
+                {
+                    title: 'White Freightliner Blues',
+                    youtubeId: '_wef1DXNzXM',
+                    tags: ['jerryjoseph', 'bloodkin', 'toddnance', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    title: 'Yellow Ribbons (partial)',
+                    youtubeId: 'OGUPIeyiPpg',
+                    tags: ['jerryjoseph', 'danielhutchens', 'ericcarter', 'williamtonks', 'bloodkin', 'toddnance', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
         },
-        { 
-            title: '2006-03-02 Patterson Hood & Friends @ 40 Watt | Athens, GA', 
+        {
+            title: '2006-03-02 Patterson Hood & Friends @ 40 Watt | Athens, GA',
+            isVideoCollection: true,
             albumPage: '../music/2006-03-02-patterson-hood-friends-40-watt-athens-ga.html',
-            coverUrl: 'https://jayneclamp.com/images/PHoodFriends2006.png', 
+            coverUrl: 'https://jayneclamp.com/images/PHoodFriends2006.png',
             filterNames: ['Patterson Hood', 'John Neff', 'Brad Morgan', 'Dave Schools', 'Mike Cooley'],
             manualTags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter'],
+            videos: [
+                {
+                    youtubeId: '3Cg35r227NY',
+                    title: 'Patterson Hood & Friends @ 40 Watt - Gimme Shelter Benefit 2006-03-02',
+                    tags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter']
+                }
+            ],
+        },
+        {
+            title: '2025-02-21 Robyn Hitchcock @ 40 Watt | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/7fOuPrB8HoE/maxresdefault.jpg',
+            albumPage: '../music/2025-02-21-robyn-hitchcock-40-watt-athens-ga.html',
+            manualTags: ['robynhitchcock', '40watt', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: '7fOuPrB8HoE',
+                    title: 'Robyn Hitchcock "I\'m Falling" 2025-02-21 @ 40 Watt Club | Athens, GA',
+                    tags: ['robynhitchcock', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2016-02-12 Bit Brigade @ Caledonia Lounge | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/TeOOMlv4oMU/maxresdefault.jpg',
+            albumPage: '../music/2016-02-12-bit-brigade-caledonia-lounge-athens-ga.html',
+            manualTags: ['bitbrigade', 'caledonialounge', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'TeOOMlv4oMU',
+                    title: 'Bit Brigade 2016-02-12 @ Caledonia Lounge | Athens, GA',
+                    tags: ['bitbrigade', 'caledonialounge', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2011-09-25 Meat Puppets @ Melting Point | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/QqVeUE5ulP8/maxresdefault.jpg',
+            albumPage: '../music/2011-09-25-meat-puppets-melting-point-athens-ga.html',
+            manualTags: ['meatpuppets', 'meltingpoint', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'QqVeUE5ulP8',
+                    title: 'Meat Puppets "Touchdown King" 2011-09-25 @ Melting Point | Athens, GA',
+                    tags: ['meatpuppets', 'meltingpoint', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2001-12-14 Mike Houser with Barbara Cue @ Georgia Theatre | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/lmcvF_rxKN8/hqdefault.jpg',
+            albumPage: '../music/2001-12-14-mike-houser-barbara-cue-georgia-theatre-athens-ga.html',
+            filterNames: ['Mike Houser', 'Barbara Cue'],
+            manualTags: ['mikehouser', 'barbaracue', 'georgiatheatre', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'lmcvF_rxKN8',
+                    title: '2001-12-14 Mike Houser with Barbara Cue (Can\'t Change the Past, She Drives Me To Drink)',
+                    tags: ['mikehouser', 'barbaracue', 'georgiatheatre', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2026-05-02 Bruce Springsteen & the E Street Band @ State Farm Arena | Atlanta, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/wrpjAK2VquQ/maxresdefault.jpg',
+            albumPage: '../music/2026-05-02-bruce-springsteen-e-street-band-state-farm-arena-atlanta-ga.html',
+            manualTags: ['brucespringsteen', 'estreetband', 'tommorello', 'statefarmarena', 'atlanta', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'wrpjAK2VquQ',
+                    title: 'Bruce Springsteen & the E Street Band "Long Walk Home" @ State Farm Arena, Atlanta 2026-05-02',
+                    tags: ['brucespringsteen', 'estreetband', 'statefarmarena', 'atlanta', 'livemusic']
+                },
+                {
+                    youtubeId: 'tcHZLl_l9Sk',
+                    title: 'Bruce Springsteen & the E Street Band w Tom Morello (1) @ State Farm Arena, Atlanta 2026-05-02',
+                    tags: ['brucespringsteen', 'estreetband', 'tommorello', 'statefarmarena', 'atlanta', 'livemusic']
+                },
+                {
+                    youtubeId: 'vjvvFjdi38E',
+                    title: 'Bruce Springsteen & the E Street Band w Tom Morello (2) @ State Farm Arena, Atlanta 2026-05-02',
+                    tags: ['brucespringsteen', 'estreetband', 'tommorello', 'statefarmarena', 'atlanta', 'livemusic']
+                },
+                {
+                    youtubeId: '2_friFOosX0',
+                    title: 'Bruce Springsteen & the E Street Band w Tom Morello (3) @ State Farm Arena, Atlanta 2026-05-02',
+                    tags: ['brucespringsteen', 'estreetband', 'tommorello', 'statefarmarena', 'atlanta', 'livemusic']
+                },
+                {
+                    youtubeId: 'nzjVzv2CiXY',
+                    title: 'Bruce Springsteen & the E Street Band @ State Farm Arena, Atlanta 2026-05-02',
+                    tags: ['brucespringsteen', 'estreetband', 'statefarmarena', 'atlanta', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2025-04-20 Kevn Kinney, Peter Buck & Mike Mills @ Rialto Room | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/rtLa40tRXWk/maxresdefault.jpg',
+            albumPage: '../music/2025-04-20-kevn-kinney-peter-buck-mike-mills-rialto-room-athens-ga.html',
+            manualTags: ['kevnkinney', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'rtLa40tRXWk',
+                    title: 'Kevn Kinney, Peter Buck & Mike Mills "Honeysuckle Blue" 2025-04-20 @ Rialto Room | Athens, GA',
+                    tags: ['kevnkinney', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    youtubeId: 'ySAl7iV-HaI',
+                    title: 'Mike Mills, Kevn Kinney & Peter Buck "Apartment #9" 2025-04-20 @ Rialto Room | Athens, GA',
+                    tags: ['kevnkinney', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    youtubeId: 'ooXYAl6K_TY',
+                    title: 'Mike Mills, Peter Buck & Kevn Kinney "Don\'t Go Back to Rockville" 2025-04-20 Rialto Room | Athens, GA',
+                    tags: ['kevnkinney', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2011-01-19 Neal Fountain & Dan Nettles @ Hendershot\'s | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/GPyp1tPS82w/hqdefault.jpg',
+            albumPage: '../music/2011-01-19-neal-fountain-dan-nettles-hendershots-athens-ga.html',
+            filterNames: ['Neal Fountain', 'Dan Nettles'],
+            manualTags: ['nealfountain', 'dannettles', 'hendershots', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                {
+                    youtubeId: 'GPyp1tPS82w',
+                    title: 'Neal Fountain & Dan Nettles - Hendershot\'s - Athens, GA - 1/19/11',
+                    tags: ['nealfountain', 'dannettles', 'hendershots', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    youtubeId: 'VUi7N0q4bMA',
+                    title: 'Neal Fountain & Dan Nettles (2) - Hendershot\'s - Athens, GA - 1/19/11',
+                    tags: ['nealfountain', 'dannettles', 'hendershots', 'athensga', 'athensgamusic', 'livemusic']
+                },
+                {
+                    youtubeId: 'wrVdLuo6Onc',
+                    title: 'Neal Fountain & Dan Nettles (3) - Hendershot\'s - Athens, GA - 1/19/11',
+                    tags: ['nealfountain', 'dannettles', 'hendershots', 'athensga', 'athensgamusic', 'livemusic']
+                }
+            ],
+        },
+        {
+            title: '2010-06-19 Bloodkin @ Seabreeze Deck | Charleston, SC',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/Nd8fDZ5uqGA/hqdefault.jpg',
+            albumPage: '../music/2010-06-19-bloodkin-seabreeze-deck-charleston-sc.html',
+            filterNames: ['Bloodkin', 'Daniel Hutchens', 'Eric Carter', 'William Tonks'],
+            manualTags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'],
+            videos: [
+                { youtubeId: 'Nd8fDZ5uqGA', title: 'Bloodkin1_Jack Nicholson Grin (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'p01s1qYWpo8', title: 'Bloodkin2_Calling Back (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'vAITDbR_Oak', title: 'Bloodkin3_Lost Highway (Hank Williams) (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: '88AuyTCKHuE', title: 'Bloodkin4_You Ain\'t Goin Nowhere (Bob Dylan) (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'iirRs6VncaI', title: 'Bloodkin5_Tennessee Williams (Set 1) (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'lTQ9D_ge_X8', title: 'Bloodkin6_Last Dance With Mary Jane (Tom Petty) (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'pAf3snBAe9Q', title: 'Bloodkin7_Quarter Tank of Gasoline (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: '3M2bQDynphA', title: 'Bloodkin8_Can\'t Get High (Charleston Set 1)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: '7zjBDaYgtKI', title: 'Bloodkin9_White Freightliner Blues (Townes Van Zandt) (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: '2nA7lfeDNRU', title: 'Bloodkin10_Blue Skies Above America (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'qc4rs4COe9U', title: 'Bloodkin11_Who Do You Belong To? (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'SDkUwE6yZzU', title: 'Bloodkin12_Success Yourself (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'vIqOVG0C3nY', title: 'Bloodkin13_Makes Sense To Me (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'Ek6rFAO6tkg', title: 'Bloodkin14_End of the Show (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'JLXxcd5EPHA', title: 'Bloodkin15_Ghostrunner (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'qD7ez6-PVSg', title: 'Bloodkin16_Hickory Wind (Gram Parsons, Bob Buchanan) (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] },
+                { youtubeId: 'M99LytB5rQQ', title: 'Bloodkin17_You Better Pray (Charleston Set 2)', tags: ['bloodkin', 'danielhutchens', 'ericcarter', 'williamtonks', 'charleston', 'seabreezedeck', 'livemusic'] }
+            ],
+        },
+        {
+            title: '2011-02-12 Futurebirds @ Seney-Stovall Chapel | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/L1-zfAbZRFE/hqdefault.jpg',
+            albumPage: '../music/2011-02-12-futurebirds-seney-stovall-chapel-athens-ga.html',
+            filterNames: ['Futurebirds'],
+            manualTags: ['futurebirds', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                { youtubeId: 'L1-zfAbZRFE', title: 'Futurebirds - "Wild Heart" (Stevie Nicks)', tags: ['futurebirds', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'DvvzgIyzrBk', title: 'Futurebirds - "Johnny Utah"', tags: ['futurebirds', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'iUk6PdmWq3w', title: 'Futurebirds - "Dirty D" (partial)', tags: ['futurebirds', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'] }
+            ],
+        },
+        {
+            title: '2011-02-12 Dave Marr & Friends @ Seney-Stovall Chapel | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/Cee3uYgqkyM/hqdefault.jpg',
+            albumPage: '../music/2011-02-12-dave-marr-friends-seney-stovall-chapel-athens-ga.html',
+            filterNames: ['Dave Marr'],
+            manualTags: ['davemarr', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                { youtubeId: 'Cee3uYgqkyM', title: 'Dave Marr & Friends', tags: ['davemarr', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'C3Kn2jVMijM', title: 'Dave Marr & Friends - "Whiskey & You"', tags: ['davemarr', 'seneystovallchapel', 'athensga', 'athensgamusic', 'livemusic'] }
+            ],
+        },
+        {
+            title: '2011-02-03 Athens Business Rocks @ 40 Watt | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/3qLQbk7tkb0/hqdefault.jpg',
+            albumPage: '../music/2011-02-03-athens-business-rocks-40-watt-athens-ga.html',
+            filterNames: ['Boy George Clinton', 'The Fret Dressers', 'Clusterphunk', '80 Cougar'],
+            manualTags: ['boygeorgeclinton', 'thefretdressers', 'baxendaleguitar', 'clusterphunk', '80cougar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'],
+            videos: [
+                { youtubeId: '3qLQbk7tkb0', title: 'Boy George Clinton - "Maggot Brain / Crying Game" (Funkadelic / Boy George)', tags: ['boygeorgeclinton', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'GWyHqHUtMd8', title: 'The Fret Dressers (Baxendale Guitar) - "Trying To Get To You" (Elvis Presley)', tags: ['thefretdressers', 'baxendaleguitar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'CfEWLmt7WPg', title: 'Clusterphunk - "Bennie & the Jets" (Elton John / Bernie Taupin)', tags: ['clusterphunk', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'YikNe3rGaMU', title: '80# Cougar - "Bang a Gong" (T-Rex)', tags: ['80cougar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] }
+            ],
+        },
+        {
+            title: '2012-10-26 Hayride @ Melting Point | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/qodpTnJbTf0/hqdefault.jpg',
+            albumPage: '../music/2012-10-26-hayride-melting-point-athens-ga.html',
+            filterNames: ['Hayride', 'Matt Joiner', 'Emily McCannon'],
+            manualTags: ['hayride', 'mattjoiner', 'emilymccannon', 'meltingpoint', 'athensga', 'athensgamusic', 'livemusic'],
+            videos: [
+                { youtubeId: 'qodpTnJbTf0', title: 'Whole Lotta Love (partial) - Hayride with special guests Matt Joiner & Emily McCannon', tags: ['hayride', 'mattjoiner', 'emilymccannon', 'meltingpoint', 'athensga', 'athensgamusic', 'livemusic'] }
+            ],
+        },
+        {
+            title: '2011-05-06 The Cottage Benefit | Athens, GA',
+            isVideoCollection: true,
+            coverUrl: 'https://i.ytimg.com/vi/F7raASzmRgo/hqdefault.jpg',
+            albumPage: '../music/2011-05-06-cottage-benefit-athens-ga.html',
+            filterNames: ['Betsy Franck', 'Kimberly Morgan', 'Pamela Baxendale', 'Scott Baxendale', 'Matt Hudgins'],
+            manualTags: ['betsyfranck', 'kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'matthudgins', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic', 'benefit'],
+            videos: [
+                { youtubeId: 'QqqRcRE0mvY', title: 'Betsy Franck with Kimberly Morgan & Friends - "City of Gold"', tags: ['betsyfranck', 'kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'ctkoZ_CDlJU', title: 'Betsy Franck with Kimberly Morgan & Friends', tags: ['betsyfranck', 'kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: '3d4YT8zqLLE', title: 'Betsy Franck with Kimberly Morgan & Friends', tags: ['betsyfranck', 'kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'F7raASzmRgo', title: 'Kimberly Morgan & Friends - "Don\'t Cry to Me"', tags: ['kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'jMeqorshaWw', title: 'Kimberly Morgan & Friends', tags: ['kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'O-IPHYzm0jg', title: 'Kimberly Morgan & Friends - "Falling"', tags: ['kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'xWt8BUk2asw', title: 'Kimberly Morgan & Friends - "Lady"', tags: ['kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'eMOlllcabmQ', title: 'Kimberly Morgan & Friends - "Joshua"', tags: ['kimberlymorgan', 'pamelabaxendale', 'scottbaxendale', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] },
+                { youtubeId: 'nBLW6ivpsf8', title: 'Matt Hudgins', tags: ['matthudgins', 'cottagebenefit', 'athensga', 'athensgamusic', 'livemusic'] }
+            ],
         },
     ],
     events: [
@@ -2518,6 +2863,49 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
     updateLoadMoreButton();
 }
 
+// Videos page: video-only albums live scattered across ALBUM_DATA's
+// collections (isVideoCollection: true), rather than in a collection of
+// their own, so this collects them across all of ALBUM_DATA instead of
+// reading a single ALBUM_DATA[collectionType] array like displayAlbums does.
+function displayVideoAlbums() {
+    const videosGrid = document.getElementById('videos-grid');
+    const loading = document.getElementById('loading');
+    if (!videosGrid) return;
+
+    let videoAlbums = [];
+    Object.keys(ALBUM_DATA).forEach(collectionType => {
+        ALBUM_DATA[collectionType].forEach(album => {
+            if (album.isVideoCollection) {
+                videoAlbums.push(album);
+            }
+        });
+    });
+
+    videoAlbums.sort((a, b) => b.title.substring(0, 10).localeCompare(a.title.substring(0, 10)));
+
+    if (loading) loading.style.display = 'none';
+
+    if (videoAlbums.length === 0) {
+        videosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No videos yet.</p>';
+        return;
+    }
+
+    videosGrid.innerHTML = videoAlbums.map((album, index) => {
+        const videoCount = (album.videos || []).length;
+        return `
+            <a href="${album.albumPage}" class="album-card" id="video-album-${index}">
+                <div class="album-image">
+                    <img src="${album.coverUrl}" alt="${album.title}" loading="lazy">
+                    <div class="album-overlay">
+                        <h3>${album.title}</h3>
+                        <p class="album-info"><i class="fas fa-play-circle"></i> ${videoCount} video${videoCount !== 1 ? 's' : ''}</p>
+                    </div>
+                </div>
+            </a>
+        `;
+    }).join('');
+}
+
 // Load more albums when "Load More" button is clicked
 function loadMoreAlbums() {
     const albumsGrid = document.getElementById('albums-grid');
@@ -2658,7 +3046,12 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Collection type or data not found:', collectionType, ALBUM_DATA);
         }
     }
-    
+
+    // Videos page
+    if (document.getElementById('videos-grid')) {
+        displayVideoAlbums();
+    }
+
     // Initialize album photos if on an album page
     if (window.location.pathname.includes('/music/') || 
         window.location.pathname.includes('/events/') || 
@@ -3277,8 +3670,8 @@ function setAlbumSocialMeta(albumUrl) {
 function createGlobalHeader() {
     // Determine if we're on index page or collection page for correct paths
     const isIndexPage = window.location.pathname.endsWith('/index.html') || window.location.pathname === '/';
-    const isRootPage = isIndexPage || 
-        /^\/(music|events|travel|birds|landscapes|pets|tags|contact|about)(\.html)?$/.test(window.location.pathname);
+    const isRootPage = isIndexPage ||
+        /^\/(music|events|travel|birds|landscapes|pets|misc|videos|tags|contact|about)(\.html)?$/.test(window.location.pathname);
     const basePath = isRootPage ? '' : '../';
 
     return `
@@ -3300,7 +3693,7 @@ function createGlobalHeader() {
                                 <li><a href="${basePath}music.html">Music</a></li>
                                 <li><a href="${basePath}events.html">Events</a></li>
                                 <li><a href="${basePath}misc.html">Other</a></li>
-                                <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                                <li><a href="${basePath}videos.html">Videos</a></li>
                             </ul>
                         </li>
                         <li><a href="${basePath}tags.html">Tags</a></li>
@@ -3372,7 +3765,7 @@ function createGlobalFooter() {
                             <li><a href="${pathPrefix}music.html">Music</a></li>
                             <li><a href="${pathPrefix}events.html">Events</a></li>
                             <li><a href="${pathPrefix}misc.html">Other</a></li>
-                            <li><a href="https://www.youtube.com/@jayneclamp" target="_blank" rel="noopener">Videos</a></li>
+                            <li><a href="${pathPrefix}videos.html">Videos</a></li>
                         </ul>
                     </div>
                     <a href="${pathPrefix}tags.html">Tags</a>
