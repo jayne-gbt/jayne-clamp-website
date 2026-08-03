@@ -3470,12 +3470,50 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeGlobalHeader(); // Re-enabled for consistent navigation
     initializeGlobalFooter();
     initializeLightboxClickAdvance();
+    injectStructuredData();
 
     // Apply saved theme and sync the toggle icon (header is built above)
     applyTheme(getStoredTheme());
 
     // Camera icon code removed - using logo image instead
 });
+
+// Structured data (JSON-LD) for search engines.
+// Individual show/album pages live under /music/, /events/, /landscapes/,
+// /birds/, /travel/, /pets/ - everything else (collection hubs, home, etc.)
+// is treated as a regular page. Album pages already carry correct
+// og:title/og:description/og:image/og:url meta tags, so reuse those rather
+// than duplicating the same data a second time per page.
+function injectStructuredData() {
+    const isAlbumPage = /\/(music|events|landscapes|birds|travel|pets)\//.test(window.location.pathname);
+    if (!isAlbumPage) return;
+
+    const getMeta = (prop) => {
+        const el = document.querySelector(`meta[property="${prop}"]`) || document.querySelector(`meta[name="${prop}"]`);
+        return el ? el.getAttribute('content') : null;
+    };
+
+    const name = getMeta('og:title');
+    const description = getMeta('og:description');
+    const image = getMeta('og:image');
+    const url = getMeta('og:url');
+    if (!name || !url) return;
+
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'ImageGallery',
+        name,
+        url,
+        author: { '@type': 'Person', name: 'Jayne Clamp' }
+    };
+    if (description) schema.description = description;
+    if (image) schema.image = image;
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+}
 
 // Scroll position restoration
 
