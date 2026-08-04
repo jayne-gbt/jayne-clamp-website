@@ -780,6 +780,7 @@ const ALBUM_DATA = {
         {
             title: '2026-06-27 Wieuca @ Nowhere Bar | AthFest',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334844283/',
+            coverUrl: 'https://live.staticflickr.com/65535/55417157470_dc41d15c10_z.jpg',
             albumPage: '../music/2026-06-27-wieuca-nowhere-bar-athfest-night-2-athens-ga.html',
             filterNames: ['Wieuca', 'Nowhere Bar', 'AthFest'],
         },
@@ -1341,22 +1342,22 @@ const ALBUM_DATA = {
             isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/Qg47lp6AHws/maxresdefault.jpg',
             albumPage: '../music/2025-04-03-gillian-welch-david-rawlings-classic-center-athens-ga.html',
-            manualTags: ['gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic', 'sixwhitehorses', 'thatsthewayitgoes', 'waysidebackintime'],
+            manualTags: ['gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic', 'sixwhitehorses', 'thatsthewayitgoes', 'waysidebackintime'],
             videos: [
                 {
                     title: 'Wayside / Back in Time',
                     youtubeId: 'Qg47lp6AHws',
-                    tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                    tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
                 },
                 {
                     title: "That's the Way It Goes",
                     youtubeId: 'aRFz1bChgkA',
-                    tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                    tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
                 },
                 {
                     title: 'Six White Horses',
                     youtubeId: 'u9w-jkqych4',
-                    tags: ['sixwhitehorses', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'americana', 'livemusic']
+                    tags: ['sixwhitehorses', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
                 }
             ]
         },
@@ -1418,11 +1419,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-10-04-jerry-joseph-jackmormons-nowhere-bar-athens-ga.html'
         }, 
         { 
-            title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA', 
-            photoCount: 11, 
+            title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA',
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
             coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_z.jpg',
             albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html',
+            filterNames: ['Michael Stipe', 'Andy LeMaster', 'David Barbe'],
             manualTags: ['rem', 'davidbarbe', 'andylemaster', 'dougemhoff', 'michaelstipe', 'wendellgee', 'driver8', 'athensclarkecountydemocrats', 'athensmusic', 'politics', 'kamalaharris', 'democrats', 'presidentialcampaign'],
             videos: [
                 {
@@ -2245,6 +2247,18 @@ const ALBUM_DATA = {
             filterNames: ['World Cup'],
         },
         {
+            // Same show/page as the music-collection entry - it's listed in both
+            // collections since it's both a Michael Stipe/Andy LeMaster/David Barbe
+            // performance and a Doug Emhoff campaign event. Music dropdown shows the
+            // musicians; this entry is what makes it findable under "Doug Emhoff" too.
+            title: '2024-10-10 Doug Emhoff Event with Michael Stipe | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321198241/',
+            albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html',
+            filterNames: ['Doug Emhoff'],
+        },
+        {
             title: '2026-04-14 Protest Against JD Vance Turning Point Rally @ Akins Ford Arena | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55216651940_3fc39a2fbf_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720333183378/',
@@ -2254,6 +2268,7 @@ const ALBUM_DATA = {
         {
             title: '2026-03-08 Detention Center Not Welcome Here Rally @ Courthouse | Monroe, GA',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332470464/',
+            coverUrl: 'https://live.staticflickr.com/65535/55139670970_24281808f3_z.jpg',
             albumPage: '../events/2026-03-08-detention-center-not-welcome-here-rally-courthouse-monroe-ga.html',
             filterNames: ['Detention Center'],
         },
@@ -2264,13 +2279,15 @@ const ALBUM_DATA = {
             albumPage: '../events/2026-02-15-corey-forrester-drew-morgan-hendershots-athens-ga.html'
         },
         { 
-            title: '2026-03-28 No Kings #3 @ Athens, GA', 
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332808125/', 
-            albumPage: '../events/2026-03-28-no-kings-3-athens-ga.html' 
+            title: '2026-03-28 No Kings #3 @ Athens, GA',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332808125/',
+            coverUrl: 'https://live.staticflickr.com/65535/55177881242_0049a4b7da_z.jpg',
+            albumPage: '../events/2026-03-28-no-kings-3-athens-ga.html'
         },
-        { 
-            title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA', 
+        {
+            title: '2026-01-13 Get Ice Out for Good Protest | Athens, GA',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331571028',
+            coverUrl: 'https://live.staticflickr.com/65535/55051286788_9dbb79239e_z.jpg',
             albumPage: '../events/2026-01-13-get-ice-out-for-good-protest-athens-ga.html'
         },
          { 
@@ -3348,6 +3365,8 @@ function initializeFilters(collectionType) {
                     eventTypes.add('UGA Homecoming');
                 } else if (eventName.toLowerCase().includes('world cup')) {
                     eventTypes.add('World Cup');
+                } else if (eventName.toLowerCase().includes('doug emhoff')) {
+                    eventTypes.add('Doug Emhoff');
                 } else {
                     // For any other events, use the cleaned name
                     eventTypes.add(eventName);
@@ -3471,6 +3490,167 @@ function initializeAlbumNavigation() {
         nextBtn.disabled = true;
         nextBtn.title = 'No next album';
     }
+
+    const currentAlbum = findCurrentAlbum(currentPath, collectionType);
+    if (currentAlbum) {
+        displayRelatedAlbums(currentAlbum, collectionType);
+    }
+}
+
+// ===================================
+// Related albums (More from this artist / More at this venue)
+// ===================================
+
+// filterNames arrays often mix in venue/event names (e.g. ['Bloodkin', 'Georgia
+// Theatre', 'AthFest']) so they're also browsable from the artist-filter
+// dropdown. That's fine for filtering, but for "related albums" it produces
+// nonsense like "More from Bloodkin" linking to unrelated AthFest shows.
+// Build a set of every real venue name in ALBUM_DATA so those tokens (plus a
+// couple of known event-series labels) can be excluded from artist matching.
+function getKnownVenueAndEventNames() {
+    if (window._knownVenueNames) return window._knownVenueNames;
+    const names = new Set(['athfest', 'porchfest']);
+    for (const coll in ALBUM_DATA) {
+        ALBUM_DATA[coll].forEach(a => {
+            const atMatch = a.title.match(/\s+@\s+(.+?)(?:\s*\|\s*|$)/);
+            const pipeMatch = a.title.match(/\s+\|\s+(.+?)$/);
+            const venue = atMatch ? atMatch[1].trim() : (pipeMatch ? pipeMatch[1].trim() : '');
+            if (venue) {
+                venue.split(/\s*&\s+/).forEach(v => names.add(v.trim().toLowerCase()));
+            }
+        });
+    }
+    window._knownVenueNames = names;
+    return names;
+}
+
+// Extract artist name(s) for an album. Mirrors the artist-filter logic in
+// displayAlbums() so "related" always agrees with what the artist dropdown
+// considers the same act.
+function getAlbumArtists(album) {
+    if (album.filterNames && Array.isArray(album.filterNames)) {
+        const knownVenues = getKnownVenueAndEventNames();
+        const realArtists = album.filterNames.filter(name => !knownVenues.has(name.toLowerCase()));
+        return realArtists.length ? realArtists : album.filterNames;
+    }
+
+    const match = album.title.match(/\d{4}-\d{2}-\d{2}\s+(.+?)\s+(?:@|\|)/);
+    if (!match) return [];
+    let artistSection = match[1].trim();
+
+    if (artistSection.toLowerCase() === 'porchfest') {
+        return ['David Barbe', 'T. Hardy Morris', 'Don Chambers', 'Trycoh', 'Lazy Horse', 'Infinite Favors'];
+    }
+
+    const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
+    if (withMatch && artistSection.toLowerCase().includes('event')) {
+        artistSection = withMatch[1].trim();
+    }
+
+    if (artistSection.toLowerCase() === 'kevn kinney band') {
+        artistSection = 'Kevn Kinney';
+    }
+    if (['jerry joseph & the jackmormons', 'jerry joseph and the jackmormons', 'jackmormons', 'the jackmormons'].includes(artistSection.toLowerCase())) {
+        artistSection = 'Jerry Joseph';
+    }
+
+    return [artistSection];
+}
+
+// Find the ALBUM_DATA entry matching the currently-loaded page.
+function findCurrentAlbum(currentAlbumPath, collectionType) {
+    const albums = ALBUM_DATA[collectionType] || [];
+    return albums.find(album =>
+        album.albumPage && currentAlbumPath.includes(album.albumPage.split('/').pop())
+    ) || null;
+}
+
+// Build the "more from this artist" list for the current album.
+// Political rallies/protests/campaign events - grouped together regardless of
+// collection (some live under "events", some like the Doug Emhoff show live
+// under "music") and regardless of recurring-series numbering ("No Kings #1",
+// "#2", "#3" are all the same thing for relating purposes).
+const POLITICAL_KEYWORDS = [
+    'no kings', 'jon ossoff', 'turning point', 'jd vance', 'detention center',
+    'get ice out', 'ucw labor rally', 'stacey abrams', 'black lives matter',
+    'march for our lives', 'doug emhoff'
+];
+
+function isPoliticalAlbum(album) {
+    const t = album.title.toLowerCase();
+    return POLITICAL_KEYWORDS.some(k => t.includes(k));
+}
+
+function getRelatedAlbums(currentAlbum, collectionType) {
+    const sortByDateDesc = (a, b) => b.title.substring(0, 10).localeCompare(a.title.substring(0, 10));
+
+    if (isPoliticalAlbum(currentAlbum)) {
+        const byArtist = [];
+        ['music', 'events'].forEach(coll => {
+            (ALBUM_DATA[coll] || []).forEach(a => {
+                if (a.albumPage !== currentAlbum.albumPage && isPoliticalAlbum(a)) byArtist.push(a);
+            });
+        });
+        byArtist.sort(sortByDateDesc);
+        return { byArtist: byArtist.slice(0, 6), artistName: 'Politics' };
+    }
+
+    const albums = (ALBUM_DATA[collectionType] || []).filter(a => a.albumPage !== currentAlbum.albumPage);
+
+    // Match on the primary (first-listed) artist only - a shared guest/co-performer
+    // (e.g. Peter Buck sitting in on someone else's show) shouldn't make that
+    // show "related" to every other act Peter Buck has ever guested with.
+    const primaryArtist = (getAlbumArtists(currentAlbum)[0] || '').toLowerCase();
+    let byArtist = [];
+    if (primaryArtist) {
+        byArtist = albums.filter(a => {
+            const artistPrimary = (getAlbumArtists(a)[0] || '').toLowerCase();
+            return artistPrimary === primaryArtist;
+        }).sort(sortByDateDesc).slice(0, 6);
+    }
+
+    return { byArtist, artistName: getAlbumArtists(currentAlbum)[0] || '' };
+}
+
+function renderRelatedAlbumCard(album) {
+    const cover = album.coverUrl || '';
+    return `
+        <a href="${album.albumPage}" class="related-album-card">
+            <div class="related-album-cover"><img src="${cover}" alt="" loading="lazy"></div>
+            <span class="related-album-title">${album.title}</span>
+        </a>
+    `;
+}
+
+// Inject a "related albums" section right above the prev/next nav bar.
+// Renders as a horizontally-scrolling rail (Netflix/Spotify-style) with
+// arrow controls on desktop; on touch devices the arrows are hidden via CSS
+// and the row is just swiped/scrolled natively.
+function displayRelatedAlbums(currentAlbum, collectionType) {
+    const bottomNav = document.querySelector('.album-bottom-navigation');
+    if (!bottomNav) return;
+
+    const related = getRelatedAlbums(currentAlbum, collectionType);
+    if (!related.byArtist.length) return;
+
+    let html = '<section class="related-albums-section"><div class="container">';
+    const heading = related.artistName === 'Politics' ? 'More Political Events' : `More from ${related.artistName}`;
+    html += `<h3 class="related-albums-heading">${heading}</h3>`;
+    html += '<div class="related-albums-rail">';
+    html += '<button class="related-albums-arrow related-albums-arrow-left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>';
+    html += '<div class="related-albums-track">' + related.byArtist.map(renderRelatedAlbumCard).join('') + '</div>';
+    html += '<button class="related-albums-arrow related-albums-arrow-right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>';
+    html += '</div>';
+    html += '</div></section>';
+
+    bottomNav.insertAdjacentHTML('beforebegin', html);
+
+    const track = bottomNav.previousElementSibling.querySelector('.related-albums-track');
+    const leftArrow = bottomNav.previousElementSibling.querySelector('.related-albums-arrow-left');
+    const rightArrow = bottomNav.previousElementSibling.querySelector('.related-albums-arrow-right');
+    const scrollByCard = () => track.clientWidth * 0.8;
+    leftArrow.addEventListener('click', () => track.scrollBy({ left: -scrollByCard(), behavior: 'smooth' }));
+    rightArrow.addEventListener('click', () => track.scrollBy({ left: scrollByCard(), behavior: 'smooth' }));
 }
 
 // Clear filter helpers
@@ -4385,8 +4565,13 @@ async function initializeTagsPage() {
         totalAlbums += (ALBUM_DATA[collectionType] || []).length;
     });
     
-    // If cache is fresh and album count matches, use it
-    if (cachedData && cachedData.albumCount === totalAlbums) {
+    // If cache is fresh and album count matches, use it. Album count alone
+    // doesn't catch new videos/tags added to an *existing* album, so also
+    // expire the cache after a few hours regardless of count - users
+    // shouldn't have to notice a stale "Refresh" link to see new content.
+    const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
+    const cacheIsFresh = cachedData && (Date.now() - cachedData.timestamp) < CACHE_TTL_MS;
+    if (cachedData && cacheIsFresh && cachedData.albumCount === totalAlbums) {
         console.log('Loading tags from cache - instant load!');
         allTags.clear();
         cachedData.tags.forEach((value, key) => {
@@ -4672,18 +4857,29 @@ function handleTagPageParameters(urlParams, allTags, tagParam) {
     
     // If we were filtering by tag, show final results
     if (tagParam && allTags.has(tagParam)) {
-        const photos = allTags.get(tagParam);
-        photos.forEach((item, index) => {
-        });
+        const items = allTags.get(tagParam);
+        const photos = items.filter(item => item.type === 'photo');
+        const videos = items.filter(item => item.type === 'video');
+
         const resultsTitle = document.getElementById('results-title');
-        resultsTitle.textContent = `Photos tagged "${formatTagForDisplay(tagParam)}" (${photos.length})`;
-        
-        // Display the photos/videos
+        resultsTitle.textContent = `Results for "${formatTagForDisplay(tagParam)}" (${items.length} total)`;
+
+        // Display photos
         const photosContainer = document.getElementById('photos-grid');
         if (photosContainer) {
             displayPhotosGrid(photos, photosContainer);
         } else {
             console.error('photos-grid element not found!');
+        }
+
+        // Display videos
+        const videosGrid = document.getElementById('videos-grid');
+        const videosSection = document.getElementById('videos-section');
+        if (videos.length > 0 && videosGrid && videosSection) {
+            displayVideosGrid(videos, videosGrid);
+            videosSection.style.display = 'block';
+        } else if (videosSection) {
+            videosSection.style.display = 'none';
         }
     } else if (tagParam) {
     }

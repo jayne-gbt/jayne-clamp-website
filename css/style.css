@@ -650,6 +650,141 @@ img {
     opacity: 0.7;
 }
 
+/* Related albums (More from this artist / More at this venue) */
+.related-albums-section {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 255, 255, 0.04));
+    border-top: 1px solid rgba(255, 215, 0, 0.25);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+.related-albums-heading {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0 0 1.25rem 0;
+    text-align: center;
+}
+
+.related-albums-rail {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.related-albums-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+}
+
+.related-albums-track::-webkit-scrollbar {
+    display: none;
+}
+
+.related-albums-arrow {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.related-albums-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Arrows are a desktop hover affordance; touch devices just swipe the row. */
+@media (max-width: 768px) {
+    .related-albums-arrow {
+        display: none;
+    }
+}
+
+.related-album-card {
+    display: block;
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.related-album-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.related-album-cover {
+    position: relative;
+    width: 100%;
+    padding-bottom: 66.67%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.related-album-cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-album-title {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+html[data-theme="light"] .related-albums-section {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(0, 0, 0, 0.03));
+    border-top: 1px solid rgba(201, 162, 0, 0.35);
+    border-bottom: 1px solid rgba(201, 162, 0, 0.35);
+}
+
+html[data-theme="light"] .related-albums-heading {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .related-album-card {
+    background: rgba(0, 0, 0, 0.04);
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .related-album-cover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .related-albums-arrow {
+    background: #ffffff;
+    border-color: #cccccc;
+    color: #1a1a1a;
+}
+
+html[data-theme="light"] .related-albums-arrow:hover {
+    background: #eeeeee;
+}
+
 /* Album bottom navigation */
 .album-bottom-navigation {
     padding: 1.5rem 0;
@@ -2387,28 +2522,71 @@ html[data-theme="light"] .nav-menu .share-menu a:hover {
     color: var(--accent) !important;
 }
 
-/* Outline buttons (back / nav / artist link) */
-html[data-theme="light"] :is(.back-button, .album-nav-btn, .artist-official-link) {
+/* Outline buttons (back / nav) - transparent, just a border */
+html[data-theme="light"] :is(.back-button, .album-nav-btn) {
     color: #1a1a1a !important;
     border-color: #1a1a1a !important;
 }
 
-html[data-theme="light"] :is(.back-button, .album-nav-btn, .artist-official-link) i {
+html[data-theme="light"] :is(.back-button, .album-nav-btn) i {
     color: #1a1a1a !important;
 }
 
 html[data-theme="light"] .back-button:hover,
-html[data-theme="light"] .album-nav-btn:hover:not(:disabled),
-html[data-theme="light"] .artist-official-link:hover {
+html[data-theme="light"] .album-nav-btn:hover:not(:disabled) {
     background-color: var(--accent) !important;
     border-color: var(--accent) !important;
     color: #ffffff !important;
 }
 
 html[data-theme="light"] .back-button:hover i,
-html[data-theme="light"] .album-nav-btn:hover:not(:disabled) i,
+html[data-theme="light"] .album-nav-btn:hover:not(:disabled) i {
+    color: #ffffff !important;
+}
+
+/* Artist official link - a filled pill, not an outline button, so it needs
+   its own visible background in light mode (was inheriting only border/text
+   color from the outline-button rule above, leaving no visible bubble). */
+html[data-theme="light"] .artist-official-link {
+    background-color: #eeeeee !important;
+    border-color: #cccccc !important;
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .artist-official-link i {
+    color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .artist-official-link:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+}
+
 html[data-theme="light"] .artist-official-link:hover i {
     color: #ffffff !important;
+}
+
+/* Tag pills on video album pages: solid, high-contrast bubbles in both themes
+   (dark background -> white bubble, black text; light background -> black bubble, white text) */
+.tag {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.tag:hover {
+    background-color: #dddddd !important;
+}
+
+html[data-theme="light"] .tag {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="light"] .tag:hover {
+    background-color: #333333 !important;
 }
 
 /* Solid buttons -> dark on light. Exclude utility/icon buttons that
