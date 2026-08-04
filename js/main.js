@@ -4006,7 +4006,7 @@ function createGlobalHeader() {
     return `
         <header class="site-header">
             <div class="container">
-                <h1 class="site-title"><a href="${basePath}index.html"><img id="site-logo" src="${basePath}images/JayneClampLogoTrans.png?v=1" alt="Jayne Clamp Photography" style="height: 85px; width: auto; vertical-align: middle;"></a></h1>
+                <h1 class="site-title"><a href="/"><img id="site-logo" src="${basePath}images/JayneClampLogoTrans.png?v=1" alt="Jayne Clamp Photography" style="height: 85px; width: auto; vertical-align: middle;"></a></h1>
                 <nav class="main-nav">
                     <button class="mobile-menu-toggle" aria-label="Toggle menu">
                         <i class="fas fa-bars"></i>
@@ -4017,7 +4017,7 @@ function createGlobalHeader() {
                             <a href="#" onclick="openSearchModal(); return false;" aria-label="Search"><i class="fas fa-search"></i></a>
                         </li>
                         <li class="collections-dropdown">
-                            <a href="${basePath}index.html#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
+                            <a href="/#collections" class="collections-trigger">Collections <i class="fas fa-chevron-down"></i></a>
                             <ul class="collections-menu">
                                 <li><a href="${basePath}music.html">Music</a></li>
                                 <li><a href="${basePath}events.html">Events</a></li>
@@ -4090,9 +4090,9 @@ function createGlobalFooter() {
                     </a>
                 </div>
                 <div class="footer-nav">
-                    <a href="${pathPrefix}index.html">Home</a>
+                    <a href="/">Home</a>
                     <div class="footer-dropdown">
-                        <a href="${pathPrefix}index.html#collections" class="footer-dropdown-trigger"><span>Collections</span><i class="fas fa-chevron-down"></i></a>
+                        <a href="/#collections" class="footer-dropdown-trigger"><span>Collections</span><i class="fas fa-chevron-down"></i></a>
                         <ul class="footer-dropdown-menu">
                             <li><a href="${pathPrefix}music.html">Music</a></li>
                             <li><a href="${pathPrefix}events.html">Events</a></li>

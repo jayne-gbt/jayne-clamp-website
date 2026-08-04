@@ -478,6 +478,48 @@ img {
     margin-bottom: 2rem;
 }
 
+/* Puts the "Back to Collections" button in line with the collection title
+   (Music/Events/etc) instead of stacking them with a big vertical gap.
+   The button is taken out of flow so the title still centers on the full
+   row width, not just the space left over next to the button. */
+.collection-header-row {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.collection-header-row .back-button {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-bottom: 0 !important;
+}
+
+.collection-header-row .page-header {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .collection-header-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        position: static;
+    }
+
+    .collection-header-row .back-button {
+        position: static;
+        transform: none;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem;
+    }
+
+    .collection-header-row .page-header {
+        width: 100%;
+    }
+}
+
 #tags-loading-message:empty {
     display: none;
 }

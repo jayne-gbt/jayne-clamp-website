@@ -36,32 +36,14 @@
     <meta name="twitter:description" content="Live music photography by Jayne Clamp">
     <meta name="twitter:image" content="https://live.staticflickr.com/65535/54885443589_d64f40f294_z.jpg">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260804-0100">
+    <link rel="stylesheet" href="../css/style.css?v=20260804-0500">
     <link rel="stylesheet" href="../css/lightbox.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title"><a href="../index.html">Jayne Clamp</a></h1>
-            <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../music/index.html" class="active">Music</a></li>
-                    <li><a href="../collections/index.html">Collections</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header"></header>
 
     <main class="main-content">
         <div class="container">
@@ -98,7 +80,7 @@
         </div>
     </div>
 
-    <script src="../js/main.js?v=20260804-0700"></script>
+    <script src="../js/main.js?v=20260804-0900"></script>
     <script>
         // Set up single photo for lightbox
         window.currentPhotos = [{
@@ -109,6 +91,9 @@
             large: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_b.jpg',
             url: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
         }];
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAlbumNavigation();
+        });
     </script>
     <!-- Album Navigation at Bottom -->
     <div class="album-bottom-navigation">
