@@ -4816,9 +4816,14 @@ async function initializeTagsPage() {
                                 tags: video.tags || [],
                                 albumTitle: album.title,
                                 albumPage: album.albumPage,
+                                collection: collectionType,
+                                type: 'video',
                                 isVideo: true
                             };
-                            
+
+                            // Store video globally so it's searchable like any other video
+                            allVideosWithTags.push(videoData);
+
                             // Add video to tag maps
                             videoData.tags.forEach(tag => {
                                 if (!allTags.has(tag)) {
@@ -5172,7 +5177,18 @@ function showPhotosForTag(tag, items) {
     const videosSection = document.getElementById('videos-section');
     const tagsHint = document.getElementById('tags-hint');
     if (tagsHint) tagsHint.style.display = 'none';
-    
+
+    // Keep the URL in sync with the tag being viewed, whether the click came
+    // from the sidebar or landed here already carrying a ?tag= from another
+    // page - otherwise the address bar keeps showing whichever tag was in
+    // the URL on the initial page load, even after clicking to a new one.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('tag') !== tag) {
+        params.set('tag', tag);
+        params.delete('search');
+        history.pushState({ tag }, '', `${window.location.pathname}?${params.toString()}`);
+    }
+
     // Separate photos and videos
     const photos = items.filter(item => item.type === 'photo');
     const videos = items.filter(item => item.type === 'video');
