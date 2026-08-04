@@ -227,7 +227,7 @@
                     <a href="../tags.html?tag=widespreadpanic" class="tag" data-tag="widespreadpanic">widespread panic</a>
                     <a href="../tags.html?tag=livemusic" class="tag" data-tag="livemusic">live music</a>
                     <a href="../tags.html?tag=pattersonhood" class="tag" data-tag="pattersonhood">patterson hood</a>
-                    <a href="../tags.html?tag=40watt" class="tag" data-tag="40watt">40 watt</a>
+                    <a href="../tags.html?tag=40wattclub" class="tag" data-tag="40wattclub">40 Watt Club</a>
                     <a href="../tags.html?tag=drivebytruckers" class="tag" data-tag="drivebytruckers">drive-by truckers</a>
                 </div>
             </div>
@@ -283,7 +283,7 @@
         </div>
     </div>
 
-    <script src="../js/main.js?v=20260804-0400"></script>
+    <script src="../js/main.js?v=20260804-0500"></script>
     <script>
         // Video data - Regular videos first, then Shorts
         const youtubeVideos = [
@@ -344,7 +344,7 @@
                     if (fileId) {
                         const embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
                         return `
-                            <div class="video-card video-item" data-tags="athensga,athensgamusic,pattersonhood,40watt,drivebytruckers,livemusic,benefit,daveschools,widespreadpanic">
+                            <div class="video-card video-item" data-tags="athensga,athensgamusic,pattersonhood,40wattclub,drivebytruckers,livemusic,benefit,daveschools,widespreadpanic">
                                 <div class="video-embed">
                                     <iframe 
                                         src="${embedUrl}" 
@@ -370,7 +370,7 @@
                 const embedClass = isShort ? 'video-embed shorts' : 'video-embed';
 
                 return `
-                    <div class="video-card video-item" data-tags="athensga,athensgamusic,pattersonhood,40watt,drivebytruckers,livemusic,benefit,daveschools,widespreadpanic">
+                    <div class="video-card video-item" data-tags="athensga,athensgamusic,pattersonhood,40wattclub,drivebytruckers,livemusic,benefit,daveschools,widespreadpanic">
                         <div class="${embedClass}">
                             <iframe 
                                 src="https://www.youtube.com/embed/${videoId}" 

@@ -692,7 +692,7 @@ const ALBUM_DATA = {
                 {
                     title: 'Get Out of Here Hitler',
                     youtubeId: '_cnSf8OnY4E',
-                    tags: ['cinemechanica', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                    tags: ['cinemechanica', '40wattclub', 'athensga', 'athensgamusic', 'livemusic']
                 }
             ],
         },
@@ -920,7 +920,7 @@ const ALBUM_DATA = {
                 {
                     title: 'Nightswimming (R.E.M.)',
                     youtubeId: 'PWfJojzOEcQ',
-                    tags: ['michaelshannon', 'jasonnarducy', 'rem', 'peterbuck', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                    tags: ['michaelshannon', 'jasonnarducy', 'rem', 'peterbuck', '40wattclub', 'athensga', 'athensgamusic', 'livemusic']
                 }
             ],
         },
@@ -1979,12 +1979,12 @@ const ALBUM_DATA = {
                 {
                     title: 'White Freightliner Blues',
                     youtubeId: '_wef1DXNzXM',
-                    tags: ['jerryjoseph', 'bloodkin', 'toddnance', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                    tags: ['jerryjoseph', 'bloodkin', 'toddnance', '40wattclub', 'athensga', 'athensgamusic', 'livemusic']
                 },
                 {
                     title: 'Yellow Ribbons (partial)',
                     youtubeId: 'OGUPIeyiPpg',
-                    tags: ['jerryjoseph', 'danielhutchens', 'ericcarter', 'williamtonks', 'bloodkin', 'toddnance', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                    tags: ['jerryjoseph', 'danielhutchens', 'ericcarter', 'williamtonks', 'bloodkin', 'toddnance', '40wattclub', 'athensga', 'athensgamusic', 'livemusic']
                 }
             ],
         },
@@ -1994,12 +1994,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2006-03-02-patterson-hood-friends-40-watt-athens-ga.html',
             coverUrl: 'https://jayneclamp.com/images/PHoodFriends2006.png',
             filterNames: ['Patterson Hood', 'John Neff', 'Brad Morgan', 'Dave Schools', 'Mike Cooley'],
-            manualTags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter'],
+            manualTags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40wattclub', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter'],
             videos: [
                 {
                     youtubeId: '3Cg35r227NY',
                     title: 'Patterson Hood & Friends @ 40 Watt - Gimme Shelter Benefit 2006-03-02',
-                    tags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40watt', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter']
+                    tags: ['athensga', 'athensgamusic', 'pattersonhood', 'johnneff', 'bradmorgan', 'daveschools', 'mikecooley', '40wattclub', 'drivebytruckers', 'widespreadpanic', 'benefit', 'livemusic', 'gimmeshelter']
                 }
             ],
         },
@@ -2008,12 +2008,12 @@ const ALBUM_DATA = {
             isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/7fOuPrB8HoE/maxresdefault.jpg',
             albumPage: '../music/2025-02-21-robyn-hitchcock-40-watt-athens-ga.html',
-            manualTags: ['robynhitchcock', '40watt', 'athensga', 'athensgamusic', 'livemusic'],
+            manualTags: ['robynhitchcock', '40wattclub', 'athensga', 'athensgamusic', 'livemusic'],
             videos: [
                 {
                     youtubeId: '7fOuPrB8HoE',
                     title: 'Robyn Hitchcock "I\'m Falling" 2025-02-21 @ 40 Watt Club | Athens, GA',
-                    tags: ['robynhitchcock', '40watt', 'athensga', 'athensgamusic', 'livemusic']
+                    tags: ['robynhitchcock', '40wattclub', 'athensga', 'athensgamusic', 'livemusic']
                 }
             ],
         },
@@ -2201,12 +2201,12 @@ const ALBUM_DATA = {
             coverUrl: 'https://i.ytimg.com/vi/3qLQbk7tkb0/hqdefault.jpg',
             albumPage: '../music/2011-02-03-athens-business-rocks-40-watt-athens-ga.html',
             filterNames: ['Boy George Clinton', 'The Fret Dressers', 'Clusterphunk', '80 Cougar'],
-            manualTags: ['boygeorgeclinton', 'thefretdressers', 'baxendaleguitar', 'clusterphunk', '80cougar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'],
+            manualTags: ['boygeorgeclinton', 'thefretdressers', 'baxendaleguitar', 'clusterphunk', '80cougar', 'athensbusinessrocks', 'nucisspace', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'benefit'],
             videos: [
-                { youtubeId: '3qLQbk7tkb0', title: 'Boy George Clinton - "Maggot Brain / Crying Game" (Funkadelic / Boy George)', tags: ['boygeorgeclinton', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
-                { youtubeId: 'GWyHqHUtMd8', title: 'The Fret Dressers (Baxendale Guitar) - "Trying To Get To You" (Elvis Presley)', tags: ['thefretdressers', 'baxendaleguitar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
-                { youtubeId: 'CfEWLmt7WPg', title: 'Clusterphunk - "Bennie & the Jets" (Elton John / Bernie Taupin)', tags: ['clusterphunk', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
-                { youtubeId: 'YikNe3rGaMU', title: '80# Cougar - "Bang a Gong" (T-Rex)', tags: ['80cougar', 'athensbusinessrocks', 'nucisspace', '40watt', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] }
+                { youtubeId: '3qLQbk7tkb0', title: 'Boy George Clinton - "Maggot Brain / Crying Game" (Funkadelic / Boy George)', tags: ['boygeorgeclinton', 'athensbusinessrocks', 'nucisspace', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'GWyHqHUtMd8', title: 'The Fret Dressers (Baxendale Guitar) - "Trying To Get To You" (Elvis Presley)', tags: ['thefretdressers', 'baxendaleguitar', 'athensbusinessrocks', 'nucisspace', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'CfEWLmt7WPg', title: 'Clusterphunk - "Bennie & the Jets" (Elton John / Bernie Taupin)', tags: ['clusterphunk', 'athensbusinessrocks', 'nucisspace', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] },
+                { youtubeId: 'YikNe3rGaMU', title: '80# Cougar - "Bang a Gong" (T-Rex)', tags: ['80cougar', 'athensbusinessrocks', 'nucisspace', '40wattclub', 'athensga', 'athensgamusic', 'livemusic', 'benefit'] }
             ],
         },
         {
