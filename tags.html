@@ -33,7 +33,7 @@
     <meta name="twitter:title" content="Browse by Tags - Jayne Clamp Photography">
     <meta name="twitter:description" content="Search and browse photo albums by tags.">
     
-    <link rel="stylesheet" href="css/style.css?v=20260723-0150">
+    <link rel="stylesheet" href="css/style.css?v=20260804-0100">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://live.staticflickr.com" crossorigin>
     <link rel="dns-prefetch" href="https://api.flickr.com">
@@ -112,6 +112,13 @@
                     <!-- Results Section -->
                     <div id="results-section">
                         <h3 id="results-title" style="color: #ccc; font-size: 1.1rem; margin-bottom: 1.5rem; display: none;">Results</h3>
+
+                        <!-- Matching Albums (search only - jump straight to a show instead of scrolling every photo) -->
+                        <div id="albums-section" style="margin-bottom: 3rem; display: none;">
+                            <h3 id="albums-title" style="color: #ccc; font-size: 1.1rem; margin-bottom: 1.5rem;">Albums</h3>
+                            <div id="albums-grid-search" class="related-albums-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.25rem;"></div>
+                        </div>
+
                         <div id="photos-grid" class="photos-grid">
                             <!-- Photos will be populated by JavaScript -->
                         </div>
@@ -195,7 +202,7 @@
     <!-- Fuse.js for fuzzy search -->
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
     
-    <script src="../js/main.js?v=20260725-0120"></script>
+    <script src="../js/main.js?v=20260804-0200"></script>
     <script>
         // Smooth scroll to top function
         function scrollToTop() {

@@ -693,9 +693,9 @@ img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+    color: #000000;
     cursor: pointer;
     transition: background 0.3s ease;
     display: flex;
@@ -704,7 +704,7 @@ img {
 }
 
 .related-albums-arrow:hover {
-    background: rgba(0, 0, 0, 0.7);
+    background: #dddddd;
 }
 
 /* Arrows are a desktop hover affordance; touch devices just swipe the row. */
@@ -776,13 +776,13 @@ html[data-theme="light"] .related-album-cover {
 }
 
 html[data-theme="light"] .related-albums-arrow {
-    background: #ffffff;
-    border-color: #cccccc;
-    color: #1a1a1a;
+    background: #000000;
+    border-color: #000000;
+    color: #ffffff;
 }
 
 html[data-theme="light"] .related-albums-arrow:hover {
-    background: #eeeeee;
+    background: #333333;
 }
 
 /* Album bottom navigation */

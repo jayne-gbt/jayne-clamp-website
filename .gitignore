@@ -18,3 +18,6 @@ node_modules/
 # Misc
 *.log
 .env
+
+# Raw video files (too large for GitHub; kept in local backups only)
+videos/*.mp4

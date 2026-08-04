@@ -317,6 +317,7 @@ function showLightboxImage() {
         // Determine image quality based on hires mode
         const imageUrl = hiresMode ? (photo.original || photo.large) : (photo.thumbnail || photo.large);
         lightboxImg.src = imageUrl;
+        lightboxImg.alt = photo.title || '';
         
         // Inject watermark and download link into share menu
         const lightboxContent = lightboxImg.closest('.lightbox-content');
@@ -1263,22 +1264,23 @@ const ALBUM_DATA = {
             coverUrl: 'https://i.ytimg.com/vi/mX6wkiLh_-Y/maxresdefault.jpg',
             albumPage: '../music/2025-07-07-kevn-kinney-peter-buck-david-barbe-rialtoroom-athens-ga.html',
             filterNames: ['Kevn Kinney', 'Peter Buck', 'David Barbe'],
-            manualTags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers'],
+            manualTags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'drivebytruckers'],
             videos: [
                 {
                     youtubeId: 'mX6wkiLh_-Y',
                     title: 'Kevn Kinney, Peter Buck & David Barbe @ Rialto Room 2025-07-07',
-                    tags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'driventruckers']
+                    tags: ['kevnkinney', 'peterbuck', 'davidbarbe', 'rialto', 'athensga', 'athensgamusic', 'livemusic', 'drivebytruckers']
                 }
             ],
         },
-        { 
-            title: '2025-02-17 Classic City Wrestling w Drive By Truckers @ 40 Watt | Athens, GA', 
-            photoCount: 11, 
+        {
+            title: '2025-02-17 Classic City Wrestling w Drive By Truckers @ 40 Watt | Athens, GA',
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324198785/',
             coverUrl: 'https://live.staticflickr.com/65535/54363416132_5f542d9cae_z.jpg',
-            albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html'
-        }, 
+            albumPage: '../music/2025-02-17-classic-city-wrestling-w-drive-by-truckers-athens-ga.html',
+            filterNames: ['Drive By Truckers']
+        },
         { 
             title: '2025-02-15 Drive By Truckers @ 40 Watt | Athens, GA', 
             photoCount: 11, 
@@ -2672,9 +2674,10 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
         albums = albums.filter(album => {
             // Check if album has custom filterNames array (for albums with multiple artists)
             if (album.filterNames && Array.isArray(album.filterNames)) {
-                return album.filterNames.some(name => 
-                    name.toLowerCase().includes(filterBand.toLowerCase())
-                );
+                return album.filterNames.some(name => {
+                    const cleanName = name.toLowerCase() === 'drive by truckers' ? 'Drive-By Truckers' : name;
+                    return cleanName.toLowerCase().includes(filterBand.toLowerCase());
+                });
             }
             
             // Extract band name from title (format: "YYYY-MM-DD Band Name @ Venue" or "YYYY-MM-DD ... | Venue")
@@ -2692,11 +2695,18 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             }
             
             // Special handling for Shotgun Shells
-            if (artistSection.toLowerCase().includes('shotgun shells: a celebration of todd mcbride') && 
+            if (artistSection.toLowerCase().includes('shotgun shells: a celebration of todd mcbride') &&
                 filterBand.toLowerCase() === 'shotgun shells') {
                 return true;
             }
-            
+
+            // Any bill that includes Drive By Truckers (e.g. "Classic City Wrestling
+            // w Drive By Truckers") should match the Drive-By Truckers filter even
+            // though they're not the headliner in the title.
+            if (filterBand.toLowerCase() === 'drive-by truckers' && artistSection.toLowerCase().includes('drive by truckers')) {
+                return true;
+            }
+
             // Special handling: if title contains "Event with", extract artists after "with"
             const withMatch = artistSection.match(/\bwith\s+(.+)$/i);
             if (withMatch && artistSection.toLowerCase().includes('event')) {
@@ -2707,6 +2717,11 @@ function displayAlbums(collectionType, filterYear = 'all', filterBand = 'all', f
             let normalizedArtistSection = artistSection;
             if (normalizedArtistSection.toLowerCase() === 'kevn kinney band') {
                 normalizedArtistSection = 'Kevn Kinney';
+            }
+
+            // Normalize "Drive By Truckers" to match the hyphenated dropdown option
+            if (normalizedArtistSection.toLowerCase() === 'drive by truckers') {
+                normalizedArtistSection = 'Drive-By Truckers';
             }
             
             // Normalize Jerry Joseph variations to just "Jerry Joseph"
@@ -3138,7 +3153,7 @@ function initializeFilters(collectionType) {
                     album.filterNames.forEach(name => {
                         // Don't add event names like AthFest, Porchfest to band filter
                         if (name.toLowerCase() !== 'athfest' && name.toLowerCase() !== 'porchfest') {
-                            artists.add(name);
+                            artists.add(name.toLowerCase() === 'drive by truckers' ? 'Drive-By Truckers' : name);
                         }
                     });
                     return; // Skip normal processing if filterNames exist
@@ -3601,16 +3616,36 @@ function getRelatedAlbums(currentAlbum, collectionType) {
     let byArtist = albums.filter(a => albumsAreRelated(currentAlbum, a)).sort(sortByDateDesc);
 
     // Drive-By Truckers members who are usually credited as a guest rather
-    // than the headliner - surface the band (and, for Jay Gonzalez, his own
-    // solo billings) as related too, even though a guest spot wouldn't
-    // normally count via the primary-artist match above.
+    // than the headliner - surface the band (and their own solo billings)
+    // as related too, even though a guest spot wouldn't normally count via
+    // the primary-artist match above. Works in both directions: from a
+    // member's page you get the band, and from the band's page you get
+    // every member's own pages.
     const DBT_MEMBERS = ['patterson hood', 'mike cooley', 'jay gonzalez', 'brad morgan', 'matt patton'];
-    const currentArtistsLower = getAlbumArtists(currentAlbum).map(n => n.toLowerCase());
-    const matchedDBTMember = DBT_MEMBERS.find(m => currentArtistsLower.includes(m));
-    if (matchedDBTMember) {
+    const isDriveByTruckersAlbum = a => {
+        const primary = (getAlbumArtists(a)[0] || '').toLowerCase();
+        return primary === 'drive by truckers' || primary === 'drive-by truckers';
+    };
+    const currentArtistBaseNames = getAlbumArtists(currentAlbum).map(baseArtistName);
+    const matchedDBTMember = DBT_MEMBERS.find(m => currentArtistBaseNames.includes(m));
+    const isCurrentDBT = isDriveByTruckersAlbum(currentAlbum);
+
+    if (matchedDBTMember || isCurrentDBT) {
         const seenPages = new Set(byArtist.map(a => a.albumPage));
         const extra = [];
-        if (matchedDBTMember === 'jay gonzalez') {
+
+        if (isCurrentDBT) {
+            // On the band's own page, pull in every member's solo/side billings.
+            DBT_MEMBERS.forEach(member => {
+                albums.forEach(a => {
+                    if (!seenPages.has(a.albumPage) && isSameArtist(getAlbumArtists(a)[0], member)) {
+                        extra.push(a);
+                        seenPages.add(a.albumPage);
+                    }
+                });
+            });
+        } else if (matchedDBTMember === 'jay gonzalez') {
+            // On Jay Gonzalez's own page, his other solo billings come first.
             albums.forEach(a => {
                 if (!seenPages.has(a.albumPage) && isSameArtist(getAlbumArtists(a)[0], 'Jay Gonzalez')) {
                     extra.push(a);
@@ -3618,29 +3653,77 @@ function getRelatedAlbums(currentAlbum, collectionType) {
                 }
             });
         }
-        albums.forEach(a => {
-            const primary = (getAlbumArtists(a)[0] || '').toLowerCase();
-            const isDriveByTruckers = primary === 'drive by truckers' || primary === 'drive-by truckers';
-            if (isDriveByTruckers && !seenPages.has(a.albumPage)) {
-                extra.push(a);
-                seenPages.add(a.albumPage);
-            }
-        });
+
+        if (!isCurrentDBT) {
+            albums.forEach(a => {
+                if (isDriveByTruckersAlbum(a) && !seenPages.has(a.albumPage)) {
+                    extra.push(a);
+                    seenPages.add(a.albumPage);
+                }
+            });
+        }
+
         extra.sort(sortByDateDesc);
         byArtist = byArtist.concat(extra);
     }
 
-    return { byArtist: byArtist.slice(0, 8), artistName: getAlbumArtists(currentAlbum)[0] || '' };
+    // Kindercore 30 Expo lineup - any album featuring Maserati, Vincas, or
+    // Shehehe (even just as a guest on the bill) should surface the
+    // Kindercore 30 Expo show, and vice versa: the Kindercore 30 page should
+    // surface those artists' own dedicated pages.
+    const KINDERCORE_RELATED = ['maserati', 'vincas', 'shehehe'];
+    const isKindercore30Album = a => (getAlbumArtists(a)[0] || '').toLowerCase() === 'kindercore 30';
+    const currentArtistAllBaseNames = getAlbumArtists(currentAlbum).map(baseArtistName);
+    const matchedKindercoreArtist = KINDERCORE_RELATED.find(name => currentArtistAllBaseNames.includes(name));
+    const isCurrentKindercore30 = isKindercore30Album(currentAlbum);
+
+    if (isCurrentKindercore30 || matchedKindercoreArtist) {
+        const seenPages = new Set(byArtist.map(a => a.albumPage));
+        const extra = [];
+
+        if (isCurrentKindercore30) {
+            KINDERCORE_RELATED.forEach(name => {
+                albums.forEach(a => {
+                    if (!seenPages.has(a.albumPage) && isSameArtist(getAlbumArtists(a)[0], name)) {
+                        extra.push(a);
+                        seenPages.add(a.albumPage);
+                    }
+                });
+            });
+        } else {
+            albums.forEach(a => {
+                if (!seenPages.has(a.albumPage) && isKindercore30Album(a)) {
+                    extra.push(a);
+                    seenPages.add(a.albumPage);
+                }
+            });
+        }
+
+        extra.sort(sortByDateDesc);
+        byArtist = byArtist.concat(extra);
+    }
+
+    return { byArtist: byArtist.slice(0, 15), artistName: getAlbumArtists(currentAlbum)[0] || '' };
 }
 
-// Two names count as "the same artist" if they're identical, or one is the
-// other plus a backing-band suffix ("Patterson Hood" vs "Patterson Hood &
-// Friends" / "& the Sensurrounders").
+// Strips a trailing backing-band suffix ("& Friends", "& the Sensurrounders",
+// "and the Truckers", etc.) so "Patterson Hood & Friends" and "Patterson
+// Hood & the Sensurrounders" both reduce to "patterson hood".
+function baseArtistName(name) {
+    if (!name) return '';
+    const match = name.match(/^(.+?)\s*(?:&|,|\band\b|\bwith\b)/i);
+    return (match ? match[1] : name).trim().toLowerCase();
+}
+
+// Two names count as "the same artist" if they're identical, one is the
+// other plus a backing-band suffix, or they share the same base name once
+// backing-band suffixes are stripped from both.
 function isSameArtist(nameA, nameB) {
     if (!nameA || !nameB) return false;
     const a = nameA.toLowerCase();
     const b = nameB.toLowerCase();
     if (a === b) return true;
+    if (baseArtistName(nameA) === baseArtistName(nameB)) return true;
     const shorter = a.length <= b.length ? a : b;
     const longer = a.length <= b.length ? b : a;
     if (!longer.startsWith(shorter)) return false;
@@ -3672,7 +3755,7 @@ function renderRelatedAlbumCard(album) {
     const cover = album.coverUrl || '';
     return `
         <a href="${album.albumPage}" class="related-album-card">
-            <div class="related-album-cover"><img src="${cover}" alt="" loading="lazy"></div>
+            <div class="related-album-cover"><img src="${cover}" alt="${album.title}" loading="lazy"></div>
             <span class="related-album-title">${album.title}</span>
         </a>
     `;
@@ -3995,6 +4078,9 @@ function createGlobalFooter() {
                     </a>
                     <a href="https://soundcloud.com/jclamp" target="_blank" rel="noopener" aria-label="SoundCloud">
                         <i class="fab fa-soundcloud"></i>
+                    </a>
+                    <a href="${pathPrefix}rss.xml" target="_blank" rel="noopener" aria-label="RSS Feed">
+                        <i class="fas fa-rss"></i>
                     </a>
                 </div>
                 <div class="footer-nav">
@@ -4485,6 +4571,16 @@ const TAGS_CACHE_STORE = 'tags-data';
 const TAGS_CACHE_KEY = 'all-tags-data';
 const CACHE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
 
+// The ?v= on this very script tag - bumped on every deploy that touches
+// tags/albums, so it doubles as a "has the underlying data changed since
+// this cache was saved" signal, without needing a separate deploy id.
+function getMainJsVersion() {
+    const script = document.querySelector('script[src*="main.js"]');
+    if (!script) return null;
+    const match = script.src.match(/[?&]v=([^&]+)/);
+    return match ? match[1] : null;
+}
+
 async function openTagsCacheDB() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(TAGS_CACHE_DB, 1);
@@ -4510,7 +4606,8 @@ async function saveTagsToCache(tagsData, albumCount) {
         const cacheData = {
             tags: Array.from(tagsData.entries()),
             timestamp: Date.now(),
-            albumCount: albumCount
+            albumCount: albumCount,
+            scriptVersion: getMainJsVersion()
         };
         
         store.put(cacheData, TAGS_CACHE_KEY);
@@ -4553,7 +4650,8 @@ async function loadTagsFromCache() {
                 resolve({
                     tags: tagsMap,
                     timestamp: cacheData.timestamp,
-                    albumCount: cacheData.albumCount
+                    albumCount: cacheData.albumCount,
+                    scriptVersion: cacheData.scriptVersion
                 });
             };
             request.onerror = () => reject(request.error);
@@ -4582,7 +4680,6 @@ async function clearTagsCache() {
 }
 
 async function initializeTagsPage() {
-    
     const tagsContainer = document.getElementById('tags-container');
     const loadingMessage = document.getElementById('tags-loading-message');
     const searchInput = document.getElementById('tag-search');
@@ -4625,11 +4722,14 @@ async function initializeTagsPage() {
     
     // If cache is fresh and album count matches, use it. Album count alone
     // doesn't catch new videos/tags added to an *existing* album, so also
-    // expire the cache after a few hours regardless of count - users
-    // shouldn't have to notice a stale "Refresh" link to see new content.
+    // require the cached data to have been saved under the current main.js
+    // version - since that version gets bumped on every deploy that touches
+    // tags/albums, this invalidates the cache automatically on deploy
+    // instead of relying only on the time-based TTL below.
     const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
     const cacheIsFresh = cachedData && (Date.now() - cachedData.timestamp) < CACHE_TTL_MS;
-    if (cachedData && cacheIsFresh && cachedData.albumCount === totalAlbums) {
+    const cacheVersionMatches = cachedData && cachedData.scriptVersion === getMainJsVersion();
+    if (cachedData && cacheIsFresh && cacheVersionMatches && cachedData.albumCount === totalAlbums) {
         console.log('Loading tags from cache - instant load!');
         allTags.clear();
         cachedData.tags.forEach((value, key) => {
@@ -4663,7 +4763,7 @@ async function initializeTagsPage() {
         }
         
         // Display tags immediately
-        displayTags(allTags);
+        displayAllTags(allTags);
         
         // Enable search
         if (searchInput) {
@@ -4673,11 +4773,15 @@ async function initializeTagsPage() {
             searchInput.style.cursor = 'text';
         }
         
-        // If filtering by tag, show results
-        if (tagParam) {
-            filterByTag(tagParam);
-        }
-        
+        // setupTagSearch wires up the search input's listener, which
+        // handleTagPageParameters relies on (it dispatches a synthetic
+        // 'input' event for ?search= links) - must run first.
+        setupTagSearch(allTags);
+
+        // If filtering by tag or search query, show results (shared with the
+        // fresh-fetch path below so ?search= works from a cached load too)
+        handleTagPageParameters(urlParams, allTags, tagParam);
+
         return;
     }
     
@@ -5021,7 +5125,7 @@ function setupTagSearch(allTags) {
     
     searchInput.addEventListener('input', function() {
         const query = this.value.trim();
-        
+
         if (query === '') {
             // Clear results
             document.getElementById('results-title').style.display = 'none';
@@ -5095,34 +5199,69 @@ function showPhotosForTag(tag, items) {
     resultsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// Search matches individual photos/videos, so a query like "Bloodkin" can
+// return 200+ results across 11 different shows. Surface the distinct shows
+// first so a visitor can jump straight to one instead of scrolling every photo.
+function findAlbumByPage(albumPage) {
+    for (const collection of Object.keys(ALBUM_DATA)) {
+        const match = ALBUM_DATA[collection].find(a => a.albumPage === albumPage);
+        if (match) return match;
+    }
+    return null;
+}
+
 function showSearchResults(query, items) {
     const resultsTitle = document.getElementById('results-title');
     const photosGrid = document.getElementById('photos-grid');
     const videosGrid = document.getElementById('videos-grid');
     const videosSection = document.getElementById('videos-section');
+    const albumsSection = document.getElementById('albums-section');
+    const albumsGrid = document.getElementById('albums-grid-search');
     const tagsHint = document.getElementById('tags-hint');
     if (tagsHint) tagsHint.style.display = 'none';
-    
+
     // Separate photos and videos
     const photos = items.filter(item => item.type === 'photo');
     const videos = items.filter(item => item.type === 'video');
-    
+
     resultsTitle.textContent = `Search results for "${query}" (${items.length} total)`;
     resultsTitle.style.display = 'block';
-    
+
     if (items.length === 0) {
         photosGrid.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No results found</p>';
         if (videosSection) videosSection.style.display = 'none';
+        if (albumsSection) albumsSection.style.display = 'none';
         return;
     }
-    
+
+    // Distinct matching albums, resolved back to their ALBUM_DATA entry so we
+    // reuse the real title/coverUrl rather than an arbitrary matched photo's own thumbnail.
+    if (albumsSection && albumsGrid) {
+        const seenPages = new Set();
+        const matchingAlbums = [];
+        items.forEach(item => {
+            if (!item.albumPage || seenPages.has(item.albumPage)) return;
+            const album = findAlbumByPage(item.albumPage);
+            if (album) {
+                seenPages.add(item.albumPage);
+                matchingAlbums.push(album);
+            }
+        });
+        if (matchingAlbums.length > 0) {
+            albumsGrid.innerHTML = matchingAlbums.map(renderRelatedAlbumCard).join('');
+            albumsSection.style.display = 'block';
+        } else {
+            albumsSection.style.display = 'none';
+        }
+    }
+
     // Display photos
     if (photos.length > 0) {
         displayPhotosGrid(photos, photosGrid);
     } else {
         photosGrid.innerHTML = '';
     }
-    
+
     // Display videos
     if (videos.length > 0 && videosGrid && videosSection) {
         displayVideosGrid(videos, videosGrid);
