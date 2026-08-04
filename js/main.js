@@ -3150,9 +3150,10 @@ function initializeFilters(collectionType) {
             ALBUM_DATA.music.forEach(album => {
                 // Check if album has custom filterNames array (for albums with multiple artists)
                 if (album.filterNames && Array.isArray(album.filterNames)) {
+                    const knownVenues = getKnownVenueAndEventNames();
                     album.filterNames.forEach(name => {
-                        // Don't add event names like AthFest, Porchfest to band filter
-                        if (name.toLowerCase() !== 'athfest' && name.toLowerCase() !== 'porchfest') {
+                        // Don't add venue/event names (AthFest, 40 Watt, Georgia Theatre, etc.) to band filter
+                        if (!knownVenues.has(name.toLowerCase())) {
                             artists.add(name.toLowerCase() === 'drive by truckers' ? 'Drive-By Truckers' : name);
                         }
                     });
