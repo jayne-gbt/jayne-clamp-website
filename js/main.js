@@ -787,6 +787,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-06-26 Scattrbrain @ 40 Watt | AthFest',
+            coverUrl: 'https://live.staticflickr.com/65535/55416199306_e99acb2368_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720334819695/',
             albumPage: '../music/2026-06-26-scattrbrain-40-watt-athfest-athens-ga.html',
             filterNames: ['Scattrbrain', '40 Watt', 'AthFest'],
@@ -1212,10 +1213,11 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-05-26-patterson-hood-lakeside-jam-milledgeville-ga.html'
         },
         { 
-            title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA', 
-            photoCount: 1, 
+            title: '2025-05-31 Rauncher @ Nowhere Bar | Athens, GA',
+            photoCount: 1,
             coverUrl: 'https://live.staticflickr.com/65535/54885443589_d64f40f294_z.jpg',
-            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/'
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/54885443589/',
+            albumPage: '../music/2025-05-31-rauncher-nowhere-bar-athens-ga.html'
         },
         { 
             title: '2023-06-24 The Pink Stones @ Athfest | Athens, GA', 
@@ -1345,22 +1347,22 @@ const ALBUM_DATA = {
             isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/Qg47lp6AHws/maxresdefault.jpg',
             albumPage: '../music/2025-04-03-gillian-welch-david-rawlings-classic-center-athens-ga.html',
-            manualTags: ['gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic', 'sixwhitehorses', 'thatsthewayitgoes', 'waysidebackintime'],
+            manualTags: ['gillianwelch', 'davidrawlings', 'classiccenter', 'athensga', 'athensgamusic', 'livemusic', 'sixwhitehorses', 'thatsthewayitgoes', 'waysidebackintime'],
             videos: [
                 {
                     title: 'Wayside / Back in Time',
                     youtubeId: 'Qg47lp6AHws',
-                    tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
+                    tags: ['waysidebackintime', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athensga', 'athensgamusic', 'livemusic']
                 },
                 {
                     title: "That's the Way It Goes",
                     youtubeId: 'aRFz1bChgkA',
-                    tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
+                    tags: ['thatsthewayitgoes', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athensga', 'athensgamusic', 'livemusic']
                 },
                 {
                     title: 'Six White Horses',
                     youtubeId: 'u9w-jkqych4',
-                    tags: ['sixwhitehorses', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athens', 'livemusic']
+                    tags: ['sixwhitehorses', 'gillianwelch', 'davidrawlings', 'classiccenter', 'athensga', 'athensgamusic', 'livemusic']
                 }
             ]
         },
@@ -1428,7 +1430,7 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/54067165798_b819722fc9_z.jpg',
             albumPage: '../music/2024-10-10-doug-emhoff-event-with-michael-stipe-athens-ga.html',
             filterNames: ['Michael Stipe', 'Andy LeMaster', 'David Barbe'],
-            manualTags: ['rem', 'davidbarbe', 'andylemaster', 'dougemhoff', 'michaelstipe', 'wendellgee', 'driver8', 'athensclarkecountydemocrats', 'athensmusic', 'politics', 'kamalaharris', 'democrats', 'presidentialcampaign'],
+            manualTags: ['rem', 'davidbarbe', 'andylemaster', 'dougemhoff', 'michaelstipe', 'wendellgee', 'driver8', 'athensclarkecountydemocrats', 'athensgamusic', 'politics', 'kamalaharris', 'democrats', 'presidentialcampaign'],
             videos: [
                 {
                     title: 'Wendell Gee',
@@ -2322,8 +2324,9 @@ const ALBUM_DATA = {
             albumPage: '../events/2024-10-26-wild-rumpus-athens-ga.html'
         },
         { 
-            title: '2022-10-14 UGA Homecoming Parade | Athens, GA', 
-            photoCount: 11, 
+            title: '2022-10-14 UGA Homecoming Parade | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/54909295084_a552d90458_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192248/',
             albumPage: '../events/2022-10-14-uga-homecoming-parade-athens-ga.html'
         },
@@ -2355,8 +2358,9 @@ const ALBUM_DATA = {
             albumPage: '../events/2021-10-31-wild-rumpus-halloween-athens-ga.html'
         },
         { 
-            title: '2020-11-13 Jon Ossoff Senate Runoff Rally | Athens, GA', 
-            photoCount: 11, 
+            title: '2020-11-13 Jon Ossoff Senate Runoff Rally | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/54924896063_d7b2857611_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345548/',
             albumPage: '../events/2020-11-13-jon-ossoff-senate-runoff-rally-athens-ga.html'
         },
@@ -2368,8 +2372,9 @@ const ALBUM_DATA = {
             albumPage: '../events/2020-06-06-black-lives-matter-protest-athens-ga.html'
         },
         { 
-            title: '2018-03-24 March for Our Lives Rally @ UGA Arch | Athens, GA', 
-            photoCount: 11, 
+            title: '2018-03-24 March for Our Lives Rally @ UGA Arch | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/54909052821_244f890fb4_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330192343/',
             albumPage: '../events/2018-03-24-march-for-our-lives-rally-athens-ga.html'
         }
