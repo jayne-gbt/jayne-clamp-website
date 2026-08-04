@@ -458,7 +458,10 @@
         }
 
         // Load videos when page loads
-        document.addEventListener('DOMContentLoaded', loadVideos);
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAlbumNavigation();
+            loadVideos();
+        });
     </script>
 </body>
 </html>

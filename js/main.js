@@ -991,7 +991,8 @@ const ALBUM_DATA = {
             coverUrl: 'https://live.staticflickr.com/65535/55051739731_c6285abdec_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720331578173/',
             albumPage: '../music/2025-12-12-nucis-space-25th-anniversary-georgia-theatre-athens-ga.html',
-            filterNames: ['Claire Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power']
+            filterNames: ['Claire Campbell', 'Patterson Hood', 'Jay Gonzalez', 'David Barbe', 'Julia Barfield', 'Kevn Kinney', 'Women in STEM', 'Annie Leeth', 'Faye Webster', 'Modern Skirts', 'Willow Avalon', 'Betsy Franck', 'Kyshona Armstrong', 'Elf Power'],
+            relateOnAnyArtist: true
         },
         { 
             title: '2025-11-11 Jerry Joseph & the Jackmormons @ Nowhere Bar | Athens, GA', 
@@ -3597,19 +3598,74 @@ function getRelatedAlbums(currentAlbum, collectionType) {
 
     const albums = (ALBUM_DATA[collectionType] || []).filter(a => a.albumPage !== currentAlbum.albumPage);
 
-    // Match on the primary (first-listed) artist only - a shared guest/co-performer
-    // (e.g. Peter Buck sitting in on someone else's show) shouldn't make that
-    // show "related" to every other act Peter Buck has ever guested with.
-    const primaryArtist = (getAlbumArtists(currentAlbum)[0] || '').toLowerCase();
-    let byArtist = [];
-    if (primaryArtist) {
-        byArtist = albums.filter(a => {
-            const artistPrimary = (getAlbumArtists(a)[0] || '').toLowerCase();
-            return artistPrimary === primaryArtist;
-        }).sort(sortByDateDesc).slice(0, 6);
+    let byArtist = albums.filter(a => albumsAreRelated(currentAlbum, a)).sort(sortByDateDesc);
+
+    // Drive-By Truckers members who are usually credited as a guest rather
+    // than the headliner - surface the band (and, for Jay Gonzalez, his own
+    // solo billings) as related too, even though a guest spot wouldn't
+    // normally count via the primary-artist match above.
+    const DBT_MEMBERS = ['patterson hood', 'mike cooley', 'jay gonzalez', 'brad morgan', 'matt patton'];
+    const currentArtistsLower = getAlbumArtists(currentAlbum).map(n => n.toLowerCase());
+    const matchedDBTMember = DBT_MEMBERS.find(m => currentArtistsLower.includes(m));
+    if (matchedDBTMember) {
+        const seenPages = new Set(byArtist.map(a => a.albumPage));
+        const extra = [];
+        if (matchedDBTMember === 'jay gonzalez') {
+            albums.forEach(a => {
+                if (!seenPages.has(a.albumPage) && isSameArtist(getAlbumArtists(a)[0], 'Jay Gonzalez')) {
+                    extra.push(a);
+                    seenPages.add(a.albumPage);
+                }
+            });
+        }
+        albums.forEach(a => {
+            const primary = (getAlbumArtists(a)[0] || '').toLowerCase();
+            const isDriveByTruckers = primary === 'drive by truckers' || primary === 'drive-by truckers';
+            if (isDriveByTruckers && !seenPages.has(a.albumPage)) {
+                extra.push(a);
+                seenPages.add(a.albumPage);
+            }
+        });
+        extra.sort(sortByDateDesc);
+        byArtist = byArtist.concat(extra);
     }
 
-    return { byArtist, artistName: getAlbumArtists(currentAlbum)[0] || '' };
+    return { byArtist: byArtist.slice(0, 8), artistName: getAlbumArtists(currentAlbum)[0] || '' };
+}
+
+// Two names count as "the same artist" if they're identical, or one is the
+// other plus a backing-band suffix ("Patterson Hood" vs "Patterson Hood &
+// Friends" / "& the Sensurrounders").
+function isSameArtist(nameA, nameB) {
+    if (!nameA || !nameB) return false;
+    const a = nameA.toLowerCase();
+    const b = nameB.toLowerCase();
+    if (a === b) return true;
+    const shorter = a.length <= b.length ? a : b;
+    const longer = a.length <= b.length ? b : a;
+    if (!longer.startsWith(shorter)) return false;
+    const nextChar = longer[shorter.length];
+    return !nextChar || /[\s,&]/.test(nextChar);
+}
+
+// Two albums are related if their primary artists match, or - for
+// multi-artist bill/benefit pages explicitly opted in via
+// `relateOnAnyArtist` - if either album's primary artist matches ANY name
+// on the other's bill. (Not the default, since matching on any shared name
+// is how an incidental guest musician used to wrongly relate two otherwise
+// unconnected headline acts.)
+function albumsAreRelated(albumA, albumB) {
+    const primaryA = getAlbumArtists(albumA)[0] || '';
+    const primaryB = getAlbumArtists(albumB)[0] || '';
+    if (isSameArtist(primaryA, primaryB)) return true;
+
+    if (albumB.relateOnAnyArtist && getAlbumArtists(albumB).some(name => isSameArtist(primaryA, name))) {
+        return true;
+    }
+    if (albumA.relateOnAnyArtist && getAlbumArtists(albumA).some(name => isSameArtist(primaryB, name))) {
+        return true;
+    }
+    return false;
 }
 
 function renderRelatedAlbumCard(album) {
@@ -3634,7 +3690,9 @@ function displayRelatedAlbums(currentAlbum, collectionType) {
     if (!related.byArtist.length) return;
 
     let html = '<section class="related-albums-section"><div class="container">';
-    const heading = related.artistName === 'Politics' ? 'More Political Events' : `More from ${related.artistName}`;
+    const heading = related.artistName === 'Politics' ? 'More Political Events'
+        : currentAlbum.relateOnAnyArtist ? 'More From These Artists'
+        : `More from ${related.artistName}`;
     html += `<h3 class="related-albums-heading">${heading}</h3>`;
     html += '<div class="related-albums-rail">';
     html += '<button class="related-albums-arrow related-albums-arrow-left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>';
