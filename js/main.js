@@ -964,10 +964,11 @@ const ALBUM_DATA = {
             albumPage: '../music/2026-01-17-bit-brigade-georgia-theatre-athens-ga.html'
         },
         { 
-            title: '2026-01-12 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA', 
+            title: '2026-01-12 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/55051084731_676e94a58c_z.jpg',
             flickrUrl: 'https://flickr.com/photos/jayneclamp/albums/72177720331551582',
-            albumPage: '../music/2026-01-12-kevn-kinney-peter-buck-rialto-room-athens-ga.html'
+            albumPage: '../music/2026-01-12-kevn-kinney-peter-buck-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck']
         },
         { 
             title: '2025-12-19 Bloodkin & Friends @ 40 Watt | Athens, GA', 
@@ -1119,11 +1120,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-09-10-hayride-cine-athens-ga.html'
         },
         { 
-            title: '2025-09-07 Kevn Kinney & Peter Buck w Mike Mills @ Rialto Room | Athens, GA', 
-            photoCount: 11, 
+            title: '2025-09-07 Kevn Kinney & Peter Buck w Mike Mills @ Rialto Room | Athens, GA',
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329937140/',
             coverUrl: 'https://live.staticflickr.com/65535/54884771341_77e9aab1de_z.jpg',
-            albumPage: '../music/2025-09-07-kevn-kinney-peter-buck-w-mike-mills-rialto-room-athens-ga.html'
+            albumPage: '../music/2025-09-07-kevn-kinney-peter-buck-w-mike-mills-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck', 'Mike Mills']
         },
         { 
             title: '2025-09-06 James McMurtry @ 40 Watt | Athens, GA',
@@ -1239,6 +1241,7 @@ const ALBUM_DATA = {
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720324205156/',
             coverUrl: 'https://live.staticflickr.com/65535/54364334221_4a08118231_z.jpg',
             albumPage: '../music/2025-02-27-kevn-kinney-lenny-hayes-peter-buck-mike-mills-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Lenny Kaye', 'Peter Buck', 'Mike Mills'],
             videos: [
                 {
                     title: 'Honeysuckle Blue',
@@ -1307,11 +1310,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-03-26-patterson-hood-sensurrounders-terminal-west-atlanta-ga.html'
         },
         { 
-            title: '2025-03-05 Eric Carter & Scotty Nicholson @ Nowhere Bar | Athens, GA', 
-            photoCount: 8, 
+            title: '2025-03-05 Eric Carter & Scotty Nicholson @ Nowhere Bar | Athens, GA',
+            photoCount: 8,
             coverUrl: 'https://live.staticflickr.com/65535/54940841323_cc6a7dd82c_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330505783/',
-            albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html'
+            albumPage: '../music/2025-03-05-eric-carter-scotty-nicholson-nowhere-bar-athens-ga.html',
+            filterNames: ['Eric Carter', 'Scotty Nicholson']
         },
         { 
             title: '2025-03-15 Thick Lizzy @ The The Foundry | Athens, GA', 
@@ -1443,11 +1447,12 @@ const ALBUM_DATA = {
             ]
         }, 
         { 
-            title: '2024-09-30  David Barbe Bday Show @ Flicker | Athens, GA', 
-            photoCount: 11, 
+            title: '2024-09-30  David Barbe Bday Show @ Flicker | Athens, GA',
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720321185275/',
             coverUrl: 'https://live.staticflickr.com/65535/54065843540_822872b94c_z.jpg',
-            albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html'
+            albumPage: '../music/2024-09-30-david-barbe-bday-show-flicker-athens-ga.html',
+            filterNames: ['David Barbe']
         },
         { 
             title: '2024-09-07 The Bad Ends @ 40 Watt | Athens, GA', 
@@ -1606,10 +1611,11 @@ const ALBUM_DATA = {
         },
         { 
             title: '2023-09-30 David Barbe\'s 60th Bday @ 40 Watt | Athens, GA',
-            photoCount: 11, 
+            photoCount: 11,
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329958795/with/54887353605/',
             coverUrl: 'https://live.staticflickr.com/65535/54887353605_67e82e3d0c_z.jpg',
-            albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html'
+            albumPage: '../music/2023-09-30-david-barbe-60th-bday-40-watt-athens-ga.html',
+            filterNames: ['David Barbe']
         },
         { 
             title: '2023-09-30 Pilgrim @ Nowhere Bar | Athens, GA', 
@@ -1936,11 +1942,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-07-14-cinemechanica-caledonia-athens-ga.html'
         },
         { 
-            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance @ Nowhere Bar | Athens, GA', 
-            photoCount: 11, 
+            title: '2018-07-06 Daniel Hutchens, Eric Carter & Todd Nance @ Nowhere Bar | Athens, GA',
+            photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/54945415971_50f151d6f2_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330534587/',
-            albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html'
+            albumPage: '../music/2018-07-06-daniel-hutchens-eric-carter-todd-nance-nowhere-bar-athens-ga.html',
+            filterNames: ['Daniel Hutchens', 'Eric Carter', 'Todd Nance']
         },
         { 
             title: '2018-06-04 Daniel Hutchens & David Barbe @ Georgia Theatre Rooftop | Athens, GA', 
@@ -1957,11 +1964,12 @@ const ALBUM_DATA = {
             albumPage: '../music/2017-12-14-5000-caledonia-athens-ga.html'
         },
         { 
-            title: '2017-07-27 Jerry Joseph, Todd Nance & John Neff @ The Foundry | Athens, GA', 
-            photoCount: 11, 
+            title: '2017-07-27 Jerry Joseph, Todd Nance & John Neff @ The Foundry | Athens, GA',
+            photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/54914785638_d2962168ec_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330222401/',
-            albumPage: '../music/2017-07-27-jerry-joseph-todd-nance-john-neff-the-foundry-athens-ga.html'
+            albumPage: '../music/2017-07-27-jerry-joseph-todd-nance-john-neff-the-foundry-athens-ga.html',
+            filterNames: ['Jerry Joseph', 'Todd Nance', 'John Neff']
         },
         { 
             title: '2011-06-02 Jerry Joseph, Bloodkin & Todd Nance @ 40 Watt | Athens, GA',
@@ -2094,6 +2102,7 @@ const ALBUM_DATA = {
             isVideoCollection: true,
             coverUrl: 'https://i.ytimg.com/vi/rtLa40tRXWk/maxresdefault.jpg',
             albumPage: '../music/2025-04-20-kevn-kinney-peter-buck-mike-mills-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck', 'Mike Mills'],
             manualTags: ['kevnkinney', 'peterbuck', 'mikemills', 'rialtoroom', 'athensga', 'athensgamusic', 'livemusic'],
             videos: [
                 {
@@ -3716,21 +3725,65 @@ function getRelatedAlbums(currentAlbum, collectionType) {
 
     // Manually curated groups of artists who don't yet have enough of their
     // own catalog for the primary-artist match to surface much on their own -
-    // e.g. bands that shared a bill, or fit the same scene/genre. Every
-    // album by any artist in a group relates to every album by the other
-    // artists in that same group. Add more groups here over time.
+    // e.g. bands that shared a bill, played the same venue series, or fit the
+    // same scene/genre. Every album by any artist in a group relates to every
+    // album by the other artists in that same group. Matching checks EVERY
+    // artist on a bill (not just the primary/first-billed), so a guest like
+    // Peter Buck can pull in a group even from a show he didn't headline. An
+    // artist can belong to more than one group. Add more groups here over time.
     const RELATED_ARTIST_GROUPS = [
         ['cinemechanica', 'tiger bear wolf', 'real wow'],
+        ['cinemechanica', 'bit brigade'],
+        ['hayride', 'lona', 'thick lizzy'],
+        ['drug ducks', 'hayride'],
+        ['bruce springsteen', 'paul mccartney', 'gary numan', 'michael shannon'],
+        ['michael shannon', 'peter buck', 'mike mills', 'drink the sea'],
+        ['red dwarf star', 'kindercore 30', 'maserati'],
+        ['drivin n cryin', 'kevn kinney'],
+        ['the lanes', 'florry', 'mj lenderman', 'camp amped band', 'drive by truckers'],
+        ['camp amped band', 'claire campbell'],
+        ['andrew prater', 'infinite favors', 'bursters', 'johann greco'],
+        ['jerry joseph', 'bloodkin'],
+        ['james mcmurtry', 'bonnie whitmore', 'alejandro escovedo'],
+        ['sam holt band', 'todd nance'],
+        ['david lowery', 'kit', 'cicada rhythm', 'rose hotel', 'lazy horse'], // Cobham Triangle Park series
+        ['lee bains', 'drive by truckers', 'the dexateens'],
+        ['elf power', 'eyelids'],
+        ['eric carter', 'scotty nicholson', 'bloodkin', 'daniel hutchens'],
+        ['five eight', 'shehehe'],
+        ['vision video', 'vincas', 'maserati'],
+        ['dimmer twins', 'drive by truckers', 'patterson hood', 'mike cooley', 'don chambers', 'claire campbell', 'dave marr'],
+        ['robyn hitchcock', 'alejandro escovedo'],
+        ['taxicab verses', 'pilgrim', 'jacob morris'],
+        ['the pink stones', 'honeypuppy', 'pull chains', 'infinite favors', 'telemarket'],
+        ['jd pinkus', 'kindercore 30', 'infinite favors', 'real wow'],
+        ['weaponized flesh', 'real wow'],
+        ['supernova rainbow of fun', 'bloodkin', 'daniel hutchens', 'todd nance'],
+        ['clay leverett', 'john neff', 'lona', 'bloodkin'],
+        ['hunter morris', 'bland halen', 'lazy horse'],
+        ['blunt bangs', 'infinite favors', 'real wow'],
+        ['the wydelles', 'david barbe', 'dave marr'],
+        ['addie tonic', '5000'],
+        ['matt talbott', 'will johnson'],
+        ['betsy franck', 'bloodkin'],
+        ['boy george clinton', 'claire campbell'],
+        ['mike houser', 'supernova rainbow of fun', 'bloodkin'],
+        ['irreperable damage', 'jay gonzalez', 'tom hiel'],
     ];
-    const currentPrimaryBase = baseArtistName(getAlbumArtists(currentAlbum)[0] || '');
-    const artistGroup = RELATED_ARTIST_GROUPS.find(group => group.includes(currentPrimaryBase));
-    if (artistGroup) {
+    const currentArtistBases = getAlbumArtists(currentAlbum).map(baseArtistName);
+    const groupMates = new Set();
+    RELATED_ARTIST_GROUPS.forEach(group => {
+        if (group.some(name => currentArtistBases.includes(name))) {
+            group.forEach(name => groupMates.add(name));
+        }
+    });
+    if (groupMates.size) {
         const seenPages = new Set(byArtist.map(a => a.albumPage));
         const extra = [];
         albums.forEach(a => {
             if (seenPages.has(a.albumPage)) return;
-            const otherPrimaryBase = baseArtistName(getAlbumArtists(a)[0] || '');
-            if (otherPrimaryBase !== currentPrimaryBase && artistGroup.includes(otherPrimaryBase)) {
+            const otherArtistBases = getAlbumArtists(a).map(baseArtistName);
+            if (otherArtistBases.some(name => groupMates.has(name))) {
                 extra.push(a);
                 seenPages.add(a.albumPage);
             }
@@ -3756,7 +3809,7 @@ function getRelatedAlbums(currentAlbum, collectionType) {
         byArtist = byArtist.concat(extra);
     }
 
-    return { byArtist: byArtist.slice(0, 15), artistName: getAlbumArtists(currentAlbum)[0] || '' };
+    return { byArtist: byArtist.slice(0, 24), artistName: getAlbumArtists(currentAlbum)[0] || '' };
 }
 
 // Strips a trailing backing-band suffix ("& Friends", "& the Sensurrounders",
