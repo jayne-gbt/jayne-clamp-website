@@ -2,14 +2,7 @@
 (function() {
     try {
         var saved = localStorage.getItem('theme');
-        var theme;
-        if (saved) {
-            theme = saved;
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            theme = 'light';
-        } else {
-            theme = 'dark';
-        }
+        var theme = saved || 'dark';
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         } else {
@@ -3621,6 +3614,18 @@ function getRelatedAlbums(currentAlbum, collectionType) {
 
     let byArtist = albums.filter(a => albumsAreRelated(currentAlbum, a)).sort(sortByDateDesc);
 
+    // The Kindercore 30 Expo nights should relate to each other first, ahead
+    // of anything else - even though they don't share a primary artist
+    // (different lineup each night), so detect by title instead of filterNames.
+    const isKindercoreExpoAlbum = a => /kindercore 30 expo/i.test(a.title);
+    if (isKindercoreExpoAlbum(currentAlbum)) {
+        const otherNights = albums
+            .filter(a => isKindercoreExpoAlbum(a))
+            .sort(sortByDateDesc);
+        const nightPages = new Set(otherNights.map(a => a.albumPage));
+        byArtist = otherNights.concat(byArtist.filter(a => !nightPages.has(a.albumPage)));
+    }
+
     // Drive-By Truckers members who are usually credited as a guest rather
     // than the headliner - surface the band (and their own solo billings)
     // as related too, even though a guest spot wouldn't normally count via
@@ -3709,6 +3714,48 @@ function getRelatedAlbums(currentAlbum, collectionType) {
         byArtist = byArtist.concat(extra);
     }
 
+    // Manually curated groups of artists who don't yet have enough of their
+    // own catalog for the primary-artist match to surface much on their own -
+    // e.g. bands that shared a bill, or fit the same scene/genre. Every
+    // album by any artist in a group relates to every album by the other
+    // artists in that same group. Add more groups here over time.
+    const RELATED_ARTIST_GROUPS = [
+        ['cinemechanica', 'tiger bear wolf', 'real wow'],
+    ];
+    const currentPrimaryBase = baseArtistName(getAlbumArtists(currentAlbum)[0] || '');
+    const artistGroup = RELATED_ARTIST_GROUPS.find(group => group.includes(currentPrimaryBase));
+    if (artistGroup) {
+        const seenPages = new Set(byArtist.map(a => a.albumPage));
+        const extra = [];
+        albums.forEach(a => {
+            if (seenPages.has(a.albumPage)) return;
+            const otherPrimaryBase = baseArtistName(getAlbumArtists(a)[0] || '');
+            if (otherPrimaryBase !== currentPrimaryBase && artistGroup.includes(otherPrimaryBase)) {
+                extra.push(a);
+                seenPages.add(a.albumPage);
+            }
+        });
+        extra.sort(sortByDateDesc);
+        byArtist = byArtist.concat(extra);
+    }
+
+    // AthFest lineup albums relate to other AthFest albums from the same
+    // year - most AthFest acts only have this one show on the site, so
+    // without this they'd have no related albums at all.
+    const getAthFestYear = a => {
+        const isAthFest = (a.filterNames && a.filterNames.some(n => n.toLowerCase() === 'athfest')) || /athfest/i.test(a.title);
+        if (!isAthFest) return null;
+        const m = a.title.match(/^(\d{4})-\d{2}-\d{2}/);
+        return m ? m[1] : null;
+    };
+    const currentAthFestYear = getAthFestYear(currentAlbum);
+    if (currentAthFestYear) {
+        const seenPages = new Set(byArtist.map(a => a.albumPage));
+        const extra = albums.filter(a => !seenPages.has(a.albumPage) && getAthFestYear(a) === currentAthFestYear);
+        extra.sort(sortByDateDesc);
+        byArtist = byArtist.concat(extra);
+    }
+
     return { byArtist: byArtist.slice(0, 15), artistName: getAlbumArtists(currentAlbum)[0] || '' };
 }
 
@@ -3779,10 +3826,7 @@ function displayRelatedAlbums(currentAlbum, collectionType) {
     if (!related.byArtist.length) return;
 
     let html = '<section class="related-albums-section"><div class="container">';
-    const heading = related.artistName === 'Politics' ? 'More Political Events'
-        : currentAlbum.relateOnAnyArtist ? 'More From These Artists'
-        : `More from ${related.artistName}`;
-    html += `<h3 class="related-albums-heading">${heading}</h3>`;
+    html += `<h3 class="related-albums-heading">Related Albums</h3>`;
     html += '<div class="related-albums-rail">';
     html += '<button class="related-albums-arrow related-albums-arrow-left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>';
     html += '<div class="related-albums-track">' + related.byArtist.map(renderRelatedAlbumCard).join('') + '</div>';
@@ -4144,12 +4188,7 @@ function initializeGlobalFooter() {
 function getStoredTheme() {
     try {
         const saved = localStorage.getItem('theme');
-        if (saved) return saved;
-        // No saved preference - respect system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            return 'light';
-        }
-        return 'dark';
+        return saved || 'dark';
     } catch (e) {
         return 'dark';
     }
