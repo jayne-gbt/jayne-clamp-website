@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script data-theme-init>(function(){try{if(localStorage.getItem("theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}})();</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z1G54B1GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z1G54B1GV');
+    </script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Not ready to be public yet - keep out of search results even if the
+         URL leaks before it's linked from anywhere. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Athens Concert Posters &amp; Flyers - Jayne Clamp Photography</title>
+    <meta name="description" content="An archive of concert posters and flyers from the Athens, GA music scene.">
+
+    <link rel="stylesheet" href="css/style.css?v=20260805-0100">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .poster-pill-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .poster-pill-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .poster-pill-link i {
+            font-size: 0.7rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Placeholder for global header -->
+    <header class="site-header"></header>
+
+    <section class="albums-section">
+        <div class="container">
+            <div class="collection-header-row">
+                <a href="/#collections" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Collections
+                </a>
+                <div class="page-header">
+                    <h2 class="page-title">Athens Posters</h2>
+                    <p class="page-subtitle">Various Artists</p>
+                    <p class="page-subtitle" id="poster-count" style="font-size: 1rem; color: #999; margin-top: 0.25rem;"></p>
+                </div>
+            </div>
+
+            <div class="photos-grid" id="posters-grid"></div>
+
+            <div style="display: flex; justify-content: center; margin: 2rem 0;">
+                <button id="load-more-btn" onclick="loadMorePosters()" style="display: none; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 0.75rem 2rem; font-size: 1rem; cursor: pointer; border-radius: 50px; transition: all 0.3s ease;">
+                    Load More
+                </button>
+            </div>
+
+            <!-- More Posters, Elsewhere: sellers/archives with too many
+                 Athens posters to list one-by-one - link to their Athens-
+                 scoped page instead of hosting their images. -->
+            <div id="linked-posters-section" style="margin-top: 3rem; display: none;">
+                <h3 style="text-align: center; font-weight: 300; margin-bottom: 0.5rem;">More Posters, Elsewhere</h3>
+                <p style="text-align: center; color: #999; font-size: 0.9rem; margin-bottom: 1.5rem;">See (and often buy) the real thing from these Athens-specific galleries.</p>
+                <div id="linked-posters-list" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="poster-lightbox" style="display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; cursor: zoom-out;" onclick="closePosterLightbox()">
+        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); prevPosterLightboxImage()"><i class="fas fa-chevron-left"></i></button>
+        <img id="poster-lightbox-img" src="" alt="" style="max-width: 90vw; max-height: 90vh; object-fit: contain; cursor: default;" onclick="event.stopPropagation()">
+        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); nextPosterLightboxImage()"><i class="fas fa-chevron-right"></i></button>
+        <button onclick="closePosterLightbox()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2.5rem; cursor: pointer; line-height: 1;">&times;</button>
+    </div>
+
+    <!-- Placeholder for global footer -->
+    <footer class="site-footer"></footer>
+
+    <script src="athens-posters/posters-data.js"></script>
+    <script src="js/main.js?v=20260805-0200"></script>
+    <script>
+        const POSTERS_BATCH_SIZE = 18;
+        let postersShown = 0;
+
+        function posterCardHtml(poster, index) {
+            const title = poster.title || poster.filename;
+            const src = 'athens-posters/' + poster.filename;
+            return `
+                <div class="photo-card" onclick="openPosterLightbox(${index})">
+                    <img src="${src}" alt="${title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            `;
+        }
+
+        function renderPosters() {
+            const grid = document.getElementById('posters-grid');
+            const countEl = document.getElementById('poster-count');
+
+            if (!POSTERS_DATA.length) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #666;">
+                        <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;"></i>
+                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 300;">Coming Soon</p>
+                        <p style="font-size: 1rem; color: #999;">Posters and flyers from the Athens music scene will be added here.</p>
+                    </div>
+                `;
+                countEl.textContent = '';
+                return;
+            }
+
+            const batch = POSTERS_DATA.slice(0, postersShown + POSTERS_BATCH_SIZE);
+            grid.innerHTML = batch.map(posterCardHtml).join('');
+            postersShown = batch.length;
+            countEl.textContent = `${POSTERS_DATA.length} poster${POSTERS_DATA.length !== 1 ? 's' : ''}`;
+
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (postersShown < POSTERS_DATA.length) {
+                loadMoreBtn.style.display = 'block';
+                loadMoreBtn.textContent = `Load More (${POSTERS_DATA.length - postersShown} remaining)`;
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        function loadMorePosters() {
+            renderPosters();
+        }
+
+        function renderLinkedPosters() {
+            const section = document.getElementById('linked-posters-section');
+            const list = document.getElementById('linked-posters-list');
+            if (typeof POSTER_SOURCES_DATA === 'undefined' || !POSTER_SOURCES_DATA.length) return;
+
+            list.innerHTML = POSTER_SOURCES_DATA.map(s => `
+                <a href="${s.url}" target="_blank" rel="noopener" class="poster-pill-link">
+                    ${s.name} <i class="fas fa-external-link-alt"></i>
+                </a>
+            `).join('');
+            section.style.display = 'block';
+        }
+
+        let currentPosterIndex = 0;
+
+        function showPosterAt(index) {
+            currentPosterIndex = (index + POSTERS_DATA.length) % POSTERS_DATA.length;
+            const poster = POSTERS_DATA[currentPosterIndex];
+            const title = poster.title || poster.filename;
+            const img = document.getElementById('poster-lightbox-img');
+            img.src = 'athens-posters/' + poster.filename;
+            img.alt = title;
+        }
+
+        function openPosterLightbox(index) {
+            showPosterAt(index);
+            document.getElementById('poster-lightbox').style.display = 'flex';
+        }
+
+        function closePosterLightbox() {
+            document.getElementById('poster-lightbox').style.display = 'none';
+        }
+
+        function prevPosterLightboxImage() {
+            showPosterAt(currentPosterIndex - 1);
+        }
+
+        function nextPosterLightboxImage() {
+            showPosterAt(currentPosterIndex + 1);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('poster-lightbox');
+            if (lightbox.style.display !== 'flex') return;
+            if (e.key === 'ArrowRight') nextPosterLightboxImage();
+            if (e.key === 'ArrowLeft') prevPosterLightboxImage();
+            if (e.key === 'Escape') closePosterLightbox();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPosters();
+            renderLinkedPosters();
+        });
+    </script>
+</body>
+</html>
