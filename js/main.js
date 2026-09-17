@@ -675,6 +675,22 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-09-11 Bloodkin @ 40 Watt | Athens, GA',
+            photoCount: 30,
+            coverUrl: 'https://live.staticflickr.com/65535/55533288524_e643f9711c_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335670728/',
+            albumPage: '../music/2026-09-11-bloodkin-40-watt-athens-ga.html',
+            filterNames: ['Bloodkin'],
+        },
+        {
+            title: '2026-09-11 Scott Low @ 40 Watt | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/55532099582_f9f1541c94_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335670493/',
+            albumPage: '../music/2026-09-11-scott-low-40-watt-athens-ga.html',
+            filterNames: ['Scott Low'],
+        },
+        {
             title: '2026-07-17 Cinemechanica @ 40 Watt | Athens, GA',
             photoCount: 20,
             coverUrl: 'https://live.staticflickr.com/65535/55417140995_6ef73db582_z.jpg',
@@ -1092,7 +1108,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2025-10-19-porchfest-athens-ga.html'
         },
         { 
-            title: '2025-09-21 Vincas @ Hendershots | Athens, GA', 
+            title: '2025-09-21 Vincas @ Hendershot\'s | Athens, GA', 
             photoCount: 11, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720329904439/',
             coverUrl: 'https://live.staticflickr.com/65535/54876776442_e83e6eea26_z.jpg',
@@ -1161,8 +1177,8 @@ const ALBUM_DATA = {
             photoCount: 11, 
             coverUrl: 'https://live.staticflickr.com/65535/54953586548_9545345316_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330612052/',
-            albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html', 
-            filterNames: ['Andrew Prater']
+            albumPage: '../music/2025-08-29-infinite-favors-ideal-athens-ga.html',
+            filterNames: ['Infinite Favors', 'Andrew Prater']
         },
         { 
             title: '2025-08-29 Honeypuppy @ Ideal | Athens, GA', 
@@ -1318,7 +1334,7 @@ const ALBUM_DATA = {
             filterNames: ['Eric Carter', 'Scotty Nicholson']
         },
         { 
-            title: '2025-03-15 Thick Lizzy @ The The Foundry | Athens, GA', 
+            title: '2025-03-15 Thick Lizzy @ The Foundry | Athens, GA', 
             photoCount: 17, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330715001/',
             coverUrl: 'https://live.staticflickr.com/65535/54964190490_7402f5bdf8_z.jpg',
@@ -1497,11 +1513,11 @@ const ALBUM_DATA = {
             albumPage: '../music/2024-04-11-kimberly-morgan-york-band-house-party-athens-ga.html'
         },
         { 
-            title: '2024-04-20 Irreperable Damage @ Flicker | Athens, GA', 
+            title: '2024-04-20 Irreparable Damage @ Flicker | Athens, GA', 
             photoCount: 6, 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330456601/',
             coverUrl: 'https://live.staticflickr.com/65535/54936449937_bd06e0ed3c_z.jpg',
-            albumPage: '../music/2024-04-20-irreperable-damage-flicker-athens-ga.html'
+            albumPage: '../music/2024-04-20-irreparable-damage-flicker-athens-ga.html'
         },
         { 
             title: '2024-03-01 Lona @ 40 Watt | Athens, GA', 
@@ -1893,21 +1909,21 @@ const ALBUM_DATA = {
             albumPage: '../music/2019-03-22-rock-a-teens-nowhere-bar-athens-ga.html'
         },
         { 
-            title: '2019-02-01 David Barbe & the Quick Hooks @ Caledonia | Athens, GA', 
+            title: '2019-02-01 David Barbe & the Quick Hooks @ Caledonia Lounge | Athens, GA', 
             photoCount: 11, 
             coverUrl: 'https://live.staticflickr.com/65535/54926524124_f6ecf053a4_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330358648/',
             albumPage: '../music/2019-02-01-david-barbe-quick-hooks-athens-ga.html'
         },
         {
-            title: '2019-02-01 The Wydelles @ Caledonia | Athens, GA',
+            title: '2019-02-01 The Wydelles @ Caledonia Lounge | Athens, GA',
             coverUrl: 'https://live.staticflickr.com/65535/54924884828_126f9990f6_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330345488/',
             albumPage: '../music/2019-02-01-the-wydelles-caledonia-athens-ga.html',
             filterNames: ['The Wydelles'],
         },
         { 
-            title: '2018-12-29 Lona @ Caledonia | Athens, GA', 
+            title: '2018-12-29 Lona @ Caledonia Lounge | Athens, GA', 
             photoCount: 11, 
             coverUrl: 'https://live.staticflickr.com/65535/54915396460_1ea5fc0dd4_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330229651/',
@@ -1935,7 +1951,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-10-31-jerry-joseph-jackmormons-athens-ga.html'
         },
         { 
-            title: '2018-07-14 Cinemechanica @ Caledonia | Athens, GA', 
+            title: '2018-07-14 Cinemechanica @ Caledonia Lounge | Athens, GA', 
             photoCount: 11, 
             coverUrl: 'https://live.staticflickr.com/65535/54924813388_76d314616c_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330324630/',
@@ -1957,7 +1973,7 @@ const ALBUM_DATA = {
             albumPage: '../music/2018-06-04-daniel-hutchens-david-barbe-georgia-theatre-rooftop-athens-ga.html'
         },
         { 
-            title: '2017-12-14 5000 @ Caledonia | Athens, GA', 
+            title: '2017-12-14 5000 @ Caledonia Lounge | Athens, GA', 
             photoCount: 11, 
             coverUrl: 'https://live.staticflickr.com/65535/54909332968_99ef23f946_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720330204669/',
@@ -2246,6 +2262,14 @@ const ALBUM_DATA = {
     ],
     events: [
         {
+            title: '2026-09-13 Jon Ossoff & Keisha Lance Bottoms Rally @ Georgia Theatre | Athens, GA',
+            photoCount: 25,
+            coverUrl: 'https://live.staticflickr.com/65535/55533196987_b33ffb1c43_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335662235/',
+            albumPage: '../events/2026-09-13-jon-ossoff-keisha-lance-bottoms-rally-athens-ga.html',
+            filterNames: ['Jon Ossoff', 'Keisha Lance Bottoms'],
+        },
+        {
             title: '2026-07-15 World Cup England vs Argentina | Atlanta, GA',
             photoCount: 22,
             coverUrl: 'https://live.staticflickr.com/65535/55417113120_e70f082376_z.jpg',
@@ -2280,7 +2304,7 @@ const ALBUM_DATA = {
             filterNames: ['Detention Center'],
         },
         { 
-            title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershots | Athens, GA', 
+            title: '2026-02-15 Corey Forrester & Drew Morgan @ Hendershot\'s | Athens, GA', 
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720332417129',
             coverUrl: 'https://live.staticflickr.com/65535/55133360718_2809c9d469_z.jpg',
             albumPage: '../events/2026-02-15-corey-forrester-drew-morgan-hendershots-athens-ga.html'
@@ -3395,6 +3419,13 @@ function initializeFilters(collectionType) {
                     // For any other events, use the cleaned name
                     eventTypes.add(eventName);
                 }
+
+                // Shared-bill events can add extra buckets alongside whichever
+                // one matched above (each rally-goer should be filterable
+                // even when they're not the first name in the title).
+                if (eventName.toLowerCase().includes('keisha lance bottoms')) {
+                    eventTypes.add('Keisha Lance Bottoms');
+                }
             });
             
             // Sort event types alphabetically
@@ -3768,7 +3799,8 @@ function getRelatedAlbums(currentAlbum, collectionType) {
         ['betsy franck', 'bloodkin'],
         ['boy george clinton', 'claire campbell'],
         ['mike houser', 'supernova rainbow of fun', 'bloodkin'],
-        ['irreperable damage', 'jay gonzalez', 'tom hiel'],
+        ['irreparable damage', 'jay gonzalez', 'tom hiel'],
+        ['scott low', 'bloodkin'],
     ];
     const currentArtistBases = getAlbumArtists(currentAlbum).map(baseArtistName);
     const groupMates = new Set();
@@ -4162,8 +4194,8 @@ function initializeGlobalHeader() {
 // Global footer HTML template
 function createGlobalFooter() {
     // Determine the correct path prefix based on current page location
-    const pathPrefix = window.location.pathname.includes('/music/') || 
-                      window.location.pathname.includes('/events/') || 
+    const pathPrefix = window.location.pathname.includes('/music/') ||
+                      window.location.pathname.includes('/events/') ||
                       window.location.pathname.includes('/landscapes/') ? '../' : '';
     
     return `

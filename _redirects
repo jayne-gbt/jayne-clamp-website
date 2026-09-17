@@ -25,4 +25,7 @@
 # Duplicate Shotgun Shells page (wrong date) consolidated into the correct one
 /music/2022-02-27-shotgun-shells-celebration-todd-mcbride-athens-ga.html /music/2023-02-10-shotgun-shells-celebration-todd-mcbride-athens-ga.html 301
 
+# Fixed typo in album name/URL (Irreperable -> Irreparable)
+/music/2024-04-20-irreperable-damage-flicker-athens-ga.html /music/2024-04-20-irreparable-damage-flicker-athens-ga.html 301
+
 # Note: SPA catch-all removed - this is a multi-page static site, not a SPA
