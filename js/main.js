@@ -675,6 +675,14 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-09-17 Mdou Moctar @ 40 Watt | Athens, GA',
+            photoCount: 17,
+            coverUrl: 'https://live.staticflickr.com/65535/55535826072_a1ede73b82_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335684585/',
+            albumPage: '../music/2026-09-17-mdou-moctar-40-watt-athens-ga.html',
+            filterNames: ['Mdou Moctar'],
+        },
+        {
             title: '2026-09-11 Bloodkin @ 40 Watt | Athens, GA',
             photoCount: 30,
             coverUrl: 'https://live.staticflickr.com/65535/55533288524_e643f9711c_z.jpg',
@@ -685,10 +693,34 @@ const ALBUM_DATA = {
         {
             title: '2026-09-11 Scott Low @ 40 Watt | Athens, GA',
             photoCount: 11,
-            coverUrl: 'https://live.staticflickr.com/65535/55532099582_f9f1541c94_z.jpg',
+            coverUrl: 'https://live.staticflickr.com/65535/55533227688_ddfbd87739_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335670493/',
             albumPage: '../music/2026-09-11-scott-low-40-watt-athens-ga.html',
             filterNames: ['Scott Low'],
+        },
+        {
+            title: '2026-09-02 Jay Gonzalez @ Dead Beat Club | Athens, GA',
+            photoCount: 12,
+            coverUrl: 'https://live.staticflickr.com/65535/55537220795_f70ae8f0d6_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335685227/',
+            albumPage: '../music/2026-09-02-jay-gonzalez-dead-beat-club-athens-ga.html',
+            filterNames: ['Jay Gonzalez'],
+        },
+        {
+            title: '2026-09-02 Lydia Loveless @ Dead Beat Club | Athens, GA',
+            photoCount: 19,
+            coverUrl: 'https://live.staticflickr.com/65535/55534850075_fdb21db2e7_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335664700/',
+            albumPage: '../music/2026-09-02-lydia-loveless-dead-beat-club-athens-ga.html',
+            filterNames: ['Lydia Loveless'],
+        },
+        {
+            title: '2026-08-02 Jay Gonzalez @ ACC Library | Athens, GA',
+            photoCount: 9,
+            coverUrl: 'https://live.staticflickr.com/65535/55536895033_8f9a8f4a50_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335702278/',
+            albumPage: '../music/2026-08-02-jay-gonzalez-acc-library-athens-ga.html',
+            filterNames: ['Jay Gonzalez'],
         },
         {
             title: '2026-07-17 Cinemechanica @ 40 Watt | Athens, GA',
