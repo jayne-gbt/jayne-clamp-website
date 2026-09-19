@@ -715,6 +715,22 @@ const ALBUM_DATA = {
             filterNames: ['Lydia Loveless'],
         },
         {
+            title: '2026-08-08 Broken Down Boxes @ Dead Beat Club | Athens, GA',
+            photoCount: 12,
+            coverUrl: 'https://live.staticflickr.com/65535/55537290460_f00fec7449_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335703013/',
+            albumPage: '../music/2026-08-08-broken-down-boxes-dead-beat-club-athens-ga.html',
+            filterNames: ['Broken Down Boxes'],
+        },
+        {
+            title: '2026-08-08 David Barbe @ Dead Beat Club | Athens, GA',
+            photoCount: 3,
+            coverUrl: 'https://live.staticflickr.com/65535/55537054064_cb0bfc8190_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720335685647/',
+            albumPage: '../music/2026-08-08-david-barbe-dead-beat-club-athens-ga.html',
+            filterNames: ['David Barbe'],
+        },
+        {
             title: '2026-08-02 Jay Gonzalez @ ACC Library | Athens, GA',
             photoCount: 9,
             coverUrl: 'https://live.staticflickr.com/65535/55536895033_8f9a8f4a50_z.jpg',
