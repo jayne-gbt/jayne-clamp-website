@@ -2118,7 +2118,7 @@ const ALBUM_DATA = {
             coverUrl: 'https://i.ytimg.com/vi/lmcvF_rxKN8/hqdefault.jpg',
             albumPage: '../music/2001-12-14-mike-houser-barbara-cue-georgia-theatre-athens-ga.html',
             filterNames: ['Mike Houser', 'Barbara Cue'],
-            manualTags: ['mikehouser', 'barbaracue', 'georgiatheatre', 'athensga', 'athensgamusic', 'livemusic'],
+            manualTags: ['mikehouser', 'barbaracue', 'georgiatheatre', 'athensga', 'athensgamusic', 'livemusic', 'williamtonks', 'johnneff', 'toddnance', 'jonmills'],
             videos: [
                 {
                     youtubeId: 'lmcvF_rxKN8',
@@ -3887,6 +3887,17 @@ function getRelatedAlbums(currentAlbum, collectionType) {
         const extra = albums.filter(a => !seenPages.has(a.albumPage) && getAthFestYear(a) === currentAthFestYear);
         extra.sort(sortByDateDesc);
         byArtist = byArtist.concat(extra);
+    }
+
+    // On the 2001 Mike Houser/Barbara Cue video page, Supernova Rainbow of
+    // Fun's Nuci's Space show should lead the related list ahead of
+    // whatever the date sort would otherwise put first.
+    if (currentAlbum.albumPage === '../music/2001-12-14-mike-houser-barbara-cue-georgia-theatre-athens-ga.html') {
+        const leadIndex = byArtist.findIndex(a => a.title === '2022-12-13 Supernova Rainbow of Fun @ Nuci\'s Space | Athens, GA');
+        if (leadIndex > 0) {
+            const [lead] = byArtist.splice(leadIndex, 1);
+            byArtist.unshift(lead);
+        }
     }
 
     return { byArtist: byArtist.slice(0, 24), artistName: getAlbumArtists(currentAlbum)[0] || '' };
