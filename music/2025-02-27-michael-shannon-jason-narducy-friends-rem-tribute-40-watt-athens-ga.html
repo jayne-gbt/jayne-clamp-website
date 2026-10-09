@@ -103,7 +103,10 @@
 
     <div id="lightbox">
         <div class="lightbox-content">
-            <div class="lightbox-share">
+            <button class="lightbox-share" onclick="toggleLightboxShare()">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="lightbox-share-menu" id="lightbox-share-menu">
                 <a href="#" onclick="shareLightboxPhoto('instagram'); return false;"><i class="fab fa-instagram"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('threads'); return false;"><i class="fas fa-at"></i></a>
                 <a href="#" onclick="shareLightboxPhoto('facebook'); return false;"><i class="fab fa-facebook"></i></a>
