@@ -675,6 +675,14 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-10-31 The Agonal Gasps @ 40 Watt | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/55626081741_ec12396299_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336469159/',
+            albumPage: '../music/2026-10-31-the-agonal-gasps-40-watt-athens-ga.html',
+            filterNames: ['The Agonal Gasps'],
+        },
+        {
             title: '2026-09-17 Mdou Moctar @ 40 Watt | Athens, GA',
             photoCount: 17,
             coverUrl: 'https://live.staticflickr.com/65535/55535826072_a1ede73b82_z.jpg',
@@ -2309,6 +2317,13 @@ const ALBUM_DATA = {
         },
     ],
     events: [
+        {
+            title: '2026-10-31 Wild Rumpus Halloween | Athens, GA',
+            photoCount: 36,
+            coverUrl: 'https://live.staticflickr.com/65535/55626233939_489ff701cf_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336468694/',
+            albumPage: '../events/2026-10-31-wild-rumpus-halloween-athens-ga.html',
+        },
         {
             title: '2026-09-13 Jon Ossoff & Keisha Lance Bottoms Rally @ Georgia Theatre | Athens, GA',
             photoCount: 25,
@@ -4255,6 +4270,7 @@ function createGlobalFooter() {
     // Determine the correct path prefix based on current page location
     const pathPrefix = window.location.pathname.includes('/music/') ||
                       window.location.pathname.includes('/events/') ||
+                      window.location.pathname.includes('/blog/') ||
                       window.location.pathname.includes('/landscapes/') ? '../' : '';
     
     return `
@@ -5677,7 +5693,7 @@ function performSearch(event) {
     if (query) {
         // Get base path
         const path = window.location.pathname;
-        const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') || path.includes('/travel/') ? '../' : '';
+        const basePath = path.includes('/collections/') || path.includes('/music/') || path.includes('/events/') || path.includes('/landscapes/') || path.includes('/travel/') || path.includes('/blog/') ? '../' : '';
         
         // Redirect to tags page with search query
         window.location.href = `${basePath}tags.html?search=${encodeURIComponent(query)}`;
