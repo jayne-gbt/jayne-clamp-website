@@ -675,6 +675,14 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-10-24 Crazier @ Nowhere Bar | Athens, GA',
+            photoCount: 22,
+            coverUrl: 'https://live.staticflickr.com/65535/55632105792_b9ff0fd8ed_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336691545/',
+            albumPage: '../music/2026-10-24-crazier-nowhere-bar-athens-ga.html',
+            filterNames: ['Crazier'],
+        },
+        {
             title: '2026-10-31 The Agonal Gasps @ 40 Watt | Athens, GA',
             photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/55626081741_ec12396299_z.jpg',
