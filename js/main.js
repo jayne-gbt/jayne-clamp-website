@@ -675,6 +675,14 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-10-24 Lazy Horse @ Nowhere Bar | Athens, GA',
+            photoCount: 11,
+            coverUrl: 'https://live.staticflickr.com/65535/55633400048_805aa8de7e_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336891204/',
+            albumPage: '../music/2026-10-24-lazy-horse-nowhere-bar-athens-ga.html',
+            filterNames: ['Lazy Horse'],
+        },
+        {
             title: '2026-10-24 Crazier @ Nowhere Bar | Athens, GA',
             photoCount: 22,
             coverUrl: 'https://live.staticflickr.com/65535/55632105792_b9ff0fd8ed_z.jpg',
