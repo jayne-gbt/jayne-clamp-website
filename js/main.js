@@ -683,6 +683,14 @@ const ALBUM_DATA = {
             filterNames: ['Kevn Kinney', 'Peter Buck', 'Jon Harris'],
         },
         {
+            title: '2026-11-20 Kurt Vile & the Violators @ 40 Watt | Athens, GA',
+            photoCount: 18,
+            coverUrl: 'https://live.staticflickr.com/65535/55672391736_db8b534eb6_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720337014545/',
+            albumPage: '../music/2026-11-20-kurt-vile-the-violators-40-watt-athens-ga.html',
+            filterNames: ['Kurt Vile', 'The Violators', '40 Watt'],
+        },
+        {
             title: '2026-10-24 Lazy Horse @ Nowhere Bar | Athens, GA',
             photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/55633400048_805aa8de7e_z.jpg',
