@@ -739,6 +739,14 @@ const ALBUM_DATA = {
             filterNames: ['Don Chambers', 'Flicker'],
         },
         {
+            title: '2026-10-07 Luna @ 40 Watt | Athens, GA',
+            photoCount: 22,
+            coverUrl: 'https://live.staticflickr.com/65535/55672934020_b3571db348_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720337080608/',
+            albumPage: '../music/2026-10-07-luna-40-watt-athens-ga.html',
+            filterNames: ['Luna', '40 Watt'],
+        },
+        {
             title: '2026-09-17 Mdou Moctar @ 40 Watt | Athens, GA',
             photoCount: 17,
             coverUrl: 'https://live.staticflickr.com/65535/55535826072_a1ede73b82_z.jpg',
