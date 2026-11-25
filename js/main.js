@@ -731,6 +731,14 @@ const ALBUM_DATA = {
             filterNames: ['The Agonal Gasps'],
         },
         {
+            title: '2026-10-09 Don Chambers @ Flicker | Athens, GA',
+            photoCount: 17,
+            coverUrl: 'https://live.staticflickr.com/65535/55672657479_f93af58c65_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336899436/',
+            albumPage: '../music/2026-10-09-don-chambers-flicker-athens-ga.html',
+            filterNames: ['Don Chambers', 'Flicker'],
+        },
+        {
             title: '2026-09-17 Mdou Moctar @ 40 Watt | Athens, GA',
             photoCount: 17,
             coverUrl: 'https://live.staticflickr.com/65535/55535826072_a1ede73b82_z.jpg',
