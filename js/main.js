@@ -787,6 +787,14 @@ const ALBUM_DATA = {
             filterNames: ['Lydia Loveless'],
         },
         {
+            title: '2026-08-30 Don Chambers @ 40 Watt | Athens, GA',
+            photoCount: 6,
+            coverUrl: 'https://live.staticflickr.com/65535/55672717129_c437fc9388_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720337069392/',
+            albumPage: '../music/2026-08-30-don-chambers-40-watt-athens-ga.html',
+            filterNames: ['Don Chambers', '40 Watt'],
+        },
+        {
             title: '2026-08-08 Broken Down Boxes @ Dead Beat Club | Athens, GA',
             photoCount: 12,
             coverUrl: 'https://live.staticflickr.com/65535/55537290460_f00fec7449_z.jpg',
