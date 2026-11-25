@@ -691,6 +691,14 @@ const ALBUM_DATA = {
             filterNames: ['Kurt Vile', 'The Violators', '40 Watt'],
         },
         {
+            title: '2026-11-13 J Roddy Walston @ 40 Watt | Athens, GA',
+            photoCount: 21,
+            coverUrl: 'https://live.staticflickr.com/65535/55672451806_0e526925aa_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720337014965/',
+            albumPage: '../music/2026-11-13-j-roddy-walston-40-watt-athens-ga.html',
+            filterNames: ['J Roddy Walston', '40 Watt'],
+        },
+        {
             title: '2026-10-24 Lazy Horse @ Nowhere Bar | Athens, GA',
             photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/55633400048_805aa8de7e_z.jpg',
