@@ -691,6 +691,14 @@ const ALBUM_DATA = {
             filterNames: ['Kurt Vile', 'The Violators', '40 Watt'],
         },
         {
+            title: '2026-11-14 Marcel Sletten @ Dead Beat Club | Athens, GA',
+            photoCount: 8,
+            coverUrl: 'https://live.staticflickr.com/65535/55672560678_ffab731c99_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336899251/',
+            albumPage: '../music/2026-11-14-marcel-sletten-dead-beat-club-athens-ga.html',
+            filterNames: ['Marcel Sletten', 'Dead Beat Club'],
+        },
+        {
             title: '2026-11-13 J Roddy Walston @ 40 Watt | Athens, GA',
             photoCount: 21,
             coverUrl: 'https://live.staticflickr.com/65535/55672451806_0e526925aa_z.jpg',
