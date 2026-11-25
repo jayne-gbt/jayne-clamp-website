@@ -675,6 +675,14 @@ const ALBUM_DATA = {
         // Add your music albums here - example format:
         // { title: 'Concert Name', photoCount: 24, flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/ALBUM_ID' }
         {
+            title: '2026-11-23 Kevn Kinney & Peter Buck @ Rialto Room | Athens, GA',
+            photoCount: 15,
+            coverUrl: 'https://live.staticflickr.com/65535/55672520254_2521b317b4_z.jpg',
+            flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720336898486/',
+            albumPage: '../music/2026-11-23-kevn-kinney-peter-buck-rialto-room-athens-ga.html',
+            filterNames: ['Kevn Kinney', 'Peter Buck', 'Jon Harris'],
+        },
+        {
             title: '2026-10-24 Lazy Horse @ Nowhere Bar | Athens, GA',
             photoCount: 11,
             coverUrl: 'https://live.staticflickr.com/65535/55633400048_805aa8de7e_z.jpg',
