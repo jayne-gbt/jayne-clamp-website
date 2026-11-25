@@ -684,7 +684,7 @@ const ALBUM_DATA = {
         },
         {
             title: '2026-11-20 Kurt Vile & the Violators @ 40 Watt | Athens, GA',
-            photoCount: 18,
+            photoCount: 17,
             coverUrl: 'https://live.staticflickr.com/65535/55672391736_db8b534eb6_z.jpg',
             flickrUrl: 'https://www.flickr.com/photos/jayneclamp/albums/72177720337014545/',
             albumPage: '../music/2026-11-20-kurt-vile-the-violators-40-watt-athens-ga.html',
